@@ -11,61 +11,61 @@ import java.io.Serializable;
 public class Appointment implements Serializable{
     @Serial
     private static final long appointmentID = 123456L;
-    private String appointmentLocation;
-    private String appointmentHolder;
-    private String appointmentTimeSlot;
-    private String appointmentTaker;
+    private String Location;
+    private String Server;
+    private String TimeSlot;
+    private String User;
 
 /*
     Constructor
  */
-public Course(String appointmentLocation, String appointmentholder, String appointmentTimeSlot, String appointmentTaker) {
-    this.appointmentLocation = appointmentLocation;
-    this.appointmentHolder = appointmentHolder;
-    this.appointmentTimeSlot = appointmentTimeSlot;
-    this.appointmentTaker = appointmentTaker;
+public Appointment(String Location, String Server, String TimeSlot, String User) {
+    this.Location = Location;
+    this.Server = Server;
+    this.TimeSlot = TimeSlot;
+    this.User = User;
     }
 /*
 next four are getter
  */
-public String getAppointmentLocation() {
-    return appointmentLocation;
+public String getLocation() {
+    return Location;
 }
 
-public String getAppointmentHolder() {
-    return appointmentHolder;
+public String getServer() {
+    return Server;
 }
 
-public String getAppointmentTimeSlot() {
-    return appointmentTimeSlot;
+public String getTimeSlot() {
+    return TimeSlot;
 }
 
-public String getAppointmentTaker() {
-    return appointmentTaker;
+public String getUser() {
+    return User;
 }
     /*
     next four are setter
      */
 public void changeLocation(String newlocation){
-    this.appointmentLocation = newlocation;
+    this.Location = newlocation;
 }
 
-public void changeholder(String newholder){
-    this.appointmentholder = newholder;
+public void changeServer(String newserver){
+    this.Server = newserver;
 }
 
 public void changeTimeSlot(String newtime){
-    this.appointmentTimeSlot = newtime;
+    this.TimeSlot = newtime;
 }
 
-public void changeTaker(String newtaker){
-    this.appointmentTaker = newtaker;
+public void changeUser(String newuser){
+    this.User = newuser;
 }
 
 public String toString(){
-    return "\nHolder: " + this.appointmentHolder +  "; Location: "
-            + this.appointmentLocation +  "; Time: " + this.appointmentTimeSlot
-            + "; Taker: " + this.appointmentTaker;
+    return "\nServer: " + this.Server +  "; Location: "
+            + this.Location +  "; Time: " + this.TimeSlot
+            + "; User: " + this.User;
 }
 
 
