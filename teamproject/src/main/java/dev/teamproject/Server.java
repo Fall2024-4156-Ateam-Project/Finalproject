@@ -1,4 +1,4 @@
-//package
+package dev.teamproject;
 
 import java.io.Serial;
 import java.io.Serializable;
