@@ -1,6 +1,6 @@
 package dev.teamproject.timeslot;
 
-import dev.teamproject.common;
+import dev.teamproject.common.commonTypes;
 import dev.teamproject.user.User;
 import jakarta.persistence.*;
 
@@ -21,7 +21,7 @@ public class TimeSlot {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "day")
-    private common.Day day;
+    private commonTypes.Day day;
 
     @Column(name = "start_time")
     private Time startTime;
@@ -31,7 +31,7 @@ public class TimeSlot {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "availability")
-    private common.Availability availability;
+    private commonTypes.Availability availability;
 
 
     public int getTid() {
@@ -50,11 +50,11 @@ public class TimeSlot {
         this.user = user;
     }
 
-    public common.Day getDay() {
+    public commonTypes.Day getDay() {
         return day;
     }
 
-    public void setDay(common.Day day) {
+    public void setDay(commonTypes.Day day) {
         this.day = day;
     }
 
@@ -74,11 +74,11 @@ public class TimeSlot {
         this.endTime = endTime;
     }
 
-    public common.Availability getAvailability() {
+    public commonTypes.Availability getAvailability() {
         return availability;
     }
 
-    public void setAvailability(common.Availability availability) {
+    public void setAvailability(commonTypes.Availability availability) {
         this.availability = availability;
     }
 

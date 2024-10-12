@@ -1,6 +1,6 @@
 package dev.teamproject.meeting;
 import java.sql.Timestamp;
-import dev.teamproject.common;
+import dev.teamproject.common.commonTypes;
 import dev.teamproject.user.User;
 import jakarta.persistence.*;
 
@@ -20,7 +20,7 @@ public class Meeting {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
-    private common.MeetingType type;
+    private commonTypes.MeetingType type;
 
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
@@ -33,7 +33,7 @@ public class Meeting {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "recurrence")
-    private common.Recurrence recurrence;
+    private commonTypes.Recurrence recurrence;
 
     @Column(name = "created_at")
     private Timestamp createdAt;
@@ -46,7 +46,7 @@ public class Meeting {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private common.MeetingStatus status;
+    private commonTypes.MeetingStatus status;
 
 
     public int getMid() {
@@ -65,11 +65,11 @@ public class Meeting {
         this.organizer = organizer;
     }
 
-    public common.MeetingType getType() {
+    public commonTypes.MeetingType getType() {
         return type;
     }
 
-    public void setType(common.MeetingType type) {
+    public void setType(commonTypes.MeetingType type) {
         this.type = type;
     }
 
@@ -97,11 +97,11 @@ public class Meeting {
         this.endTime = endTime;
     }
 
-    public common.Recurrence getRecurrence() {
+    public commonTypes.Recurrence getRecurrence() {
         return recurrence;
     }
 
-    public void setRecurrence(common.Recurrence recurrence) {
+    public void setRecurrence(commonTypes.Recurrence recurrence) {
         this.recurrence = recurrence;
     }
 
@@ -129,11 +129,11 @@ public class Meeting {
         this.acceptParticipant = acceptParticipant;
     }
 
-    public common.MeetingStatus getStatus() {
+    public commonTypes.MeetingStatus getStatus() {
         return status;
     }
 
-    public void setStatus(common.MeetingStatus status) {
+    public void setStatus(commonTypes.MeetingStatus status) {
         this.status = status;
     }
 }
