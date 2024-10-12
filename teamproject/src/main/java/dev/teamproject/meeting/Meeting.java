@@ -1,16 +1,13 @@
-package dev.teamproject;
-
+package dev.teamproject.meeting;
 import java.sql.Timestamp;
 import dev.teamproject.common;
-import dev.teamproject.User;
+import dev.teamproject.user.User;
 import jakarta.persistence.*;
-import java.io.Serializable;
 
 
 @Entity
 @Table(name = "Meeting")
-public class Meeting implements Serializable{
-    private static final long serialVersionUID = 1L;
+public class Meeting {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
