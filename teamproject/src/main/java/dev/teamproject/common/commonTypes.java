@@ -1,6 +1,6 @@
-package dev.teamproject;
+package dev.teamproject.common;
 
-public class common {
+public class commonTypes {
 
 
     public enum MeetingType {

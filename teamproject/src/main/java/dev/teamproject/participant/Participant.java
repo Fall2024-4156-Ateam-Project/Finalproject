@@ -1,6 +1,6 @@
 package dev.teamproject.participant;
 
-import dev.teamproject.common;
+import dev.teamproject.common.commonTypes;
 import dev.teamproject.meeting.Meeting;
 import dev.teamproject.user.User;
 import jakarta.persistence.*;
@@ -26,14 +26,14 @@ public class Participant {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private common.Role role;
+    private commonTypes.Role role;
 
     @Column(name = "join_at")
     private Timestamp joinAt;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private common.ParticipantStatus status;
+    private commonTypes.ParticipantStatus status;
 
     // Getters and Setters
     public int getPid() {
@@ -60,11 +60,11 @@ public class Participant {
         this.user = user;
     }
 
-    public common.Role getRole() {
+    public commonTypes.Role getRole() {
         return role;
     }
 
-    public void setRole(common.Role role) {
+    public void setRole(commonTypes.Role role) {
         this.role = role;
     }
 
@@ -76,11 +76,11 @@ public class Participant {
         this.joinAt = joinAt;
     }
 
-    public common.ParticipantStatus getStatus() {
+    public commonTypes.ParticipantStatus getStatus() {
         return status;
     }
 
-    public void setStatus(common.ParticipantStatus status) {
+    public void setStatus(commonTypes.ParticipantStatus status) {
         this.status = status;
     }
 

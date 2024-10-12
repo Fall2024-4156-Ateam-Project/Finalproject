@@ -9,7 +9,8 @@
 ## TBD: 3 layers
 1. Controller (API endpoints)
 2. Service (business logic)
-3. DB models
+3. repository 
+4. DB models
 
 
 ## SQL Tables
