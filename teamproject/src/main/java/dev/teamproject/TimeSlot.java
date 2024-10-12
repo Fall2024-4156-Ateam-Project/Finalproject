@@ -1,14 +1,15 @@
-package dev.teamproject.timeslot;
+package dev.teamproject;
 
 import dev.teamproject.common;
-import dev.teamproject.user.User;
+import dev.teamproject.User;
 import jakarta.persistence.*;
-
+import java.io.Serializable;
 import java.sql.Time;
 
 @Entity
 @Table(name = "TimeSlot")
-public class TimeSlot {
+public class TimeSlot implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

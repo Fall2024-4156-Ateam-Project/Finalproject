@@ -1,28 +1,47 @@
-//package
+package dev.teamproject;
 
-import java.io.Serial;
+import dev.teamproject.Meeting;
+import jakarta.persistence.*;
+
 import java.io.Serializable;
+import java.util.List;
 
+@Entity
+@Table(name = "User")
 public class User implements Serializable {
-    @Serial
-    private static long appointmentID = 123456L;
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "UID", nullable = false)
+    private int uid;
+
+    @Column(name = "name", length = 100)
     private String name;
 
+    @Column(name = "email", length = 100)
+    private String email;
 
-public User(String name) {
-    this.name = name;
-}
+    @OneToMany(mappedBy = "organizer")
+    private List<Meeting> meetings;
 
-public String getName() {
+    public int getUid() {
+        return uid;
+    }
+
+    public String getName() {
         return name;
     }
 
-public void changeName(String newName){
-        this.name = newName;
-    }
-public String toString(){
-        return "\nname: " + name;
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
