@@ -19,13 +19,7 @@ public class UserController {
     public void saveUser(@RequestBody User user) {
         userService.save(user);
     }
-    /*
-    @PostMapping("/register")
-    public void saveUser(@RequestParam("name") String name,@RequestParam("email") String email) {
-        User user = new User(name, email);
-        userService.save(user);
-    }
-    */
+
     @GetMapping("/findByName")
     public List<User> findByName(@RequestParam("name") String name) {
         return userService.findByName(name);
