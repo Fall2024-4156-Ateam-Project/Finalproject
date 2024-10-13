@@ -22,6 +22,18 @@ public class User {
     @OneToMany(mappedBy = "organizer")
     private List<Meeting> meetings;
 
+
+    // Default constructor
+    public User() {
+    }
+
+    // Parameterized constructor
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+
     public int getUid() {
         return uid;
     }
