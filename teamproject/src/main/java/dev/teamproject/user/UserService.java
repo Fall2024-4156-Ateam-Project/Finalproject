@@ -20,7 +20,10 @@ public class UserService {
         return this.userRepo.findById(uid).get();
     }
     public List<User> findByEmail(String email) {
-        return this.userRepo.findByEmail(email).stream().toList();
+        return this.userRepo.findByEmail(email);
+    }
+    public List<User> findByName(String username) {
+        return this.userRepo.findByName(username);
     }
     // Add ops
     public void save(User user) {
