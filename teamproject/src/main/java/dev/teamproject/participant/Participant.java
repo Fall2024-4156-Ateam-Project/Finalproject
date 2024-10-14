@@ -35,6 +35,19 @@ public class Participant {
     @Column(name = "status")
     private commonTypes.ParticipantStatus status;
 
+    // constructor
+    public Participant(){
+    }
+
+    public Participant(Meeting meeting, User user, commonTypes.Role role, commonTypes.ParticipantStatus status) {
+        this.meeting = meeting;
+        this.user = user;
+        this.role=role;
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        this.joinAt=timestamp;
+        this.status=status;
+    }
+
     // Getters and Setters
     public int getPid() {
         return pid;
