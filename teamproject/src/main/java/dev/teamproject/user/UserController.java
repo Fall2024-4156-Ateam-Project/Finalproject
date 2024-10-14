@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @GetMapping("/findById")
-    public User findByEmail(@RequestParam("Id") int uid) {
+    public User findById(@RequestParam("Id") int uid) {
         return userService.findById(uid);
     }
 
