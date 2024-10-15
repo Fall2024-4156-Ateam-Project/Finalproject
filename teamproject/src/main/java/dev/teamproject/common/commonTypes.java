@@ -39,4 +39,8 @@ public class commonTypes {
         available, busy
     }
 
+    public enum RequestStatus {
+        undecided, approved, rejected
+    }
+
 }
