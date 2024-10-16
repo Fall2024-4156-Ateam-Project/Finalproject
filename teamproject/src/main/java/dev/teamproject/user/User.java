@@ -3,6 +3,7 @@ import dev.teamproject.meeting.Meeting;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "User")
@@ -56,5 +57,10 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uid); // Use uid as a unique identifier
     }
 }
