@@ -2,9 +2,14 @@ package dev.teamproject.request;
 
 import dev.teamproject.timeslot.TimeSlot;
 import dev.teamproject.user.User;
-
 import java.io.Serializable;
 import java.util.Objects;
+
+/**
+ * Represents a composite primary key for the Request entity.
+ * Combines a TimeSlot and a User to uniquely identify a Request.
+ * Implements Serializable to allow this key to be used in JPA.
+ */
 
 public class RequestId implements Serializable {
 
@@ -43,8 +48,12 @@ public class RequestId implements Serializable {
   
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof RequestId)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof RequestId)) {
+      return false;
+    }
     RequestId that = (RequestId) o;
     return Objects.equals(timeSlot, that.timeSlot) && (user.getUid() == that.user.getUid());
   }

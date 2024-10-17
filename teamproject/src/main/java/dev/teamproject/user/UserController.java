@@ -1,10 +1,19 @@
 package dev.teamproject.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Router Controller for managing User entities. This interface provides
+ * methods for retrieving users by name, email, and ordering users by their UID in
+ * descending order.
+ */
 
 @RestController
 @RequestMapping(path = "api/v1/users")
