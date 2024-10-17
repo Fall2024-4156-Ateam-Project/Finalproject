@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class RequestId implements Serializable {
+
   private TimeSlot timeSlot;
   private User user;
   
@@ -47,4 +48,3 @@ public class RequestId implements Serializable {
     RequestId that = (RequestId) o;
     return Objects.equals(timeSlot, that.timeSlot) && (user.getUid() == that.user.getUid());
   }
-}
