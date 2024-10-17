@@ -1,8 +1,5 @@
 package dev.teamproject;
 
-import dev.teamproject.common.commonTypes;
-import dev.teamproject.timeslot.TimeSlot;
-import dev.teamproject.request.Request;
 import dev.teamproject.user.User;
 import org.junit.jupiter.api.Test;
 

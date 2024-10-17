@@ -1,6 +1,7 @@
 package dev.teamproject;
 
-import dev.teamproject.common.commonTypes;
+//import dev.teamproject.common.commonTypes;
+import dev.teamproject.common.CommonTypes;
 import dev.teamproject.timeslot.TimeSlot;
 import dev.teamproject.request.Request;
 import dev.teamproject.user.User;
@@ -15,12 +16,12 @@ public class RequestUnitTests {
 
         TimeSlot timeSlot = new TimeSlot();
 
-        Request request = new Request(user, timeSlot, "Test description", commonTypes.RequestStatus.approved);
+        Request request = new Request(user, timeSlot, "Test description", CommonTypes.RequestStatus.approved);
 
         assertEquals(0, request.getUser().getUid());
         assertEquals(0, request.getTimeSlot().getTid());
         assertEquals("Test description", request.getDescription());
-        assertEquals(commonTypes.RequestStatus.approved, request.getStatus());
+        assertEquals(CommonTypes.RequestStatus.approved, request.getStatus());
     }
 
     @Test
@@ -34,12 +35,12 @@ public class RequestUnitTests {
         request.setUser(user);
         request.setTimeSlot(timeSlot);
         request.setDescription("Another description");
-        request.setStatus(commonTypes.RequestStatus.rejected);
+        request.setStatus(CommonTypes.RequestStatus.rejected);
 
         assertEquals(0, request.getUser().getUid());
         assertEquals(4, request.getTimeSlot().getTid());
         assertEquals("Another description", request.getDescription());
-        assertEquals(commonTypes.RequestStatus.rejected, request.getStatus());
+        assertEquals(CommonTypes.RequestStatus.rejected, request.getStatus());
     }
 
     @Test
@@ -49,12 +50,12 @@ public class RequestUnitTests {
         TimeSlot timeSlot1 = new TimeSlot();
         timeSlot1.setTid(2);
 
-        Request request1 = new Request(user1, timeSlot1, "Description", commonTypes.RequestStatus.approved);
+        Request request1 = new Request(user1, timeSlot1, "Description", CommonTypes.RequestStatus.approved);
 
         TimeSlot timeSlot2 = new TimeSlot();
         timeSlot2.setTid(2);
 
-        Request request2 = new Request(user1, timeSlot2, "Another Description", commonTypes.RequestStatus.rejected);
+        Request request2 = new Request(user1, timeSlot2, "Another Description", CommonTypes.RequestStatus.rejected);
 
         assertEquals(request1, request2);
         assertEquals(request1.hashCode(), request2.hashCode());
@@ -72,7 +73,7 @@ public class RequestUnitTests {
         TimeSlot timeSlot = new TimeSlot();
         timeSlot.setTid(2);
 
-        Request request = new Request(user, timeSlot, "Test description", commonTypes.RequestStatus.approved);
+        Request request = new Request(user, timeSlot, "Test description", CommonTypes.RequestStatus.approved);
 
         String expected = "Request{tid=2, requester=0, description=Test description, status=approved}";
         assertEquals(expected, request.toString());

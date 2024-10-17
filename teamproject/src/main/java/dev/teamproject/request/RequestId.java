@@ -48,3 +48,4 @@ public class RequestId implements Serializable {
     RequestId that = (RequestId) o;
     return Objects.equals(timeSlot, that.timeSlot) && (user.getUid() == that.user.getUid());
   }
+}
