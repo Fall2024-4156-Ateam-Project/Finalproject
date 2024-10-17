@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface RequestRepo extends JpaRepository<Request, RequestId> {
-    List<Request> findByUser(User user);
-    List<Request> findByTimeSlot(TimeSlot ts);
+  List<Request> findByUser(User user);
+  
+  List<Request> findByTimeSlot(TimeSlot ts);
 }
