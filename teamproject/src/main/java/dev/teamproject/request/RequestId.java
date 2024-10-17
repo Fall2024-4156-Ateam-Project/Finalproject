@@ -43,7 +43,8 @@ public class RequestId implements Serializable {
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (!(o instanceof RequestId that)) return false;
+    if (!(o instanceof RequestId)) return false;
+    RequestId that = (RequestId) o;
     return Objects.equals(timeSlot, that.timeSlot) && (user.getUid() == that.user.getUid());
   }
 }
