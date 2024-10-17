@@ -1,13 +1,17 @@
 package dev.teamproject.timeslot;
 
+
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-// import java.util.Optional;
+/**
+ * Service class for managing TimeSlot entities. This class provides
+ * functionality for creating, retrieving, updating, and deleting time slots.
+ */
 
 @Service
 public class TimeSlotService {
@@ -19,39 +23,62 @@ public class TimeSlotService {
     this.timeSlotRepo = timeSlotRepo;
     this.userService = userService;
   }
-  
-  // Create
+
+  /**
+   * Creates a new TimeSlot.
+   */
+
   public TimeSlot createTimeSlot(TimeSlot timeSlot) {
-    // Validate user exists
     User user = userService.findById(timeSlot.getUser().getUid());
     timeSlot.setUser(user);
     return timeSlotRepo.save(timeSlot);
   }
-  
-  // Read
+
+  /**
+   * Retrieves a TimeSlot by its ID.
+   */
+
   public TimeSlot getTimeSlotById(int tid) {
     return timeSlotRepo.findById(tid)
       .orElseThrow(() -> new RuntimeException("TimeSlot not found with id: " + tid));
   }
-  
+
+  /**
+   * Retrieves all TimeSlots.
+   */
   public List<TimeSlot> getAllTimeSlots() {
     return timeSlotRepo.findAll();
   }
-  
+
+  /**
+   * Retrieves all TimeSlots for a specific user.
+   */
+
   public List<TimeSlot> getTimeSlotsByUser(int uid) {
     User user = userService.findById(uid);
     return timeSlotRepo.findByUser(user);
   }
-  
+
+  /**
+   * Retrieves all TimeSlots for a specific day.
+   */
+
   public List<TimeSlot> getTimeSlotsByDay(CommonTypes.Day day) {
     return timeSlotRepo.findByDay(day);
   }
-  
+
+  /**
+   * Retrieves all TimeSlots based on availability.
+   */
+
   public List<TimeSlot> getTimeSlotsByAvailability(CommonTypes.Availability availability) {
     return timeSlotRepo.findByAvailability(availability);
   }
-  
-  // Update
+
+  /**
+   * Updates an existing TimeSlot.
+   */
+
   public TimeSlot updateTimeSlot(int tid, TimeSlot updatedTimeSlot) {
     TimeSlot existingTimeSlot = getTimeSlotById(tid);
     existingTimeSlot.setUser(updatedTimeSlot.getUser());
@@ -61,8 +88,11 @@ public class TimeSlotService {
     existingTimeSlot.setAvailability(updatedTimeSlot.getAvailability());
     return timeSlotRepo.save(existingTimeSlot);
   }
-  
-  // Delete
+
+  /**
+   * deletes an existing TimeSlot from id.
+   */
+
   public void deleteTimeSlot(int tid) {
     if (!timeSlotRepo.existsById(tid)) {
       throw new RuntimeException("TimeSlot not found with id: " + tid);

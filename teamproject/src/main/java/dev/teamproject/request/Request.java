@@ -3,9 +3,23 @@ package dev.teamproject.request;
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.timeslot.TimeSlot;
 import dev.teamproject.user.User;
-import jakarta.persistence.*;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import java.util.Objects;
+
+/**
+ * The Request entity represents a user's request for a particular time slot.
+ * It contains the requester, the time slot, a description of the request, and its current status.
+ */
 
 @Entity
 @Table(name = "Request")
@@ -33,7 +47,16 @@ public class Request {
   // No-argument constructor
   public Request() {
   }
-  
+
+  /**
+   * Constructs a new Request with the provided user, time slot, description, and status.
+   *
+   * @param user        the user making the request.
+   * @param ts          the time slot associated with the request.
+   * @param description a description of the request.
+   * @param status      the current status of the request.
+   */
+
   public Request(User user, TimeSlot ts, String description, CommonTypes.RequestStatus status) {
     this.user = user;
     this.timeSlot = ts;
@@ -87,17 +110,28 @@ public class Request {
   
   @Override
   public int hashCode() {
-    return Objects.hash(user != null ? user.getUid() : null, timeSlot != null ? timeSlot.getTid() : null);
+    return Objects.hash(
+            user != null ? user.getUid() : null,
+            timeSlot != null ? timeSlot.getTid() : null
+    );
   }
   
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null || getClass() != obj.getClass()) return false;
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null || getClass() != obj.getClass()) {
+      return false;
+    }
     
     Request other = (Request) obj;
-    return (user != null ? user.getUid() == other.user.getUid() : other.user == null) &&
-      (timeSlot != null ? timeSlot.getTid() == other.timeSlot.getTid() : other.timeSlot == null);
+    return (user != null
+            ? user.getUid() == other.user.getUid()
+            : other.user == null)
+            && (timeSlot != null
+            ? timeSlot.getTid() == other.timeSlot.getTid()
+            : other.timeSlot == null);
   }
   
   

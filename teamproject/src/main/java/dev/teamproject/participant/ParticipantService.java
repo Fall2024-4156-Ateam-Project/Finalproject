@@ -7,6 +7,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service class for managing Participant entities.
+ * This class provides business logic and operations for participants,
+ * utilizing the ParticipantRepo for data access. It handles the
+ * retrieval, creation, updating, and deletion of participants within the
+ * application.
+ */
 @Service
 public class ParticipantService {
   private final ParticipantRepo participantRepo;

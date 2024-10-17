@@ -1,10 +1,20 @@
 package dev.teamproject.user;
 
 import dev.teamproject.meeting.Meeting;
-import jakarta.persistence.*;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import java.util.List;
 import java.util.Objects;
+
+/**
+ * Represents a user in the system. This entity includes information like
+ * the user's name, email, and the list of meetings they have organized.
+ */
 
 @Entity
 @Table(name = "User")

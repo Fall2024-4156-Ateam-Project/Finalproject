@@ -1,9 +1,14 @@
 package dev.teamproject.user;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+/**
+ * Repository interface for managing User entities. This interface provides
+ * methods for retrieving users by name, email, and ordering users by their UID in
+ * descending order.
+ */
 
 @Repository
 public interface UserRepo extends JpaRepository<User, Integer> {

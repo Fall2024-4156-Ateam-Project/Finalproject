@@ -7,6 +7,14 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Repository interface for managing Participant entities.
+ * This interface extends JpaRepository, providing methods for CRUD operations
+ * and custom query methods for managing participants in the system.
+ * Methods include finding participants by their role, status, associated meeting,
+ * and user, as well as retrieving participants in descending order by participant ID.
+ */
+
 @Repository
 public interface ParticipantRepo extends JpaRepository<Participant, Integer> {
   
