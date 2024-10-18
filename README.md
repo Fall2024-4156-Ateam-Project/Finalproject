@@ -32,7 +32,9 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
     "description": "Request 3",
     "status": "undecided"
 }
+
 • **Expected Output**: the complete request object added
+• **Upon Success**: HTTP 200 Status Code is returned along with the request in the response body
 
 #### GET /search
 Expected Input Parameters: tid (int) or requesterId (int)
