@@ -66,11 +66,11 @@ public class Meeting {
   public int getMid() {
     return mid;
   }
-  
-  //    public void setMid(int mid) {
-  //        this.mid = mid;
-  //    }
-  
+
+  public void setMid(int mid) {
+    this.mid = mid;
+  }
+
   public User getOrganizer() {
     return organizer;
   }
