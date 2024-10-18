@@ -1,17 +1,61 @@
 # Finalproject
 
-## Run project
+## Setup and Running
+
+JDK 17: This project used JDK 17 for development: https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html  
+Installing maven: https://maven.apache.org/download.cgi  
+Build with maven: ```mvn -B package --file teamproject/pom.xml```  
+Running the application: ```mvn spring-boot:run -D"spring-boot.run.arguments=setup"```  
+Running the test: ```mvn clean test```
+Check the test coverage report inside teamproject folder: ```mvn jacoco:report```. The report path will be ./target/site/jacoco/index.html  
+Running the style checker inside teamproject folder: ```mvn checkstyle:check```  
 
 
-
-
-
-## TBD: 3 layers
+## Architechture: 3 layers
 1. Controller (API endpoints)
 2. Service (business logic)
 3. repository 
 4. DB models
 
+## Endpoints
+
+### /api/v1/requests
+#### POST/ 
+Expected request body: a request object in JSON.
+{
+    "user": {
+        "uid": 1 
+    },
+    "timeSlot": {
+        "tid": 2
+    },
+    "description": "Request 3",
+    "status": "undecided"
+}
+Expected Output: the complete request object added
+
+#### GET /search
+Expected Input Parameters: tid (int) or requesterId (int)
+Expected Output: all requests with the given tid or rerquesterId
+If no parameter is presented will return HTTP 400 status code with message: Invalid request: Please provide either 'userid' or 'tid'
+
+#### GET /{userid}/{tid}
+Expected Input Parameters: N/A  
+Expected Output: The request object that has the given tid and uid.
+
+#### PUT /description
+Expected Input Parameters:  tid (int) and userid (int) 
+Expected request body: a string representing the new description.
+Expected Output: The request object that has been updated.
+
+#### PUT /status
+Expected Input Parameters:  tid (int) and userid (int) 
+Expected request body: a string representing the new status.
+Expected Output: The request object that has been updated.
+
+#### DELETE /
+Expected Input Parameters:  tid (int) and userid (int) 
+Expected Output: HTTP 200 status code.
 
 ## SQL Tables
 
@@ -126,3 +170,19 @@ ALTER TABLE Request
 ADD status ENUM('UNDECIDED', 'APPROVED', 'REJECTED') NOT NULL DEFAULT 'UNDECIDED';
 
 ```
+
+### Style Checking Report
+Used the tool "checkstyle" to check the style of the code:
+
+### Branch Coverage Reporting
+Used JaCoCo to perform branch analysis to see the test coverage.
+
+### Tools used
+
+Maven Package Manager  
+GitHub Actions CI  
+Checkstyle  
+PMD  
+JUnit  
+JaCoCo  
+Postman  
