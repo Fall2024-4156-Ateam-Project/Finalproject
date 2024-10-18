@@ -1,6 +1,8 @@
 package dev.teamproject.user;
 
+import dev.teamproject.exceptionHandler.UserNotFoundException;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +26,9 @@ public class UserService {
   }
   
   public User findById(int uid) {
-    return this.userRepo.findById(uid).get();
+    return this.userRepo
+        .findById(uid)
+        .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + uid));
   }
   
   public List<User> findByEmail(String email) {
@@ -39,6 +43,8 @@ public class UserService {
   public void save(User user) {
     this.userRepo.save(user);
   }
+
+
   
   
 }
