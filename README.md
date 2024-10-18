@@ -19,7 +19,7 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 
 ## Endpoints
 
-### /api/v1/timeslots
+• ### /api/v1/timeslots
 ------------------------------------------------------------------------------------------------------------------------
 #### POST
 • **Expected Input**: a timeslot object in JSON.    
@@ -79,7 +79,7 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 
 
 
-### /api/v1/users
+• ### /api/v1/users
 ------------------------------------------------------------------------------------------------------------------------
 #### POST /register
 • **Expected Input**: a user object in JASON.    
@@ -106,7 +106,7 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 • **Expected Output**: All users in the descending order 
 • **Upon Success**: HTTP 200 Status Code is returned along with the users in the response body
 
-### /api/v1/requests
+• ### /api/v1/requests
 -------------------------------------------------------------------------------------------------------------------------
 #### POST/ 
 • **Expected request body**: a request object in JSON.
