@@ -18,7 +18,9 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 4. DB models
 
 ## Endpoints
+
 ### /api/v1/users
+------------------------------------------------------------------------------------------------------------------------
 #### POST /register
 • **Expected Input**: a user object in JASON.    
 • **Expected Output**: the complete user object added    
@@ -53,6 +55,7 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 
 
 ### /api/v1/requests
+-------------------------------------------------------------------------------------------------------------------------
 #### POST/ 
 • **Expected request body**: a request object in JSON.
 {
