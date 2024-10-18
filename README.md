@@ -18,8 +18,50 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 4. DB models
 
 ## Endpoints
+### /api/v1/participants
+------------------------------------------------------------------------------------------------------------------------
+#### POST /register
+• **Expected Input**: a participant object in JASON.    
+• **Expected Output**: the complete participant object added    
+• **Upon Success**: HTTP 200 Status Code is returned 
 
-• ### /api/v1/timeslots
+#### POST /delete
+• **Expected Input**: a participant object in JASON.    
+• **Expected Output**: a participant has been deleted    
+• **Upon Success**: HTTP 200 Status Code is returned 
+
+#### GET /findById
+• **Expected Input**: id(int).    
+• **Expected Output**: the participant matched the input id    
+• **Upon Success**: HTTP 200 Status Code is returned along with the participant in the response body
+
+#### GET /findAll
+• **Expected Input**: N/A.    
+• **Expected Output**: All participant in descending order in JSON   
+• **Upon Success**: HTTP 200 Status Code is returned along with all participants in the response body
+
+#### GET /findByMeeting
+• **Expected Input**: meeting(meeting in JSON).    
+• **Expected Output**: All participant in JSON   
+• **Upon Success**: HTTP 200 Status Code is returned along with all participants in the response body
+
+#### GET /findByUser
+• **Expected Input**: user(user in JSON).   
+• **Expected Output**: All participant in JSON   
+• **Upon Success**: HTTP 200 Status Code is returned along with all participants in the response body
+
+#### GET /findByStatus
+• **Expected Input**: status(undecided, approved, rejected).    
+• **Expected Output**: All participant in JSON   
+• **Upon Success**: HTTP 200 Status Code is returned along with all participants in the response body
+
+#### GET /findByRole
+• **Expected Input**: role(participant, organizer).    
+• **Expected Output**: All participant in JSON   
+• **Upon Success**: HTTP 200 Status Code is returned along with all participants in the response body
+
+
+### /api/v1/timeslots
 ------------------------------------------------------------------------------------------------------------------------
 #### POST
 • **Expected Input**: a timeslot object in JSON.    
@@ -63,23 +105,7 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-• ### /api/v1/users
+### /api/v1/users
 ------------------------------------------------------------------------------------------------------------------------
 #### POST /register
 • **Expected Input**: a user object in JASON.    
@@ -106,7 +132,7 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 • **Expected Output**: All users in the descending order 
 • **Upon Success**: HTTP 200 Status Code is returned along with the users in the response body
 
-• ### /api/v1/requests
+### /api/v1/requests
 -------------------------------------------------------------------------------------------------------------------------
 #### POST/ 
 • **Expected request body**: a request object in JSON.
