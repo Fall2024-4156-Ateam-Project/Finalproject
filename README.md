@@ -31,33 +31,33 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
     },
     "description": "Request 3",
     "status": "undecided"
-}
-
+}    
 • **Expected Output**: the complete request object added    
 • **Upon Success**: HTTP 200 Status Code is returned along with the request in the response body
 
 #### GET /search
-Expected Input Parameters: tid (int) or requesterId (int)
-Expected Output: all requests with the given tid or rerquesterId
-If no parameter is presented will return HTTP 400 status code with message: Invalid request: Please provide either 'userid' or 'tid'
+• **Expected Input Parameters**: tid (int) or requesterId (int)
+• **Expected Output**: all requests with the given tid or rerquesterId
+• **Upon Success**: HTTP 200 Status Code is returned along with the request in the response body
+• **Upon Failure**: If no parameter is presented will return HTTP 400 status code with message: Invalid request: Please provide either 'userid' or 'tid'
 
 #### GET /{userid}/{tid}
-Expected Input Parameters: N/A  
-Expected Output: The request object that has the given tid and uid.
+• **Expected Input Parameters**: N/A  
+• **Expected Output**: The request object that has the given tid and uid.
 
 #### PUT /description
-Expected Input Parameters:  tid (int) and userid (int) 
-Expected request body: a string representing the new description.
-Expected Output: The request object that has been updated.
+• **Expected Input Parameters**:  tid (int) and userid (int) 
+• **Expected request body**: a string representing the new description.
+• **Expected Output**: The request object that has been updated.
 
 #### PUT /status
-Expected Input Parameters:  tid (int) and userid (int) 
-Expected request body: a string representing the new status.
-Expected Output: The request object that has been updated.
+• **Expected Input Parameters**:  tid (int) and userid (int) 
+• **Expected request body**: a string representing the new status.
+• **Expected Output**: The request object that has been updated.
 
 #### DELETE /
-Expected Input Parameters:  tid (int) and userid (int) 
-Expected Output: HTTP 200 status code.
+• **Expected Input Parameters**:  tid (int) and userid (int) 
+• **Expected Output**: HTTP 200 status code.
 
 ## SQL Tables
 
