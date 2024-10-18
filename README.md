@@ -18,6 +18,44 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 4. DB models
 
 ## Endpoints
+
+### /api/v1/meetings
+------------------------------------------------------------------------------------------------------------------------
+#### GET /findByRecurrence
+• **Expected Input**: recurrence(daily, weekly, monthly, none)    
+• **Expected Output**: the meeting matched with the recurrence  
+• **Upon Success**: HTTP 200 Status Code is returned along with the participant in the response body
+
+#### GET /findByType
+• **Expected Input**: type(group, one_on_one)    
+• **Expected Output**:  the meeting matched with the type
+• **Upon Success**: HTTP 200 Status Code is returned along with the participant in the response body
+
+#### GET /findById
+• **Expected Input**: id(int)    
+• **Expected Output**:  the meeting matched with the id
+• **Upon Success**: HTTP 200 Status Code is returned along with the participant in the response body
+
+#### GET /get_all
+• **Expected Input**: N/A.    
+• **Expected Output**: All meetings in descending order in JSON   
+• **Upon Success**: HTTP 200 Status Code is returned along with all participants in the response body
+
+#### GET /findByOrganizer
+• **Expected Input**: organizer(user in JSON type).    
+• **Expected Output**: All meetings matched with the organizer  
+• **Upon Success**: HTTP 200 Status Code is returned along with all participants in the response body
+
+#### POST /deleteMeeting
+• **Expected Input**: meeting(meeting in JSON type).    
+• **Expected Output**: A complete meeting object delete 
+• **Upon Success**: HTTP 200 Status Code is returned
+
+#### POST /saveMeeting
+• **Expected Input**: meeting(meeting in JSON type).    
+• **Expected Output**: A complete meeting object saved 
+• **Upon Success**: HTTP 200 Status Code is returned
+
 ### /api/v1/participants
 ------------------------------------------------------------------------------------------------------------------------
 #### POST /register
