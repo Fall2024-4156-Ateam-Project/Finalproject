@@ -21,7 +21,7 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 
 ### /api/v1/requests
 #### POST/ 
-• **Expected request body**: a request object in JSON.
+• -**Expected request body**: a request object in JSON.
 {
     "user": {
         "uid": 1 
@@ -33,8 +33,8 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
     "status": "undecided"
 }
 
-• **Expected Output**: the complete request object added
-• **Upon Success**: HTTP 200 Status Code is returned along with the request in the response body
+• -**Expected Output**: the complete request object added
+• -**Upon Success**: HTTP 200 Status Code is returned along with the request in the response body
 
 #### GET /search
 Expected Input Parameters: tid (int) or requesterId (int)
