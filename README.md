@@ -19,6 +19,66 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 
 ## Endpoints
 
+### /api/v1/timeslots
+------------------------------------------------------------------------------------------------------------------------
+#### POST
+• **Expected Input**: a timeslot object in JSON.    
+• **Expected Output**: the complete user object added    
+• **Upon Success**: HTTP 200 Status Code is returned 
+
+#### GET /{id}
+• **Expected Input**: id(int).    
+• **Expected Output**: the time slot matched the ID    
+• **Upon Success**: HTTP 200 Status Code is returned 
+
+#### GET /
+• **Expected Input**: N/A.    
+• **Expected Output**: all time slots in the descending order    
+• **Upon Success**: HTTP 200 Status Code is returned 
+
+#### GET /user/{uid}
+• **Expected Input**: id(int).    
+• **Expected Output**: all time slot matched the input user id    
+• **Upon Success**: HTTP 200 Status Code is returned 
+
+#### GET /day/{day}
+• **Expected Input**: day(Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday).    
+• **Expected Output**: all time slot matched the input day   
+• **Upon Success**: HTTP 200 Status Code is returned 
+
+#### PUT /availability/{availability}
+• **Expected Input**: availability(available, busy).    
+• **Expected Output**: all time slot matched the input availability  
+• **Upon Success**: HTTP 200 Status Code is returned 
+
+#### PUT /{id}
+• **Expected Input**: id(int), timeslot (timeslot in JSON).       
+• **Expected Output**: update the time slot given the tid  
+• **Upon Success**: HTTP 200 Status Code is returned 
+
+#### DELETE /{id}
+• **Expected Input**: id(int)    
+• **Expected Output**: delete the time slot given the tid  
+• **Upon Success**: HTTP 200 Status Code is returned 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### /api/v1/users
 ------------------------------------------------------------------------------------------------------------------------
 #### POST /register
@@ -45,14 +105,6 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 • **Expected Input**: N/A  
 • **Expected Output**: All users in the descending order 
 • **Upon Success**: HTTP 200 Status Code is returned along with the users in the response body
-
-
-
-
-
-
-
-
 
 ### /api/v1/requests
 -------------------------------------------------------------------------------------------------------------------------
