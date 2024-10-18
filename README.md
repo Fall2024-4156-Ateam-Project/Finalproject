@@ -18,6 +18,39 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 4. DB models
 
 ## Endpoints
+### /api/v1/users
+#### POST /register
+• **Expected Input**: a user object in JASON.    
+• **Expected Output**: the complete user object added    
+• **Upon Success**: HTTP 200 Status Code is returned along with the user in the response body
+
+#### GET /findByName
+• **Expected Input**: name(String).    
+• **Expected Output**: the list of users matched with the input name       
+• **Upon Success**: HTTP 200 Status Code is returned along with the users in the response body
+
+#### GET /findById
+• **Expected Input**: Id(int).    
+• **Expected Output**: the user matched with the input ID    
+• **Upon Success**: HTTP 200 Status Code is returned along with the user in the response body
+
+#### GET /findByEmail
+• **Expected Input**: email(String).    
+• **Expected Output**: the list of users matched with the input email      
+• **Upon Success**: HTTP 200 Status Code is returned along with the users in the response body
+
+#### GET /get_all
+• **Expected Input**: N/A  
+• **Expected Output**: All users in the descending order 
+• **Upon Success**: HTTP 200 Status Code is returned along with the users in the response body
+
+
+
+
+
+
+
+
 
 ### /api/v1/requests
 #### POST/ 
