@@ -22,12 +22,12 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 ### /api/v1/meetings
 ------------------------------------------------------------------------------------------------------------------------
 #### GET /findByRecurrence
-• **Expected Input**: recurrence(daily, weekly, monthly, none)    
+• **Expected Input**: recurrence(string but should match to daily, weekly, monthly, none)    
 • **Expected Output**: the meeting matched with the recurrence  
 • **Upon Success**: HTTP 200 Status Code is returned along with the participant in the response body
 
 #### GET /findByType
-• **Expected Input**: type(group, one_on_one)    
+• **Expected Input**: type(string but should match to group, one_on_one)    
 • **Expected Output**:  the meeting matched with the type
 • **Upon Success**: HTTP 200 Status Code is returned along with the participant in the response body
 
