@@ -1,23 +1,25 @@
 package dev.teamproject;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.meeting.Meeting;
 import dev.teamproject.meeting.MeetingRepo;
 import dev.teamproject.meeting.MeetingService;
 import dev.teamproject.user.User;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-
+/** The type Meeting service unit tests. */
 public class MeetingServiceUnitTests {
   @Mock private MeetingRepo meetingRepo;
   @InjectMocks private MeetingService meetingService;
@@ -31,6 +33,7 @@ public class MeetingServiceUnitTests {
 
   private List<Meeting> allMeetingsDesc;
 
+  /** Sets up. */
   @BeforeEach
   public void setUp() {
     MockitoAnnotations.openMocks(this);
@@ -80,7 +83,6 @@ public class MeetingServiceUnitTests {
     assertEquals(user1, result.get(0).getOrganizer());
   }
 
-
   @Test
   public void testFindByRecurrence() {
     CommonTypes.Recurrence recurrence = CommonTypes.Recurrence.daily;
@@ -92,35 +94,35 @@ public class MeetingServiceUnitTests {
     assertEquals(recurrence, result.get(0).getRecurrence());
   }
 
-    @Test
-    public void testFindByStatus() {
-      CommonTypes.MeetingStatus status = CommonTypes.MeetingStatus.Valid;
-      List<Meeting> meetingsByStatus = Arrays.asList(allMeetingsDesc.get(0));
-      when(meetingRepo.findByStatus(status)).thenReturn(meetingsByStatus);
-      List<Meeting> result = meetingService.findByStatus(status);
-      assertEquals(1, result.size());
-    }
+  @Test
+  public void testFindByStatus() {
+    CommonTypes.MeetingStatus status = CommonTypes.MeetingStatus.Valid;
+    List<Meeting> meetingsByStatus = Arrays.asList(allMeetingsDesc.get(0));
+    when(meetingRepo.findByStatus(status)).thenReturn(meetingsByStatus);
+    List<Meeting> result = meetingService.findByStatus(status);
+    assertEquals(1, result.size());
+  }
 
-    @Test
-    public void testFindByType() {
-      CommonTypes.MeetingType type = CommonTypes.MeetingType.group;
-      List<Meeting> meetingsByType = Arrays.asList(allMeetingsDesc.get(0));
-      when(meetingRepo.findByType(type)).thenReturn(meetingsByType);
-      List<Meeting> result = meetingService.findByType(type);
-      assertEquals(1, result.size());
-    }
+  @Test
+  public void testFindByType() {
+    CommonTypes.MeetingType type = CommonTypes.MeetingType.group;
+    List<Meeting> meetingsByType = Arrays.asList(allMeetingsDesc.get(0));
+    when(meetingRepo.findByType(type)).thenReturn(meetingsByType);
+    List<Meeting> result = meetingService.findByType(type);
+    assertEquals(1, result.size());
+  }
 
-    @Test
-    public void testDeleteMeeting() {
-      Meeting meetingToDelete = allMeetingsDesc.get(0);
-      meetingService.delete(meetingToDelete);
-      verify(meetingRepo, times(1)).delete(meetingToDelete);
-    }
+  @Test
+  public void testDeleteMeeting() {
+    Meeting meetingToDelete = allMeetingsDesc.get(0);
+    meetingService.delete(meetingToDelete);
+    verify(meetingRepo, times(1)).delete(meetingToDelete);
+  }
 
-    @Test
-    public void testSaveMeeting() {
-      Meeting meetingToSave = new Meeting();
-      meetingService.save(meetingToSave);
-      verify(meetingRepo, times(1)).save(meetingToSave);
-    }
+  @Test
+  public void testSaveMeeting() {
+    Meeting meetingToSave = new Meeting();
+    meetingService.save(meetingToSave);
+    verify(meetingRepo, times(1)).save(meetingToSave);
+  }
 }
