@@ -16,15 +16,14 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-//import static org.mockito.Mockito.*;
+
+// import static org.mockito.Mockito.*;
 
 class UserServiceUnitTests {
 
-  @Mock
-  private UserRepo userRepo;
+  @Mock private UserRepo userRepo;
 
-  @InjectMocks
-  private UserService userService;
+  @InjectMocks private UserService userService;
 
   private User user1;
   private User user2;
