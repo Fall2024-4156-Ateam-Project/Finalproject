@@ -5,6 +5,7 @@ import dev.teamproject.meeting.Meeting;
 import dev.teamproject.user.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,10 +35,11 @@ public class ParticipantController {
   public void saveParticipant(@RequestBody Participant participant) {
     participantService.save(participant);
   }
-  
-  @PostMapping("/delete")
-  public void deleteParticipant(@RequestBody Participant participant) {
-    participantService.delete(participant);
+
+  @DeleteMapping()
+  public ResponseEntity<Void> deleteParticipant(@RequestParam("pid") int pid) {
+    participantService.deleteParticipant(pid);
+    return ResponseEntity.noContent().build();
   }
   
   @GetMapping("/findById")
