@@ -46,8 +46,8 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 • **Expected Output**: All meetings matched with the organizer  
 • **Upon Success**: HTTP 200 Status Code is returned along with all participants in the response body
 
-#### POST /deleteMeeting
-• **Expected Input**: meeting(meeting in JSON type).    
+#### DELETE /
+• **Expected Input**: meetingID(meeting in JSON type).    
 • **Expected Output**: A complete meeting object delete 
 • **Upon Success**: HTTP 200 Status Code is returned
 
@@ -59,12 +59,12 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 ### /api/v1/participants
 ------------------------------------------------------------------------------------------------------------------------
 #### POST /register
-• **Expected Input**: a participant object in JASON.    
+• **Expected Input**: a participant object in JSON.    
 • **Expected Output**: the complete participant object added    
 • **Upon Success**: HTTP 200 Status Code is returned 
 
-#### POST /delete
-• **Expected Input**: a participant object in JASON.    
+#### DELETE /
+• **Expected Input**: a participant id.    
 • **Expected Output**: a participant has been deleted    
 • **Upon Success**: HTTP 200 Status Code is returned 
 
