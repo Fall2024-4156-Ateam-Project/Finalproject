@@ -51,10 +51,12 @@ public class ParticipantService {
   public void save(Participant participant) {
     this.participantRepo.save(participant);
   }
-  
-  public void delete(Participant participant) {
-    this.participantRepo.delete(participant);
+
+  public void deleteParticipant(int pid) {
+    if (!this.participantRepo.existsById(pid)) {
+      throw new RuntimeException("Participant not found with id: " + pid);
+    }
+    participantRepo.deleteById(pid);
   }
-  
 }
 

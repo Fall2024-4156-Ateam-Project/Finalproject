@@ -92,11 +92,11 @@ public class MeetingController {
     return meetingService.findByOrganizer(organizer);
   }
   
-  @PostMapping("/deleteMeeting")
-  public void deleteMeeting(@RequestBody Meeting meeting) {
-    meetingService.delete(meeting);
+  @DeleteMapping("/deleteMeeting")
+  public void deleteMeeting(@RequestParam("Id") int mid) {
+    meetingService.deleteMeeting(mid);
   }
-  
+
   @PostMapping("/saveMeeting")
   public void saveMeeting(@RequestBody Meeting meeting) {
     meetingService.save(meeting);

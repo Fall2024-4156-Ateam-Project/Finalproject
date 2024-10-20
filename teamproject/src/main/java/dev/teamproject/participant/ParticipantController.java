@@ -35,9 +35,9 @@ public class ParticipantController {
     participantService.save(participant);
   }
   
-  @PostMapping("/delete")
-  public void deleteParticipant(@RequestBody Participant participant) {
-    participantService.delete(participant);
+  @DeleteMapping("/delete")
+  public void deleteParticipant(@RequestParam("Id") int pid) {
+    participantService.deleteParticipant(pid);
   }
   
   @GetMapping("/findById")
