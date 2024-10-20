@@ -51,9 +51,16 @@ public class ParticipantService {
   public void save(Participant participant) {
     this.participantRepo.save(participant);
   }
-  
-  public void delete(Participant participant) {
-    this.participantRepo.delete(participant);
+
+  /**
+   * Delete a participant by requesting a participant id.
+   */
+
+  public void deleteParticipant(int pid) {
+    if (!participantRepo.existsById(pid)) {
+      throw new RuntimeException("Participant not found with id: " + pid);
+    }
+    participantRepo.deleteById(pid);
   }
   
 }

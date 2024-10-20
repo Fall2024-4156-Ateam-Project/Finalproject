@@ -44,8 +44,15 @@ public class MeetingService {
     return meetingRepo.findByType(type);
   }
 
-  public void delete(Meeting meeting) {
-    meetingRepo.delete(meeting);
+  /**
+   * Delete a meeting by requesting a meeting id.
+   */
+
+  public void deleteMeeting(int mid) {
+    if (!meetingRepo.existsById(mid)) {
+      throw new RuntimeException("Meeting not found with id: " + mid);
+    }
+    meetingRepo.deleteById(mid);
   }
 
   public void save(Meeting meeting) {
