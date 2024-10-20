@@ -321,7 +321,7 @@ CREATE TABLE Request (
     FOREIGN KEY (TID) REFERENCES TimeSlot(TID)
 );
 ALTER TABLE Request
-ADD status ENUM('UNDECIDED', 'APPROVED', 'REJECTED') NOT NULL DEFAULT 'UNDECIDED';
+ADD status ENUM('undecided', 'approved', 'rejected') NOT NULL DEFAULT 'undecided';
 
 ```
 
