@@ -98,6 +98,7 @@ public class MeetingController {
     meetingService.deleteMeeting(mid);
     return ResponseEntity.noContent().build();
   }
+  
   @PostMapping("/saveMeeting")
   public void saveMeeting(@RequestBody Meeting meeting) {
     meetingService.save(meeting);
