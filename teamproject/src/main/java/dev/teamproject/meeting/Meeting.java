@@ -150,4 +150,5 @@ public class Meeting {
   public void setStatus(CommonTypes.MeetingStatus status) {
     this.status = status;
   }
+
 }

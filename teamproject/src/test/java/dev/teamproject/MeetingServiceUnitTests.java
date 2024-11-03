@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.meeting.Meeting;
+import dev.teamproject.meeting.MeetingDTO;
 import dev.teamproject.meeting.MeetingRepo;
 import dev.teamproject.meeting.MeetingService;
 import dev.teamproject.user.User;
@@ -33,7 +34,6 @@ public class MeetingServiceUnitTests {
 
   private List<Meeting> allMeetingsDesc;
 
-  /** Sets up. */
   @BeforeEach
   public void setUp() {
     MockitoAnnotations.openMocks(this);
@@ -62,15 +62,17 @@ public class MeetingServiceUnitTests {
   @Test
   public void testFindAll() {
     when(meetingRepo.findAllByOrderByMidDesc()).thenReturn(this.allMeetingsDesc);
-    List<Meeting> meetingList = meetingService.findAll();
-    assertEquals(3, meetingList.size());
-    assertEquals(allMeetingsDesc, meetingList);
+    List<MeetingDTO> meetingDTOs = meetingService.findAll();
+    assertEquals(3, meetingDTOs.size());
+    assertEquals(allMeetingsDesc.get(0).getMid(), meetingDTOs.get(0).getMid());
+    assertEquals(allMeetingsDesc.get(1).getMid(), meetingDTOs.get(1).getMid());
+    assertEquals(allMeetingsDesc.get(2).getMid(), meetingDTOs.get(2).getMid());
   }
 
   @Test
   public void testFindById() {
     when(meetingRepo.findById(0)).thenReturn(Optional.of(meeting1));
-    Meeting foundMeeting = meetingService.findById(0);
+    MeetingDTO foundMeeting = meetingService.findById(0);
     assertEquals(0, foundMeeting.getMid());
   }
 
@@ -78,18 +80,17 @@ public class MeetingServiceUnitTests {
   public void testFindByOrganizerSingle() {
     List<Meeting> meetingsByOrganizer = Arrays.asList(meeting1);
     when(meetingRepo.findByOrganizer(user1)).thenReturn(meetingsByOrganizer);
-    List<Meeting> result = meetingService.findByOrganizer(user1);
+    List<MeetingDTO> result = meetingService.findByOrganizer(user1);
     assertEquals(1, result.size());
-    assertEquals(user1, result.get(0).getOrganizer());
+    assertEquals(user1.getName(), result.get(0).getOrganizer());
   }
 
   @Test
   public void testFindByRecurrence() {
     CommonTypes.Recurrence recurrence = CommonTypes.Recurrence.daily;
-    List<Meeting> meetingsByRecurrence =
-        Arrays.asList(allMeetingsDesc.get(0)); // return meeting2, daily
+    List<Meeting> meetingsByRecurrence = Arrays.asList(allMeetingsDesc.get(1)); // return meeting2, daily
     when(meetingRepo.findByRecurrence(recurrence)).thenReturn(meetingsByRecurrence);
-    List<Meeting> result = meetingService.findByRecurrence(recurrence);
+    List<MeetingDTO> result = meetingService.findByRecurrence(recurrence);
     assertEquals(1, result.size());
     assertEquals(recurrence, result.get(0).getRecurrence());
   }
@@ -99,7 +100,7 @@ public class MeetingServiceUnitTests {
     CommonTypes.MeetingStatus status = CommonTypes.MeetingStatus.Valid;
     List<Meeting> meetingsByStatus = Arrays.asList(allMeetingsDesc.get(0));
     when(meetingRepo.findByStatus(status)).thenReturn(meetingsByStatus);
-    List<Meeting> result = meetingService.findByStatus(status);
+    List<MeetingDTO> result = meetingService.findByStatus(status);
     assertEquals(1, result.size());
   }
 
@@ -108,7 +109,7 @@ public class MeetingServiceUnitTests {
     CommonTypes.MeetingType type = CommonTypes.MeetingType.group;
     List<Meeting> meetingsByType = Arrays.asList(allMeetingsDesc.get(0));
     when(meetingRepo.findByType(type)).thenReturn(meetingsByType);
-    List<Meeting> result = meetingService.findByType(type);
+    List<MeetingDTO> result = meetingService.findByType(type);
     assertEquals(1, result.size());
   }
 
@@ -117,12 +118,14 @@ public class MeetingServiceUnitTests {
     int mid = 1;
     when(meetingRepo.existsById(mid)).thenReturn(true);
     meetingService.deleteMeeting(mid);
+    verify(meetingRepo, times(1)).deleteById(mid);
   }
 
   @Test
   public void testSaveMeeting() {
-    Meeting meetingToSave = new Meeting();
-    meetingService.save(meetingToSave);
-    verify(meetingRepo, times(1)).save(meetingToSave);
+    MeetingDTO meetingToSave = new MeetingDTO();
+    meetingService.saveDTO(meetingToSave);
+    Meeting expectedMeeting = meetingService.convertFromDTO(meetingToSave);
+    verify(meetingRepo, times(1)).save(expectedMeeting);
   }
 }
