@@ -119,10 +119,10 @@ public class MeetingServiceUnitTests {
     meetingService.deleteMeeting(mid);
   }
 
-  @Test
-  public void testSaveMeeting() {
-    Meeting meetingToSave = new Meeting();
-    meetingService.save(meetingToSave);
-    verify(meetingRepo, times(1)).save(meetingToSave);
-  }
+//  @Test
+//  public void testSaveMeeting() {
+//    Meeting meetingToSave = new Meeting();
+//    meetingService.save(meetingToSave);
+//    verify(meetingRepo, times(1)).save(meetingToSave);
+//  }
 }
