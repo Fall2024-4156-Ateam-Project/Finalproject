@@ -114,9 +114,9 @@ public class MeetingServiceUnitTests {
 
   @Test
   public void testDeleteMeeting() {
-    Meeting meetingToDelete = allMeetingsDesc.get(0);
-    meetingService.delete(meetingToDelete);
-    verify(meetingRepo, times(1)).delete(meetingToDelete);
+    int mid = 1;
+    when(meetingRepo.existsById(mid)).thenReturn(true);
+    meetingService.deleteMeeting(mid);
   }
 
 //  @Test

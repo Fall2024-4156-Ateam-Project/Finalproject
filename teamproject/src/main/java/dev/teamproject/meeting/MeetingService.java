@@ -48,14 +48,17 @@ public class MeetingService {
     return meetingRepo.findByType(type);
   }
 
-  public void delete(Meeting meeting) {
 
-    //    if (meetingDTO.getMeetingId() == null) {
-    //      throw new IllegalArgumentException("Meeting ID is required for deleting the meeting");
-    //    }
-    //    Meeting meeting = new Meeting();
-    //    meeting.setMid(meetingDTO.getMeetingId());
-    meetingRepo.delete(meeting);
+  /**
+   * Delete a meeting by requesting a meeting id.
+   */
+
+  public void deleteMeeting(int mid) {
+    if (!meetingRepo.existsById(mid)) {
+      throw new RuntimeException("Meeting not found with id: " + mid);
+    }
+    meetingRepo.deleteById(mid);
+
   }
 
   @Validated

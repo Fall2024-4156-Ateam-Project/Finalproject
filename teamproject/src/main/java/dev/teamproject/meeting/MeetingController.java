@@ -7,7 +7,9 @@ import dev.teamproject.user.User;
 import dev.teamproject.user.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,8 +43,10 @@ public class MeetingController {
    */
   @GetMapping("/findByRecurrence")
   public List<Meeting> findByRecurrence(@RequestParam("recurrence") String recurrence) {
-    // TODO: should check if valid param
-    CommonTypes.Recurrence rec = CommonTypes.Recurrence.valueOf(recurrence.toUpperCase());
+
+    //TODO: should check if valid param
+    CommonTypes.Recurrence rec = CommonTypes.Recurrence.valueOf(recurrence);
+
     return meetingService.findByRecurrence(rec);
   }
 
@@ -54,8 +58,10 @@ public class MeetingController {
    */
   @GetMapping("/findByStatus")
   public List<Meeting> findByStatus(@RequestParam("status") String status) {
-    // TODO: should check if valid param
-    String upperStatus = status.toUpperCase();
+
+    //TODO: should check if valid param
+    String upperStatus = status;
+
     CommonTypes.MeetingStatus meetingStatus = CommonTypes.MeetingStatus.valueOf(upperStatus);
     return meetingService.findByStatus(meetingStatus);
   }
@@ -68,8 +74,10 @@ public class MeetingController {
    */
   @GetMapping("/findByType")
   public List<Meeting> findByType(@RequestParam("type") String type) {
-    // TODO: should check if valid param
-    CommonTypes.MeetingType meetingType = CommonTypes.MeetingType.valueOf(type.toUpperCase());
+
+    //TODO: shoud check if valid param
+    CommonTypes.MeetingType meetingType = CommonTypes.MeetingType.valueOf(type);
+
     return meetingService.findByType(meetingType);
   }
 
@@ -88,9 +96,12 @@ public class MeetingController {
     return meetingService.findByOrganizer(organizer);
   }
 
-  @PostMapping("/deleteMeeting")
-  public void deleteMeeting(@RequestBody Meeting meeting) {
-    meetingService.delete(meeting);
+
+  @DeleteMapping()
+  public ResponseEntity<Void> deleteMeeting(@RequestParam("mid") int mid) {
+    meetingService.deleteMeeting(mid);
+    return ResponseEntity.noContent().build();
+
   }
 
   @PostMapping("/saveMeeting")
