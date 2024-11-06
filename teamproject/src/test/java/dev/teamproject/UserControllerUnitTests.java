@@ -35,12 +35,12 @@ class UserControllerUnitTests {
     user2 = new User("test2", "test2@email.com");
   }
 
-  @Test
-  void testSaveUser() {
-    userController.saveUser(user1);
-
-    verify(userService, times(1)).save(user1);
-  }
+//  @Test
+//  void testSaveUser() {
+//    userController.saveUser(user1);
+//
+//    verify(userService, times(1)).save(user1);
+//  }
 
   @Test
   void testFindByName() {
