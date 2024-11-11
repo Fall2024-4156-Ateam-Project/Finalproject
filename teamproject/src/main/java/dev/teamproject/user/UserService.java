@@ -2,7 +2,6 @@ package dev.teamproject.user;
 
 import dev.teamproject.common.JwtUtil;
 import dev.teamproject.user.DTOs.UserErrorResponseDTO;
-import dev.teamproject.user.DTOs.UserLoginRequestDTO;
 import dev.teamproject.user.DTOs.UserLoginResponseDTO;
 import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
 import dev.teamproject.exceptionHandler.UserException;
@@ -80,7 +79,6 @@ public class UserService {
     User user = new User();
     user.setName(userCreationRequestDTO.getName());
     user.setEmail(userCreationRequestDTO.getEmail());
-    user.setPassword_hash(passwordEncoder.encode(userCreationRequestDTO.getPassword()));
 
     this.userRepo.save(user);
 
@@ -109,30 +107,6 @@ public class UserService {
     return userSuccessResponseDTO;
   }
 
-  public UserLoginResponseDTO login(UserLoginRequestDTO userLoginRequestDTO) {
-    if (!existsByEmail(userLoginRequestDTO.getEmail())) {
-      //set the error response
-      UserErrorResponseDTO userErrorResponseDTO = new UserErrorResponseDTO();
-      userErrorResponseDTO.setUserResponseFromUserLoginDTO(userLoginRequestDTO);
-      throw new UserException("No account found with the provided email", userErrorResponseDTO);
-    }
-    User user = userRepo.findByEmail(userLoginRequestDTO.getEmail()).get(0);
-    if (!passwordEncoder.matches(userLoginRequestDTO.getPassword(), user.getPassword_hash())) {
-      UserErrorResponseDTO userErrorResponseDTO = new UserErrorResponseDTO();
-      userErrorResponseDTO.setUserResponseFromUserLoginDTO(userLoginRequestDTO);
-      throw new UserException("Incorrect password", userErrorResponseDTO);
-    }
-    /**
-     * Success
-     */
-    UserLoginResponseDTO userLoginResponseDTO = new UserLoginResponseDTO();
-    userLoginResponseDTO.setToken(jwtUtil.generateToken(userLoginRequestDTO.getEmail()));
-    userLoginResponseDTO.setEmail(userLoginRequestDTO.getEmail());
-    userLoginResponseDTO.setStatus("OK");
-
-    return userLoginResponseDTO;
-
-  }
 
 }
 

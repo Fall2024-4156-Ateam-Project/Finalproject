@@ -1,10 +1,8 @@
 package dev.teamproject.user;
 
 import dev.teamproject.apiResponse.GenericApiResponse;
-import dev.teamproject.user.DTOs.UserLoginRequestDTO;
-import dev.teamproject.user.DTOs.UserLoginResponseDTO;
-import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
 import dev.teamproject.user.DTOs.UserCreationRequestDTO;
+import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,19 +65,6 @@ public class UserController {
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
 
-  /**
-   * To login a user
-   * @param userLoginRequestDTO
-   * @return
-   */
-  @PostMapping("/login")
-  public ResponseEntity<GenericApiResponse<UserLoginResponseDTO>> login(
-      @Valid @RequestBody UserLoginRequestDTO userLoginRequestDTO) {
-    UserLoginResponseDTO userLoginResponseDTO = userService.login(userLoginRequestDTO);
-    GenericApiResponse<UserLoginResponseDTO> response = new GenericApiResponse<>(
-        "Login success", userLoginResponseDTO, true);
-    return new ResponseEntity<>(response, HttpStatus.OK);
-  }
 
   @GetMapping("/findByName")
   public List<User> findByName(@RequestParam("name") String name) {

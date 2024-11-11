@@ -24,12 +24,5 @@ public class UserErrorResponseDTO {
   public void setUserResponseFromUserCreationDTO(UserCreationRequestDTO userCreationRequestDTO) {
     setName(userCreationRequestDTO.getName());
     setEmail(userCreationRequestDTO.getEmail());
-//    setCreatedAt(user.getCreatedAt());
-//    response.setUpdatedAt(user.getUpdatedAt());
-  }
-
-  public void setUserResponseFromUserLoginDTO(UserLoginRequestDTO userLoginRequestDTO) {
-//    setName(userLoginRequestDTO.getName());
-    setEmail(userLoginRequestDTO.getEmail());
   }
 }
