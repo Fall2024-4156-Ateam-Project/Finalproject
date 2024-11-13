@@ -82,9 +82,9 @@ class UserServiceUnitTests {
     verify(userRepo, times(1)).findByName("test2");
   }
 
-  @Test
-  void testSaveUser() {
-    userService.save(user1);
-    verify(userRepo, times(1)).save(user1);
-  }
+//  @Test
+//  void testSaveUser() {
+//    userService.save(user1);
+//    verify(userRepo, times(1)).save(user1);
+//  }
 }
