@@ -251,6 +251,7 @@ CREATE TABLE User (
     UID INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) DEFAULT NULL,
     email VARCHAR(100) DEFAULT NULL,
+    UNIQUE (email),
     PRIMARY KEY (UID)
 );
 ```
@@ -275,8 +276,10 @@ CREATE TABLE User (
     UID INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) DEFAULT NULL,
     email VARCHAR(100) DEFAULT NULL,
+    UNIQUE (email),
     PRIMARY KEY (UID)
 );
+
 CREATE TABLE TimeSlot (
     TID INT AUTO_INCREMENT PRIMARY KEY,
     UID INT DEFAULT NULL,
@@ -322,7 +325,6 @@ CREATE TABLE Request (
 );
 ALTER TABLE Request
 ADD status ENUM('undecided', 'approved', 'rejected') NOT NULL DEFAULT 'undecided';
-
 ```
 
 ### Style Checking Report

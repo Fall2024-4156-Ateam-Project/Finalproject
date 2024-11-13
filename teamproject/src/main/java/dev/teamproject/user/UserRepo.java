@@ -13,8 +13,14 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepo extends JpaRepository<User, Integer> {
   List<User> findByName(String username);
+
+  List<User> findByUid(Integer uid);
   
   List<User> findByEmail(String email);
+
+  boolean existsByEmail(String email);
+
+  boolean existsByUid(int uid);
   
   List<User> findAllByOrderByUidDesc();
   
