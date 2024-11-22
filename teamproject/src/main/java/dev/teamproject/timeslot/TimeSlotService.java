@@ -3,6 +3,7 @@ package dev.teamproject.timeslot;
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ public class TimeSlotService {
   private final TimeSlotRepo timeSlotRepo;
   private final UserService userService;
   private final Object lock = new Object();
+
 
   @Autowired
   public TimeSlotService(TimeSlotRepo timeSlotRepo, UserService userService) {
@@ -61,6 +63,15 @@ public class TimeSlotService {
   public List<TimeSlot> getTimeSlotsByUser(int uid) {
     User user = userService.findById(uid);
     return timeSlotRepo.findByUser(user);
+  }
+
+  public List<TimeSlot> getTimeSlotsByUserEmail(String email) {
+    List<User> users = userService.findByEmail(email);
+    List<TimeSlot> timeslots = new ArrayList<>();
+    for (User user : users) {
+      timeslots.addAll(timeSlotRepo.findByUser(user));
+    }
+    return timeslots;
   }
 
   /**
