@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -55,6 +56,13 @@ public class TimeSlotController {
   public ResponseEntity<List<TimeSlot>> getTimeSlotsByUser(
           @PathVariable("uid") int uid) {
     List<TimeSlot> timeSlots = timeSlotService.getTimeSlotsByUser(uid);
+    return ResponseEntity.ok(timeSlots);
+  }
+  // Get TimeSlots by User ID
+  @GetMapping("/user")
+  public ResponseEntity<List<TimeSlot>> getTimeSlotsByUserEmail(
+      @RequestParam("email") String email) {
+    List<TimeSlot> timeSlots = timeSlotService.getTimeSlotsByUserEmail(email);
     return ResponseEntity.ok(timeSlots);
   }
   
