@@ -2,6 +2,7 @@ package dev.teamproject.timeslot;
 
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.common.CommonTypes.Day;
+import dev.teamproject.common.Pair;
 import dev.teamproject.user.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -81,11 +82,10 @@ public class TimeSlot {
    * construct a time slot given user day, information of time and availability.
    */
 
-  public TimeSlot(User user, CommonTypes.Day day, CommonTypes.Day startDay, CommonTypes.Day endDay,
+  public TimeSlot(User user, CommonTypes.Day startDay, CommonTypes.Day endDay,
       LocalTime startTime,
       LocalTime endTime, CommonTypes.Availability availability) {
     this.user = user;
-//    this.day = day;
     this.startDay = startDay;
     this.endDay = endDay;
     this.startTime = startTime;
@@ -204,6 +204,7 @@ class TimeSlotHelper {
    */
   public boolean isOverlapped(TimeSlot t1, TimeSlot t2) {
     // if the t1 end time before t2 start
+    // exclusive
 
     int absStartTimeT1 = absTime(t1.getStartDay(), t1.getStartTime());
     int absEndTimeT1 = absTime(t1.getEndDay(), t1.getEndTime());
@@ -221,27 +222,27 @@ class TimeSlotHelper {
     // if both wrap around or both not wrap
     if ((absEndTimeT1 <= 24 * 60 * 7 && absEndTimeT2 <= 24 * 60 * 7) || (absEndTimeT1 > 24 * 60 * 7
         && absEndTimeT2 > 24 * 60 * 7)) {
-      return !(absEndTimeT1 < absStartTimeT2 || absEndTimeT2 < absStartTimeT1);
+      return !(absEndTimeT1 <= absStartTimeT2 || absEndTimeT2 <= absStartTimeT1);
     }
     // if wrap and one not
     // check if the wrap
 
     // T1 wrap, T2 not
-    if (absEndTimeT1 > 24 * 60 * 7){
+    if (absEndTimeT1 > 24 * 60 * 7) {
       // overlapped
-      if (absStartTimeT2 <= absEndTimeT1 - 24*60*7 ){
+      if (absStartTimeT2 < absEndTimeT1 - 24 * 60 * 7) {
         return true;
       }
-      if (absEndTimeT2 >= absStartTimeT1){
+      if (absEndTimeT2 > absStartTimeT1) {
         return true;
       }
     }
     // T2 wrap, T1 not
-    if (absEndTimeT2 > 24 * 60 * 7){
-      if (absStartTimeT1 <= absEndTimeT2 - 24*60*7 ){
+    if (absEndTimeT2 > 24 * 60 * 7) {
+      if (absStartTimeT1 < absEndTimeT2 - 24 * 60 * 7) {
         return true;
       }
-      if (absEndTimeT1 >= absStartTimeT2){
+      if (absEndTimeT1 > absStartTimeT2) {
         return true;
       }
     }
@@ -261,4 +262,47 @@ class TimeSlotHelper {
     int minInWeek = day.ordinal() * 24 * 60;
     return minInDay + minInWeek;
   }
+
+
+  public Boolean isWrapped(TimeSlot t) {
+    int absEndTimeT = absTime(t.getEndDay(), t.getEndTime());
+    int absStartTimeT = absTime(t.getStartDay(), t.getStartTime());
+    return absStartTimeT > absEndTimeT;
+  }
+
+  public boolean isEarlier(CommonTypes.Day d1, LocalTime t1, CommonTypes.Day d2, LocalTime t2) {
+    return absTime(d1, t1) < absTime(d2, t2);
+  }
+
+  public boolean isLater(CommonTypes.Day d1, LocalTime t1, CommonTypes.Day d2, LocalTime t2) {
+    return absTime(d1, t1) > absTime(d2, t2);
+  }
+
+  public Pair<Day, LocalTime> getDayAndTimeFromAbs(int absTime) {
+    int dayIndex = (absTime / (24 * 60)) % 7;
+    int minutes = absTime % (24 * 60);
+    return new Pair<>(getDayFromIndex(dayIndex), LocalTime.of(minutes / 60, minutes % 60));
+  }
+
+  public CommonTypes.Day getDayFromIndex(int index) {
+    switch (index) {
+      case 0:
+        return CommonTypes.Day.Monday;
+      case 1:
+        return CommonTypes.Day.Tuesday;
+      case 2:
+        return CommonTypes.Day.Wednesday;
+      case 3:
+        return CommonTypes.Day.Thursday;
+      case 4:
+        return CommonTypes.Day.Friday;
+      case 5:
+        return CommonTypes.Day.Saturday;
+      case 6:
+        return CommonTypes.Day.Sunday;
+      default:
+        throw new IllegalArgumentException("Invalid day index: " + index);
+    }
+  }
 }
+
