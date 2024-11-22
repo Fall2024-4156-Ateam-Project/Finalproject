@@ -7,7 +7,7 @@ package dev.teamproject.common;
  * daysOfWeek, Availability and request statuses.
  */
 public class CommonTypes {
-    
+
   /**
    * Represents the types of meetings.
    */
@@ -15,7 +15,7 @@ public class CommonTypes {
         group,
         one_on_one
   }
-    
+
   /**
    * Represents the recurrence options.
    */
@@ -25,7 +25,7 @@ public class CommonTypes {
         monthly,
         none
   }
-    
+
   /**
    * Represents the meeting statuses.
    */
@@ -33,7 +33,7 @@ public class CommonTypes {
         Valid,
         Invalid
   }
-    
+
   /**
    * Represents the role types.
    */
@@ -41,7 +41,7 @@ public class CommonTypes {
         participant,
         organizer
   }
-    
+
   /**
    * Represents the status of participants.
    */
@@ -50,26 +50,27 @@ public class CommonTypes {
         accept,
         waiting
   }
-    
+
   /**
    * Represents the days of the Week.
    */
   public enum Day {
-        Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
+    // The order matter here !!!
+        Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday;
   }
-    
+
   /**
    * Represents the availability of timeslots.
    */
   public enum Availability {
         available, busy
   }
-    
+
   /**
    * Represents the request statuses.
    */
   public enum RequestStatus {
         undecided, approved, rejected
   }
-    
+
 }
