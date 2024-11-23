@@ -76,10 +76,10 @@ class TimeSlotServiceTests {
   }
 
   @Test
-  void testGetTimeSlotsByDay() {
+  void testGetTimeSlotsByStartDay() {
     CommonTypes.Day day = CommonTypes.Day.Monday;
     List<TimeSlot> timeSlots = Collections.singletonList(timeSlot);
-    when(timeSlotRepo.findByDay(day)).thenReturn(timeSlots);
+    when(timeSlotRepo.findByStartDay(day)).thenReturn(timeSlots);
     List<TimeSlot> retrievedTimeSlots = timeSlotService.getTimeSlotsByDay(day);
     assertEquals(timeSlots, retrievedTimeSlots);
   }
