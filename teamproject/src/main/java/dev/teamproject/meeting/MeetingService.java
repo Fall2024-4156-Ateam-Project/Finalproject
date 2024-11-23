@@ -4,6 +4,9 @@ import dev.teamproject.common.CommonTypes;
 import dev.teamproject.exceptionHandler.IllegalArgumentException;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserService;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,10 +92,22 @@ public class MeetingService {
       } catch (IllegalArgumentException e) {
         throw new IllegalArgumentException("Invalid meeting type: " + meetingDTO.getType());
       }
+      try {
+        meeting.setStatus(CommonTypes.MeetingStatus.valueOf(meetingDTO.getStatus()));
+      } catch (IllegalArgumentException e) {
+        throw new IllegalArgumentException("Invalid meeting status: " + meetingDTO.getStatus());
+      }
+      try {
+        meeting.setRecurrence(CommonTypes.Recurrence.valueOf(meetingDTO.getRecurrence()));
+      } catch (IllegalArgumentException e) {
+        throw new IllegalArgumentException("Invalid meeting recurrence: " + meetingDTO.getRecurrence());
+      }
 
       meeting.setDescription(meetingDTO.getDescription());
       meeting.setStartTime(meetingDTO.getStartTime());
       meeting.setEndTime(meetingDTO.getEndTime());
+      java.util.Date date= new java.util.Date();
+      meeting.setCreatedAt(new Timestamp(date.getTime()));
 
       meetingRepo.save(meeting);
     }

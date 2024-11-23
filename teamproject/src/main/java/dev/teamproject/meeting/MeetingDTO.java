@@ -13,6 +13,8 @@ public class MeetingDTO {
 
   private String type;
   private String description;
+  private String status;
+  private String recurrence;
   private Timestamp startTime;
   private Timestamp endTime;
 
@@ -63,5 +65,21 @@ public class MeetingDTO {
 
   public void setEndTime(Timestamp endTime) {
     this.endTime = endTime;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+  public String getRecurrence() {
+    return recurrence;
+  }
+
+  public void setRecurrence(String recurrence) {
+    this.recurrence = recurrence;
   }
 }
