@@ -36,6 +36,13 @@ public class TimeSlotController {
     TimeSlot createdTimeSlot = timeSlotService.createTimeSlot(timeSlot);
     return ResponseEntity.ok(createdTimeSlot);
   }
+  // Create a new merged TimeSlot
+  @PostMapping("/merge")
+  public ResponseEntity<TimeSlot> createMergeTimeSlot(@RequestBody TimeSlot timeSlot) {
+//    TimeSlot createdTimeSlot = timeSlotService.mergeOrUpdateTimeSlot(timeSlot);
+    TimeSlot createdTimeSlot = timeSlotService.handleTimeSlotCreation(timeSlot);
+    return ResponseEntity.ok(createdTimeSlot);
+  }
   
   // Get TimeSlot by ID
   @GetMapping("/{id}")
@@ -62,7 +69,7 @@ public class TimeSlotController {
   @GetMapping("/user")
   public ResponseEntity<List<TimeSlot>> getTimeSlotsByUserEmail(
       @RequestParam("email") String email) {
-    List<TimeSlot> timeSlots = timeSlotService.getTimeSlotsByUserEmail(email);
+    List<TimeSlot> timeSlots = timeSlotService.getTimeSlotsByUserEmailSortedByDate(email);
     return ResponseEntity.ok(timeSlots);
   }
   
