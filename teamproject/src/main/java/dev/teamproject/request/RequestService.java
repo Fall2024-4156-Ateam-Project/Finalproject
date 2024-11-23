@@ -9,24 +9,17 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Service class for managing requests associated with time slots.
  */
-
 @Service
 public class RequestService {
   private final RequestRepo requestRepo;
   private final UserService userService;
   private final TimeSlotService tsService;
-
-  /**
-   * Constructs a RequestService with the specified dependencies.
-   *
-   * @param requestRepo the repository for managing requests
-   * @param userService the service for managing users
-   * @param tsService   the service for managing time slots
-   */
+  private final Object lock = new Object();
 
   @Autowired
   public RequestService(RequestRepo requestRepo,
@@ -42,13 +35,15 @@ public class RequestService {
    * @param req the request to be created
    * @return the created request
    */
+  @Transactional
   public Request createRequest(Request req) {
-    // Validate user exists
-    User user = userService.findById(req.getUser().getUid());
-    req.setUser(user);
-    TimeSlot ts = tsService.getTimeSlotById(req.getTimeSlot().getTid());
-    req.setTimeSlot(ts);
-    return requestRepo.save(req);
+    synchronized (lock) {
+      User user = userService.findById(req.getUser().getUid());
+      req.setUser(user);
+      TimeSlot ts = tsService.getTimeSlotById(req.getTimeSlot().getTid());
+      req.setTimeSlot(ts);
+      return requestRepo.save(req);
+    }
   }
 
   /**
@@ -58,11 +53,11 @@ public class RequestService {
    * @param requesterId the ID of the requester
    * @throws RuntimeException if the request is not found
    */
+  @Transactional
   public void deleteRequest(int tid, int requesterId) {
     RequestId requestId = new RequestId(
             tsService.getTimeSlotById(tid), userService.findById(requesterId));
     Optional<Request> request = requestRepo.findById(requestId);
-    
     if (request.isPresent()) {
       requestRepo.deleteById(requestId);
     } else {
@@ -79,21 +74,21 @@ public class RequestService {
    * @return the updated request
    * @throws RuntimeException if the request is not found
    */
+  @Transactional
   public Request updateRequestDescription(int tid, int requesterId, String newDescription) {
     RequestId requestId = new RequestId(
             tsService.getTimeSlotById(tid), userService.findById(requesterId));
-    Optional<Request> optionalRequest = requestRepo.findById(requestId);
-    
-    if (optionalRequest.isPresent()) {
-      Request request = optionalRequest.get();
-      // Update description if newDescription is not null or not empty
-      if (newDescription != null && !newDescription.isEmpty()) {
-        request.setDescription(newDescription);
+    synchronized (lock) {
+      Optional<Request> optionalRequest = requestRepo.findById(requestId);
+      if (optionalRequest.isPresent()) {
+        Request request = optionalRequest.get();
+        if (newDescription != null && !newDescription.isEmpty()) {
+          request.setDescription(newDescription);
+        }
+        return requestRepo.save(request);
+      } else {
+        throw new RuntimeException("Request not found");
       }
-      
-      return requestRepo.save(request);
-    } else {
-      throw new RuntimeException("Request not found");
     }
   }
 
@@ -106,21 +101,21 @@ public class RequestService {
    * @return the updated request
    * @throws RuntimeException if the request is not found
    */
+  @Transactional
   public Request updateRequestStatus(int tid, int requesterId, CommonTypes.RequestStatus status) {
     RequestId requestId = new RequestId(tsService.getTimeSlotById(tid),
             userService.findById(requesterId));
-    Optional<Request> optionalRequest = requestRepo.findById(requestId);
-    
-    if (optionalRequest.isPresent()) {
-      Request request = optionalRequest.get();
-      // Update description if newDescription is not null or not empty
-      if (status != null) {
-        request.setStatus(status);
+    synchronized (lock) {
+      Optional<Request> optionalRequest = requestRepo.findById(requestId);
+      if (optionalRequest.isPresent()) {
+        Request request = optionalRequest.get();
+        if (status != null) {
+          request.setStatus(status);
+        }
+        return requestRepo.save(request);
+      } else {
+        throw new RuntimeException("Request not found");
       }
-      
-      return requestRepo.save(request);
-    } else {
-      throw new RuntimeException("Request not found");
     }
   }
 
@@ -132,15 +127,15 @@ public class RequestService {
    * @return the found request
    * @throws RuntimeException if the request is not found
    */
+  @Transactional(readOnly = true)
   public Request getRequestById(int requesterId, int tid) {
     RequestId requestId = new RequestId(tsService.getTimeSlotById(tid),
-            userService.findById(requesterId));  // Create the composite key
+            userService.findById(requesterId));
     Optional<Request> optionalRequest = requestRepo.findById(requestId);
-    
     if (optionalRequest.isPresent()) {
-      return optionalRequest.get();  // Return the found Request
+      return optionalRequest.get();
     } else {
-      throw new RuntimeException("Request not found");  // Handle request not found
+      throw new RuntimeException("Request not found");
     }
   }
 
@@ -150,6 +145,7 @@ public class RequestService {
    * @param uid the ID of the user making the requests
    * @return a list of requests associated with the user
    */
+  @Transactional(readOnly = true)
   public List<Request> getRequestsByRequester(int uid) {
     User user = userService.findById(uid);
     return requestRepo.findByUser(user);
@@ -161,6 +157,7 @@ public class RequestService {
    * @param tid the time slot ID
    * @return a list of requests for the specified time slot
    */
+  @Transactional(readOnly = true)
   public List<Request> getRequestsByTimeSlot(int tid) {
     TimeSlot ts = tsService.getTimeSlotById(tid);
     return requestRepo.findByTimeSlot(ts);
