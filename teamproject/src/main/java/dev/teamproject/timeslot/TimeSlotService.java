@@ -64,6 +64,7 @@ public class TimeSlotService {
    * @param timeSlot
    * @return
    */
+  @Transactional
   public TimeSlot mergeOrUpdateTimeSlot(TimeSlot timeSlot) {
     // since assumption no previous overlap timeslots
     // we only care the first and last timeslot(if existed) in the affected list
@@ -193,8 +194,10 @@ public class TimeSlotService {
       );
       resultSlots.add(middle);
     }
-    timeSlotRepo.deleteAll(affectedSlots);
-    timeSlotRepo.saveAll(resultSlots);
+    synchronized (lock) {
+      timeSlotRepo.deleteAll(affectedSlots);
+      timeSlotRepo.saveAll(resultSlots);
+    }
     for (TimeSlot ts: resultSlots){
       System.out.println("Added new:::::::" + ts);
     }
