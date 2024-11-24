@@ -11,10 +11,12 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import dev.teamproject.timeslot.TimeSlotHelper.*;
+
 /**
  * Service class for managing TimeSlot entities. This class provides functionality for creating,
  * retrieving, updating, and deleting time slots.
@@ -56,7 +58,7 @@ public class TimeSlotService {
    * existing single timeslot: into 2 or 3 3. cover multiple timeslots: do override and create new 2
    * or 3 timeslots 4. trivial: create new single timeslots Assumptions : 1. The timeslot cannot
    * wrap 2. The existing timeslots are not overlapping.
-   *
+   * <p>
    * Assumption: exclusive time interval, this method should be used under transaction lock
    *
    * @param timeSlot
@@ -339,6 +341,28 @@ public class TimeSlotService {
     }
     return updatedTimeSlot;
   }
+
+
+  /**
+   * Check if the time slot Update request valid
+   *
+   * @param tid the updated target
+   * @param timeSlot the proposed slot
+   * @return
+   */
+
+  @Transactional(readOnly = true)
+  public Boolean isTimeSlotUpdateRequestValid(int tid, TimeSlot timeSlot) {
+    Optional<TimeSlot> ts = this.timeSlotRepo.findById(tid);
+    if (ts.isEmpty()) {
+      return false;
+    }
+    if (timeSlot.getUser().equals(ts.get().getUser())) {
+      return false;
+    }
+    return true;
+  }
+
 
   /**
    * Deletes an existing TimeSlot by ID.
