@@ -29,7 +29,8 @@ public class TimeSlotController {
   public TimeSlotController(TimeSlotService timeSlotService) {
     this.timeSlotService = timeSlotService;
   }
-  
+
+  @Deprecated
   // Create a new TimeSlot
   @PostMapping
   public ResponseEntity<TimeSlot> createTimeSlot(@RequestBody TimeSlot timeSlot) {
@@ -89,10 +90,20 @@ public class TimeSlotController {
   }
   
   // Update a TimeSlot
+
+  @Deprecated
   @PutMapping("/{id}")
   public ResponseEntity<TimeSlot> updateTimeSlot(
           @PathVariable("id") int tid, @RequestBody TimeSlot timeSlot) {
     TimeSlot updatedTimeSlot = timeSlotService.updateTimeSlot(tid, timeSlot);
+    return ResponseEntity.ok(updatedTimeSlot);
+  }
+  // update a TimeSlot new
+  @PutMapping("/update/{id}")
+  public ResponseEntity<TimeSlot> updateTimeSlotNoOverlap(
+      @PathVariable("id") int tid, @RequestBody TimeSlot timeSlot
+  ) {
+    TimeSlot updatedTimeSlot = timeSlotService.updateTimeSlotNoOverlap(tid, timeSlot);
     return ResponseEntity.ok(updatedTimeSlot);
   }
   

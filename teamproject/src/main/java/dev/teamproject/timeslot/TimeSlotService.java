@@ -327,6 +327,20 @@ public class TimeSlotService {
   }
 
   /**
+   * Updates an existing TimeSlot. Ensures thread safety with synchronized block.
+   */
+  @Transactional
+  public TimeSlot updateTimeSlotNoOverlap(int tid, TimeSlot updatedTimeSlot) {
+    synchronized (lock) {
+      // remove timeslot
+      timeSlotRepo.deleteById(tid);
+      // add updated timeslot in to the pool
+      mergeOrUpdateTimeSlot(updatedTimeSlot);
+    }
+    return updatedTimeSlot;
+  }
+
+  /**
    * Deletes an existing TimeSlot by ID.
    */
   @Transactional
