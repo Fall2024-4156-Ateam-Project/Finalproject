@@ -39,7 +39,6 @@ public class TimeSlotController {
   // Create a new merged TimeSlot
   @PostMapping("/merge")
   public ResponseEntity<TimeSlot> createMergeTimeSlot(@RequestBody TimeSlot timeSlot) {
-//    TimeSlot createdTimeSlot = timeSlotService.mergeOrUpdateTimeSlot(timeSlot);
     TimeSlot createdTimeSlot = timeSlotService.handleTimeSlotCreation(timeSlot);
     return ResponseEntity.ok(createdTimeSlot);
   }
