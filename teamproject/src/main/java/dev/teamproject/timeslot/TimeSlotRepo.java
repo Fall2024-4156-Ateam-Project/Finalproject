@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TimeSlotRepo extends JpaRepository<TimeSlot, Integer> {
   List<TimeSlot> findByUser(User user);
+
   
   List<TimeSlot> findByStartDay(CommonTypes.Day day);
   

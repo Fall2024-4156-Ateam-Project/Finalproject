@@ -72,6 +72,7 @@ public class TimeSlotController {
   public ResponseEntity<List<TimeSlot>> getTimeSlotsByUserEmail(
       @RequestParam("email") String email) {
     List<TimeSlot> timeSlots = timeSlotService.getTimeSlotsByUserEmailSortedByDate(email);
+    System.out.println("timeSlots" + timeSlots);
     return ResponseEntity.ok(timeSlots);
   }
 
