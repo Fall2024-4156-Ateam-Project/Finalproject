@@ -65,7 +65,7 @@ public class TimeSlotService {
    * @return
    */
   @Transactional
-  public TimeSlot mergeOrUpdateTimeSlot(TimeSlot timeSlot) {
+  public TimeSlot mergeOrUpdateTimeSlot(TimeSlot timeSlot) { 
     // since assumption no previous overlap timeslots
     // we only care the first and last timeslot(if existed) in the affected list
     // the middle part timeslots will be override
@@ -82,8 +82,8 @@ public class TimeSlotService {
       System.out.println(ts);
       // if the timeslot are overlapped
       if (timeSlotHelper.isOverlapped(ts, timeSlot)) {
-//        System.out.println(
-//            "overlap found" + ts.getStartDay().toString() + timeSlot.getStartDay().toString());
+      //  System.out.println(
+          //  "overlap found" + ts.getStartDay().toString() + timeSlot.getStartDay().toString());
         affectedSlots.add(ts);
       }
     }
@@ -114,10 +114,10 @@ public class TimeSlotService {
       TimeSlot left = new TimeSlot(
           user,
           firstSlot.getStartDay(),
-//          timeSlot.getStartDay(),
+        //  timeSlot.getStartDay(),
           timeSlotHelper.getDayAndTimeFromAbs(absStartTimeNew - 1).getKey(),
           firstSlot.getStartTime(),
-//          firstSlot.getStartTime(),
+        //  firstSlot.getStartTime(),
           timeSlotHelper.getDayAndTimeFromAbs(absStartTimeNew - 1).getValue(),
           firstSlot.getAvailability());
       TimeSlot middle = new TimeSlot(user,
@@ -128,10 +128,10 @@ public class TimeSlotService {
           timeSlot.getAvailability());
       TimeSlot right = new TimeSlot(
           user,
-//          lastSlot.getStartDay(),
+        //  lastSlot.getStartDay(),
           timeSlotHelper.getDayAndTimeFromAbs(absEndTimeNew + 1).getKey(),
           lastSlot.getEndDay(),
-//          lastSlot.getStartTime(),
+        //  lastSlot.getStartTime(),
           timeSlotHelper.getDayAndTimeFromAbs(absEndTimeNew + 1).getValue(),
           lastSlot.getEndTime(), lastSlot.getAvailability());
       resultSlots.add(left);
@@ -141,10 +141,10 @@ public class TimeSlotService {
       TimeSlot left = new TimeSlot(
           user,
           firstSlot.getStartDay(),
-//          timeSlot.getStartDay(),
+        //  timeSlot.getStartDay(),
           timeSlotHelper.getDayAndTimeFromAbs(absStartTimeNew - 1).getKey(),
           firstSlot.getStartTime(),
-//          timeSlot.getStartTime(),
+        //  timeSlot.getStartTime(),
           timeSlotHelper.getDayAndTimeFromAbs(absStartTimeNew - 1).getValue(),
           firstSlot.getAvailability()
       );
@@ -170,10 +170,10 @@ public class TimeSlotService {
       );
       TimeSlot right = new TimeSlot(
           user,
-//          timeSlot.getEndDay(),
+        //  timeSlot.getEndDay(),
           timeSlotHelper.getDayAndTimeFromAbs(absEndTimeNew + 1).getKey(),
           lastSlot.getEndDay(),
-//          timeSlot.getEndTime(),
+        //  timeSlot.getEndTime(),
           timeSlotHelper.getDayAndTimeFromAbs(absEndTimeNew + 1).getValue(),
           lastSlot.getEndTime(),
           lastSlot.getAvailability()
