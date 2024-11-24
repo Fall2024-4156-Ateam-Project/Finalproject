@@ -1,9 +1,13 @@
 package dev.teamproject.timeslot;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.common.CommonTypes.Day;
 import dev.teamproject.common.Pair;
+import dev.teamproject.request.Request;
 import dev.teamproject.user.User;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -13,8 +17,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Objects;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -37,9 +43,17 @@ public class TimeSlot {
   @JoinColumn(name = "UID", nullable = false)
   private User user;
 
-//  @Enumerated(EnumType.STRING)
-//  @Column(name = "day", nullable = false)
-//  private CommonTypes.Day day;
+  public List<Request> getRequests() {
+    return requests;
+  }
+
+  public void setRequests(List<Request> requests) {
+    this.requests = requests;
+  }
+
+  @OneToMany(mappedBy = "timeSlot", cascade = CascadeType.ALL, orphanRemoval = true)
+  @JsonIgnoreProperties("timeSlot")
+  private List<Request> requests;
 
   public Day getStartDay() {
     return startDay;
