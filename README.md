@@ -19,6 +19,10 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 
 ## Endpoints
 
+### API docs
+- /api-docs (yaml docs)
+- /swagger-ui/index.html (UI docs)
+
 ### /api/v1/meetings
 ------------------------------------------------------------------------------------------------------------------------
 #### GET /findByRecurrence
