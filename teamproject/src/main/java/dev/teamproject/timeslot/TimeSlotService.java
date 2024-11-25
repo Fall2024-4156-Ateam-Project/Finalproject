@@ -61,12 +61,12 @@ public class TimeSlotService {
    * <p>
    * Assumption: exclusive time interval, this method should be used under transaction lock
    *
-   * @param timeSlot
+   * @param proposedTimeslot
    * @return
    */
 
 
-  public void mergeOrUpdateTimeSlot(TimeSlot timeSlot) {
+  public void mergeOrUpdateTimeSlot(TimeSlot proposedTimeslot) {
     // since assumption no previous overlap timeslots
     // we only care the first and last timeslot(if existed) in the affected list
     // the middle part timeslots will be override
@@ -74,7 +74,20 @@ public class TimeSlotService {
     // |-?-|----new--------|
     // |--------new----|-?-|
     // |--------new--------|
-    User user = userService.findById(timeSlot.getUser().getUid());
+    TimeSlot timeSlot;
+    User user = userService.findById(proposedTimeslot.getUser().getUid());
+    Optional<TimeSlot> maybeTimeSlot = timeSlotRepo.findById(proposedTimeslot.getTid());
+    if (maybeTimeSlot.isPresent()) {
+      timeSlot = maybeTimeSlot.get();
+      timeSlot.setStartDay(proposedTimeslot.getStartDay());
+      timeSlot.setStartTime(proposedTimeslot.getStartTime());
+      timeSlot.setEndDay(proposedTimeslot.getEndDay());
+      timeSlot.setEndTime(proposedTimeslot.getEndTime());
+      timeSlot.setAvailability(proposedTimeslot.getAvailability());
+    } else {
+      timeSlot = proposedTimeslot;
+    }
+
     List<TimeSlot> timeSlotList = this.getAllTimeSlots(); //assume non overlapping
     // time slot sort: start(weekday + time) - end(weekday + time)
     Collections.sort(timeSlotList, new TimeSlotComparator());
@@ -83,11 +96,15 @@ public class TimeSlotService {
       System.out.println(ts);
       // if the timeslot are overlapped
       if (timeSlotHelper.isOverlapped(ts, timeSlot)) {
-      //  System.out.println(
-          //  "overlap found" + ts.getStartDay().toString() + timeSlot.getStartDay().toString());
-        affectedSlots.add(ts);
+        //  System.out.println(
+        //  "overlap found" + ts.getStartDay().toString() + timeSlot.getStartDay().toString());
+        if (ts.getTid() != timeSlot.getTid()) {
+          affectedSlots.add(ts);
+          System.out.println("Affeceted" + ts + "////" + timeSlot);
+        }
       }
     }
+
     if (affectedSlots.isEmpty()) {
       // Case 4: Trivial - No overlap, create a new single timeslot
       timeSlotRepo.save(timeSlot);
@@ -118,20 +135,18 @@ public class TimeSlotService {
           firstSlot.getStartTime(),
           timeSlotHelper.getDayAndTimeFromAbs(absStartTimeNew - 1).getValue(),
           firstSlot.getAvailability());
-      TimeSlot middle = new TimeSlot(user,
-          timeSlot.getStartDay(),
-          timeSlot.getEndDay(),
-          timeSlot.getStartTime(),
-          timeSlot.getEndTime(),
-          timeSlot.getAvailability());
+      left.setTid(firstSlot.getTid()); // keep the same tid for update
+
       TimeSlot right = new TimeSlot(
           user,
           timeSlotHelper.getDayAndTimeFromAbs(absEndTimeNew + 1).getKey(),
           lastSlot.getEndDay(),
           timeSlotHelper.getDayAndTimeFromAbs(absEndTimeNew + 1).getValue(),
           lastSlot.getEndTime(), lastSlot.getAvailability());
+      right.setTid(lastSlot.getTid());
+
       resultSlots.add(left);
-      resultSlots.add(middle);
+      resultSlots.add(timeSlot);
       resultSlots.add(right);
     } else if (absStartTimeFirst < absStartTimeNew) {
       TimeSlot left = new TimeSlot(
@@ -142,26 +157,11 @@ public class TimeSlotService {
           timeSlotHelper.getDayAndTimeFromAbs(absStartTimeNew - 1).getValue(),
           firstSlot.getAvailability()
       );
-      TimeSlot middle = new TimeSlot(
-          user,
-          timeSlot.getStartDay(),
-          timeSlot.getEndDay(),
-          timeSlot.getStartTime(),
-          timeSlot.getEndTime(),
-          timeSlot.getAvailability()
-      );
+      left.setTid(firstSlot.getTid());
 
       resultSlots.add(left);
-      resultSlots.add(middle);
+      resultSlots.add(timeSlot);
     } else if (absEndTimeLast > absEndTimeNew) {
-      TimeSlot middle = new TimeSlot(
-          user,
-          timeSlot.getStartDay(),
-          timeSlot.getEndDay(),
-          timeSlot.getStartTime(),
-          timeSlot.getEndTime(),
-          timeSlot.getAvailability()
-      );
       TimeSlot right = new TimeSlot(
           user,
           timeSlotHelper.getDayAndTimeFromAbs(absEndTimeNew + 1).getKey(),
@@ -170,21 +170,14 @@ public class TimeSlotService {
           lastSlot.getEndTime(),
           lastSlot.getAvailability()
       );
+      right.setTid(lastSlot.getTid());
 
-      resultSlots.add(middle);
+      resultSlots.add(timeSlot);
       resultSlots.add(right);
 
       // Case 4: Fully Covered
     } else {
-      TimeSlot middle = new TimeSlot(
-          user,
-          timeSlot.getStartDay(),
-          timeSlot.getEndDay(),
-          timeSlot.getStartTime(),
-          timeSlot.getEndTime(),
-          timeSlot.getAvailability()
-      );
-      resultSlots.add(middle);
+      resultSlots.add(timeSlot);
     }
     timeSlotRepo.deleteAll(affectedSlots);
     timeSlotRepo.saveAll(resultSlots);
@@ -195,8 +188,6 @@ public class TimeSlotService {
     for (TimeSlot ts : affectedSlots) {
       System.out.println("Removed:::::::" + ts);
     }
-
-    return;
   }
 
   /**
@@ -335,9 +326,7 @@ public class TimeSlotService {
   @Transactional
   public TimeSlot updateTimeSlotNoOverlap(int tid, TimeSlot updatedTimeSlot) {
     synchronized (lock) {
-      // remove timeslot
-      timeSlotRepo.deleteById(tid);
-      // add updated timeslot in to the pool
+      updatedTimeSlot.setTid(tid);
       mergeOrUpdateTimeSlot(updatedTimeSlot);
     }
     return updatedTimeSlot;
@@ -347,7 +336,7 @@ public class TimeSlotService {
   /**
    * Check if the time slot Update request valid
    *
-   * @param tid the updated target
+   * @param tid      the updated target
    * @param timeSlot the proposed slot
    * @return
    */
