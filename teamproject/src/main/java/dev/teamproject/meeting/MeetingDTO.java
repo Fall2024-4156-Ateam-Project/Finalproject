@@ -1,7 +1,9 @@
 package dev.teamproject.meeting;
 
-import java.sql.Timestamp;
+import java.time.LocalTime;
 import jakarta.validation.constraints.NotNull;
+import dev.teamproject.common.CommonTypes.Day;
+import dev.teamproject.common.CommonTypes;
 public class MeetingDTO {
 
   // Only required for delete operation
@@ -15,8 +17,10 @@ public class MeetingDTO {
   private String description;
   private String status;
   private String recurrence;
-  private Timestamp startTime;
-  private Timestamp endTime;
+  private LocalTime startTime;
+  private LocalTime endTime;
+  private CommonTypes.Day startDay;
+  private CommonTypes.Day endDay;
 
   // Getters and Setters
   public Integer getMeetingId() {
@@ -51,20 +55,36 @@ public class MeetingDTO {
     this.description = description;
   }
 
-  public Timestamp getStartTime() {
+  public LocalTime getStartTime() {
     return startTime;
   }
 
-  public void setStartTime(Timestamp startTime) {
+  public void setStartTime(LocalTime startTime) {
     this.startTime = startTime;
   }
 
-  public Timestamp getEndTime() {
+  public LocalTime getEndTime() {
     return endTime;
   }
 
-  public void setEndTime(Timestamp endTime) {
+  public void setEndTime(LocalTime endTime) {
     this.endTime = endTime;
+  }
+
+  public CommonTypes.Day getStartDay() {
+    return startDay;
+  }
+
+  public void setStartDay(CommonTypes.Day startDay) {
+    this.startDay = startDay;
+  }
+
+  public CommonTypes.Day getEndDay() {
+    return endDay;
+  }
+
+  public void setEndDay(CommonTypes.Day endDay) {
+    this.endDay = endDay;
   }
 
   public String getStatus() {
