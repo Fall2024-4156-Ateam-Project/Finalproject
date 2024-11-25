@@ -86,6 +86,11 @@ public class MeetingController {
     return meetingService.findById(mid);
   }
 
+  @GetMapping("/findByEmail")
+  public List<Meeting> findByid(@RequestParam("email") String email) {
+    return meetingService.findByEmail(email);
+  }
+
   @GetMapping("/get_all")
   public List<Meeting> findAll() {
     return meetingService.findAll();
