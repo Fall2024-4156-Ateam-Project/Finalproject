@@ -16,6 +16,7 @@ import dev.teamproject.common.CommonTypes.Availability;
 import dev.teamproject.common.CommonTypes.Day;
 import dev.teamproject.common.Pair;
 import dev.teamproject.timeslot.TimeSlot;
+import dev.teamproject.timeslot.TimeSlotComparator;
 import dev.teamproject.timeslot.TimeSlotHelper;
 import dev.teamproject.timeslot.TimeSlotRepo;
 import dev.teamproject.timeslot.TimeSlotService;
@@ -23,6 +24,7 @@ import dev.teamproject.timeslot.TimeSlotService;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserService;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -53,7 +55,6 @@ class TimeSlotServiceTests {
   private TimeSlot timeSlot;
   private TimeSlot wrappedTimeSlot;
   private TimeSlot wrappedTimeSlot2;
-  private TimeSlotHelper timeSlotHelper;
   private User user;
 
   @BeforeEach
