@@ -35,8 +35,8 @@ public class RequestFilter extends OncePerRequestFilter {
         || path.endsWith(".html")         // Specific exclusions for HTML files
         || path.endsWith(".png")          // Exclude images
         || path.endsWith(".ico")          // Exclude favicon
-        || path.endsWith("-config")
-        || path.endsWith("/api-docs");
+        || path.endsWith("favicon.ico")
+        || path.endsWith("-config");
   }
 
   @Override
