@@ -65,6 +65,7 @@ public class TimeSlotService {
    * @return
    */
 
+
   public void mergeOrUpdateTimeSlot(TimeSlot timeSlot) {
     // since assumption no previous overlap timeslots
     // we only care the first and last timeslot(if existed) in the affected list
@@ -82,8 +83,8 @@ public class TimeSlotService {
       System.out.println(ts);
       // if the timeslot are overlapped
       if (timeSlotHelper.isOverlapped(ts, timeSlot)) {
-//        System.out.println(
-//            "overlap found" + ts.getStartDay().toString() + timeSlot.getStartDay().toString());
+      //  System.out.println(
+          //  "overlap found" + ts.getStartDay().toString() + timeSlot.getStartDay().toString());
         affectedSlots.add(ts);
       }
     }

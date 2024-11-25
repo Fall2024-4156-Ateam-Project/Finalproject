@@ -33,6 +33,7 @@ public class TimeSlotUnitTests {
     assertEquals(LocalTime.of(9, 0), timeSlot.getStartTime());
     assertEquals(LocalTime.of(10, 0), timeSlot.getEndTime());
     assertEquals(CommonTypes.Availability.available, timeSlot.getAvailability());
+    assertEquals(CommonTypes.Day.Monday, timeSlot.getEndDay());
   }
 
   @Test
@@ -43,9 +44,11 @@ public class TimeSlotUnitTests {
     timeSlot.setStartTime(LocalTime.of(10, 0));
     timeSlot.setEndTime(LocalTime.of(11, 0));
     timeSlot.setAvailability(CommonTypes.Availability.busy);
+    timeSlot.setEndDay(CommonTypes.Day.Wednesday);
 
     assertEquals(newUser, timeSlot.getUser());
     assertEquals(CommonTypes.Day.Tuesday, timeSlot.getStartDay());
+    assertEquals(CommonTypes.Day.Wednesday, timeSlot.getEndDay());
     assertEquals(LocalTime.of(10, 0), timeSlot.getStartTime());
     assertEquals(LocalTime.of(11, 0), timeSlot.getEndTime());
     assertEquals(CommonTypes.Availability.busy, timeSlot.getAvailability());
@@ -68,7 +71,8 @@ public class TimeSlotUnitTests {
     assertEquals(timeSlot1, timeSlot2);
     assertEquals(timeSlot1.hashCode(), timeSlot2.hashCode());
 
-    timeSlot2.setTid(1);
+    timeSlot1.setTid(1);
+    timeSlot2.setTid(2);
     assertNotEquals(timeSlot1, timeSlot2);
     assertNotEquals(timeSlot1.hashCode(), timeSlot2.hashCode());
   }
