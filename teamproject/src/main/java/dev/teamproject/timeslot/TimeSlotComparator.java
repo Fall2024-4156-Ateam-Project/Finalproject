@@ -1,8 +1,5 @@
 package dev.teamproject.timeslot;
 
-import dev.teamproject.timeslot.TimeSlot;
-import java.util.Comparator;
-
 public class TimeSlotComparator implements java.util.Comparator<TimeSlot> {
 
     @Override
