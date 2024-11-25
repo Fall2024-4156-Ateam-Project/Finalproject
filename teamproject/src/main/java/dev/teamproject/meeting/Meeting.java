@@ -1,5 +1,9 @@
 package dev.teamproject.meeting;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import dev.teamproject.common.CommonTypes.Day;
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.user.User;
 import jakarta.persistence.Column;
@@ -15,7 +19,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import java.sql.Timestamp;
+import java.time.LocalTime;
 
 /**
  * This class represents a database table named Meeting. It defines the structure, relationships,
@@ -46,18 +50,25 @@ public class Meeting {
 
   @Column(name = "start_time")
   @NotNull(message = "Start time is required")
-  private Timestamp startTime;
+  private LocalTime startTime;
 
   @Column(name = "end_time")
   @NotNull(message = "End time is required")
-  private Timestamp endTime;
+  private LocalTime endTime;
+
+  @Enumerated(EnumType.STRING)
+  @Column(name = "startDay", nullable = false)
+  private CommonTypes.Day startDay;
+  @Enumerated(EnumType.STRING)
+  @Column(name = "endDay", nullable = false)
+  private CommonTypes.Day endDay;
 
   @Enumerated(EnumType.STRING)
   @Column(name = "recurrence")
   private CommonTypes.Recurrence recurrence;
 
   @Column(name = "created_at")
-  private Timestamp createdAt;
+  private LocalTime createdAt;
 
   @Column(name = "num_invite_participant")
   @Min(value = 0, message = "Invite participant count cannot be negative")
@@ -103,20 +114,36 @@ public class Meeting {
     this.description = description;
   }
 
-  public Timestamp getStartTime() {
+  public LocalTime getStartTime() {
     return startTime;
   }
 
-  public void setStartTime(Timestamp startTime) {
+  public void setStartTime(LocalTime startTime) {
     this.startTime = startTime;
   }
 
-  public Timestamp getEndTime() {
+  public LocalTime getEndTime() {
     return endTime;
   }
 
-  public void setEndTime(Timestamp endTime) {
+  public void setEndTime(LocalTime endTime) {
     this.endTime = endTime;
+  }
+
+  public Day getStartDay() {
+    return startDay;
+  }
+
+  public void setStartDay(Day startDay) {
+    this.startDay = startDay;
+  }
+
+  public Day getEndDay() {
+    return endDay;
+  }
+
+  public void setEndDay(Day endDay) {
+    this.endDay = endDay;
   }
 
   public CommonTypes.Recurrence getRecurrence() {
@@ -127,11 +154,11 @@ public class Meeting {
     this.recurrence = recurrence;
   }
 
-  public Timestamp getCreatedAt() {
+  public LocalTime getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(Timestamp createdAt) {
+  public void setCreatedAt(LocalTime createdAt) {
     this.createdAt = createdAt;
   }
 
@@ -156,6 +183,28 @@ public class Meeting {
   }
 
   public void setStatus(CommonTypes.MeetingStatus status) {
+    this.status = status;
+  }
+
+  // Constructors
+  public Meeting() {
+  }
+
+  /**
+   * construct a time slot given user day, information of time and availability.
+   */
+
+  public Meeting(User organizer, CommonTypes.Day startDay, CommonTypes.Day endDay,
+                  LocalTime startTime, String description, CommonTypes.Recurrence recurrence,
+                  LocalTime endTime, CommonTypes.MeetingType type, CommonTypes.MeetingStatus status) {
+    this.organizer = organizer;
+    this.type = type;
+    this.description = description;
+    this.startDay = startDay;
+    this.endDay = endDay;
+    this.startTime = startTime;
+    this.endTime = endTime;
+    this.recurrence = recurrence;
     this.status = status;
   }
 }

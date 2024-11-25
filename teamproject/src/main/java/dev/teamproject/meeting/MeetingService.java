@@ -5,8 +5,9 @@ import dev.teamproject.exceptionHandler.IllegalArgumentException;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserService;
 
-import java.sql.Timestamp;
+import java.time.LocalTime;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,17 @@ public class MeetingService {
     return meetingRepo.findByType(type);
   }
 
+  @Transactional(readOnly = true)
+  public List<Meeting> findByEmail(String email) {
+
+    List<User> users = userService.findByEmail(email);
+    List<Meeting> meetings = new ArrayList<>();
+    for (User user : users) {
+      meetings.addAll(meetingRepo.findByOrganizer(user));
+    }
+    return meetings;
+  }
+
 
   /**
    * Delete a meeting by requesting a meeting id.
@@ -77,6 +89,8 @@ public class MeetingService {
     if (meetingDTO.getOrganizerId() == null
             || meetingDTO.getStartTime() == null
             || meetingDTO.getEndTime() == null
+            || meetingDTO.getStartDay() == null
+            || meetingDTO.getEndDay() == null
             || meetingDTO.getType() == null) {
       throw new IllegalArgumentException("Missing required fields for saving the meeting");
     }
@@ -106,8 +120,9 @@ public class MeetingService {
       meeting.setDescription(meetingDTO.getDescription());
       meeting.setStartTime(meetingDTO.getStartTime());
       meeting.setEndTime(meetingDTO.getEndTime());
-      java.util.Date date= new java.util.Date();
-      meeting.setCreatedAt(new Timestamp(date.getTime()));
+      meeting.setStartDay(meetingDTO.getStartDay());
+      meeting.setEndDay(meetingDTO.getEndDay());
+      meeting.setCreatedAt(LocalTime.now());
 
       meetingRepo.save(meeting);
     }

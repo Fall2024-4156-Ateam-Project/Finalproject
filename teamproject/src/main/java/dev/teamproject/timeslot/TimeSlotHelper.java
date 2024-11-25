@@ -1,13 +1,33 @@
 package dev.teamproject.timeslot;
 
-import java.time.LocalTime;
-
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.common.CommonTypes.Day;
 import dev.teamproject.common.Pair;
+import java.time.LocalTime;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TimeSlotHelper {
-    /**
+
+  public TimeSlotHelper() {
+  }
+
+  public Pair<Day, LocalTime> getWeekEnd() {
+    return weekEnd;
+  }
+
+  public Pair<Day, LocalTime> getWeekStart() {
+    return weekStart;
+  }
+
+  private final Pair<CommonTypes.Day, LocalTime> weekEnd = this.getDayAndTimeFromAbs(
+      7 * 24 * 60 - 1);
+
+  private final Pair<CommonTypes.Day, LocalTime> weekStart = this.getDayAndTimeFromAbs(
+      0);
+
+
+  /**
    * Is two timeslots overlapped
    *
    * @param t1
@@ -117,3 +137,4 @@ public class TimeSlotHelper {
     }
   }
 }
+

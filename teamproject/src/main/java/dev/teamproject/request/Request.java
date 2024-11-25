@@ -1,5 +1,7 @@
 package dev.teamproject.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.timeslot.TimeSlot;
 import dev.teamproject.user.User;
@@ -34,6 +36,7 @@ public class Request {
   @Id
   @ManyToOne
   @JoinColumn(name = "tid", nullable = false)
+  @JsonIgnoreProperties("requests")
   private TimeSlot timeSlot;
   
   @Column(name = "description", nullable = true)
