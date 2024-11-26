@@ -74,6 +74,7 @@ public class TimeSlotService {
     // |-?-|----new--------|
     // |--------new----|-?-|
     // |--------new--------|
+    System.out.println("mergeOrUpdateTimeSlot called proposedTimeslot" + proposedTimeslot);
     TimeSlot timeSlot;
     User user = userService.findById(proposedTimeslot.getUser().getUid());
     Optional<TimeSlot> maybeTimeSlot = timeSlotRepo.findById(proposedTimeslot.getTid());
@@ -179,6 +180,7 @@ public class TimeSlotService {
     } else {
       resultSlots.add(timeSlot);
     }
+    System.out.println("affectedSlots" + affectedSlots);
     timeSlotRepo.deleteAll(affectedSlots);
     timeSlotRepo.saveAll(resultSlots);
     for (TimeSlot ts : resultSlots) {
