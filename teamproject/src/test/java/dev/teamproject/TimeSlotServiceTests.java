@@ -27,6 +27,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -114,7 +115,7 @@ class TimeSlotServiceTests {
 
   @Test
   public void testMergeOrUpdateTimeSlot_withOverlap() {
-    // Arrange: Existing timeslot
+    // existing timeslot
     TimeSlot existing = new TimeSlot(
         user,
         Day.Monday,
@@ -123,8 +124,9 @@ class TimeSlotServiceTests {
         LocalTime.of(11, 0),
         Availability.busy
     );
+    existing.setTid(1);
+    existing.setUser(user);
 
-    // New timeslot to be merged, has the highest priority
     TimeSlot newTimeSlot = new TimeSlot(
         user,
         Day.Monday,
@@ -133,9 +135,14 @@ class TimeSlotServiceTests {
         LocalTime.of(10, 0),
         Availability.available
     );
+    newTimeSlot.setTid(2);
+    newTimeSlot.setUser(user);
 
+    // Mock the repository and helper methods
+    when(userService.findById(user.getUid())).thenReturn(user);
+    when(timeSlotRepo.findById(newTimeSlot.getTid())).thenReturn(Optional.empty());
     when(timeSlotRepo.findAll()).thenReturn(Collections.singletonList(existing));
-    when(timeSlotHelper.isOverlapped(any(TimeSlot.class), any(TimeSlot.class))).thenReturn(true);
+    when(timeSlotHelper.isOverlapped(existing, newTimeSlot)).thenReturn(true);
     when(timeSlotHelper.absTime(any(Day.class), any(LocalTime.class)))
         .thenAnswer(invocation -> {
           Day day = invocation.getArgument(0);
@@ -146,39 +153,55 @@ class TimeSlotServiceTests {
         .thenAnswer(invocation -> {
           int absTime = invocation.getArgument(0);
           Day day = Day.values()[absTime / 1440]; // Assuming 1440 minutes per day
-          LocalTime time = LocalTime.of((absTime % 1440) / 60, absTime % 60);
+          LocalTime time = LocalTime.of((absTime % 1440) / 60, (absTime % 1440) % 60);
           return new Pair<>(day, time);
         });
 
     // Act: Call the method under test
     timeSlotService.mergeOrUpdateTimeSlot(newTimeSlot);
 
-    // Assert: Capture and verify the saved timeslots
-    ArgumentCaptor<List<TimeSlot>> captor = ArgumentCaptor.forClass(List.class);
-    verify(timeSlotRepo).deleteAll(anyList());
-    verify(timeSlotRepo).saveAll(captor.capture());
+    // Assert: Verify that deleteAll was called with the overlapping timeslot
+    ArgumentCaptor<List<TimeSlot>> deleteCaptor = ArgumentCaptor.forClass(List.class);
+    verify(timeSlotRepo).deleteAll(deleteCaptor.capture());
+    List<TimeSlot> deletedSlots = deleteCaptor.getValue();
+    assertEquals(1, deletedSlots.size());
+    assertEquals(existing, deletedSlots.get(0));
 
-    List<TimeSlot> savedSlots = captor.getValue();
+    // Assert: Capture and verify the saved timeslots
+    ArgumentCaptor<List<TimeSlot>> saveCaptor = ArgumentCaptor.forClass(List.class);
+    verify(timeSlotRepo).saveAll(saveCaptor.capture());
+    List<TimeSlot> savedSlots = saveCaptor.getValue();
     assertEquals(3, savedSlots.size());
+
+    // Sort saved slots by start time for consistent assertions
+    savedSlots.sort(Comparator.comparing(ts -> ts.getStartTime()));
 
     // Validate the left, middle, and right segments
     TimeSlot left = savedSlots.get(0);
     TimeSlot middle = savedSlots.get(1);
     TimeSlot right = savedSlots.get(2);
 
+    // Left segment (from existing timeslot)
     assertEquals(Day.Monday, left.getStartDay());
     assertEquals(LocalTime.of(8, 0), left.getStartTime());
     assertEquals(LocalTime.of(8, 59), left.getEndTime());
+    assertEquals(Availability.busy, left.getAvailability());
+    assertEquals(existing.getTid(), left.getTid()); // Should retain the same ID
 
+    // Middle segment
     assertEquals(Day.Monday, middle.getStartDay());
     assertEquals(LocalTime.of(9, 0), middle.getStartTime());
     assertEquals(LocalTime.of(10, 0), middle.getEndTime());
+    assertEquals(Availability.available, middle.getAvailability());
+    assertEquals(newTimeSlot.getTid(), middle.getTid());
 
+    // Right segment (from existing timeslot)
     assertEquals(Day.Monday, right.getStartDay());
     assertEquals(LocalTime.of(10, 1), right.getStartTime());
     assertEquals(LocalTime.of(11, 0), right.getEndTime());
+    assertEquals(Availability.busy, right.getAvailability());
+    assertEquals(existing.getTid(), right.getTid()); // Should retain the same ID
   }
-
   @Test
   void testGetTimeSlotById() {
     int tid = 1;
