@@ -823,7 +823,8 @@
 									"});\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -845,7 +846,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"dy2482@columbia.edu\",\n    \"name\": \"dyyin\"\n}",
+							"raw": "{\n    \"email\": \"newuser@columbia.edu\",\n    \"name\": \"new user\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1404,7 +1405,8 @@
 									"});\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -1422,7 +1424,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/users/findById?Id=1",
+							"raw": "http://localhost:8080/api/v1/users/findById?Id=999",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1437,7 +1439,7 @@
 							"query": [
 								{
 									"key": "Id",
-									"value": "1"
+									"value": "999"
 								}
 							]
 						}
@@ -1472,7 +1474,8 @@
 									"    pm.expect(jsonData).to.have.property('updatedAt');\r",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -1490,7 +1493,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/users/findById?Id=19",
+							"raw": "http://localhost:8080/api/v1/users/findById?Id=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1505,7 +1508,7 @@
 							"query": [
 								{
 									"key": "Id",
-									"value": "19"
+									"value": "1"
 								}
 							]
 						}
