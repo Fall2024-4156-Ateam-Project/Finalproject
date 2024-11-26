@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "7469fb9f-3d3e-409e-b37f-31c9e242721b",
+		"_postman_id": "b0236439-1369-497e-a7ac-d56d84c021e7",
 		"name": "API V1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_uid": "39099252-7469fb9f-3d3e-409e-b37f-31c9e242721b"
+		"_uid": "39099252-b0236439-1369-497e-a7ac-d56d84c021e7"
 	},
 	"item": [
 		{
@@ -11,7 +11,7 @@
 			"item": [
 				{
 					"name": "Meeting get_all",
-					"id": "a739a3ee-6d77-450d-ab26-b7ac9b83bd18",
+					"id": "66f9aef8-1f75-4d2e-a40e-3cc49f202e2c",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -37,7 +37,7 @@
 				},
 				{
 					"name": "Meeting findByType",
-					"id": "89582bb8-9f1a-4f1f-8256-cb39b21d83c8",
+					"id": "8f663367-c406-4737-91f3-ae5f258f30c8",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -78,7 +78,7 @@
 				},
 				{
 					"name": "Meeting findByRecurrence",
-					"id": "fe6fca31-62f8-4758-a279-825f443184e9",
+					"id": "6dbf1f60-d7ef-4d90-9ab1-f92ae452d196",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -108,7 +108,7 @@
 				},
 				{
 					"name": "Meeting saveMeeting",
-					"id": "8a6c357f-5629-41c2-aa56-8ae9a64f5bb1",
+					"id": "8b360524-b723-4770-a148-b1ee126a3a02",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -147,7 +147,7 @@
 				},
 				{
 					"name": "TODO getbyParticipant",
-					"id": "a399d256-d0c8-4e7c-a43b-05b4b50eabc8",
+					"id": "29f88e7b-63e8-4ed9-9c1c-7d7f9b1ec3fc",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -173,7 +173,7 @@
 				},
 				{
 					"name": "TODO getbyOrganizer",
-					"id": "735e9569-cd12-47e2-9818-2780e1d26ee0",
+					"id": "90f17043-78e2-455e-a18c-3a9a495eebe4",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -198,14 +198,14 @@
 					"response": []
 				}
 			],
-			"id": "10f90662-cdac-4ffd-8ed4-c5753208738c"
+			"id": "ad52d12e-3894-460b-8df8-cfc8ad8cf2fc"
 		},
 		{
 			"name": "Request APIs",
 			"item": [
 				{
 					"name": "get request with given tid",
-					"id": "3defd324-8683-48ff-bffb-d67fbe25189f",
+					"id": "dcb851c4-667a-4259-9f0e-8138f36adadb",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -237,7 +237,7 @@
 				},
 				{
 					"name": "get request with given requesterId",
-					"id": "9962dcfa-6d17-4b2b-bd62-5b835fe2cc34",
+					"id": "8dbe7e7d-0e12-40f1-89f1-61bdc63859d3",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -269,7 +269,7 @@
 				},
 				{
 					"name": "get request with given uid and tid",
-					"id": "c6d28e8e-0469-4836-8689-8ae7d0dae923",
+					"id": "965b25c9-a9e5-4ba6-9967-8061b9cbec14",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -296,7 +296,7 @@
 				},
 				{
 					"name": "Post New Request",
-					"id": "aaad9c34-6aa4-45e8-9e7a-94d160c0231b",
+					"id": "b8bb0ec1-c6bd-48fa-8696-02d6b9529775",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -336,7 +336,7 @@
 				},
 				{
 					"name": "update Request description",
-					"id": "c33f76ee-c818-4fc3-a150-4eb56856d409",
+					"id": "87270c73-f062-4af5-a364-4c9245a04e7d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -376,7 +376,7 @@
 				},
 				{
 					"name": "update Request status",
-					"id": "1863520a-d69b-4541-a62c-7db752b65b27",
+					"id": "a7fe0662-8b88-4a48-88b7-af328b8ccf58",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -421,7 +421,7 @@
 				},
 				{
 					"name": "delete Request",
-					"id": "85db427b-bdc9-4416-bb21-987b8de58513",
+					"id": "eb3d5764-bcb3-414b-929d-01fa712dda97",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -455,14 +455,14 @@
 					"response": []
 				}
 			],
-			"id": "b0d4caf9-b9f7-4eb1-8293-b727a94bf270"
+			"id": "f4d2d41a-b69f-4f85-b61b-c919da05457f"
 		},
 		{
 			"name": "TimeSlot APIs",
 			"item": [
 				{
 					"name": "Get all timeslots",
-					"id": "95ac2a9f-b0b3-4ef5-a3c2-b9b19e311883",
+					"id": "c0858f3e-a6cf-4234-b477-5fd7c8962818",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -493,7 +493,7 @@
 				},
 				{
 					"name": "Delete a timeslot by tid",
-					"id": "effabc76-0698-4a8c-a427-344508a2a11d",
+					"id": "d2c5ef9f-4a2e-4e88-b817-73dfdb7a77c2",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -519,7 +519,7 @@
 				},
 				{
 					"name": "Get timeslots by day",
-					"id": "34958c5d-b358-4603-85f3-cff12314503f",
+					"id": "d575dbe2-69c9-444a-8e96-228ac962aa2a",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -546,7 +546,7 @@
 				},
 				{
 					"name": "Get timeslots by tid",
-					"id": "7dd9c8d9-8f45-48e0-948f-a5584ab8a20c",
+					"id": "99641b2d-7c25-4a6b-aca2-3ebbedfdd7ce",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -572,7 +572,7 @@
 				},
 				{
 					"name": "Get timeslots by uid",
-					"id": "a39208b7-ba25-4ca8-a208-40ae2a839085",
+					"id": "1c4339f1-b582-4b9d-aedf-76a4fb4a24a3",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -599,7 +599,7 @@
 				},
 				{
 					"name": "Get timeslots by email",
-					"id": "bc142bbb-05a1-4a78-9d55-9625528b0dca",
+					"id": "d7925b54-46af-4cfe-b6bd-9209db310169",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -637,7 +637,7 @@
 				},
 				{
 					"name": "Get timeslots by availability",
-					"id": "af1d4825-15f5-4a25-88cf-99de2f0cab01",
+					"id": "a370a9c3-e897-4d57-9ff4-850fcc3dfd27",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -664,7 +664,7 @@
 				},
 				{
 					"name": "Add a new timeslot",
-					"id": "5d27f012-490e-4237-91bc-003b68879534",
+					"id": "a667efd8-858a-47eb-87f4-4360d27b6e91",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -709,7 +709,7 @@
 				},
 				{
 					"name": "Add a new merge timeslot",
-					"id": "ecd043b5-429e-47d9-b52f-6752cebe5c86",
+					"id": "98c69cd1-e50e-4202-89b8-5d81961e313c",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -755,7 +755,7 @@
 				},
 				{
 					"name": "Update a timeslot by tid",
-					"id": "5d550160-733a-4cdd-bf27-61b21c7aaf99",
+					"id": "cd4f7a4b-854e-481e-a3a0-92533c415e16",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -789,14 +789,45 @@
 					"response": []
 				}
 			],
-			"id": "3fcc35a4-056e-4f0e-afed-b2a7aa3ef4b9"
+			"id": "6f4d3c14-5bb8-4479-97e9-3a56a4e8d1ec"
 		},
 		{
 			"name": "User APIs",
 			"item": [
 				{
-					"name": "User register",
-					"id": "4b09cc26-6a53-4c71-9c91-1bd78aea164e",
+					"name": "User register already exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a973d345-f575-4537-8422-f03ab8fb30f0",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(400); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has success = false\", function () {\r",
+									"    var jsonData = pm.response.json(); // Parse the JSON response\r",
+									"    pm.expect(jsonData.success).to.eql(false); // Assert that success is false\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response message is 'User already exists'\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"User already exists\"); // Assert the msg field value\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response data contains correct name and email\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.name).to.eql(\"dyyin\"); // Assert the name\r",
+									"    pm.expect(jsonData.data.email).to.eql(\"dy2482@columbia.edu\"); // Assert the email\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "32fbf8a6-6a55-4b45-babc-629cb47a67e8",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -839,8 +870,138 @@
 					"response": []
 				},
 				{
+					"name": "User register new",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a973d345-f575-4537-8422-f03ab8fb30f0",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has success = true\", function () {\r",
+									"    var jsonData = pm.response.json(); // Parse the JSON response\r",
+									"    pm.expect(jsonData.success).to.eql(true); // Assert that success is true\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response message is 'User created successfully'\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"User created successfully\"); // Assert the msg field value\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response data contains correct user details\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    \r",
+									"    // Assert the user data contains the correct information\r",
+									"    pm.expect(jsonData.data.name).to.eql(\"new user\"); // Assert the name\r",
+									"    pm.expect(jsonData.data.email).to.eql(\"newuser@columbia.edu\"); // Assert the email\r",
+									"    pm.expect(jsonData.data.uid).to.be.a('number'); // Assert that uid is a number\r",
+									"    pm.expect(jsonData.data.createdAt).to.be.a('string'); \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "382b7cb9-66e5-46c8-a1ed-4e1ebea50f4a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"newuser@columbia.edu\",\n    \"name\": \"new user\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get all users",
-					"id": "d43120e5-4a6b-4339-a76a-74077825e32f",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cd488549-29e1-4d20-b963-c1f3b032e624",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    var jsonData = pm.response.json(); // Parse the JSON response\r",
+									"    pm.expect(jsonData).to.be.an('array'); // Assert the response is an array\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains correct user data\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    \r",
+									"    // Check if there is at least one user in the list\r",
+									"    pm.expect(jsonData.length).to.be.greaterThan(0);\r",
+									"\r",
+									"    // Iterate through the users and check each user's fields\r",
+									"    jsonData.forEach(function(user) {\r",
+									"        pm.expect(user).to.have.property('uid').that.is.a('number'); // Check if uid is a number\r",
+									"        pm.expect(user).to.have.property('name').that.is.a('string'); // Check if name is a string\r",
+									"        pm.expect(user).to.have.property('email').that.is.a('string'); // Check if email is a string\r",
+									"        pm.expect(user).to.have.property('createdAt').that.is.a('string'); // Check if createdAt is a string\r",
+									"        pm.expect(user).to.have.property('updatedAt').that.is.null; // Check if updatedAt is null\r",
+									"        pm.expect(user).to.have.property('password_hash').that.is.null; // Check if password_hash is null (as per your data)\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected user data for a specific user\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    \r",
+									"    // Check for a specific user in the list (adjust this according to the actual test data)\r",
+									"    var newUser = jsonData.find(user => user.email === \"newuser@columbia.edu\");\r",
+									"    \r",
+									"    pm.expect(newUser).to.not.be.undefined; // Assert that the new user is found in the list\r",
+									"    pm.expect(newUser.name).to.eql(\"new user\"); // Assert that the name is correct\r",
+									"    pm.expect(newUser.email).to.eql(\"newuser@columbia.edu\"); // Assert that the email is correct\r",
+									"    pm.expect(newUser.password_hash).to.eql(null); // Assert that password_hash is null\r",
+									"    pm.expect(newUser.createdAt).to.be.a('string'); // Assert createdAt is a string\r",
+									"    pm.expect(newUser.updatedAt).to.eql(null); // Assert updatedAt is null\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "5cfc7ec1-523c-44af-a2e0-ef85684208ef",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -873,7 +1034,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/users/get_all?",
+							"raw": "http://localhost:8080/api/v1/users/get_all",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -884,21 +1045,55 @@
 								"v1",
 								"users",
 								"get_all"
-							],
-							"query": [
-								{
-									"key": "",
-									"value": null,
-									"type": "text"
-								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Find user by name",
-					"id": "47a341a9-e3d6-4c1a-b5c2-5278dd2d4af1",
+					"name": "Find user by name not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d19c1f5-df41-43e6-aa86-c32c1dda7697",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    var jsonData = pm.response.json(); // Parse the JSON response\r",
+									"    pm.expect(jsonData).to.be.an('array'); // Assert the response is an array\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is empty when no users found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    \r",
+									"    // If the response is empty (i.e., no users exist), ensure the array is indeed empty\r",
+									"    if (jsonData.length === 0) {\r",
+									"        pm.expect(jsonData.length).to.eql(0); // Assert that the array length is 0\r",
+									"    } else {\r",
+									"        // If the array is not empty, run the tests for users\r",
+									"        pm.test(\"Response contains correct user data\", function () {\r",
+									"            jsonData.forEach(function(user) {\r",
+									"                pm.expect(user).to.have.property('uid').that.is.a('number'); // Check if uid is a number\r",
+									"                pm.expect(user).to.have.property('name').that.is.a('string'); // Check if name is a string\r",
+									"                pm.expect(user).to.have.property('email').that.is.a('string'); // Check if email is a string\r",
+									"                pm.expect(user).to.have.property('createdAt').that.is.a('string'); // Check if createdAt is a string\r",
+									"                pm.expect(user).to.have.property('updatedAt').that.is.null; // Check if updatedAt is null\r",
+									"                pm.expect(user).to.have.property('password_hash').that.is.null; // Check if password_hash is null\r",
+									"            });\r",
+									"        });\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "27342655-5d6b-4754-8b77-c07af6d0fafd",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -926,6 +1121,12 @@
 								{
 									"key": "name",
 									"value": "test1"
+								},
+								{
+									"key": "apiKey",
+									"value": null,
+									"type": "text",
+									"disabled": true
 								}
 							]
 						}
@@ -933,8 +1134,281 @@
 					"response": []
 				},
 				{
-					"name": "Find user by id",
-					"id": "de395fbd-a089-47d5-b298-d1c924afce86",
+					"name": "Find user by name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d19c1f5-df41-43e6-aa86-c32c1dda7697",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    var jsonData = pm.response.json(); // Parse the JSON response\r",
+									"    pm.expect(jsonData).to.be.an('array'); // Assert the response is an array\r",
+									"});\r",
+									"\r",
+									"pm.test(\"User details are valid\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length).to.be.greaterThan(0); // Ensure there is at least one user in the response\r",
+									"\r",
+									"    jsonData.forEach(function(user) {\r",
+									"        pm.expect(user).to.have.property('uid').that.is.a('number'); // Ensure user has a UID\r",
+									"        pm.expect(user).to.have.property('name').that.is.a('string'); // Ensure user has a name\r",
+									"        pm.expect(user.name).to.eql(\"new user\"); // Assert the name\r",
+									"        pm.expect(user).to.have.property('email').that.is.a('string'); // Ensure user has an email\r",
+									"        pm.expect(user).to.have.property('createdAt').that.is.a('string'); // Ensure createdAt is a string\r",
+									"        pm.expect(user).to.have.property('updatedAt').that.is.null; // Ensure updatedAt is null\r",
+									"        pm.expect(user).to.have.property('password_hash').that.is.null; // Ensure password_hash is null\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "fd8533e1-657d-4537-8929-85fd71af862f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/v1/users/findByName?name=new user",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"findByName"
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "new user"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find user by email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d19c1f5-df41-43e6-aa86-c32c1dda7697",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    var jsonData = pm.response.json(); // Parse the JSON response\r",
+									"    pm.expect(jsonData).to.be.an('array'); // Assert the response is an array\r",
+									"});\r",
+									"\r",
+									"pm.test(\"User details are valid\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length).to.be.greaterThan(0); // Ensure there is at least one user in the response\r",
+									"\r",
+									"    jsonData.forEach(function(user) {\r",
+									"        pm.expect(user).to.have.property('uid').that.is.a('number'); // Ensure user has a UID\r",
+									"        pm.expect(user).to.have.property('name').that.is.a('string'); // Ensure user has a name\r",
+									"        pm.expect(user.email).to.eql(\"newuser@columbia.edu\"); // Assert the name\r",
+									"        pm.expect(user).to.have.property('email').that.is.a('string'); // Ensure user has an email\r",
+									"        pm.expect(user).to.have.property('createdAt').that.is.a('string'); // Ensure createdAt is a string\r",
+									"        pm.expect(user).to.have.property('updatedAt').that.is.null; // Ensure updatedAt is null\r",
+									"        pm.expect(user).to.have.property('password_hash').that.is.null; // Ensure password_hash is null\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "60f34265-f74e-4784-8b69-0e5582b7ff55",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/v1/users/findByEmail?email=newuser@columbia.edu",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"findByEmail"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "newuser@columbia.edu",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "new user",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find user by email not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ea13ed-d109-4a41-be80-3bd3c729fcaa",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    var jsonData = pm.response.json(); // Parse the JSON response\r",
+									"    pm.expect(jsonData).to.be.an('array'); // Assert the response is an array\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is empty when no users found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    \r",
+									"    // If the response is empty (i.e., no users exist), ensure the array is indeed empty\r",
+									"    if (jsonData.length === 0) {\r",
+									"        pm.expect(jsonData.length).to.eql(0); // Assert that the array length is 0\r",
+									"    } else {\r",
+									"        // If the array is not empty, run the tests for users\r",
+									"        pm.test(\"Response contains correct user data\", function () {\r",
+									"            jsonData.forEach(function(user) {\r",
+									"                pm.expect(user).to.have.property('uid').that.is.a('number'); // Check if uid is a number\r",
+									"                pm.expect(user).to.have.property('name').that.is.a('string'); // Check if name is a string\r",
+									"                pm.expect(user).to.have.property('email').that.is.a('string'); // Check if email is a string\r",
+									"                pm.expect(user).to.have.property('createdAt').that.is.a('string'); // Check if createdAt is a string\r",
+									"                pm.expect(user).to.have.property('updatedAt').that.is.null; // Check if updatedAt is null\r",
+									"                pm.expect(user).to.have.property('password_hash').that.is.null; // Check if password_hash is null\r",
+									"            });\r",
+									"        });\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "22a9af3e-023a-4020-b5bf-808955f8d459",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/findByEmail?email=nonexistuser@columbia.edu",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"findByEmail"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "nonexistuser@columbia.edu"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find user by id not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ea13ed-d109-4a41-be80-3bd3c729fcaa",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(404); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('msg'); // Ensure there's a 'msg' field\r",
+									"    pm.expect(jsonData).to.have.property('data'); // Ensure there's a 'data' field\r",
+									"    pm.expect(jsonData).to.have.property('success'); // Ensure there's a 'success' field\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message indicates user not found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"User not found with ID: 1\"); // Check if the message matches\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data is null\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data).to.be.null; // Ensure data is null when user is not found\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Success is false\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false); // Ensure success is false\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "5bf458e0-2806-4a12-b7bb-fbd4ffc08db4",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -971,13 +1445,43 @@
 					"response": []
 				},
 				{
-					"name": "User login",
-					"id": "3ff141fe-4f06-4999-a5cb-e96fe4f4afdc",
+					"name": "Find user by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ea13ed-d109-4a41-be80-3bd3c729fcaa",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('uid');\r",
+									"    pm.expect(jsonData).to.have.property('name');\r",
+									"    pm.expect(jsonData.uid).to.eql(19); // Ensure UID is correct\r",
+									"    pm.expect(jsonData).to.have.property('email');\r",
+									"    pm.expect(jsonData).to.have.property('password_hash');\r",
+									"    pm.expect(jsonData).to.have.property('createdAt');\r",
+									"    pm.expect(jsonData).to.have.property('updatedAt');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "158acd20-7c5a-46a2-a6b7-93913031d1f6",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [
 							{
 								"key": "apiKey",
@@ -985,17 +1489,8 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"testuser@gmail.com\",\n    \"password\":\"testtest\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/users/login",
+							"raw": "http://localhost:8080/api/v1/users/findById?Id=19",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1005,21 +1500,211 @@
 								"api",
 								"v1",
 								"users",
-								"login"
+								"findById"
+							],
+							"query": [
+								{
+									"key": "Id",
+									"value": "19"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user by id not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ea13ed-d109-4a41-be80-3bd3c729fcaa",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(404); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('msg'); // Ensure there's a 'msg' field\r",
+									"    pm.expect(jsonData).to.have.property('data'); // Ensure there's a 'data' field\r",
+									"    pm.expect(jsonData).to.have.property('success'); // Ensure there's a 'success' field\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message indicates user not found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"User not found with ID: 1010\"); // Check if the message matches\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data is null\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data).to.be.null; // Ensure data is null when user is not found\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Success is false\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false); // Ensure success is false\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "340af5cb-43f5-443b-b1fe-8cbd5fb973e1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/delete/1010",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"delete",
+								"1010"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ea13ed-d109-4a41-be80-3bd3c729fcaa",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('msg'); // Ensure there's a 'msg' field\r",
+									"    pm.expect(jsonData).to.have.property('data'); // Ensure there's a 'data' field\r",
+									"    pm.expect(jsonData).to.have.property('success'); // Ensure there's a 'success' field\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message indication\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"User deleted successfully\"); // Check if the message matches\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Success\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true); \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d65e4740-05f1-4fa7-a550-111c181f5ba9",
+								"exec": [
+									"// Send a POST request to create a user\r",
+									"pm.sendRequest({\r",
+									"    url: 'http://localhost:8080/api/v1/users/register', \r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        'apiKey': 'testtestkey'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"            // Example user data\r",
+									"            name: 'John Doe',\r",
+									"            email: 'john.doe@example.com'\r",
+									"        })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    if (err) {\r",
+									"        console.log('Error creating user:', err);\r",
+									"    } else {\r",
+									"        // Assuming the response contains a userId\r",
+									"        const responseJson = res.json();\r",
+									"        const userId = responseJson.data.uid; // Adjust this to match the actual response structure\r",
+									"        \r",
+									"        // Save the userId in a Postman environment or global variable\r",
+									"        pm.environment.set('userId', userId);\r",
+									"        console.log('User created with ID:', userId);\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "9f8386b8-ba76-4e24-833f-95fe67dd2b5d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/delete/{{userId}} ",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"delete",
+								"{{userId}} "
 							]
 						}
 					},
 					"response": []
 				}
 			],
-			"id": "3efc8b9a-0c74-45ea-b668-8b6c1e2dfa00"
+			"id": "1744b83a-a3b9-483a-a739-291be613b7ee"
 		},
 		{
 			"name": "Participant APIs",
 			"item": [
 				{
 					"name": "findById",
-					"id": "ba28d129-0dc8-4362-bda1-1c0620d792ab",
+					"id": "63439909-f972-4839-857c-c0b30a0e612f",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1051,7 +1736,7 @@
 				},
 				{
 					"name": "findAll",
-					"id": "e593a602-d78d-4d7b-96a4-95ac2f30a946",
+					"id": "227637b8-6188-4152-a227-d0d0e08e10f7",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1076,14 +1761,42 @@
 					"response": []
 				}
 			],
-			"id": "6fbe8762-fdd4-4e85-9e49-4717d3508112"
+			"id": "e66a63b5-e741-4b97-8430-b8e2f5c1e63e"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1b0dbd82-2b90-41db-86c4-dcb60929e0be",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "0ec3c980-bccb-4a42-8d66-78178ad12067",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	],
 	"variable": [
 		{
-			"id": "9792a5e9-eb50-46ac-96dc-5d35f31ace7c",
+			"id": "30c69e10-cd3e-47f3-bdde-892777370995",
 			"key": "server",
 			"value": "server"
+		},
+		{
+			"id": "8d8058a2-cd4a-483b-8fab-12153f2e2f80",
+			"key": "localUrl",
+			"value": "http://localhost:8080/api/v1/",
+			"type": "string"
 		}
 	]
 }
