@@ -1018,36 +1018,6 @@
 			"name": "Participant APIs",
 			"item": [
 				{
-					"name": "register",
-					"id": "8c4d6c99-d8d5-46cc-b256-1019d67b59ad",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete",
-					"id": "d8bdb57a-7283-43bf-a1c2-6c1450f73872",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "findById",
 					"id": "ba28d129-0dc8-4362-bda1-1c0620d792ab",
 					"protocolProfileBehavior": {
@@ -1101,51 +1071,6 @@
 								"participants",
 								"findAll"
 							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "findByUser",
-					"id": "cc715002-ffc0-485b-9265-025b275c83aa",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "findByStatus",
-					"id": "45ff72ec-9691-4d32-8529-49c1aece5488",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "findByRole",
-					"id": "92d47816-b294-4b73-a92b-1816b96bdd5d",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": ""
 						}
 					},
 					"response": []
