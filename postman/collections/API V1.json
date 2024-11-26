@@ -1,0 +1,1164 @@
+{
+	"info": {
+		"_postman_id": "7469fb9f-3d3e-409e-b37f-31c9e242721b",
+		"name": "API V1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "39099252-7469fb9f-3d3e-409e-b37f-31c9e242721b"
+	},
+	"item": [
+		{
+			"name": "Meeting APIs",
+			"item": [
+				{
+					"name": "Meeting get_all",
+					"id": "a739a3ee-6d77-450d-ab26-b7ac9b83bd18",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/meetings/get_all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"meetings",
+								"get_all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Meeting findByType",
+					"id": "89582bb8-9f1a-4f1f-8256-cb39b21d83c8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/meetings/findByType?type=group",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"meetings",
+								"findByType"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "group"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Meeting findByRecurrence",
+					"id": "fe6fca31-62f8-4758-a279-825f443184e9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/v1/meetings/findByRecurrence?recurrence=weekly",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"meetings",
+								"findByRecurrence"
+							],
+							"query": [
+								{
+									"key": "recurrence",
+									"value": "weekly"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Meeting saveMeeting",
+					"id": "8a6c357f-5629-41c2-aa56-8ae9a64f5bb1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"organizer\": {\n            \"uid\": 1,\n            \"name\": \"test\",\n            \"email\": \"test_user@email.com\"\n        },\n        \"type\": \"one_on_one\",\n        \"description\": \"Team meeting\",\n        \"startTime\": \"2024-11-01T10:00:00.000+00:00\",\n        \"endTime\": \"2024-11-01T11:00:00.000+00:00\",\n        \"recurrence\": null,\n        \"createdAt\": null,\n        \"inviteParticipant\": null,\n        \"acceptParticipant\": null,\n        \"status\": null\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/v1/meetings/saveMeeting",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"meetings",
+								"saveMeeting"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TODO getbyParticipant",
+					"id": "a399d256-d0c8-4e7c-a43b-05b4b50eabc8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/meetings/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"meetings",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TODO getbyOrganizer",
+					"id": "735e9569-cd12-47e2-9818-2780e1d26ee0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/meetings/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"meetings",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "10f90662-cdac-4ffd-8ed4-c5753208738c"
+		},
+		{
+			"name": "Request APIs",
+			"item": [
+				{
+					"name": "get request with given tid",
+					"id": "3defd324-8683-48ff-bffb-d67fbe25189f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/requests/search?tid=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"requests",
+								"search"
+							],
+							"query": [
+								{
+									"key": "tid",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get request with given requesterId",
+					"id": "9962dcfa-6d17-4b2b-bd62-5b835fe2cc34",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/requests/search?requesterId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"requests",
+								"search"
+							],
+							"query": [
+								{
+									"key": "requesterId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get request with given uid and tid",
+					"id": "c6d28e8e-0469-4836-8689-8ae7d0dae923",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/requests/2/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"requests",
+								"2",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post New Request",
+					"id": "aaad9c34-6aa4-45e8-9e7a-94d160c0231b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": {\r\n        \"uid\": 1 \r\n    },\r\n    \"timeSlot\": {\r\n        \"tid\": 2\r\n    },\r\n    \"description\": \"Request 4\",\r\n    \"status\": \"undecided\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/requests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"requests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Request description",
+					"id": "c33f76ee-c818-4fc3-a150-4eb56856d409",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "new desc"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/requests/description?userid=2&tid=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"requests",
+								"description"
+							],
+							"query": [
+								{
+									"key": "userid",
+									"value": "2"
+								},
+								{
+									"key": "tid",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Request status",
+					"id": "1863520a-d69b-4541-a62c-7db752b65b27",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\"approved\"",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/requests/status?userid=2&tid=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"requests",
+								"status"
+							],
+							"query": [
+								{
+									"key": "userid",
+									"value": "2"
+								},
+								{
+									"key": "tid",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Request",
+					"id": "85db427b-bdc9-4416-bb21-987b8de58513",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/requests?userid=1&tid=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"requests"
+							],
+							"query": [
+								{
+									"key": "userid",
+									"value": "1"
+								},
+								{
+									"key": "tid",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "b0d4caf9-b9f7-4eb1-8293-b727a94bf270"
+		},
+		{
+			"name": "TimeSlot APIs",
+			"item": [
+				{
+					"name": "Get all timeslots",
+					"id": "95ac2a9f-b0b3-4ef5-a3c2-b9b19e311883",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a timeslot by tid",
+					"id": "effabc76-0698-4a8c-a427-344508a2a11d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get timeslots by day",
+					"id": "34958c5d-b358-4603-85f3-cff12314503f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/day/Monday",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"day",
+								"Monday"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get timeslots by tid",
+					"id": "7dd9c8d9-8f45-48e0-948f-a5584ab8a20c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get timeslots by uid",
+					"id": "a39208b7-ba25-4ca8-a208-40ae2a839085",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/user/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get timeslots by email",
+					"id": "bc142bbb-05a1-4a78-9d55-9625528b0dca",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/user?email=alice@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"user"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "alice@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get timeslots by availability",
+					"id": "af1d4825-15f5-4a25-88cf-99de2f0cab01",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/availability/busy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"availability",
+								"busy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a new timeslot",
+					"id": "5d27f012-490e-4237-91bc-003b68879534",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": {\r\n        \"uid\": 1,\r\n        \"name\": \"testuser\",\r\n        \"email\": \"test1@gmail.com\"\r\n    },\r\n\r\n    \"startTime\": \"13:00:00\",\r\n    \"startDay\": \"Friday\",\r\n    \"endDay\": \"Friday\",\r\n    \"endTime\": \"20:00:00\",\r\n    \"availability\": \"busy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a new merge timeslot",
+					"id": "ecd043b5-429e-47d9-b52f-6752cebe5c86",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": {\r\n        \"uid\": 24,\r\n        \"name\": \"testuser\",\r\n        \"email\": \"dy2482@columbia.edu\"\r\n    },\r\n    // \"day\": \"Monday\",\r\n    \"startTime\": \"16:00\",\r\n    \"startDay\": \"Friday\",\r\n    \"endDay\": \"Friday\",\r\n    \"endTime\": \"19:00\",\r\n    \"availability\": \"available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/merge",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"merge"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a timeslot by tid",
+					"id": "5d550160-733a-4cdd-bf27-61b21c7aaf99",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": {\r\n        \"uid\": 2,\r\n        \"name\": \"Alice\",\r\n        \"email\": \"Alice@email.com\"\r\n    },\r\n    \"day\": \"Tuesday\",\r\n    \"startTime\": \"10:00:00\",\r\n    \"endTime\": \"18:00:00\",\r\n    \"availability\": \"available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "3fcc35a4-056e-4f0e-afed-b2a7aa3ef4b9"
+		},
+		{
+			"name": "User APIs",
+			"item": [
+				{
+					"name": "User register",
+					"id": "4b09cc26-6a53-4c71-9c91-1bd78aea164e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"dy2482@columbia.edu\",\n    \"name\": \"dyyin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users",
+					"id": "d43120e5-4a6b-4339-a76a-74077825e32f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlckBnbWFpbC5jb20iLCJpYXQiOjE3MzA4NzM4NzgsImV4cCI6MTczMDkwOTg3OH0.YNSHMAIG3Dh29Er1k2rAqnyFYyJO9PgXAjRfB0KF_PQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/get_all?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"get_all"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"type": "text"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find user by name",
+					"id": "47a341a9-e3d6-4c1a-b5c2-5278dd2d4af1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/v1/users/findByName?name=test1",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"findByName"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "test1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find user by id",
+					"id": "de395fbd-a089-47d5-b298-d1c924afce86",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/findById?Id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"findById"
+							],
+							"query": [
+								{
+									"key": "Id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User login",
+					"id": "3ff141fe-4f06-4999-a5cb-e96fe4f4afdc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"testuser@gmail.com\",\n    \"password\":\"testtest\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "3efc8b9a-0c74-45ea-b668-8b6c1e2dfa00"
+		},
+		{
+			"name": "Participant APIs",
+			"item": [
+				{
+					"name": "register",
+					"id": "8c4d6c99-d8d5-46cc-b256-1019d67b59ad",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"id": "d8bdb57a-7283-43bf-a1c2-6c1450f73872",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"id": "ba28d129-0dc8-4362-bda1-1c0620d792ab",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/participants/findById?Id=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"participants",
+								"findById"
+							],
+							"query": [
+								{
+									"key": "Id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"id": "e593a602-d78d-4d7b-96a4-95ac2f30a946",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/participants/findAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"participants",
+								"findAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByUser",
+					"id": "cc715002-ffc0-485b-9265-025b275c83aa",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByStatus",
+					"id": "45ff72ec-9691-4d32-8529-49c1aece5488",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByRole",
+					"id": "92d47816-b294-4b73-a92b-1816b96bdd5d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "6fbe8762-fdd4-4e85-9e49-4717d3508112"
+		}
+	],
+	"variable": [
+		{
+			"id": "9792a5e9-eb50-46ac-96dc-5d35f31ace7c",
+			"key": "server",
+			"value": "server"
+		}
+	]
+}
