@@ -795,31 +795,35 @@
 			"name": "User APIs",
 			"item": [
 				{
-					"name": "User register already exist",
+					"name": "User register new",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "a973d345-f575-4537-8422-f03ab8fb30f0",
 								"exec": [
-									"pm.test(\"Status code\", function () {\r",
-									"    pm.response.to.have.status(400); \r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response has success = false\", function () {\r",
+									"pm.test(\"Response has success = true\", function () {\r",
 									"    var jsonData = pm.response.json(); // Parse the JSON response\r",
-									"    pm.expect(jsonData.success).to.eql(false); // Assert that success is false\r",
+									"    pm.expect(jsonData.success).to.eql(true); // Assert that success is true\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response message is 'User already exists'\", function () {\r",
+									"pm.test(\"Response message is 'User created successfully'\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.msg).to.eql(\"User already exists\"); // Assert the msg field value\r",
+									"    pm.expect(jsonData.msg).to.eql(\"User created successfully\"); // Assert the msg field value\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response data contains correct name and email\", function () {\r",
+									"pm.test(\"Response data contains correct user details\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.data.name).to.eql(\"dyyin\"); // Assert the name\r",
-									"    pm.expect(jsonData.data.email).to.eql(\"dy2482@columbia.edu\"); // Assert the email\r",
+									"    \r",
+									"    // Assert the user data contains the correct information\r",
+									"    pm.expect(jsonData.data.name).to.eql(\"new user\"); // Assert the name\r",
+									"    pm.expect(jsonData.data.email).to.eql(\"newuser@columbia.edu\"); // Assert the email\r",
+									"    pm.expect(jsonData.data.uid).to.be.a('number'); // Assert that uid is a number\r",
+									"    pm.expect(jsonData.data.createdAt).to.be.a('string'); \r",
 									"});\r",
 									""
 								],
@@ -828,7 +832,7 @@
 							}
 						}
 					],
-					"id": "32fbf8a6-6a55-4b45-babc-629cb47a67e8",
+					"id": "382b7cb9-66e5-46c8-a1ed-4e1ebea50f4a",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -871,35 +875,31 @@
 					"response": []
 				},
 				{
-					"name": "User register new",
+					"name": "User register already exist",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "a973d345-f575-4537-8422-f03ab8fb30f0",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(400); \r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response has success = true\", function () {\r",
+									"pm.test(\"Response has success = false\", function () {\r",
 									"    var jsonData = pm.response.json(); // Parse the JSON response\r",
-									"    pm.expect(jsonData.success).to.eql(true); // Assert that success is true\r",
+									"    pm.expect(jsonData.success).to.eql(false); // Assert that success is false\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response message is 'User created successfully'\", function () {\r",
+									"pm.test(\"Response message is 'User already exists'\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.msg).to.eql(\"User created successfully\"); // Assert the msg field value\r",
+									"    pm.expect(jsonData.msg).to.eql(\"User already exists\"); // Assert the msg field value\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response data contains correct user details\", function () {\r",
+									"pm.test(\"Response data contains correct name and email\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    \r",
-									"    // Assert the user data contains the correct information\r",
-									"    pm.expect(jsonData.data.name).to.eql(\"new user\"); // Assert the name\r",
-									"    pm.expect(jsonData.data.email).to.eql(\"newuser@columbia.edu\"); // Assert the email\r",
-									"    pm.expect(jsonData.data.uid).to.be.a('number'); // Assert that uid is a number\r",
-									"    pm.expect(jsonData.data.createdAt).to.be.a('string'); \r",
+									"    pm.expect(jsonData.data.name).to.eql(\"dyyin\"); // Assert the name\r",
+									"    pm.expect(jsonData.data.email).to.eql(\"dy2482@columbia.edu\"); // Assert the email\r",
 									"});\r",
 									""
 								],
@@ -908,7 +908,7 @@
 							}
 						}
 					],
-					"id": "382b7cb9-66e5-46c8-a1ed-4e1ebea50f4a",
+					"id": "32fbf8a6-6a55-4b45-babc-629cb47a67e8",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
