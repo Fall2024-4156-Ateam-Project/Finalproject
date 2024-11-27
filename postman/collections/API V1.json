@@ -898,8 +898,8 @@
 									"\r",
 									"pm.test(\"Response data contains correct name and email\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.data.name).to.eql(\"dyyin\"); // Assert the name\r",
-									"    pm.expect(jsonData.data.email).to.eql(\"dy2482@columbia.edu\"); // Assert the email\r",
+									"    pm.expect(jsonData.data.name).to.eql(\"new user\"); // Assert the name\r",
+									"    pm.expect(jsonData.data.email).to.eql(\"newuser@columbia.edu\"); // Assert the email\r",
 									"});\r",
 									""
 								],
