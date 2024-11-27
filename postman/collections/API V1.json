@@ -1721,7 +1721,13 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:8080/api/v1/participants/findById?Id=10",
 							"protocol": "http",
@@ -1753,7 +1759,13 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:8080/api/v1/participants/findAll",
 							"protocol": "http",
