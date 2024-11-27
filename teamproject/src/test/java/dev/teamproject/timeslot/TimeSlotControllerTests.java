@@ -1,4 +1,4 @@
-package dev.teamproject;
+package dev.teamproject.timeslot;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -7,6 +7,9 @@ import dev.teamproject.common.CommonTypes;
 import dev.teamproject.timeslot.TimeSlot;
 import dev.teamproject.timeslot.TimeSlotController;
 import dev.teamproject.timeslot.TimeSlotService;
+import dev.teamproject.user.User;
+
+import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,12 +17,15 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpMediaTypeException;
 
 class TimeSlotControllerTests {
 
   @InjectMocks
   private TimeSlotController timeSlotController;
+  private User user;
 
   @Mock
   private TimeSlotService timeSlotService;
@@ -29,8 +35,16 @@ class TimeSlotControllerTests {
   @BeforeEach
   void setUp() {
     MockitoAnnotations.openMocks(this);
+    user = new User();
+    user.setEmail("abc@gmail.com");
+
     timeSlot = new TimeSlot();
     timeSlot.setTid(1);
+    timeSlot.setStartDay(CommonTypes.Day.Thursday);
+    timeSlot.setStartTime(LocalTime.NOON);
+    timeSlot.setEndDay(CommonTypes.Day.Friday);
+    timeSlot.setEndTime(LocalTime.of(20, 0));    
+    timeSlot.setUser(user);
   }
 
   @Test
@@ -38,6 +52,14 @@ class TimeSlotControllerTests {
     when(timeSlotService.createTimeSlot(timeSlot)).thenReturn(timeSlot);
     ResponseEntity<TimeSlot> response = timeSlotController.createTimeSlot(timeSlot);
     assertEquals(200, response.getStatusCodeValue());
+    assertEquals(timeSlot, response.getBody());
+  }
+
+  @Test
+  void testCreateMergeTimeSlot() {
+    when(timeSlotService.handleTimeSlotCreation(timeSlot)).thenReturn(timeSlot);
+    ResponseEntity<TimeSlot> response = timeSlotController.createMergeTimeSlot(timeSlot);
+    assertEquals(HttpStatus.OK, response.getStatusCode());
     assertEquals(timeSlot, response.getBody());
   }
 
@@ -70,6 +92,19 @@ class TimeSlotControllerTests {
   }
 
   @Test
+  void testGetTimeSlotsByUserEmail() {
+    String uEmail = "abc@gmail.com";
+    // int uid = 1;
+    List<TimeSlot> timeSlots = Collections.singletonList(timeSlot);
+    when(timeSlotService.getTimeSlotsByUserEmailSortedByDate(uEmail)).thenReturn(timeSlots);
+    // when(timeSlotService.getTimeSlotsByUser(uid)).thenReturn(timeSlots);
+    ResponseEntity<List<TimeSlot>> response = timeSlotController.getTimeSlotsByUserEmail(uEmail);
+    // assertEquals(200, response.getStatusCodeValue());
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals(timeSlots, response.getBody());
+  }
+
+  @Test
   void testGetTimeSlotsByDay() {
     CommonTypes.Day day = CommonTypes.Day.Monday;
     List<TimeSlot> timeSlots = Collections.singletonList(timeSlot);
@@ -98,6 +133,33 @@ class TimeSlotControllerTests {
     assertEquals(200, response.getStatusCodeValue());
     assertEquals(timeSlot, response.getBody());
   }
+
+  // @Test
+  // void testUpdateTimeSlotNoOverlap() {
+  //   int tid = 1;
+  //   // Boolean valid = true;
+  //   // ResponseEntity<TimeSlot> status;
+  //   // Boolean valid = timeSlotService.isTimeSlotUpdateRequestValid(tid, timeSlot);
+  //   // when(timeSlotService.isTimeSlotUpdateRequestValid(tid, timeSlot)).thenReturn(valid);
+  //   // assertEquals(true, valid);
+   
+  //   when(timeSlotService.updateTimeSlotNoOverlap(tid, timeSlot)).thenReturn(timeSlot);
+  //   ResponseEntity<TimeSlot> response = timeSlotController.updateTimeSlotNoOverlap(tid, timeSlot);
+  //   // assertEquals(HttpStatus.OK, response.getStatusCode());
+  //   assertEquals(timeSlot, response.getBody());
+
+  //   // int tid = 2;
+  //   // // Boolean valid = true;
+  //   // // ResponseEntity<TimeSlot> status;
+  //   // // Boolean valid = timeSlotService.isTimeSlotUpdateRequestValid(tid, timeSlot);
+  //   // // when(timeSlotService.isTimeSlotUpdateRequestValid(tid, timeSlot)).thenReturn(valid);
+  //   // // assertEquals(true, valid);
+   
+  //   // when(timeSlotService.updateTimeSlotNoOverlap(tid, timeSlot)).thenReturn(timeSlot);
+  //   // ResponseEntity<TimeSlot> response = timeSlotController.updateTimeSlotNoOverlap(tid, timeSlot);
+  //   // // assertEquals(HttpStatus.OK, response.getStatusCode());
+  //   // assertEquals(timeSlot, response.getBody());
+  // }
 
   @Test
   void testDeleteTimeSlot() {

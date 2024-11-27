@@ -1,13 +1,17 @@
-package dev.teamproject;
+package dev.teamproject.user;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import dev.teamproject.apiResponse.GenericApiResponse;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserController;
 import dev.teamproject.user.UserService;
+import dev.teamproject.user.DTOs.UserCreationRequestDTO;
+import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
+
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +19,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 class UserControllerUnitTests {
 
@@ -23,6 +29,8 @@ class UserControllerUnitTests {
 
   @InjectMocks
   private UserController userController;
+  UserCreationRequestDTO userCreationRequestDTO;
+  UserSuccessResponseDTO userSuccessResponseDTO;
 
   private User user1;
   private User user2;
@@ -31,8 +39,16 @@ class UserControllerUnitTests {
   void setUp() {
     MockitoAnnotations.openMocks(this);
     user1 = new User("test1", "test1@email.com");
-
     user2 = new User("test2", "test2@email.com");
+    userCreationRequestDTO = new UserCreationRequestDTO();
+    userCreationRequestDTO.setName("test1");
+    userCreationRequestDTO.setEmail("test1@email.com");
+    userSuccessResponseDTO = new UserSuccessResponseDTO();
+    userSuccessResponseDTO.setUid(1);
+    userSuccessResponseDTO.setName("test1");
+    userSuccessResponseDTO.setEmail("test1@email.com");
+    // userSuccessResponseDTO.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+
   }
 
 //  @Test
@@ -41,6 +57,34 @@ class UserControllerUnitTests {
 //
 //    verify(userService, times(1)).save(user1);
 //  }
+
+  @Test
+  void testRegister() {
+    UserSuccessResponseDTO userSuccessResponseDTO = new UserSuccessResponseDTO();
+    userSuccessResponseDTO.setName("test1");
+    userSuccessResponseDTO.setEmail("test1@email.com");
+
+    when(userService.registerUser(userCreationRequestDTO)).thenReturn(userSuccessResponseDTO);
+
+    ResponseEntity<GenericApiResponse<UserSuccessResponseDTO>> response = userController.register(userCreationRequestDTO);
+
+    assertEquals(HttpStatus.OK, response.getStatusCode()); // Verify HTTP status code
+    // assertEquals("User created successfully", response.getBody().getMessage()); // Verify response message
+    assertEquals(userSuccessResponseDTO, response.getBody().getData()); // Verify returned user details
+    verify(userService, times(1)).registerUser(userCreationRequestDTO);
+  }
+
+  @Test
+  void testDeleteUser() {
+    // UserSuccessResponseDTO responseDTO = new UserSuccessResponseDTO(1, "test1", "test1@email.com");
+    when(userService.deleteUser(1)).thenReturn(userSuccessResponseDTO);
+
+    ResponseEntity<GenericApiResponse<UserSuccessResponseDTO>> response = userController.deleteUser(1);
+
+    // assertEquals("User deleted successfully", response.getBody().getMessage());
+    assertEquals(1, response.getBody().getData().getUid());
+    verify(userService, times(1)).deleteUser(1);
+  }
 
   @Test
   void testFindByName() {

@@ -342,7 +342,7 @@ public class TimeSlotService {
    * @param timeSlot the proposed slot
    * @return
    */
-
+// (readOnly = true)
   @Transactional(readOnly = true)
   public Boolean isTimeSlotUpdateRequestValid(int tid, TimeSlot timeSlot) {
     Optional<TimeSlot> ts = this.timeSlotRepo.findById(tid);
