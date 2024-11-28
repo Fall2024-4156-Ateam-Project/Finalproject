@@ -1,6 +1,7 @@
 package dev.teamproject.meeting;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -10,20 +11,35 @@ import dev.teamproject.meeting.Meeting;
 import dev.teamproject.meeting.MeetingRepo;
 import dev.teamproject.meeting.MeetingService;
 import dev.teamproject.user.User;
+import dev.teamproject.user.UserRepo;
+import dev.teamproject.user.UserService;
+
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 /** The type Meeting service unit tests. */
 public class MeetingServiceUnitTests {
-  @Mock private MeetingRepo meetingRepo;
-  @InjectMocks private MeetingService meetingService;
+  @Mock
+  private MeetingRepo meetingRepo;
 
+  @Mock
+  private UserRepo userRepo;
+
+  @Mock
+  private UserService userService;
+
+  @InjectMocks
+  private MeetingService meetingService;
+
+  @InjectMocks
   private User user1;
   private User user2;
 
@@ -39,6 +55,7 @@ public class MeetingServiceUnitTests {
     MockitoAnnotations.openMocks(this);
     user1 = new User("test", "test@columbia.edu");
     user2 = new User("test2", "tes2t@columbia.edu");
+    userService = new UserService(userRepo);
     meeting1 = new Meeting();
     meeting2 = new Meeting();
     meeting3 = new Meeting();
@@ -86,8 +103,7 @@ public class MeetingServiceUnitTests {
   @Test
   public void testFindByRecurrence() {
     CommonTypes.Recurrence recurrence = CommonTypes.Recurrence.daily;
-    List<Meeting> meetingsByRecurrence =
-        Arrays.asList(allMeetingsDesc.get(0)); // return meeting2, daily
+    List<Meeting> meetingsByRecurrence = Arrays.asList(allMeetingsDesc.get(0)); // return meeting2, daily
     when(meetingRepo.findByRecurrence(recurrence)).thenReturn(meetingsByRecurrence);
     List<Meeting> result = meetingService.findByRecurrence(recurrence);
     assertEquals(1, result.size());
@@ -119,10 +135,49 @@ public class MeetingServiceUnitTests {
     meetingService.deleteMeeting(mid);
   }
 
-//  @Test
-//  public void testSaveMeeting() {
-//    Meeting meetingToSave = new Meeting();
-//    meetingService.save(meetingToSave);
-//    verify(meetingRepo, times(1)).save(meetingToSave);
-//  }
+  @Test
+  public void testDeleteMeetingNotFound() {
+    int mid = 999; // Meeting doesn't exist
+    when(meetingRepo.existsById(mid)).thenReturn(false);
+    assertThrows(RuntimeException.class, () -> meetingService.deleteMeeting(mid));
+  }
+
+  @Test
+  public void testSaveMeeting() {
+    
+    // Create a MeetingDTO with the required values
+    MeetingDTO meetingDTO = new MeetingDTO();
+    meetingDTO.setOrganizerId(user1.getUid()); 
+    meetingDTO.setStartTime(LocalTime.now());
+    meetingDTO.setEndTime(LocalTime.now().plusHours(1));
+    meetingDTO.setStartDay(CommonTypes.Day.Monday);
+    meetingDTO.setEndDay(CommonTypes.Day.Friday);
+    meetingDTO.setType("group");
+    meetingDTO.setStatus("Valid"); 
+    meetingDTO.setRecurrence("daily");
+    meetingDTO.setDescription("Test Meeting");
+
+    // Create the corresponding Meeting entity based on MeetingDTO
+    Meeting meeting = new Meeting();
+    meeting.setOrganizer(user1);
+    meeting.setStartTime(meetingDTO.getStartTime());
+    meeting.setEndTime(meetingDTO.getEndTime());
+    meeting.setStartDay(meetingDTO.getStartDay());
+    meeting.setEndDay(meetingDTO.getEndDay());
+    meeting.setType(CommonTypes.MeetingType.valueOf(meetingDTO.getType()));
+    meeting.setStatus(CommonTypes.MeetingStatus.valueOf(meetingDTO.getStatus()));
+    meeting.setRecurrence(CommonTypes.Recurrence.valueOf(meetingDTO.getRecurrence()));
+    meeting.setDescription(meetingDTO.getDescription());
+    meeting.setCreatedAt(LocalTime.now()); // Or any other appropriate value
+
+    // Mock the behavior of the meetingRepo.save() method
+    when(meetingRepo.save(meeting)).thenReturn(meeting);
+
+    // Call the service's save method
+    meetingService.save(meetingDTO);
+
+    // Capture the argument passed to meetingRepo.save
+    ArgumentCaptor<Meeting> meetingCaptor = ArgumentCaptor.forClass(Meeting.class);
+    verify(meetingRepo, times(1)).save(meetingCaptor.capture());
+  }  
 }

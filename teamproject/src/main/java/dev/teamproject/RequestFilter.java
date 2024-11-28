@@ -24,8 +24,20 @@ public class RequestFilter extends OncePerRequestFilter {
   @Value("${api.SECRET_KEY}")
   private String apiKey;
 
+  // Constructor-based injection
+  // Default constructor for testing purposes
+  public RequestFilter() {}
+  public RequestFilter(JwtUtil jwtUtil) {
+    this.jwtUtil = jwtUtil;
+  }
+
+  // Setter for testing
+  public void setApiKey(String apiKey) {
+    this.apiKey = apiKey;
+  }
+
   private boolean isExcludedPath(String path) {
-    return path.startsWith("/swagger-ui/") // Swagger UI assets
+    return path != null && (path.startsWith("/swagger-ui/") // Swagger UI assets
         || path.startsWith("/v3/api-docs") // OpenAPI docs
         || path.startsWith("/webjars/")   // Swagger UI dependencies
         || path.startsWith("/resources/") // Static resources like CSS/JS
@@ -36,7 +48,7 @@ public class RequestFilter extends OncePerRequestFilter {
         || path.endsWith(".png")          // Exclude images
         || path.endsWith(".ico")          // Exclude favicon
         || path.endsWith("favicon.ico")
-        || path.endsWith("-config");
+        || path.endsWith("-config"));
   }
 
   @Override
