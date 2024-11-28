@@ -53,12 +53,12 @@ public class ParticipantController {
   }
   
   @GetMapping("/findByMeeting")
-  public List<Participant> findByMeeting(@RequestParam("meeting") Meeting meeting) {
+  public List<Participant> findByMeeting(@RequestBody Meeting meeting) {
     return participantService.findByMeeting(meeting);
   }
   
   @GetMapping("/findByUser")
-  public List<Participant> findByUser(@RequestParam("user") User user) {
+  public List<Participant> findByUser(@RequestBody User user) {
     return participantService.findByUser(user);
   }
   
