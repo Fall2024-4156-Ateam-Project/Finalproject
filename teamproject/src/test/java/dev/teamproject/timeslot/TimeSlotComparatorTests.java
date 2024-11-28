@@ -1,4 +1,4 @@
-package dev.teamproject;
+package dev.teamproject.timeslot;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,7 +1,9 @@
-package dev.teamproject;
+package dev.teamproject.request;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import dev.teamproject.request.RequestId;
 import dev.teamproject.timeslot.TimeSlot;
@@ -71,6 +73,18 @@ class RequestIdUnitTests {
     RequestId requestId = new RequestId(timeSlot, user);
 
     assertNotEquals(requestId, null);
+
+    RequestId requestId1 = new RequestId(null, null);
+    RequestId requestId2 = new RequestId(null, null);
+
+    assertEquals(requestId1.equals(null), requestId2.equals(null));
+    assertFalse(requestId1.equals(null));
+    assertFalse(requestId2.equals(null));
+    assertEquals(requestId1.hashCode(), requestId2.hashCode());
+
+    RequestId requestId3 = new RequestId(new TimeSlot(), null);
+    assertNotEquals(requestId1, requestId3);
+
   }
 
   @Test

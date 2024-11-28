@@ -1,4 +1,4 @@
-package dev.teamproject;
+package dev.teamproject.timeslot;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -101,7 +101,8 @@ class TimeSlotServiceTests {
   @Test
   public void testMergeOrUpdateTimeSlot_nonOverlapping() {
     // Arrange
-    TimeSlot newTimeSlot = new TimeSlot(user, Day.Monday, Day.Monday, LocalTime.of(9, 0), LocalTime.of(10, 0), Availability.busy);
+    TimeSlot newTimeSlot = new TimeSlot(user, Day.Monday, Day.Monday, LocalTime.of(9, 0), LocalTime.of(10, 0),
+        Availability.busy);
     when(timeSlotRepo.findAll()).thenReturn(Collections.emptyList());
 
     // Act
@@ -112,7 +113,6 @@ class TimeSlotServiceTests {
     verify(timeSlotRepo, never()).deleteAll(any());
   }
 
-
   @Test
   public void testMergeOrUpdateTimeSlot_withOverlap() {
     // existing timeslot
@@ -122,8 +122,7 @@ class TimeSlotServiceTests {
         Day.Monday,
         LocalTime.of(8, 0),
         LocalTime.of(11, 0),
-        Availability.busy
-    );
+        Availability.busy);
     existing.setTid(1);
     existing.setUser(user);
 
@@ -133,8 +132,7 @@ class TimeSlotServiceTests {
         Day.Monday,
         LocalTime.of(9, 0),
         LocalTime.of(10, 0),
-        Availability.available
-    );
+        Availability.available);
     newTimeSlot.setTid(2);
     newTimeSlot.setUser(user);
 
@@ -202,6 +200,7 @@ class TimeSlotServiceTests {
     assertEquals(Availability.busy, right.getAvailability());
     assertEquals(existing.getTid(), right.getTid()); // Should retain the same ID
   }
+
   @Test
   void testGetTimeSlotById() {
     int tid = 1;
@@ -258,90 +257,6 @@ class TimeSlotServiceTests {
     assertEquals(timeSlots, retrievedTimeSlots);
   }
 
-  // @Test
-  // void testHandleTimeSlotCreation(){
-  //   // when(timeSlotHelper.isWrapped(timeSlot)).thenReturn(false);
-  //   // when(timeSlotHelper.absTime(any(CommonTypes.Day.class), any(LocalTime.class))).thenReturn(0); // Mock absTime
-
-  //   when(userService.findById(user.getUid())).thenReturn(user);
-  //   when(timeSlotRepo.save(any(TimeSlot.class))).thenReturn(timeSlot);
-  //   TimeSlot handledTimeSlot = timeSlotService.handleTimeSlotCreation(timeSlot);
-  //   assertEquals(timeSlot, handledTimeSlot);
-  // }
-
-  // @Test
-  // void testMergeOrUpdateTimeSlotCreation(){
-  //   TimeSlot updatedTimeSlot = timeSlotService.mergeOrUpdateTimeSlot(timeSlot);
-  //   assertEquals(timeSlot, updatedTimeSlot);
-  // }
-
-  // @Test
-  // void testIntegrationHandleandUpdateCreation() {
-  //   // handle all three cases - wrapped (normal, part2 start=end eg-strt=end=12am
-  //   // monday), unwrapped
-  //   // get the timslot from test data - create three test timeslots to test the
-  //   // entire functionality
-  //   // Declare variable
-
-  //   // Case 1: Unwrapped timeSlot send to mergeOrUpdate fn and get back resulting ts
-  //   TimeSlot resultUnwrappedTimeSlot = timeSlotService.handleTimeSlotCreation(timeSlot);
-  //   TimeSlot expectedUnwrappedTimeSlot = new TimeSlot();
-  //   when(timeSlotService.mergeOrUpdateTimeSlot(timeSlot)).thenReturn(expectedUnwrappedTimeSlot);
-  //   //add check for correct integration
-  //   // assertEquals(expectedUnwrappedTimeSlot, resultUnwrappedTimeSlot);
-
-  //   // Case 2 wrapped normal (first if branch), check if normal(second if), send to
-  //   // mergeOrUpdate fn and get back resulting ts
-  //   Pair<CommonTypes.Day, LocalTime> weekEnd = timeSlotHelper.getDayAndTimeFromAbs(7 * 24 * 60 - 1); // End of the week
-  //   Pair<CommonTypes.Day, LocalTime> weekStart = timeSlotHelper.getDayAndTimeFromAbs(0); // Start of the week
-
-  //   TimeSlot resultWrappedTimeSlot = timeSlotService.handleTimeSlotCreation(wrappedTimeSlot);
-  //   TimeSlot expectedWrappedTimeSlot = new TimeSlot();
-
-  //   System.out.println("Wrap around");
-  //   TimeSlot part1 = new TimeSlot(
-  //       wrappedTimeSlot.getUser(),
-  //       wrappedTimeSlot.getStartDay(),
-  //       weekEnd.getKey(),
-  //       wrappedTimeSlot.getStartTime(),
-  //       weekEnd.getValue(),
-  //       wrappedTimeSlot.getAvailability());
-
-  //   TimeSlot part2 = new TimeSlot(
-  //       wrappedTimeSlot.getUser(),
-  //       weekStart.getKey(),
-  //       wrappedTimeSlot.getEndDay(),
-  //       weekStart.getValue(),
-  //       wrappedTimeSlot.getEndTime(),
-  //       wrappedTimeSlot.getAvailability());
-
-  //   when(timeSlotService.mergeOrUpdateTimeSlot(part1)).thenReturn(part1);
-  //   when(timeSlotService.mergeOrUpdateTimeSlot(part2)).thenReturn(part2);
-  //   //add check for correct integration testing
-  //   // assertEquals(expectedWrappedTimeSlot, resultWrappedTimeSlot);
-
-  //   // case 3 wrapped abnormal (if, then else branch), send only part1
-  //   TimeSlot resultWrappedTimeSlot2 = timeSlotService.handleTimeSlotCreation(wrappedTimeSlot2);
-  //   TimeSlot expectedWrappedTimeSlot2 = new TimeSlot();
-
-  //   System.out.println("Wrap around");
-  //   TimeSlot wrappedPart1 = new TimeSlot(
-  //       wrappedTimeSlot2.getUser(),
-  //       wrappedTimeSlot2.getStartDay(),
-  //       weekEnd.getKey(),
-  //       wrappedTimeSlot2.getStartTime(),
-  //       weekEnd.getValue(),
-  //       wrappedTimeSlot2.getAvailability());
-
-  //   when(timeSlotService.mergeOrUpdateTimeSlot(part1)).thenReturn(part1);
-    
-  // }
-  // Src code to be tested
-
-  // Also add test for mergeOrUpdate
-
-  // end
-
   @Test
   void testGetTimeSlotsByStartDay() {
     CommonTypes.Day day = CommonTypes.Day.Monday;
@@ -361,6 +276,26 @@ class TimeSlotServiceTests {
   }
 
   @Test
+  void testHandleTimeSlotCreation_nonWrapped() {
+    when(timeSlotHelper.isWrapped(timeSlot)).thenReturn(false);
+    when(userService.findById(user.getUid())).thenReturn(user);
+    timeSlotService.handleTimeSlotCreation(timeSlot);
+    verify(timeSlotRepo, times(1)).save(timeSlot);
+  }
+
+  @Test
+  void testHandleTimeSlotCreation_wrapped() {
+    when(timeSlotHelper.isWrapped(timeSlot)).thenReturn(true);
+    Pair<CommonTypes.Day, LocalTime> weekEnd = new Pair<>(Day.Saturday, LocalTime.MAX);
+    Pair<CommonTypes.Day, LocalTime> weekStart = new Pair<>(Day.Sunday, LocalTime.MIN);
+    when(timeSlotHelper.getWeekEnd()).thenReturn(weekEnd);
+    when(timeSlotHelper.getWeekStart()).thenReturn(weekStart);
+
+    timeSlotService.handleTimeSlotCreation(timeSlot);
+    verify(timeSlotRepo, times(2)).save(any(TimeSlot.class));
+  }
+
+  @Test
   void testUpdateTimeSlot() {
     int tid = 1;
     when(timeSlotRepo.findById(tid)).thenReturn(Optional.of(timeSlot));
@@ -368,6 +303,31 @@ class TimeSlotServiceTests {
 
     TimeSlot updatedTimeSlot = timeSlotService.updateTimeSlot(tid, timeSlot);
     assertEquals(timeSlot, updatedTimeSlot);
+  }
+
+  @Test
+  void testUpdateTimeSlotNoOverlap() {
+    int tid = 1;
+    when(timeSlotRepo.findById(tid)).thenReturn(Optional.of(timeSlot));
+    timeSlotService.updateTimeSlotNoOverlap(tid, timeSlot);
+    verify(timeSlotRepo, times(1)).save(any(TimeSlot.class));
+  }
+
+  @Test
+  void testIsTimeSlotUpdateRequestValid_valid() {
+    int tid = 1;
+    when(timeSlotRepo.findById(tid)).thenReturn(Optional.of(timeSlot));
+    timeSlot.setUser(user);
+    boolean result = timeSlotService.isTimeSlotUpdateRequestValid(tid, timeSlot);
+    assertEquals(false, result);
+  }
+
+  @Test
+  void testIsTimeSlotUpdateRequestValid_invalid() {
+    int tid = 1;
+    when(timeSlotRepo.findById(tid)).thenReturn(Optional.empty());
+    boolean result = timeSlotService.isTimeSlotUpdateRequestValid(tid, timeSlot);
+    assertEquals(false, result);
   }
 
   @Test
