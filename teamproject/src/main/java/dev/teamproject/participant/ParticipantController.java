@@ -2,6 +2,7 @@ package dev.teamproject.participant;
 
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.meeting.Meeting;
+import dev.teamproject.meeting.MeetingService;
 import dev.teamproject.user.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "api/v1/participants")
 public class ParticipantController {
   private final ParticipantService participantService;
+  private final MeetingService meetingService;
   
   @Autowired
-  public ParticipantController(ParticipantService participantService) {
+  public ParticipantController(ParticipantService participantService, MeetingService meetingService) {
     this.participantService = participantService;
+    this.meetingService = meetingService;
   }
   
   @PostMapping("/register")
@@ -51,12 +54,14 @@ public class ParticipantController {
   public List<Participant> findAll() {
     return participantService.findAll();
   }
-  
+
   @GetMapping("/findByMeeting")
-  public List<Participant> findByMeeting(@RequestBody Meeting meeting) {
+  public List<Participant> findByMeeting(@RequestParam("mid") int meetingId) {
+    Meeting meeting = meetingService.findById(meetingId);
     return participantService.findByMeeting(meeting);
   }
-  
+
+
   @GetMapping("/findByUser")
   public List<Participant> findByUser(@RequestBody User user) {
     return participantService.findByUser(user);

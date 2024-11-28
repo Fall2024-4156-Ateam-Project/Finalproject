@@ -2,6 +2,8 @@ package dev.teamproject.meeting;
 
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.exceptionHandler.IllegalArgumentException;
+import dev.teamproject.participant.Participant;
+import dev.teamproject.participant.ParticipantService;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserService;
 
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -20,12 +23,14 @@ import org.springframework.validation.annotation.Validated;
 public class MeetingService {
   private final MeetingRepo meetingRepo;
   private final UserService userService; // for validation
+  private final ParticipantService participantService;
   private final Object lock = new Object();
 
   @Autowired
-  public MeetingService(MeetingRepo meetingRepo, UserService userService) {
+  public MeetingService(MeetingRepo meetingRepo, UserService userService, ParticipantService participantService) {
     this.meetingRepo = meetingRepo;
     this.userService = userService;
+    this.participantService = participantService;
   }
 
   @Transactional(readOnly = true)
@@ -79,6 +84,10 @@ public class MeetingService {
     if (!meetingRepo.existsById(mid)) {
       throw new RuntimeException("Meeting not found with id: " + mid);
     }
+    List<Participant> participants = participantService.findByMeeting(meetingRepo.findByMid(mid));
+    for (Participant participant : participants) {
+      participantService.deleteParticipant(participant.getPid());
+    }
     meetingRepo.deleteById(mid);
 
   }
@@ -97,6 +106,14 @@ public class MeetingService {
 
     synchronized (lock) { // Protect validation and save
       User organizer = userService.findById(meetingDTO.getOrganizerId());
+      if (organizer == null) {
+        throw new IllegalArgumentException("Organizer does not exist.");
+      }
+      List<User> participants = userService.findByEmail(meetingDTO.getParticipantEmail());
+      if (participants.isEmpty()) {
+        throw new IllegalArgumentException("Participant does not exist.");
+      }
+      User participant = participants.get(0);
 
       // Set the meeting
       Meeting meeting = new Meeting();
@@ -125,6 +142,10 @@ public class MeetingService {
       meeting.setCreatedAt(LocalTime.now());
 
       meetingRepo.save(meeting);
+
+      participantService.save(new Participant(meeting, organizer, CommonTypes.Role.organizer, CommonTypes.ParticipantStatus.accept));
+      participantService.save(new Participant(meeting, participant, CommonTypes.Role.participant, CommonTypes.ParticipantStatus.accept));
+
     }
   }
 }
