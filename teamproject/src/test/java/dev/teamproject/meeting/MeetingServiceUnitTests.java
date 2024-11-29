@@ -2,6 +2,7 @@ package dev.teamproject.meeting;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -10,6 +11,7 @@ import dev.teamproject.common.CommonTypes;
 import dev.teamproject.meeting.Meeting;
 import dev.teamproject.meeting.MeetingRepo;
 import dev.teamproject.meeting.MeetingService;
+import dev.teamproject.participant.ParticipantService;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserRepo;
 import dev.teamproject.user.UserService;
@@ -38,6 +40,9 @@ public class MeetingServiceUnitTests {
 
   @InjectMocks
   private MeetingService meetingService;
+
+  @Mock
+  private ParticipantService participantService;
 
   @InjectMocks
   private User user1;
@@ -144,40 +149,29 @@ public class MeetingServiceUnitTests {
 
   @Test
   public void testSaveMeeting() {
-    
+
     // Create a MeetingDTO with the required values
     MeetingDTO meetingDTO = new MeetingDTO();
-    meetingDTO.setOrganizerId(user1.getUid()); 
+    meetingDTO.setOrganizerId(user1.getUid());
     meetingDTO.setStartTime(LocalTime.now());
     meetingDTO.setEndTime(LocalTime.now().plusHours(1));
     meetingDTO.setStartDay(CommonTypes.Day.Monday);
     meetingDTO.setEndDay(CommonTypes.Day.Friday);
     meetingDTO.setType("group");
-    meetingDTO.setStatus("Valid"); 
+    meetingDTO.setStatus("Valid");
     meetingDTO.setRecurrence("daily");
     meetingDTO.setDescription("Test Meeting");
 
-    // Create the corresponding Meeting entity based on MeetingDTO
-    Meeting meeting = new Meeting();
-    meeting.setOrganizer(user1);
-    meeting.setStartTime(meetingDTO.getStartTime());
-    meeting.setEndTime(meetingDTO.getEndTime());
-    meeting.setStartDay(meetingDTO.getStartDay());
-    meeting.setEndDay(meetingDTO.getEndDay());
-    meeting.setType(CommonTypes.MeetingType.valueOf(meetingDTO.getType()));
-    meeting.setStatus(CommonTypes.MeetingStatus.valueOf(meetingDTO.getStatus()));
-    meeting.setRecurrence(CommonTypes.Recurrence.valueOf(meetingDTO.getRecurrence()));
-    meeting.setDescription(meetingDTO.getDescription());
-    meeting.setCreatedAt(LocalTime.now()); // Or any other appropriate value
+    // Mock the behavior of userRepo to simulate that the organizer does not exist
+    when(userRepo.findById(user1.getUid())).thenReturn(Optional.empty());
 
-    // Mock the behavior of the meetingRepo.save() method
-    when(meetingRepo.save(meeting)).thenReturn(meeting);
+    // Verify that the custom exception is thrown with the expected message
+    dev.teamproject.exceptionHandler.IllegalArgumentException exception = assertThrows(
+            dev.teamproject.exceptionHandler.IllegalArgumentException.class,
+            () -> meetingService.save(meetingDTO)
+    );
 
-    // Call the service's save method
-    meetingService.save(meetingDTO);
-
-    // Capture the argument passed to meetingRepo.save
-    ArgumentCaptor<Meeting> meetingCaptor = ArgumentCaptor.forClass(Meeting.class);
-    verify(meetingRepo, times(1)).save(meetingCaptor.capture());
-  }  
+    // Assert that the exception message is as expected
+    assertEquals("Organizer does not exist.", exception.getMessage());
+  }
 }
