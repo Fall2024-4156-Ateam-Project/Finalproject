@@ -3452,7 +3452,7 @@
 									"// Step 1: Prepare the meeting data\r",
 									"const meetingData = {\r",
 									"    \"organizerId\": pm.environment.get('userId'), \r",
-									"    \"participantEmail\": pm.environment.get('userId'),\r",
+									"    \"participantEmail\": pm.environment.get('userEmail'),\r",
 									"    \"type\": \"one_on_one\",\r",
 									"    \"description\": \"Team meeting\",\r",
 									"    \"startDay\": \"Monday\",\r",
