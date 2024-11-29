@@ -7,791 +7,6 @@
 	},
 	"item": [
 		{
-			"name": "Meeting APIs",
-			"item": [
-				{
-					"name": "Meeting get_all",
-					"id": "a739a3ee-6d77-450d-ab26-b7ac9b83bd18",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/meetings/get_all",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"meetings",
-								"get_all"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Meeting findByType",
-					"id": "89582bb8-9f1a-4f1f-8256-cb39b21d83c8",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/meetings/findByType?type=group",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"meetings",
-								"findByType"
-							],
-							"query": [
-								{
-									"key": "type",
-									"value": "group"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Meeting findByRecurrence",
-					"id": "fe6fca31-62f8-4758-a279-825f443184e9",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{server}}/api/v1/meetings/findByRecurrence?recurrence=weekly",
-							"host": [
-								"{{server}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"meetings",
-								"findByRecurrence"
-							],
-							"query": [
-								{
-									"key": "recurrence",
-									"value": "weekly"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Meeting saveMeeting",
-					"id": "8a6c357f-5629-41c2-aa56-8ae9a64f5bb1",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n        \"organizer\": {\n            \"uid\": 1,\n            \"name\": \"test\",\n            \"email\": \"test_user@email.com\"\n        },\n        \"type\": \"one_on_one\",\n        \"description\": \"Team meeting\",\n        \"startTime\": \"2024-11-01T10:00:00.000+00:00\",\n        \"endTime\": \"2024-11-01T11:00:00.000+00:00\",\n        \"recurrence\": null,\n        \"createdAt\": null,\n        \"inviteParticipant\": null,\n        \"acceptParticipant\": null,\n        \"status\": null\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{server}}/api/v1/meetings/saveMeeting",
-							"host": [
-								"{{server}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"meetings",
-								"saveMeeting"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "TODO getbyParticipant",
-					"id": "a399d256-d0c8-4e7c-a43b-05b4b50eabc8",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/meetings/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"meetings",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "TODO getbyOrganizer",
-					"id": "735e9569-cd12-47e2-9818-2780e1d26ee0",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/meetings/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"meetings",
-								""
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"id": "10f90662-cdac-4ffd-8ed4-c5753208738c"
-		},
-		{
-			"name": "Request APIs",
-			"item": [
-				{
-					"name": "get request with given tid",
-					"id": "3defd324-8683-48ff-bffb-d67fbe25189f",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/requests/search?tid=2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"requests",
-								"search"
-							],
-							"query": [
-								{
-									"key": "tid",
-									"value": "2"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get request with given requesterId",
-					"id": "9962dcfa-6d17-4b2b-bd62-5b835fe2cc34",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/requests/search?requesterId=2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"requests",
-								"search"
-							],
-							"query": [
-								{
-									"key": "requesterId",
-									"value": "2"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get request with given uid and tid",
-					"id": "c6d28e8e-0469-4836-8689-8ae7d0dae923",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/requests/2/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"requests",
-								"2",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Post New Request",
-					"id": "aaad9c34-6aa4-45e8-9e7a-94d160c0231b",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"user\": {\r\n        \"uid\": 1 \r\n    },\r\n    \"timeSlot\": {\r\n        \"tid\": 2\r\n    },\r\n    \"description\": \"Request 4\",\r\n    \"status\": \"undecided\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/requests",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"requests"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update Request description",
-					"id": "c33f76ee-c818-4fc3-a150-4eb56856d409",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "new desc"
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/requests/description?userid=2&tid=1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"requests",
-								"description"
-							],
-							"query": [
-								{
-									"key": "userid",
-									"value": "2"
-								},
-								{
-									"key": "tid",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update Request status",
-					"id": "1863520a-d69b-4541-a62c-7db752b65b27",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "\"approved\"",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/requests/status?userid=2&tid=1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"requests",
-								"status"
-							],
-							"query": [
-								{
-									"key": "userid",
-									"value": "2"
-								},
-								{
-									"key": "tid",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete Request",
-					"id": "85db427b-bdc9-4416-bb21-987b8de58513",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/requests?userid=1&tid=2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"requests"
-							],
-							"query": [
-								{
-									"key": "userid",
-									"value": "1"
-								},
-								{
-									"key": "tid",
-									"value": "2"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"id": "b0d4caf9-b9f7-4eb1-8293-b727a94bf270"
-		},
-		{
-			"name": "TimeSlot APIs",
-			"item": [
-				{
-					"name": "Get all timeslots",
-					"id": "95ac2a9f-b0b3-4ef5-a3c2-b9b19e311883",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "apiKey",
-								"value": "testtestkey",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/timeslots",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"timeslots"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete a timeslot by tid",
-					"id": "effabc76-0698-4a8c-a427-344508a2a11d",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/timeslots/6",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"timeslots",
-								"6"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get timeslots by day",
-					"id": "34958c5d-b358-4603-85f3-cff12314503f",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/timeslots/day/Monday",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"timeslots",
-								"day",
-								"Monday"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get timeslots by tid",
-					"id": "7dd9c8d9-8f45-48e0-948f-a5584ab8a20c",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/timeslots/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"timeslots",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get timeslots by uid",
-					"id": "a39208b7-ba25-4ca8-a208-40ae2a839085",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/timeslots/user/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"timeslots",
-								"user",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get timeslots by email",
-					"id": "bc142bbb-05a1-4a78-9d55-9625528b0dca",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "apiKey",
-								"value": "testtestkey",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/timeslots/user?email=alice@gmail.com",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"timeslots",
-								"user"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": "alice@gmail.com"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get timeslots by availability",
-					"id": "af1d4825-15f5-4a25-88cf-99de2f0cab01",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/timeslots/availability/busy",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"timeslots",
-								"availability",
-								"busy"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add a new timeslot",
-					"id": "5d27f012-490e-4237-91bc-003b68879534",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "apiKey",
-								"value": "testtestkey",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"user\": {\r\n        \"uid\": 1,\r\n        \"name\": \"testuser\",\r\n        \"email\": \"test1@gmail.com\"\r\n    },\r\n\r\n    \"startTime\": \"13:00:00\",\r\n    \"startDay\": \"Friday\",\r\n    \"endDay\": \"Friday\",\r\n    \"endTime\": \"20:00:00\",\r\n    \"availability\": \"busy\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/timeslots",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"timeslots"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add a new merge timeslot",
-					"id": "ecd043b5-429e-47d9-b52f-6752cebe5c86",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "apiKey",
-								"value": "testtestkey",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"user\": {\r\n        \"uid\": 24,\r\n        \"name\": \"testuser\",\r\n        \"email\": \"dy2482@columbia.edu\"\r\n    },\r\n    // \"day\": \"Monday\",\r\n    \"startTime\": \"16:00\",\r\n    \"startDay\": \"Friday\",\r\n    \"endDay\": \"Friday\",\r\n    \"endTime\": \"19:00\",\r\n    \"availability\": \"available\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/timeslots/merge",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"timeslots",
-								"merge"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update a timeslot by tid",
-					"id": "5d550160-733a-4cdd-bf27-61b21c7aaf99",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"user\": {\r\n        \"uid\": 2,\r\n        \"name\": \"Alice\",\r\n        \"email\": \"Alice@email.com\"\r\n    },\r\n    \"day\": \"Tuesday\",\r\n    \"startTime\": \"10:00:00\",\r\n    \"endTime\": \"18:00:00\",\r\n    \"availability\": \"available\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/timeslots/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"timeslots",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"id": "3fcc35a4-056e-4f0e-afed-b2a7aa3ef4b9"
-		},
-		{
 			"name": "User APIs",
 			"item": [
 				{
@@ -1015,19 +230,3916 @@
 			"id": "3efc8b9a-0c74-45ea-b668-8b6c1e2dfa00"
 		},
 		{
+			"name": "TimeSlot APIs",
+			"item": [
+				{
+					"name": "Add a new timeslot",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "900e12f9-a501-478e-94ba-14ce86bf8ddb",
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: 'http://localhost:8080/api/v1/users/register', \r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        'apiKey': 'testtestkey'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"            // User data to create\r",
+									"            name: 'testuser',\r",
+									"            email: 'test1@gmail.com'\r",
+									"        })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    if (err) {\r",
+									"        console.log('Error creating user:', err);\r",
+									"    } else {\r",
+									"        // Assuming the response contains the user ID\r",
+									"        const responseJson = res.json();\r",
+									"        const userId = responseJson.data.uid;\r",
+									"\r",
+									"        // Save the user ID and other user data for use in the next request\r",
+									"        pm.environment.set('userId', userId);\r",
+									"        pm.environment.set('userName', 'testuser');\r",
+									"        pm.environment.set('userEmail', 'test1@gmail.com');\r",
+									"        console.log('User created with ID:', userId);\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "02afeee4-93cf-4e55-b26b-82c80db3e140",
+								"exec": [
+									"pm.test(\"Time slot creation should be successful\", function () {\r",
+									"    pm.response.to.have.status(200); // Assuming 201 is the success status code for time slot creation\r",
+									"    pm.response.to.have.jsonBody('tid'); // Check that the 'id' of the time slot is returned\r",
+									"    pm.response.to.have.jsonBody('user'); // Check that the user data is included in the response\r",
+									"\r",
+									"    // Check if the correct user data is included\r",
+									"    pm.expect(pm.response.json().user.uid).to.eql(parseInt(pm.environment.get('userId'))); // Compare the user ID\r",
+									"    pm.expect(pm.response.json().user.name).to.eql(pm.environment.get('userName')); // Compare the user name\r",
+									"    pm.expect(pm.response.json().user.email).to.eql(pm.environment.get('userEmail')); // Compare the user email\r",
+									"\r",
+									"    // Verify time slot details\r",
+									"    pm.expect(pm.response.json().startTime).to.eql('13:00:00'); // Verify start time\r",
+									"    pm.expect(pm.response.json().startDay).to.eql('Friday'); // Verify start day\r",
+									"    pm.expect(pm.response.json().endDay).to.eql('Friday'); // Verify end day\r",
+									"    pm.expect(pm.response.json().endTime).to.eql('20:00:00'); // Verify end time\r",
+									"    pm.expect(pm.response.json().availability).to.eql('busy'); // Verify availability status\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "5d27f012-490e-4237-91bc-003b68879534",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": {\r\n        \"uid\": \"{{userId}}\",\r\n        \"name\": \"{{userName}}\",\r\n        \"email\": \"{{userEmail}}\"\r\n    },\r\n    \"startTime\": \"13:00:00\",\r\n    \"startDay\": \"Friday\",\r\n    \"endDay\": \"Friday\",\r\n    \"endTime\": \"20:00:00\",\r\n    \"availability\": \"busy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a new timeslot nonexist user",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "900e12f9-a501-478e-94ba-14ce86bf8ddb",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "02afeee4-93cf-4e55-b26b-82c80db3e140",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(404); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('msg'); // Ensure there's a 'msg' field\r",
+									"    pm.expect(jsonData).to.have.property('data'); // Ensure there's a 'data' field\r",
+									"    pm.expect(jsonData).to.have.property('success'); // Ensure there's a 'success' field\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message indicates user not found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"User not found with ID: 10000\"); // Check if the message matches\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data is null\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data).to.be.null; // Ensure data is null when user is not found\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Success is false\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false); // Ensure success is false\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "e0805e60-a479-48e2-8382-47c344dba21c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": {\r\n        \"uid\": 10000,\r\n        \"name\": \"testuser\",\r\n        \"email\": \"test1@gmail.com\"\r\n    },\r\n\r\n    \"startTime\": \"13:00:00\",\r\n    \"startDay\": \"Friday\",\r\n    \"endDay\": \"Friday\",\r\n    \"endTime\": \"20:00:00\",\r\n    \"availability\": \"busy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a new merge timeslot",
+					"id": "ecd043b5-429e-47d9-b52f-6752cebe5c86",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": {\r\n        \"uid\": 24,\r\n        \"name\": \"testuser\",\r\n        \"email\": \"dy2482@columbia.edu\"\r\n    },\r\n    // \"day\": \"Monday\",\r\n    \"startTime\": \"16:00\",\r\n    \"startDay\": \"Friday\",\r\n    \"endDay\": \"Friday\",\r\n    \"endTime\": \"19:00\",\r\n    \"availability\": \"available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/merge",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"merge"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a timeslot by tid",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6a3c72b9-aac0-495f-81ee-fe1d338cdc0d",
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: 'http://localhost:8080/api/v1/timeslots', \r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        'apiKey': 'testtestkey'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"            \"startTime\": \"13:00:00\",\r",
+									"            \"startDay\": \"Monday\",\r",
+									"            \"endDay\": \"Monday\",\r",
+									"            \"endTime\": \"20:00:00\",\r",
+									"            \"availability\": \"available\",\r",
+									"            \"user\": {\r",
+									"                \"uid\": pm.environment.get('userId'), \r",
+									"                \"name\": \"testuser\",\r",
+									"                \"email\": \"test1@gmail.com\"\r",
+									"            }\r",
+									"        })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    if (err) {\r",
+									"        console.log('Error creating timeslot:', err);\r",
+									"    } else {\r",
+									"        // Assuming the response contains the timeslot ID (tid)\r",
+									"        const responseJson = res.json();\r",
+									"        console.log(responseJson);\r",
+									"        console.log(responseJson.tid);\r",
+									"        const timeslotId = parseInt(responseJson.tid, 10); \r",
+									"        \r",
+									"        // Save the timeslot ID in the environment variable for later use\r",
+									"        pm.environment.set('tid', timeslotId); // Store tid for use in the next request\r",
+									"        console.log('Timeslot created with ID:', timeslotId);\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f155ad08-52e0-4e7f-aca7-59060ee38d12",
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"pm.test(\"Timeslot update was successful\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.expect(responseJson.startTime).to.eql('10:00:00');  // Verify the updated start time\r",
+									"    pm.expect(responseJson.endTime).to.eql('18:00:00');    // Verify the updated end time\r",
+									"    pm.expect(responseJson.startDay).to.eql('Tuesday');     // Verify the updated day\r",
+									"    pm.expect(responseJson.endDay).to.eql('Tuesday');       // Verify the updated end day\r",
+									"    pm.expect(responseJson.availability).to.eql('available');  \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "5d550160-733a-4cdd-bf27-61b21c7aaf99",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": {\r\n        \"uid\": {{userId}}, \r\n        \"name\": \"testuser\",\r\n        \"email\": \"test1@gmail.com\"\r\n    },\r\n    \"startDay\": \"Tuesday\",\r\n    \"endDay\": \"Tuesday\",\r\n    \"startTime\": \"10:00:00\",\r\n    \"endTime\": \"18:00:00\",\r\n    \"availability\": \"available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/{{tid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"{{tid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a timeslot by tid unfound",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6a3c72b9-aac0-495f-81ee-fe1d338cdc0d",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f155ad08-52e0-4e7f-aca7-59060ee38d12",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(500); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('msg'); // Ensure there's a 'msg' field\r",
+									"    pm.expect(jsonData).to.have.property('data'); // Ensure there's a 'data' field\r",
+									"    pm.expect(jsonData).to.have.property('success'); // Ensure there's a 'success' field\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message indicates user not found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"An unexpected error occurred\"); // Check if the message matches\r",
+									"    pm.expect(jsonData.data).to.eql(\"TimeSlot not found with id: 99999\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "7817728a-11e2-43a0-83f7-d0e6e68dad0e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": {\r\n        \"uid\": 99999,\r\n        \"name\": \"Alice\",\r\n        \"email\": \"Alice@email.com\"\r\n    },\r\n    \"day\": \"Tuesday\",\r\n    \"startTime\": \"10:00:00\",\r\n    \"endTime\": \"18:00:00\",\r\n    \"availability\": \"available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/99999",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"99999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all timeslots",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "66e0c122-2340-47a5-a728-87ac9edbc80f",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "8868f051-0b23-4a4b-9d3f-e79c03c854b6",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a non-empty array of timeslots\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('array').that.is.not.empty;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has a valid tid\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.tid).to.be.a('number').that.is.greaterThan(0);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has valid user data\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.user).to.be.an('object');\r",
+									"        pm.expect(timeslot.user.uid).to.be.a('number').that.is.greaterThan(0);\r",
+									"        pm.expect(timeslot.user.name).to.be.a('string').that.is.not.empty;\r",
+									"        pm.expect(timeslot.user.email).to.match(/^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$/); // Validate email format\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has valid days and times\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.startDay).to.be.a('string').that.is.not.empty;\r",
+									"        pm.expect(timeslot.endDay).to.be.a('string').that.is.not.empty;\r",
+									"        pm.expect(timeslot.startTime).to.match(/^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$/); // Valid time format (HH:mm:ss)\r",
+									"        pm.expect(timeslot.endTime).to.match(/^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$/); // Valid time format (HH:mm:ss)\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has a valid availability\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.availability).to.be.oneOf(['available', 'busy']);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has a valid requests array\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        if (timeslot.requests) {\r",
+									"            pm.expect(timeslot.requests).to.be.an('array');\r",
+									"        }\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "95ac2a9f-b0b3-4ef5-a3c2-b9b19e311883",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a timeslot by tid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "54253fc0-b4d2-4203-b433-3b9bcd66b072",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(204); \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6267da06-6324-49ac-81e5-71b795fad5fc",
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: 'http://localhost:8080/api/v1/timeslots', \r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        'apiKey': 'testtestkey'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"            \"startTime\": \"13:00:00\",\r",
+									"            \"startDay\": \"Monday\",\r",
+									"            \"endDay\": \"Monday\",\r",
+									"            \"endTime\": \"20:00:00\",\r",
+									"            \"availability\": \"available\",\r",
+									"            \"user\": {\r",
+									"                \"uid\": pm.environment.get('userId'), \r",
+									"                \"name\": \"testuser\",\r",
+									"                \"email\": \"test1@gmail.com\"\r",
+									"            }\r",
+									"        })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    if (err) {\r",
+									"        console.log('Error creating timeslot:', err);\r",
+									"    } else {\r",
+									"        // Assuming the response contains the timeslot ID (tid)\r",
+									"        const responseJson = res.json();\r",
+									"        console.log(responseJson);\r",
+									"        console.log(responseJson.tid);\r",
+									"        const timeslotId = parseInt(responseJson.tid, 10); \r",
+									"        \r",
+									"        // Save the timeslot ID in the environment variable for later use\r",
+									"        pm.environment.set('tid', timeslotId); // Store tid for use in the next request\r",
+									"        console.log('Timeslot created with ID:', timeslotId);\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "effabc76-0698-4a8c-a427-344508a2a11d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/{{tid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"{{tid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a timeslot by tid not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "54253fc0-b4d2-4203-b433-3b9bcd66b072",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(500); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('msg'); // Ensure there's a 'msg' field\r",
+									"    pm.expect(jsonData).to.have.property('data'); // Ensure there's a 'data' field\r",
+									"    pm.expect(jsonData).to.have.property('success'); // Ensure there's a 'success' field\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message indicates user not found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"An unexpected error occurred\"); // Check if the message matches\r",
+									"    pm.expect(jsonData.data).to.eql(\"TimeSlot not found with id: 9999\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6267da06-6324-49ac-81e5-71b795fad5fc",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "417266c6-f8f3-4453-99b9-13657e78030c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/{{tid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"{{tid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get timeslots by day",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dfcc06c3-4cef-4df0-990f-9392c049f1f3",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a non-empty array of timeslots\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('array').that.is.not.empty;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has a valid tid\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.tid).to.be.a('number').that.is.greaterThan(0);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has valid user data\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.user).to.be.an('object');\r",
+									"        pm.expect(timeslot.user.uid).to.be.a('number').that.is.greaterThan(0);\r",
+									"        pm.expect(timeslot.user.name).to.be.a('string').that.is.not.empty;\r",
+									"        pm.expect(timeslot.user.email).to.match(/^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$/); // Validate email format\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has valid days and times\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.startDay).to.be.a('string').that.is.not.empty;\r",
+									"        pm.expect(timeslot.startDay).equal(\"Monday\");\r",
+									"        pm.expect(timeslot.endDay).to.be.a('string').that.is.not.empty;\r",
+									"        pm.expect(timeslot.startTime).to.match(/^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$/); // Valid time format (HH:mm:ss)\r",
+									"        pm.expect(timeslot.endTime).to.match(/^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$/); // Valid time format (HH:mm:ss)\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has a valid availability\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.availability).to.be.oneOf(['available', 'busy']);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has a valid requests array\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        if (timeslot.requests) {\r",
+									"            pm.expect(timeslot.requests).to.be.an('array');\r",
+									"        }\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "34958c5d-b358-4603-85f3-cff12314503f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/day/Monday",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"day",
+								"Monday"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get timeslots by tid",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8ed2ba8e-2ff1-49b2-8d7d-a28290cb6c47",
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: 'http://localhost:8080/api/v1/timeslots', \r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        'apiKey': 'testtestkey'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"            \"startTime\": \"13:00:00\",\r",
+									"            \"startDay\": \"Monday\",\r",
+									"            \"endDay\": \"Monday\",\r",
+									"            \"endTime\": \"20:00:00\",\r",
+									"            \"availability\": \"available\",\r",
+									"            \"user\": {\r",
+									"                \"uid\": pm.environment.get('userId'), \r",
+									"                \"name\": \"testuser\",\r",
+									"                \"email\": \"test1@gmail.com\"\r",
+									"            }\r",
+									"        })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    if (err) {\r",
+									"        console.log('Error creating timeslot:', err);\r",
+									"    } else {\r",
+									"        // Assuming the response contains the timeslot ID (tid)\r",
+									"        const responseJson = res.json();\r",
+									"        console.log(responseJson);\r",
+									"        console.log(responseJson.tid);\r",
+									"        const timeslotId = parseInt(responseJson.tid, 10); \r",
+									"        \r",
+									"        // Save the timeslot ID in the environment variable for later use\r",
+									"        pm.environment.set('tid', timeslotId); // Store tid for use in the next request\r",
+									"        console.log('Timeslot created with ID:', timeslotId);\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "622cd2ac-0b29-4529-b3ad-7f34e64a3f0a",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains valid timeslot data\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    // Check that the response is an object (since we're expecting a single timeslot object)\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"\r",
+									"    // Validate the tid field\r",
+									"    pm.expect(responseJson.tid).to.be.a('number').that.is.equal(pm.environment.get('tid')); // Ensure tid is 99\r",
+									"\r",
+									"    // Validate the user field\r",
+									"    pm.expect(responseJson.user).to.be.an('object');\r",
+									"    pm.expect(responseJson.user.uid).to.be.a('number').that.is.equal(44);  // Check the user ID\r",
+									"    pm.expect(responseJson.user.name).to.be.a('string').that.is.equal('testuser'); // Check the user name\r",
+									"    pm.expect(responseJson.user.email).to.match(/^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$/); // Validate email format\r",
+									"\r",
+									"    // Validate the timeslot day and time fields\r",
+									"    pm.expect(responseJson.startDay).to.be.a('string').that.is.equal('Monday');  // Check startDay\r",
+									"    pm.expect(responseJson.endDay).to.be.a('string').that.is.equal('Monday');    // Check endDay\r",
+									"    pm.expect(responseJson.startTime).to.match(/^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$/); // Validate start time format\r",
+									"    pm.expect(responseJson.endTime).to.match(/^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$/);   // Validate end time format\r",
+									"\r",
+									"    // Validate the availability field\r",
+									"    pm.expect(responseJson.availability).to.be.oneOf(['available', 'busy']);  // Ensure availability is either 'available' or 'busy'\r",
+									"\r",
+									"    // Validate the requests array\r",
+									"    pm.expect(responseJson.requests).to.be.an('array'); \r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "7dd9c8d9-8f45-48e0-948f-a5584ab8a20c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/{{tid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"{{tid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get timeslots by tid not found",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8ed2ba8e-2ff1-49b2-8d7d-a28290cb6c47",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "622cd2ac-0b29-4529-b3ad-7f34e64a3f0a",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(500); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('msg'); // Ensure there's a 'msg' field\r",
+									"    pm.expect(jsonData).to.have.property('data'); // Ensure there's a 'data' field\r",
+									"    pm.expect(jsonData).to.have.property('success'); // Ensure there's a 'success' field\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message indicates user not found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"An unexpected error occurred\"); // Check if the message matches\r",
+									"    pm.expect(jsonData.data).to.eql(\"TimeSlot not found with id: 9999\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "54b6a5b4-66fd-45ab-80d8-a8f0e7755c29",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/9999",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"9999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get timeslots by uid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "00109305-f121-4a23-ba36-edc2c86f7648",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a non-empty array of timeslots\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('array').that.is.not.empty;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has a valid tid\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.tid).to.be.a('number').that.is.greaterThan(0);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has valid user data\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.user).to.be.an('object');\r",
+									"        pm.expect(timeslot.user.uid).to.be.a('number').that.is.greaterThan(0);\r",
+									"        pm.expect(timeslot.user.uid).equal(pm.environment.get('userId'));\r",
+									"        pm.expect(timeslot.user.name).to.be.a('string').that.is.not.empty;\r",
+									"        pm.expect(timeslot.user.email).to.match(/^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$/); // Validate email format\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has valid days and times\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.startDay).to.be.a('string').that.is.not.empty;\r",
+									"        pm.expect(timeslot.endDay).to.be.a('string').that.is.not.empty;\r",
+									"        pm.expect(timeslot.startTime).to.match(/^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$/); // Valid time format (HH:mm:ss)\r",
+									"        pm.expect(timeslot.endTime).to.match(/^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$/); // Valid time format (HH:mm:ss)\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has a valid availability\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.availability).to.be.oneOf(['available', 'busy']);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has a valid requests array\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        if (timeslot.requests) {\r",
+									"            pm.expect(timeslot.requests).to.be.an('array');\r",
+									"        }\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "a39208b7-ba25-4ca8-a208-40ae2a839085",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/user/{{userId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"user",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get timeslots by email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "58e03263-b3c2-4a89-baed-f7b7554277d1",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a non-empty array of timeslots\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('array').that.is.not.empty;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has a valid tid\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.tid).to.be.a('number').that.is.greaterThan(0);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has valid user data\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.user).to.be.an('object');\r",
+									"        pm.expect(timeslot.user.uid).to.be.a('number').that.is.greaterThan(0);\r",
+									"        pm.expect(timeslot.user.email).equal('test1@gmail.com');\r",
+									"        pm.expect(timeslot.user.name).to.be.a('string').that.is.not.empty;\r",
+									"        pm.expect(timeslot.user.email).to.match(/^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$/); // Validate email format\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has valid days and times\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.startDay).to.be.a('string').that.is.not.empty;\r",
+									"        pm.expect(timeslot.endDay).to.be.a('string').that.is.not.empty;\r",
+									"        pm.expect(timeslot.startTime).to.match(/^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$/); // Valid time format (HH:mm:ss)\r",
+									"        pm.expect(timeslot.endTime).to.match(/^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$/); // Valid time format (HH:mm:ss)\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has a valid availability\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.availability).to.be.oneOf(['available', 'busy']);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has a valid requests array\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        if (timeslot.requests) {\r",
+									"            pm.expect(timeslot.requests).to.be.an('array');\r",
+									"        }\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "bc142bbb-05a1-4a78-9d55-9625528b0dca",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/user?email=test1@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"user"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "test1@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get timeslots by availability",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "381d456e-9b2a-44a8-858b-9b67693ed83b",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a non-empty array of timeslots\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('array').that.is.not.empty;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has a valid tid\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.tid).to.be.a('number').that.is.greaterThan(0);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has valid user data\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.user).to.be.an('object');\r",
+									"        pm.expect(timeslot.user.uid).to.be.a('number').that.is.greaterThan(0);\r",
+									"        pm.expect(timeslot.user.name).to.be.a('string').that.is.not.empty;\r",
+									"        pm.expect(timeslot.user.email).to.match(/^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$/); // Validate email format\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has valid days and times\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.startDay).to.be.a('string').that.is.not.empty;\r",
+									"        pm.expect(timeslot.endDay).to.be.a('string').that.is.not.empty;\r",
+									"        pm.expect(timeslot.startTime).to.match(/^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$/); // Valid time format (HH:mm:ss)\r",
+									"        pm.expect(timeslot.endTime).to.match(/^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$/); // Valid time format (HH:mm:ss)\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has a valid availability\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        pm.expect(timeslot.availability).to.be.oneOf(['available', 'busy']);\r",
+									"        pm.expect(timeslot.availability).equal(\"busy\");\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each timeslot has a valid requests array\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    responseJson.forEach(function(timeslot) {\r",
+									"        if (timeslot.requests) {\r",
+									"            pm.expect(timeslot.requests).to.be.an('array');\r",
+									"        }\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "af1d4825-15f5-4a25-88cf-99de2f0cab01",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/availability/busy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"availability",
+								"busy"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "3fcc35a4-056e-4f0e-afed-b2a7aa3ef4b9"
+		},
+		{
+			"name": "Request APIs",
+			"item": [
+				{
+					"name": "Post New Request",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "304a9dac-281a-4173-893f-1ff1ea86e0c8",
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: 'http://localhost:8080/api/v1/users/register', \r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        'apiKey': 'testtestkey'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"            // User data to create\r",
+									"            name: 'testpatient',\r",
+									"            email: 'test2@gmail.com'\r",
+									"        })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    if (err) {\r",
+									"        console.log('Error creating user:', err);\r",
+									"    } else {\r",
+									"        // Assuming the response contains the user ID\r",
+									"        const responseJson = res.json();\r",
+									"        const userId = responseJson.data.uid;\r",
+									"\r",
+									"        // Save the user ID and other user data for use in the next request\r",
+									"        pm.environment.set('patientId', userId);\r",
+									"        pm.environment.set('patientName', 'testpatient');\r",
+									"        console.log('User created with ID:', userId);\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "7285d545-4d3b-4ede-af26-c6a6317a5a3b",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains valid data for the new request\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    // Check that the response is an object (since we're expecting the response to contain both user and timeSlot details)\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"\r",
+									"    // Validate the 'user' object\r",
+									"    pm.expect(responseJson.user).to.be.an('object');\r",
+									"    pm.expect(responseJson.user.uid).to.be.a('number').that.is.equal(pm.environment.get('patientId'));  // Ensure user ID is 46\r",
+									"    pm.expect(responseJson.user.name).to.be.a('string').that.is.equal(pm.environment.get('patientName')); // Validate user name\r",
+									"    pm.expect(responseJson.user.email).to.match(/^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$/); // Validate user email format\r",
+									"\r",
+									"    // Validate the 'timeSlot' object\r",
+									"    pm.expect(responseJson.timeSlot).to.be.an('object');\r",
+									"\r",
+									"    // Validate timeSlot 'tid'\r",
+									"    pm.expect(responseJson.timeSlot.tid).to.be.a('number').that.is.equal(pm.environment.get('tid'));\r",
+									"\r",
+									"    // Validate 'description' field\r",
+									"    pm.expect(responseJson.description).to.be.a('string').that.is.equal('Request');  // Ensure description is 'Request'\r",
+									"\r",
+									"    // Validate 'status' field\r",
+									"    pm.expect(responseJson.status).to.be.a('string').that.is.equal('undecided'); // Ensure status is 'undecided'\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "aaad9c34-6aa4-45e8-9e7a-94d160c0231b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": {\r\n        \"uid\": {{patientId}} \r\n    },\r\n    \"timeSlot\": {\r\n        \"tid\": {{tid}}\r\n    },\r\n    \"description\": \"Request\",\r\n    \"status\": \"undecided\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/requests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"requests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get request with given tid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5f85614c-7169-45b7-a1f8-d408b2a757dd",
+								"exec": [
+									"// Test the status code is 200 OK\r",
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check the response body\", function () {\r",
+									"    console.log(pm.response.json());\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array with at least one item\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('array');  \r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Loop through each item in the response array and check the relevant properties\r",
+									"pm.test(\"Each item contains expected fields\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    // Loop through each request and check if required properties are present\r",
+									"    responseJson.forEach(request => {\r",
+									"        // Validate user fields\r",
+									"        pm.expect(request.user).to.have.property('uid');\r",
+									"        pm.expect(request.user).to.have.property('name');\r",
+									"        pm.expect(request.user).to.have.property('email');\r",
+									"\r",
+									"        // Validate timeSlot fields\r",
+									"        pm.expect(request.timeSlot).to.have.property('tid');\r",
+									"        pm.expect(request.timeSlot).to.have.property('startDay');\r",
+									"        pm.expect(request.timeSlot).to.have.property('endDay');\r",
+									"        pm.expect(request.timeSlot).to.have.property('startTime');\r",
+									"        pm.expect(request.timeSlot).to.have.property('endTime');\r",
+									"        pm.expect(request.timeSlot).to.have.property('availability');\r",
+									"\r",
+									"        // Validate description field\r",
+									"        pm.expect(request).to.have.property('description');\r",
+									"        pm.expect(request.description).to.be.a('string');\r",
+									"\r",
+									"        // Validate status field\r",
+									"        pm.expect(request).to.have.property('status');\r",
+									"        pm.expect(request.status).to.be.a('string');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test that the tid matches the one you are searching for\r",
+									"pm.test(\"Response contains the expected timeslot tid\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    const expectedTid = pm.environment.get('tid');  // Get the tid from environment variable\r",
+									"\r",
+									"    responseJson.forEach(request => {\r",
+									"        pm.expect(request.timeSlot.tid).to.equal(Number(expectedTid));  // Compare each item's tid\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "3defd324-8683-48ff-bffb-d67fbe25189f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/requests/search?tid={{tid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"requests",
+								"search"
+							],
+							"query": [
+								{
+									"key": "tid",
+									"value": "{{tid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get request with given requesterId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6870e863-de06-46b3-b149-c9ae6a0c882c",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check the response body\", function () {\r",
+									"    console.log(pm.response.json());\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array with at least one item\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('array');  \r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Loop through each item in the response array and check the relevant properties\r",
+									"pm.test(\"Each item contains expected fields\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    // Loop through each request and check if required properties are present\r",
+									"    responseJson.forEach(request => {\r",
+									"        // Validate user fields\r",
+									"        pm.expect(request.user).to.have.property('uid');\r",
+									"        pm.expect(request.user).to.have.property('name');\r",
+									"        pm.expect(request.user).to.have.property('email');\r",
+									"\r",
+									"        // Validate timeSlot fields\r",
+									"        pm.expect(request.timeSlot).to.have.property('tid');\r",
+									"        pm.expect(request.timeSlot).to.have.property('startDay');\r",
+									"        pm.expect(request.timeSlot).to.have.property('endDay');\r",
+									"        pm.expect(request.timeSlot).to.have.property('startTime');\r",
+									"        pm.expect(request.timeSlot).to.have.property('endTime');\r",
+									"        pm.expect(request.timeSlot).to.have.property('availability');\r",
+									"\r",
+									"        // Validate description field\r",
+									"        pm.expect(request).to.have.property('description');\r",
+									"        pm.expect(request.description).to.be.a('string');\r",
+									"\r",
+									"        // Validate status field\r",
+									"        pm.expect(request).to.have.property('status');\r",
+									"        pm.expect(request.status).to.be.a('string');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test that the tid matches the one you are searching for\r",
+									"pm.test(\"Response contains the expected timeslot tid\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    const expectedTid = pm.environment.get('patientId');  // Get the tid from environment variable\r",
+									"\r",
+									"    responseJson.forEach(request => {\r",
+									"        pm.expect(request.user.uid).to.equal(Number(expectedTid));  // Compare each item's tid\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "9962dcfa-6d17-4b2b-bd62-5b835fe2cc34",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/requests/search?requesterId={{patientId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"requests",
+								"search"
+							],
+							"query": [
+								{
+									"key": "requesterId",
+									"value": "{{patientId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get request with given uid and tid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f03d56d7-4619-4812-860c-c41e4917b9b8",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains valid data for the new request\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    // Check that the response is an object (since we're expecting the response to contain both user and timeSlot details)\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"\r",
+									"    // Validate the 'user' object\r",
+									"    pm.expect(responseJson.user).to.be.an('object');\r",
+									"    pm.expect(responseJson.user.uid).to.be.a('number').that.is.equal(pm.environment.get('patientId'));  // Ensure user ID is 46\r",
+									"    pm.expect(responseJson.user.name).to.be.a('string').that.is.equal(pm.environment.get('patientName')); // Validate user name\r",
+									"    pm.expect(responseJson.user.email).to.match(/^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$/); // Validate user email format\r",
+									"\r",
+									"    // Validate the 'timeSlot' object\r",
+									"    pm.expect(responseJson.timeSlot).to.be.an('object');\r",
+									"\r",
+									"    // Validate timeSlot 'tid'\r",
+									"    pm.expect(responseJson.timeSlot.tid).to.be.a('number').that.is.equal(pm.environment.get('tid'));\r",
+									"\r",
+									"    // Validate 'description' field\r",
+									"    pm.expect(responseJson.description).to.be.a('string').that.is.equal('Request');  // Ensure description is 'Request'\r",
+									"\r",
+									"    // Validate 'status' field\r",
+									"    pm.expect(responseJson.status).to.be.a('string').that.is.equal('undecided'); // Ensure status is 'undecided'\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "c6d28e8e-0469-4836-8689-8ae7d0dae923",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/requests/{{patientId}}/{{tid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"requests",
+								"{{patientId}}",
+								"{{tid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get request with given uid and tid not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "02ec3999-cd0e-4572-be2c-aa884dd9fa60",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(500); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('msg'); // Ensure there's a 'msg' field\r",
+									"    pm.expect(jsonData).to.have.property('data'); // Ensure there's a 'data' field\r",
+									"    pm.expect(jsonData).to.have.property('success'); // Ensure there's a 'success' field\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message indicates not found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"An unexpected error occurred\"); // Check if the message matches\r",
+									"    pm.expect(jsonData.data).to.eql(\"TimeSlot not found with id: 999\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "6eb5f3ba-76bc-4feb-a75b-82417576d49e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/requests/888/999",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"requests",
+								"888",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Request description",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "91f3e000-58c7-4d32-812e-223f3f41d4f9",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains updated description\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    // Check if the description in the response is updated correctly\r",
+									"    pm.expect(responseJson.description).to.be.a('string').that.is.equal('new desc');\r",
+									"    \r",
+									"    // Validate other fields in the response as needed (like patientId, tid)\r",
+									"    pm.expect(responseJson.user.uid).to.equal(Number(pm.environment.get('patientId')));  // Ensure user ID matches the patientId\r",
+									"    pm.expect(responseJson.timeSlot.tid).to.equal(Number(pm.environment.get('tid')));  // Ensure time slot ID matches the tid\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "c33f76ee-c818-4fc3-a150-4eb56856d409",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "new desc"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/requests/description?userid={{patientId}} &tid={{tid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"requests",
+								"description"
+							],
+							"query": [
+								{
+									"key": "userid",
+									"value": "{{patientId}} "
+								},
+								{
+									"key": "tid",
+									"value": "{{tid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Request description not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "91f3e000-58c7-4d32-812e-223f3f41d4f9",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(500); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('msg'); // Ensure there's a 'msg' field\r",
+									"    pm.expect(jsonData).to.have.property('data'); // Ensure there's a 'data' field\r",
+									"    pm.expect(jsonData).to.have.property('success'); // Ensure there's a 'success' field\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message indicates not found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"An unexpected error occurred\"); // Check if the message matches\r",
+									"    pm.expect(jsonData.data).to.eql(\"TimeSlot not found with id: 999\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "ce00b4cb-c170-4cc7-a5f2-47fa802bb46b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "new desc"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/requests/description?userid=888&tid=999",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"requests",
+								"description"
+							],
+							"query": [
+								{
+									"key": "userid",
+									"value": "888"
+								},
+								{
+									"key": "tid",
+									"value": "999"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Request status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d420162d-afec-4548-9479-791d27a4d136",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains updated description\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    // Check if the description in the response is updated correctly\r",
+									"    pm.expect(responseJson.status).to.be.a('string').that.is.equal('approved');\r",
+									"    \r",
+									"    // Validate other fields in the response as needed (like patientId, tid)\r",
+									"    pm.expect(responseJson.user.uid).to.equal(Number(pm.environment.get('patientId')));  // Ensure user ID matches the patientId\r",
+									"    pm.expect(responseJson.timeSlot.tid).to.equal(Number(pm.environment.get('tid')));  // Ensure time slot ID matches the tid\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "1863520a-d69b-4541-a62c-7db752b65b27",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\"approved\"",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/requests/status?userid={{patientId}} &tid={{tid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"requests",
+								"status"
+							],
+							"query": [
+								{
+									"key": "userid",
+									"value": "{{patientId}} "
+								},
+								{
+									"key": "tid",
+									"value": "{{tid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "589f7b54-df3d-4812-94ab-429daf5fb971",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(200); \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "85db427b-bdc9-4416-bb21-987b8de58513",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/requests?userid={{patientId}}&tid={{tid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"requests"
+							],
+							"query": [
+								{
+									"key": "userid",
+									"value": "{{patientId}}"
+								},
+								{
+									"key": "tid",
+									"value": "{{tid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Request not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "589f7b54-df3d-4812-94ab-429daf5fb971",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(500); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('msg'); // Ensure there's a 'msg' field\r",
+									"    pm.expect(jsonData).to.have.property('data'); // Ensure there's a 'data' field\r",
+									"    pm.expect(jsonData.success).to.equal(false);\r",
+									"    pm.expect(jsonData).to.have.property('success'); // Ensure there's a 'success' field\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message indicates not found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"An unexpected error occurred\"); // Check if the message matches\r",
+									"    pm.expect(jsonData.data).to.eql(\"TimeSlot not found with id: 999\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "8ff96bf0-ece8-445f-8a85-177d760d696b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/requests?userid=888&tid=999",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"requests"
+							],
+							"query": [
+								{
+									"key": "userid",
+									"value": "888"
+								},
+								{
+									"key": "tid",
+									"value": "999"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "b0d4caf9-b9f7-4eb1-8293-b727a94bf270"
+		},
+		{
+			"name": "Meeting APIs",
+			"item": [
+				{
+					"name": "Meeting saveMeeting",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba82e974-8a1f-48cd-a186-c81144beddc0",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.msg).to.eql(\"Meeting saved successfully\");  // Check if msg is as expected\r",
+									"});\r",
+									"\r",
+									"// Test if the 'success' field is true\r",
+									"pm.test(\"Success is true\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.success).to.eql(true);  // Ensure success is true\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "8a6c357f-5629-41c2-aa56-8ae9a64f5bb1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"organizerId\": {{userId}},\n        \"type\": \"one_on_one\",\n        \"description\": \"Team meeting\",\n        \"startDay\": \"Monday\",\n        \"startTime\": \"2024-11-01T10:00:00.000\",\n        \"endDay\": \"Monday\",\n        \"endTime\": \"2024-11-01T11:00:00.000\",\n        \"recurrence\": \"monthly\",\n        \"createdAt\": null,\n        \"inviteParticipant\": null,\n        \"acceptParticipant\": null,\n        \"status\": \"Invalid\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/v1/meetings/saveMeeting",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"meetings",
+								"saveMeeting"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Meeting get_all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ea3e7370-813d-4d91-aef9-3398762f9718",
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"const meetingId = responseJson[0].mid;\r",
+									"pm.environment.set('mid', meetingId);\r",
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test if the response is an array and has at least one item\r",
+									"pm.test(\"Response is an array with at least one item\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('array').that.has.length.above(0);  // Ensure it's an array and not empty\r",
+									"});\r",
+									"\r",
+									"// Test if each meeting object contains the expected properties\r",
+									"pm.test(\"Each meeting contains required fields\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    responseJson.forEach(function(meeting) {\r",
+									"        pm.expect(meeting).to.have.property('mid');  // Check 'mid' exists\r",
+									"        pm.expect(meeting).to.have.property('organizer');  // Check 'organizer' exists\r",
+									"        pm.expect(meeting).to.have.property('type');  // Check 'type' exists\r",
+									"        pm.expect(meeting).to.have.property('description');  // Check 'description' exists\r",
+									"        pm.expect(meeting).to.have.property('startTime');  // Check 'startTime' exists\r",
+									"        pm.expect(meeting).to.have.property('endTime');  // Check 'endTime' exists\r",
+									"        pm.expect(meeting).to.have.property('startDay');  // Check 'startDay' exists\r",
+									"        pm.expect(meeting).to.have.property('endDay');  // Check 'endDay' exists\r",
+									"        pm.expect(meeting).to.have.property('recurrence');  // Check 'recurrence' exists\r",
+									"        pm.expect(meeting).to.have.property('createdAt');  // Check 'createdAt' exists\r",
+									"        pm.expect(meeting).to.have.property('inviteParticipant');  // Check 'inviteParticipant' exists (it can be null)\r",
+									"        pm.expect(meeting).to.have.property('acceptParticipant');  // Check 'acceptParticipant' exists (it can be null)\r",
+									"        pm.expect(meeting).to.have.property('status');  // Check 'status' exists\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Test if 'organizer' contains the expected fields: uid, name, email\r",
+									"pm.test(\"Organizer contains expected fields\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    responseJson.forEach(function(meeting) {\r",
+									"        const organizer = meeting.organizer;\r",
+									"        pm.expect(organizer).to.have.property('uid');  // Check 'uid' exists\r",
+									"        pm.expect(organizer).to.have.property('name');  // Check 'name' exists\r",
+									"        pm.expect(organizer).to.have.property('email');  // Check 'email' exists\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "a739a3ee-6d77-450d-ab26-b7ac9b83bd18",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/meetings/get_all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"meetings",
+								"get_all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Meeting findByType",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "82c11db7-97de-42a5-98f4-47856d68c2b9",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test if the response is an array and has at least one item\r",
+									"pm.test(\"Response is an array with at least one item\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('array').that.has.length.above(0);  // Ensure it's an array and not empty\r",
+									"});\r",
+									"\r",
+									"// Test if each meeting object contains the expected properties\r",
+									"pm.test(\"Each meeting contains required fields\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    responseJson.forEach(function(meeting) {\r",
+									"        pm.expect(meeting).to.have.property('mid');  // Check 'mid' exists\r",
+									"        pm.expect(meeting).to.have.property('organizer');  // Check 'organizer' exists\r",
+									"        pm.expect(meeting).to.have.property('type');  // Check 'type' exists\r",
+									"        pm.expect(meeting).to.have.property('description');  // Check 'description' exists\r",
+									"        pm.expect(meeting).to.have.property('startTime');  // Check 'startTime' exists\r",
+									"        pm.expect(meeting).to.have.property('endTime');  // Check 'endTime' exists\r",
+									"        pm.expect(meeting).to.have.property('startDay');  // Check 'startDay' exists\r",
+									"        pm.expect(meeting).to.have.property('endDay');  // Check 'endDay' exists\r",
+									"        pm.expect(meeting).to.have.property('recurrence');  // Check 'recurrence' exists\r",
+									"        pm.expect(meeting).to.have.property('createdAt');  // Check 'createdAt' exists\r",
+									"        pm.expect(meeting).to.have.property('inviteParticipant');  // Check 'inviteParticipant' exists (it can be null)\r",
+									"        pm.expect(meeting).to.have.property('acceptParticipant');  // Check 'acceptParticipant' exists (it can be null)\r",
+									"        pm.expect(meeting).to.have.property('status');  // Check 'status' exists\r",
+									"        pm.expect(meeting.type).to.equal('one_on_one');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Test if 'organizer' contains the expected fields: uid, name, email\r",
+									"pm.test(\"Organizer contains expected fields\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    responseJson.forEach(function(meeting) {\r",
+									"        const organizer = meeting.organizer;\r",
+									"        pm.expect(organizer).to.have.property('uid');  // Check 'uid' exists\r",
+									"        pm.expect(organizer).to.have.property('name');  // Check 'name' exists\r",
+									"        pm.expect(organizer).to.have.property('email');  // Check 'email' exists\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "89582bb8-9f1a-4f1f-8256-cb39b21d83c8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/meetings/findByType?type=one_on_one",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"meetings",
+								"findByType"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "one_on_one"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Meeting findById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "82c11db7-97de-42a5-98f4-47856d68c2b9",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains valid meeting data\", function () {\r",
+									"    // Parse the response body as JSON\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    // Check that the response contains the \"mid\" field and it is a number\r",
+									"    pm.expect(responseJson).to.have.property('mid').that.is.a('number');\r",
+									"    \r",
+									"    // Check that the \"organizer\" field is present and has required properties\r",
+									"    pm.expect(responseJson).to.have.property('organizer').that.is.an('object');\r",
+									"    pm.expect(responseJson.organizer).to.have.property('uid').that.is.a('number');\r",
+									"    pm.expect(responseJson.organizer).to.have.property('name').that.is.a('string');\r",
+									"    pm.expect(responseJson.organizer).to.have.property('email').that.is.a('string');\r",
+									"    \r",
+									"    // Check that the meeting type is valid\r",
+									"    pm.expect(responseJson).to.have.property('type').that.is.a('string').that.equals('one_on_one');\r",
+									"    \r",
+									"    // Check that the description is provided\r",
+									"    pm.expect(responseJson).to.have.property('description').that.is.a('string');\r",
+									"    \r",
+									"    // Check that start and end times are in the expected format\r",
+									"    pm.expect(responseJson).to.have.property('startTime').that.is.a('string');\r",
+									"    pm.expect(responseJson).to.have.property('endTime').that.is.a('string');\r",
+									"    \r",
+									"    // Check that start and end days are present and are strings\r",
+									"    pm.expect(responseJson).to.have.property('startDay').that.is.a('string');\r",
+									"    pm.expect(responseJson).to.have.property('endDay').that.is.a('string');\r",
+									"    pm.expect(responseJson.mid).to.equal(pm.environment.get('mid'));\r",
+									"    \r",
+									"    // Check that recurrence is valid\r",
+									"    pm.expect(responseJson).to.have.property('recurrence').that.is.a('string').that.equals('monthly');\r",
+									"    \r",
+									"    // Check the status value\r",
+									"    pm.expect(responseJson).to.have.property('status').that.is.a('string').that.equals('Invalid');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "c850c509-bc30-4acc-a04d-85762538fabc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/meetings/findById?id={{mid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"meetings",
+								"findById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{mid}}",
+									"type": "text"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Meeting findById not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "82c11db7-97de-42a5-98f4-47856d68c2b9",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('msg'); // Ensure there's a 'msg' field\r",
+									"    pm.expect(jsonData).to.have.property('data'); // Ensure there's a 'data' field\r",
+									"    pm.expect(jsonData).to.have.property('success'); // Ensure there's a 'success' field\r",
+									"    pm.expect(jsonData.success).to.equal(false);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message indicates not found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"An unexpected error occurred\"); // Check if the message matches\r",
+									"    pm.expect(jsonData.data).to.eql(\"No value present\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "9a4c55d8-8ee1-4cf3-860c-5ff4bd4c36c9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/meetings/findById?id=999",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"meetings",
+								"findById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "999"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Meeting findByStatus",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0eeb0fa1-7360-44ec-b275-5f205ad6b9ab",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test if the response is an array and has at least one item\r",
+									"pm.test(\"Response is an array with at least one item\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('array').that.has.length.above(0);  // Ensure it's an array and not empty\r",
+									"});\r",
+									"\r",
+									"// Test if each meeting object contains the expected properties\r",
+									"pm.test(\"Each meeting contains required fields\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    responseJson.forEach(function(meeting) {\r",
+									"        pm.expect(meeting).to.have.property('mid');  // Check 'mid' exists\r",
+									"        pm.expect(meeting).to.have.property('organizer');  // Check 'organizer' exists\r",
+									"        pm.expect(meeting).to.have.property('type');  // Check 'type' exists\r",
+									"        pm.expect(meeting).to.have.property('description');  // Check 'description' exists\r",
+									"        pm.expect(meeting).to.have.property('startTime');  // Check 'startTime' exists\r",
+									"        pm.expect(meeting).to.have.property('endTime');  // Check 'endTime' exists\r",
+									"        pm.expect(meeting).to.have.property('startDay');  // Check 'startDay' exists\r",
+									"        pm.expect(meeting).to.have.property('endDay');  // Check 'endDay' exists\r",
+									"        pm.expect(meeting).to.have.property('recurrence');  // Check 'recurrence' exists\r",
+									"        pm.expect(meeting).to.have.property('createdAt');  // Check 'createdAt' exists\r",
+									"        pm.expect(meeting).to.have.property('inviteParticipant');  // Check 'inviteParticipant' exists (it can be null)\r",
+									"        pm.expect(meeting).to.have.property('acceptParticipant');  // Check 'acceptParticipant' exists (it can be null)\r",
+									"        pm.expect(meeting).to.have.property('status');  // Check 'status' exists\r",
+									"        pm.expect(meeting.status).to.equal('Invalid');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Test if 'organizer' contains the expected fields: uid, name, email\r",
+									"pm.test(\"Organizer contains expected fields\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    responseJson.forEach(function(meeting) {\r",
+									"        const organizer = meeting.organizer;\r",
+									"        pm.expect(organizer).to.have.property('uid');  // Check 'uid' exists\r",
+									"        pm.expect(organizer).to.have.property('name');  // Check 'name' exists\r",
+									"        pm.expect(organizer).to.have.property('email');  // Check 'email' exists\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "fe6fca31-62f8-4758-a279-825f443184e9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/v1/meetings/findByStatus?status=Invalid",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"meetings",
+								"findByStatus"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "Invalid"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Meeting findByStatus invalid input",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0eeb0fa1-7360-44ec-b275-5f205ad6b9ab",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('msg'); // Ensure there's a 'msg' field\r",
+									"    pm.expect(jsonData).to.have.property('data'); // Ensure there's a 'data' field\r",
+									"    pm.expect(jsonData).to.have.property('success'); // Ensure there's a 'success' field\r",
+									"    pm.expect(jsonData.success).to.equal(false);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message indicates not found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"An unexpected error occurred\"); // Check if the message matches\r",
+									"    pm.expect(jsonData.data).to.eql(\"No enum constant dev.teamproject.common.CommonTypes.MeetingStatus.1234\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "d80926f4-cb4e-45c3-bc23-40b295ab9e0d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/v1/meetings/findByStatus?status=1234",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"meetings",
+								"findByStatus"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "1234"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Meeting findByRecurrence",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0eeb0fa1-7360-44ec-b275-5f205ad6b9ab",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test if the response is an array and has at least one item\r",
+									"pm.test(\"Response is an array with at least one item\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('array').that.has.length.above(0);  // Ensure it's an array and not empty\r",
+									"});\r",
+									"\r",
+									"// Test if each meeting object contains the expected properties\r",
+									"pm.test(\"Each meeting contains required fields\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    responseJson.forEach(function(meeting) {\r",
+									"        pm.expect(meeting).to.have.property('mid');  // Check 'mid' exists\r",
+									"        pm.expect(meeting).to.have.property('organizer');  // Check 'organizer' exists\r",
+									"        pm.expect(meeting).to.have.property('type');  // Check 'type' exists\r",
+									"        pm.expect(meeting).to.have.property('description');  // Check 'description' exists\r",
+									"        pm.expect(meeting).to.have.property('startTime');  // Check 'startTime' exists\r",
+									"        pm.expect(meeting).to.have.property('endTime');  // Check 'endTime' exists\r",
+									"        pm.expect(meeting).to.have.property('startDay');  // Check 'startDay' exists\r",
+									"        pm.expect(meeting).to.have.property('endDay');  // Check 'endDay' exists\r",
+									"        pm.expect(meeting).to.have.property('recurrence');  // Check 'recurrence' exists\r",
+									"        pm.expect(meeting).to.have.property('createdAt');  // Check 'createdAt' exists\r",
+									"        pm.expect(meeting).to.have.property('inviteParticipant');  // Check 'inviteParticipant' exists (it can be null)\r",
+									"        pm.expect(meeting).to.have.property('acceptParticipant');  // Check 'acceptParticipant' exists (it can be null)\r",
+									"        pm.expect(meeting).to.have.property('status');  // Check 'status' exists\r",
+									"        pm.expect(meeting.recurrence).to.equal('monthly');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Test if 'organizer' contains the expected fields: uid, name, email\r",
+									"pm.test(\"Organizer contains expected fields\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    responseJson.forEach(function(meeting) {\r",
+									"        const organizer = meeting.organizer;\r",
+									"        pm.expect(organizer).to.have.property('uid');  // Check 'uid' exists\r",
+									"        pm.expect(organizer).to.have.property('name');  // Check 'name' exists\r",
+									"        pm.expect(organizer).to.have.property('email');  // Check 'email' exists\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "e769f204-f078-4e9a-a9ac-6206f32464c7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/v1/meetings/findByRecurrence?recurrence=monthly",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"meetings",
+								"findByRecurrence"
+							],
+							"query": [
+								{
+									"key": "recurrence",
+									"value": "monthly"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Meeting findByEmail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0eeb0fa1-7360-44ec-b275-5f205ad6b9ab",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test if the response is an array and has at least one item\r",
+									"pm.test(\"Response is an array with at least one item\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('array').that.has.length.above(0);  // Ensure it's an array and not empty\r",
+									"});\r",
+									"\r",
+									"// Test if each meeting object contains the expected properties\r",
+									"pm.test(\"Each meeting contains required fields\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    responseJson.forEach(function(meeting) {\r",
+									"        pm.expect(meeting).to.have.property('mid');  // Check 'mid' exists\r",
+									"        pm.expect(meeting).to.have.property('organizer');  // Check 'organizer' exists\r",
+									"        pm.expect(meeting).to.have.property('type');  // Check 'type' exists\r",
+									"        pm.expect(meeting).to.have.property('description');  // Check 'description' exists\r",
+									"        pm.expect(meeting).to.have.property('startTime');  // Check 'startTime' exists\r",
+									"        pm.expect(meeting).to.have.property('endTime');  // Check 'endTime' exists\r",
+									"        pm.expect(meeting).to.have.property('startDay');  // Check 'startDay' exists\r",
+									"        pm.expect(meeting).to.have.property('endDay');  // Check 'endDay' exists\r",
+									"        pm.expect(meeting).to.have.property('recurrence');  // Check 'recurrence' exists\r",
+									"        pm.expect(meeting).to.have.property('createdAt');  // Check 'createdAt' exists\r",
+									"        pm.expect(meeting).to.have.property('inviteParticipant');  // Check 'inviteParticipant' exists (it can be null)\r",
+									"        pm.expect(meeting).to.have.property('acceptParticipant');  // Check 'acceptParticipant' exists (it can be null)\r",
+									"        pm.expect(meeting).to.have.property('status');  // Check 'status' exists\r",
+									"        pm.expect(meeting.organizer.email).to.equal(pm.environment.get('userEmail'));\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Test if 'organizer' contains the expected fields: uid, name, email\r",
+									"pm.test(\"Organizer contains expected fields\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    responseJson.forEach(function(meeting) {\r",
+									"        const organizer = meeting.organizer;\r",
+									"        pm.expect(organizer).to.have.property('uid');  // Check 'uid' exists\r",
+									"        pm.expect(organizer).to.have.property('name');  // Check 'name' exists\r",
+									"        pm.expect(organizer).to.have.property('email');  // Check 'email' exists\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "838beb47-2ac1-49d5-9def-1d0eb4019106",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/v1/meetings/findByEmail?email={{userEmail}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"meetings",
+								"findByEmail"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "{{userEmail}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Meeting findByOrganizer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0eeb0fa1-7360-44ec-b275-5f205ad6b9ab",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test if the response is an array and has at least one item\r",
+									"pm.test(\"Response is an array with at least one item\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('array').that.has.length.above(0);  // Ensure it's an array and not empty\r",
+									"});\r",
+									"\r",
+									"// Test if each meeting object contains the expected properties\r",
+									"pm.test(\"Each meeting contains required fields\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    responseJson.forEach(function(meeting) {\r",
+									"        pm.expect(meeting).to.have.property('mid');  // Check 'mid' exists\r",
+									"        pm.expect(meeting).to.have.property('organizer');  // Check 'organizer' exists\r",
+									"        pm.expect(meeting).to.have.property('type');  // Check 'type' exists\r",
+									"        pm.expect(meeting).to.have.property('description');  // Check 'description' exists\r",
+									"        pm.expect(meeting).to.have.property('startTime');  // Check 'startTime' exists\r",
+									"        pm.expect(meeting).to.have.property('endTime');  // Check 'endTime' exists\r",
+									"        pm.expect(meeting).to.have.property('startDay');  // Check 'startDay' exists\r",
+									"        pm.expect(meeting).to.have.property('endDay');  // Check 'endDay' exists\r",
+									"        pm.expect(meeting).to.have.property('recurrence');  // Check 'recurrence' exists\r",
+									"        pm.expect(meeting).to.have.property('createdAt');  // Check 'createdAt' exists\r",
+									"        pm.expect(meeting).to.have.property('inviteParticipant');  // Check 'inviteParticipant' exists (it can be null)\r",
+									"        pm.expect(meeting).to.have.property('acceptParticipant');  // Check 'acceptParticipant' exists (it can be null)\r",
+									"        pm.expect(meeting).to.have.property('status');  // Check 'status' exists\r",
+									"        pm.expect(meeting.organizer.email).to.equal(pm.environment.get('userEmail'));\r",
+									"        pm.expect(meeting.organizer.uid).to.equal(pm.environment.get('userId'));\r",
+									"        pm.expect(meeting.organizer.name).to.equal(pm.environment.get('userName'));\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Test if 'organizer' contains the expected fields: uid, name, email\r",
+									"pm.test(\"Organizer contains expected fields\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    responseJson.forEach(function(meeting) {\r",
+									"        const organizer = meeting.organizer;\r",
+									"        pm.expect(organizer).to.have.property('uid');  // Check 'uid' exists\r",
+									"        pm.expect(organizer).to.have.property('name');  // Check 'name' exists\r",
+									"        pm.expect(organizer).to.have.property('email');  // Check 'email' exists\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "607474ad-d011-4a86-a372-45ac772078cb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uid\": \"{{userId}}\",\r\n    \"name\": \"{{userName}}\",\r\n    \"email\": \"{{userEmail}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/v1/meetings/findByOrganizer",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"meetings",
+								"findByOrganizer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Meeting delete Meeting",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba82e974-8a1f-48cd-a186-c81144beddc0",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "ab834586-9599-43d2-a495-02b6cda10af9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/v1/meetings?mid={{mid}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"meetings"
+							],
+							"query": [
+								{
+									"key": "mid",
+									"value": "{{mid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Meeting delete Meeting unfound",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba82e974-8a1f-48cd-a186-c81144beddc0",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('msg'); // Ensure there's a 'msg' field\r",
+									"    pm.expect(jsonData).to.have.property('data'); // Ensure there's a 'data' field\r",
+									"    pm.expect(jsonData).to.have.property('success'); // Ensure there's a 'success' field\r",
+									"    pm.expect(jsonData.success).to.equal(false);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message indicates not found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"An unexpected error occurred\"); // Check if the message matches\r",
+									"    pm.expect(jsonData.data).to.eql(\"Meeting not found with id: 999\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "0e31eff5-d777-4c0a-b4d0-73f00a7866fa",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/v1/meetings?mid=999",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"meetings"
+							],
+							"query": [
+								{
+									"key": "mid",
+									"value": "999"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "10f90662-cdac-4ffd-8ed4-c5753208738c"
+		},
+		{
 			"name": "Participant APIs",
 			"item": [
 				{
+					"name": "add participant",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e7bffdcd-e450-4751-943e-abc921905510",
+								"exec": [
+									"// Step 1: Prepare the meeting data\r",
+									"const meetingData = {\r",
+									"    \"organizerId\": pm.environment.get('userId'), // Use the userId from the environment variable\r",
+									"    \"type\": \"one_on_one\",\r",
+									"    \"description\": \"Team meeting\",\r",
+									"    \"startDay\": \"Monday\",\r",
+									"    \"startTime\": \"2024-11-01T10:00:00.000\",\r",
+									"    \"endDay\": \"Monday\",\r",
+									"    \"endTime\": \"2024-11-01T11:00:00.000\",\r",
+									"    \"recurrence\": \"monthly\",\r",
+									"    \"createdAt\": null,\r",
+									"    \"inviteParticipant\": null,\r",
+									"    \"acceptParticipant\": null,\r",
+									"    \"status\": \"Invalid\"\r",
+									"};\r",
+									"\r",
+									"// Step 2: Send the POST request to create the meeting\r",
+									"pm.sendRequest({\r",
+									"    url: 'http://localhost:8080/api/v1/meetings', // Endpoint to create the meeting\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        'apiKey': 'testtestkey'  // Add your API key here if required\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify(meetingData)\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    if (err) {\r",
+									"        console.log('Error creating meeting:', err);\r",
+									"    } else {\r",
+									"        // Step 3: If meeting creation is successful, send the GET request to fetch all meetings\r",
+									"        pm.sendRequest({\r",
+									"            url: 'http://localhost:8080/api/v1/meetings/get_all', // Endpoint to get all meetings\r",
+									"            method: 'GET',\r",
+									"            header: {\r",
+									"                'Content-Type': 'application/json',\r",
+									"                'apiKey': 'testtestkey'  // Add your API key here if required\r",
+									"            }\r",
+									"        }, function (err, res) {\r",
+									"            if (err) {\r",
+									"                console.log('Error fetching meetings:', err);\r",
+									"            } else {\r",
+									"                // Step 4: Extract the `mid` from the first item in the response array\r",
+									"                const meetings = res.json(); // Parse the response body\r",
+									"                const firstMeeting = meetings[0]; // Get the first meeting\r",
+									"                const meetingId = firstMeeting.mid; // Extract the `mid` (meeting ID)\r",
+									"                \r",
+									"                // Step 5: Save the meeting ID (mid) to the environment variable\r",
+									"                pm.environment.set('mid', meetingId); // Save the mid for use in subsequent requests\r",
+									"                console.log('First meeting created with mid:', meetingId); // Log for debugging\r",
+									"            }\r",
+									"        });\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "4325b935-446d-434a-a4f3-af301194bdd8",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "4e96adaa-8f3b-4de7-8393-8449f4c21f62",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"meeting\": {\r\n        \"mid\": {{mid}}\r\n    },\r\n    \"role\": \"organizer\",\r\n    \"status\": \"accept\",\r\n    \"user\": {\r\n        \"uid\": {{userId}}\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/participants/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"participants",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "78c62358-c0c5-4794-9528-964f329b128e",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"// Ensure the response is an array and has at least one item\r",
+									"pm.test(\"Response is an array with at least one item\", function () {\r",
+									"    pm.expect(responseJson).to.be.an('array').that.is.not.empty;\r",
+									"});\r",
+									"\r",
+									"// Extract the first item from the array\r",
+									"const firstItem = responseJson[0];\r",
+									"\r",
+									"// Extract the 'pid' from the first item\r",
+									"const pid = firstItem.pid;\r",
+									"\r",
+									"// Set the 'pid' to the environment variable\r",
+									"pm.environment.set('pid', pid);\r",
+									"\r",
+									"\r",
+									"pm.test(\"First item has a valid 'pid'\", function () {\r",
+									"    pm.expect(firstItem).to.have.property('pid');\r",
+									"    pm.expect(firstItem.pid).to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"// Test the 'meeting' object inside the first item\r",
+									"const meeting = firstItem.meeting;\r",
+									"pm.test(\"Meeting has a valid 'mid'\", function () {\r",
+									"    pm.expect(meeting).to.have.property('mid');\r",
+									"    pm.expect(meeting.mid).to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Meeting has a valid 'type'\", function () {\r",
+									"    pm.expect(meeting).to.have.property('type');\r",
+									"    pm.expect(meeting.type).to.be.a('string');\r",
+									"    pm.expect(meeting.type).to.equal('group');  // or the expected type\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Meeting has a valid 'description'\", function () {\r",
+									"    pm.expect(meeting).to.have.property('description');\r",
+									"    pm.expect(meeting.description).to.be.a('string');\r",
+									"    pm.expect(meeting.description).to.equal('onlineTest');  // or the expected description\r",
+									"});\r",
+									"\r",
+									"// Check 'user' object inside the first item\r",
+									"const user = firstItem.user;\r",
+									"pm.test(\"User has a valid 'uid'\", function () {\r",
+									"    pm.expect(user).to.have.property('uid');\r",
+									"    pm.expect(user.uid).to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"User has a valid 'name'\", function () {\r",
+									"    pm.expect(user).to.have.property('name');\r",
+									"    pm.expect(user.name).to.be.a('string');\r",
+									"    pm.expect(user.name).to.equal('testuser');  // Expected user name\r",
+									"});\r",
+									"\r",
+									"pm.test(\"User has a valid 'email'\", function () {\r",
+									"    pm.expect(user).to.have.property('email');\r",
+									"    pm.expect(user.email).to.be.a('string');\r",
+									"    pm.expect(user.email).to.equal('test1@gmail.com');  // Expected user email\r",
+									"});\r",
+									"\r",
+									"// Check 'role' and 'status' fields\r",
+									"pm.test(\"Role is valid\", function () {\r",
+									"    pm.expect(firstItem).to.have.property('role');\r",
+									"    pm.expect(firstItem.role).to.be.a('string');\r",
+									"    pm.expect(firstItem.role).to.equal('organizer');  // Expected role\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status is valid\", function () {\r",
+									"    pm.expect(firstItem).to.have.property('status');\r",
+									"    pm.expect(firstItem.status).to.be.a('string');\r",
+									"    pm.expect(firstItem.status).to.equal('accept');  // Expected status\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "e593a602-d78d-4d7b-96a4-95ac2f30a946",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/participants/findAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"participants",
+								"findAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "78c62358-c0c5-4794-9528-964f329b128e",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"// Ensure the response is an array and has at least one item\r",
+									"pm.test(\"Response is an array with at least one item\", function () {\r",
+									"    pm.expect(responseJson).to.be.an('array').that.is.not.empty;\r",
+									"});\r",
+									"\r",
+									"// Extract the first item from the array\r",
+									"const firstItem = responseJson[0];\r",
+									"\r",
+									"// Extract the 'pid' from the first item\r",
+									"const pid = firstItem.pid;\r",
+									"\r",
+									"// Set the 'pid' to the environment variable\r",
+									"pm.environment.set('pid', pid);\r",
+									"\r",
+									"\r",
+									"pm.test(\"First item has a valid 'pid'\", function () {\r",
+									"    pm.expect(firstItem).to.have.property('pid');\r",
+									"    pm.expect(firstItem.pid).to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"// Test the 'meeting' object inside the first item\r",
+									"const meeting = firstItem.meeting;\r",
+									"pm.test(\"Meeting has a valid 'mid'\", function () {\r",
+									"    pm.expect(meeting).to.have.property('mid');\r",
+									"    pm.expect(meeting.mid).to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Meeting has a valid 'type'\", function () {\r",
+									"    pm.expect(meeting).to.have.property('type');\r",
+									"    pm.expect(meeting.type).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Meeting has a valid 'description'\", function () {\r",
+									"    pm.expect(meeting).to.have.property('description');\r",
+									"    pm.expect(meeting.description).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"// Check 'user' object inside the first item\r",
+									"const user = firstItem.user;\r",
+									"pm.test(\"User has a valid 'uid'\", function () {\r",
+									"    pm.expect(user).to.have.property('uid');\r",
+									"    pm.expect(user.uid).to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"User has a valid 'name'\", function () {\r",
+									"    pm.expect(user).to.have.property('name');\r",
+									"    pm.expect(user.name).to.be.a('string');\r",
+									"    pm.expect(user.uid).to.equal(pm.environment.get('userId'));  // Expected user name\r",
+									"});\r",
+									"\r",
+									"pm.test(\"User has a valid 'email'\", function () {\r",
+									"    pm.expect(user).to.have.property('email');\r",
+									"    pm.expect(user.email).to.be.a('string');\r",
+									"    pm.expect(user.email).to.equal('test1@gmail.com');  // Expected user email\r",
+									"});\r",
+									"\r",
+									"// Check 'role' and 'status' fields\r",
+									"pm.test(\"Role is valid\", function () {\r",
+									"    pm.expect(firstItem).to.have.property('role');\r",
+									"    pm.expect(firstItem.role).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status is valid\", function () {\r",
+									"    pm.expect(firstItem).to.have.property('status');\r",
+									"    pm.expect(firstItem.status).to.be.a('string');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "ef911ad9-3863-4452-843a-3ac96dd74fc3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uid\": {{userId}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/participants/findByUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"participants",
+								"findByUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "78c62358-c0c5-4794-9528-964f329b128e",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"// Test that the response is an array\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    pm.expect(responseJson).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"// Iterate over each participant in the response array\r",
+									"responseJson.forEach(function (participant, index) {\r",
+									"    \r",
+									"    // Test that each participant has the necessary fields\r",
+									"    pm.test(`Participant ${index + 1} has expected fields`, function () {\r",
+									"        pm.expect(participant).to.have.property('pid');\r",
+									"        pm.expect(participant).to.have.property('meeting');\r",
+									"        pm.expect(participant).to.have.property('user');\r",
+									"        pm.expect(participant).to.have.property('role');\r",
+									"        pm.expect(participant).to.have.property('joinAt');\r",
+									"        pm.expect(participant).to.have.property('status');\r",
+									"    });\r",
+									"\r",
+									"    // Test that the 'pid' is a number\r",
+									"    pm.test(`pid of participant ${index + 1} is a number`, function () {\r",
+									"        pm.expect(participant.pid).to.be.a('number');\r",
+									"    });\r",
+									"\r",
+									"    \r",
+									"\r",
+									"    // Test the 'role' field in each participant\r",
+									"    pm.test(`Role of participant ${index + 1} is 'organizer'`, function () {\r",
+									"        pm.expect(participant.role).to.equal('organizer');\r",
+									"    });\r",
+									"\r",
+									"    // Test the 'joinAt' field in each participant\r",
+									"    pm.test(`joinAt of participant ${index + 1} is a valid timestamp`, function () {\r",
+									"        const joinAt = new Date(participant.joinAt);\r",
+									"        pm.expect(joinAt.getTime()).to.be.a('number');\r",
+									"        pm.expect(joinAt.getTime()).to.be.greaterThan(0); // Ensure it's a valid timestamp\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "66e79f8e-be5f-4de7-a349-3e58adb5b0d0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/participants/findByRole?Role=organizer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"participants",
+								"findByRole"
+							],
+							"query": [
+								{
+									"key": "Role",
+									"value": "organizer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "78c62358-c0c5-4794-9528-964f329b128e",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"// Test that the response is an array\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    pm.expect(responseJson).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"// Iterate over each participant in the response array\r",
+									"responseJson.forEach(function (participant, index) {\r",
+									"    \r",
+									"    // Test that each participant has the necessary fields\r",
+									"    pm.test(`Participant ${index + 1} has expected fields`, function () {\r",
+									"        pm.expect(participant).to.have.property('pid');\r",
+									"        pm.expect(participant).to.have.property('meeting');\r",
+									"        pm.expect(participant).to.have.property('user');\r",
+									"        pm.expect(participant).to.have.property('role');\r",
+									"        pm.expect(participant).to.have.property('joinAt');\r",
+									"        pm.expect(participant).to.have.property('status');\r",
+									"    });\r",
+									"\r",
+									"    // Test that the 'pid' is a number\r",
+									"    pm.test(`pid of participant ${index + 1} is a number`, function () {\r",
+									"        pm.expect(participant.pid).to.be.a('number');\r",
+									"    });\r",
+									"\r",
+									"    // Test the 'joinAt' field in each participant\r",
+									"    pm.test(`joinAt of participant ${index + 1} is a valid timestamp`, function () {\r",
+									"        const joinAt = new Date(participant.joinAt);\r",
+									"        pm.expect(joinAt.getTime()).to.be.a('number');\r",
+									"        pm.expect(joinAt.getTime()).to.be.greaterThan(0); // Ensure it's a valid timestamp\r",
+									"    });\r",
+									"\r",
+									"    // Test the 'status' field in each participant\r",
+									"    pm.test(`Status of participant ${index + 1} is 'accept'`, function () {\r",
+									"        pm.expect(participant.status).to.equal('accept');\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "4b779a2f-cd4f-40d3-aae3-336d128c89c2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/participants/findByStatus?Status=accept",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"participants",
+								"findByStatus"
+							],
+							"query": [
+								{
+									"key": "Status",
+									"value": "accept"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by mid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "78c62358-c0c5-4794-9528-964f329b128e",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"// Test that the response is an array\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    pm.expect(responseJson).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"// Iterate over each participant in the response array\r",
+									"responseJson.forEach(function (participant, index) {\r",
+									"    \r",
+									"    // Test that each participant has the necessary fields\r",
+									"    pm.test(`Participant ${index + 1} has expected fields`, function () {\r",
+									"        pm.expect(participant).to.have.property('pid');\r",
+									"        pm.expect(participant).to.have.property('meeting');\r",
+									"        pm.expect(participant).to.have.property('user');\r",
+									"        pm.expect(participant).to.have.property('role');\r",
+									"        pm.expect(participant).to.have.property('joinAt');\r",
+									"        pm.expect(participant).to.have.property('status');\r",
+									"    });\r",
+									"\r",
+									"    // Test that the 'pid' is a number\r",
+									"    pm.test(`pid of participant ${index + 1} is a number`, function () {\r",
+									"        pm.expect(participant.pid).to.be.a('number');\r",
+									"    });\r",
+									"\r",
+									"    const meeting = participant.meeting;\r",
+									"    pm.test(\"Meeting has a valid 'mid'\", function () {\r",
+									"        pm.expect(meeting).to.have.property('mid');\r",
+									"        pm.expect(meeting.mid).to.be.a('number');\r",
+									"        pm.expect(meeting.mid).to.equal(pm.environment.get('mid'));\r",
+									"    });\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "79293825-5e78-4646-bb27-e29293972acb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/participants/findByMeeting?mid={{mid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"participants",
+								"findByMeeting"
+							],
+							"query": [
+								{
+									"key": "mid",
+									"value": "{{mid}}",
+									"type": "text"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "findById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c9da8af7-761c-4ae0-b3db-b3fd2d443267",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"// Ensure the response is an array and has at least one item\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    pm.expect(responseJson).to.be.an('object').that.is.not.empty;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Test that the response is an object and has the expected fields\r",
+									"pm.test(\"Response has expected fields\", function () {\r",
+									"    pm.expect(responseJson).to.have.property('pid');\r",
+									"    pm.expect(responseJson).to.have.property('meeting');\r",
+									"    pm.expect(responseJson).to.have.property('user');\r",
+									"    pm.expect(responseJson).to.have.property('role');\r",
+									"    pm.expect(responseJson).to.have.property('joinAt');\r",
+									"    pm.expect(responseJson).to.have.property('status');\r",
+									"});\r",
+									"\r",
+									"// Test that the 'pid' field is a number\r",
+									"pm.test(\"pid is a number\", function () {\r",
+									"    pm.expect(responseJson.pid).to.be.a('number');\r",
+									"     pm.expect(responseJson.pid).to.equal(pm.environment.get('pid'));\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"// Test 'role' field in the response\r",
+									"pm.test(\"role is 'participant'\", function () {\r",
+									"    pm.expect(responseJson.role).to.equal('participant');\r",
+									"});\r",
+									"\r",
+									"// Test 'joinAt' field in the response\r",
+									"pm.test(\"joinAt is a valid timestamp\", function () {\r",
+									"    const joinAt = new Date(responseJson.joinAt);\r",
+									"    pm.expect(joinAt.getTime()).to.be.a('number');\r",
+									"    pm.expect(joinAt.getTime()).to.be.greaterThan(0); // Ensure it's a valid timestamp\r",
+									"});\r",
+									"\r",
+									"// Test 'status' field in the response\r",
+									"pm.test(\"status is 'accept'\", function () {\r",
+									"    pm.expect(responseJson.status).to.equal('accept');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "ba28d129-0dc8-4362-bda1-1c0620d792ab",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/participants/findById?Id=10",
+							"raw": "http://localhost:8080/api/v1/participants/findById?Id={{pid}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1042,7 +4154,7 @@
 							"query": [
 								{
 									"key": "Id",
-									"value": "10"
+									"value": "{{pid}}"
 								}
 							]
 						}
@@ -1050,16 +4162,37 @@
 					"response": []
 				},
 				{
-					"name": "findAll",
-					"id": "e593a602-d78d-4d7b-96a4-95ac2f30a946",
+					"name": "deleteById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c9da8af7-761c-4ae0-b3db-b3fd2d443267",
+								"exec": [
+									"pm.test(\"Response status is 200\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "b04bee6e-644b-4b9c-944c-ae353a8163c7",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": [],
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/participants/findAll",
+							"raw": "http://localhost:8080/api/v1/participants?pid={{pid}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1068,8 +4201,13 @@
 							"path": [
 								"api",
 								"v1",
-								"participants",
-								"findAll"
+								"participants"
+							],
+							"query": [
+								{
+									"key": "pid",
+									"value": "{{pid}}"
+								}
 							]
 						}
 					},
