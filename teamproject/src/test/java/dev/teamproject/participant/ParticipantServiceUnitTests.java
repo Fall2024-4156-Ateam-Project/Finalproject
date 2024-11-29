@@ -1,6 +1,7 @@
 package dev.teamproject.participant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -145,4 +146,25 @@ public class ParticipantServiceUnitTests {
     participantService.save(participant);
     verify(participantRepo, times(1)).save(participant);
   }
+
+  @Test
+  void testDeleteParticipantSuccess() {
+    when(participantRepo.existsById(1)).thenReturn(true);
+
+    participantService.deleteParticipant(1);
+
+    verify(participantRepo, times(1)).deleteById(1);
+  }
+
+  @Test
+  void testDeleteParticipantNotFound() {
+    when(participantRepo.existsById(1)).thenReturn(false);
+
+    RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+      participantService.deleteParticipant(1);
+    });
+
+    assertEquals("Participant not found with id: 1", exception.getMessage());
+    verify(participantRepo, times(0)).deleteById(1);
+  }  
 }

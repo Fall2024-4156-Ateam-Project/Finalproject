@@ -1,7 +1,9 @@
 package dev.teamproject.timeslot;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.common.Pair;
@@ -13,6 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
+import org.springframework.cglib.core.Local;
 
 public class TimeSlotHelperTests {
   @InjectMocks
@@ -51,13 +54,42 @@ public class TimeSlotHelperTests {
 
   @Test
   void testIsOverlapped() {
-    // Overlapping timeslots
-    assertEquals(true, timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
+    
+    // Exact match overlap
+    timeSlot1.setEndTime(LocalTime.of(12, 0));
+    timeSlot2.setStartTime(LocalTime.of(12, 0));
+    assertFalse(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
 
-    // Non-overlapping timeslots
+    // No overlap
     timeSlot2.setStartTime(LocalTime.of(13, 0));
-    timeSlot2.setEndTime(LocalTime.of(15, 0));
-    assertEquals(false, timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
+    assertFalse(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
+
+    // Wrapping overlap
+    timeSlot1.setEndDay(CommonTypes.Day.Sunday);
+    timeSlot1.setEndTime(LocalTime.of(23, 59));
+    timeSlot2.setStartDay(CommonTypes.Day.Monday);
+    timeSlot2.setStartTime(LocalTime.of(0, 0));
+    assertTrue(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
+
+    //t1 wrap, t2 no wrap, overlap
+    timeSlot1.setEndDay(CommonTypes.Day.Monday);
+    timeSlot1.setEndTime(LocalTime.of(9, 0));
+    timeSlot2.setEndDay(CommonTypes.Day.Sunday);
+    timeSlot2.setEndTime(LocalTime.of(23, 59));
+    assertTrue(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
+
+    //t1 wrap, t2 no wrap, no overlap
+    // timeSlot1.setEndTime(LocalTime.of(11, 0));
+    timeSlot2.setEndDay(CommonTypes.Day.Monday);
+    timeSlot2.setEndTime(LocalTime.of(2, 0));
+    assertTrue(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
+
+    //t1 no wrap, t2 no wrap, overlap
+    timeSlot1.setEndTime(LocalTime.of(11, 0));
+    timeSlot2.setEndDay(CommonTypes.Day.Sunday);
+    timeSlot2.setEndTime(LocalTime.of(23, 59));
+    assertTrue(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
+    
   }
 
   @Test
@@ -109,8 +141,28 @@ public class TimeSlotHelperTests {
   @Test
   void testGetDayFromIndex() {
     assertEquals(CommonTypes.Day.Monday, timeSlotHelper.getDayFromIndex(0));
+    assertEquals(CommonTypes.Day.Tuesday, timeSlotHelper.getDayFromIndex(1));
+    assertEquals(CommonTypes.Day.Wednesday, timeSlotHelper.getDayFromIndex(2));
+    assertEquals(CommonTypes.Day.Thursday, timeSlotHelper.getDayFromIndex(3));
+    assertEquals(CommonTypes.Day.Friday, timeSlotHelper.getDayFromIndex(4));
+    assertEquals(CommonTypes.Day.Saturday, timeSlotHelper.getDayFromIndex(5));
     assertEquals(CommonTypes.Day.Sunday, timeSlotHelper.getDayFromIndex(6));
     assertThrows(IllegalArgumentException.class, () -> timeSlotHelper.getDayFromIndex(7));
+    assertThrows(IllegalArgumentException.class, () -> timeSlotHelper.getDayFromIndex(-1));
   }    
+
+  @Test
+  void testGetWeekStartAndEnd() {
+    Pair<CommonTypes.Day, LocalTime> weekStart = timeSlotHelper.getWeekStart();
+    Pair<CommonTypes.Day, LocalTime> weekEnd = timeSlotHelper.getWeekEnd();
+
+    assertEquals(new Pair<>(CommonTypes.Day.Monday, LocalTime.of(0, 0)), weekStart);
+    assertEquals(new Pair<>(CommonTypes.Day.Sunday, LocalTime.of(23, 59)), weekEnd);
+
+    assertEquals(CommonTypes.Day.Monday, weekStart.getKey());
+    assertEquals(LocalTime.of(0, 0), weekStart.getValue());
+    assertEquals(CommonTypes.Day.Sunday, weekEnd.getKey());
+    assertEquals(LocalTime.of(23, 59), weekEnd.getValue());
+  }
 }
 
