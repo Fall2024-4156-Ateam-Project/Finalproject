@@ -11,6 +11,43 @@
 			"item": [
 				{
 					"name": "User register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "321e43b5-d33a-4efd-8122-ff811bbe85fb",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has success = true\", function () {\r",
+									"    var jsonData = pm.response.json(); // Parse the JSON response\r",
+									"    pm.expect(jsonData.success).to.eql(true); // Assert that success is true\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response message is 'User created successfully'\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"User created successfully\"); // Assert the msg field value\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response data contains correct user details\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    \r",
+									"    // Assert the user data contains the correct information\r",
+									"    pm.expect(jsonData.data.name).to.eql(\"new user\"); // Assert the name\r",
+									"    pm.expect(jsonData.data.email).to.eql(\"newuser@columbia.edu\"); // Assert the email\r",
+									"    pm.expect(jsonData.data.uid).to.be.a('number'); \r",
+									"    pm.environment.set('uid', jsonData.data.uid);\r",
+									"    pm.expect(jsonData.data.createdAt).to.be.a('string'); \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "4b09cc26-6a53-4c71-9c91-1bd78aea164e",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -29,7 +66,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"dy2482@columbia.edu\",\n    \"name\": \"dyyin\"\n}",
+							"raw": "{\n    \"email\": \"newuser@columbia.edu\",\n    \"name\": \"new user\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -55,6 +92,58 @@
 				},
 				{
 					"name": "Get all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4a9523a4-7c9e-4d1b-9dcb-f2fa0b811eaf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    var jsonData = pm.response.json(); // Parse the JSON response\r",
+									"    pm.expect(jsonData).to.be.an('array'); // Assert the response is an array\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains correct user data\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    \r",
+									"    // Check if there is at least one user in the list\r",
+									"    pm.expect(jsonData.length).to.be.greaterThan(0);\r",
+									"\r",
+									"    // Iterate through the users and check each user's fields\r",
+									"    jsonData.forEach(function(user) {\r",
+									"        pm.expect(user).to.have.property('uid').that.is.a('number'); // Check if uid is a number\r",
+									"        pm.expect(user).to.have.property('name').that.is.a('string'); // Check if name is a string\r",
+									"        pm.expect(user).to.have.property('email').that.is.a('string'); // Check if email is a string\r",
+									"        pm.expect(user).to.have.property('createdAt').that.is.a('string'); // Check if createdAt is a string\r",
+									"        pm.expect(user).to.have.property('updatedAt').that.is.null; // Check if updatedAt is null\r",
+									"        pm.expect(user).to.have.property('password_hash').that.is.null; // Check if password_hash is null (as per your data)\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected user data for a specific user\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    \r",
+									"    // Check for a specific user in the list (adjust this according to the actual test data)\r",
+									"    var newUser = jsonData.find(user => user.email === \"newuser@columbia.edu\");\r",
+									"    \r",
+									"    pm.expect(newUser).to.not.be.undefined; // Assert that the new user is found in the list\r",
+									"    pm.expect(newUser.name).to.eql(\"new user\"); // Assert that the name is correct\r",
+									"    pm.expect(newUser.email).to.eql(\"newuser@columbia.edu\"); // Assert that the email is correct\r",
+									"    pm.expect(newUser.password_hash).to.eql(null); // Assert that password_hash is null\r",
+									"    pm.expect(newUser.createdAt).to.be.a('string'); // Assert createdAt is a string\r",
+									"    pm.expect(newUser.updatedAt).to.eql(null); // Assert updatedAt is null\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "d43120e5-4a6b-4339-a76a-74077825e32f",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -88,7 +177,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/users/get_all?",
+							"raw": "http://localhost:8080/api/v1/users/get_all",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -99,13 +188,6 @@
 								"v1",
 								"users",
 								"get_all"
-							],
-							"query": [
-								{
-									"key": "",
-									"value": null,
-									"type": "text"
-								}
 							]
 						}
 					},
@@ -113,6 +195,41 @@
 				},
 				{
 					"name": "Find user by name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8ef79626-54e1-4ec7-9d55-3fed90fe6d48",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    var jsonData = pm.response.json(); // Parse the JSON response\r",
+									"    pm.expect(jsonData).to.be.an('array'); // Assert the response is an array\r",
+									"});\r",
+									"\r",
+									"pm.test(\"User details are valid\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length).to.be.greaterThan(0); // Ensure there is at least one user in the response\r",
+									"\r",
+									"    jsonData.forEach(function(user) {\r",
+									"        pm.expect(user).to.have.property('uid').that.is.a('number'); // Ensure user has a UID\r",
+									"        pm.expect(user).to.have.property('name').that.is.a('string'); // Ensure user has a name\r",
+									"        pm.expect(user.name).to.eql(\"new user\"); // Assert the name\r",
+									"        pm.expect(user).to.have.property('email').that.is.a('string'); // Ensure user has an email\r",
+									"        pm.expect(user).to.have.property('createdAt').that.is.a('string'); // Ensure createdAt is a string\r",
+									"        pm.expect(user).to.have.property('updatedAt').that.is.null; // Ensure updatedAt is null\r",
+									"        pm.expect(user).to.have.property('password_hash').that.is.null; // Ensure password_hash is null\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "47a341a9-e3d6-4c1a-b5c2-5278dd2d4af1",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -127,7 +244,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{server}}/api/v1/users/findByName?name=test1",
+							"raw": "{{server}}/api/v1/users/findByName?name=new user",
 							"host": [
 								"{{server}}"
 							],
@@ -140,7 +257,74 @@
 							"query": [
 								{
 									"key": "name",
-									"value": "test1"
+									"value": "new user"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find user by name unfound",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8ef79626-54e1-4ec7-9d55-3fed90fe6d48",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    var jsonData = pm.response.json(); // Parse the JSON response\r",
+									"    pm.expect(jsonData).to.be.an('array'); // Assert the response is an array\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is empty when no users found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    \r",
+									"    // If the response is empty (i.e., no users exist), ensure the array is indeed empty\r",
+									"    if (jsonData.length === 0) {\r",
+									"        pm.expect(jsonData.length).to.eql(0); // Assert that the array length is 0\r",
+									"    }\r",
+									"    \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "4d8523d4-92d6-4b8f-a311-8a2156226d7b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/v1/users/findByName?name=12345",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"findByName"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "12345"
 								}
 							]
 						}
@@ -149,6 +333,37 @@
 				},
 				{
 					"name": "Find user by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0d9ee557-92fc-485a-862b-e977fef9f0d5",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('uid');\r",
+									"    pm.expect(jsonData).to.have.property('name');\r",
+									"    pm.expect(jsonData.uid).to.eql(pm.environment.get('uid')); // Ensure UID is correct\r",
+									"    pm.expect(jsonData).to.have.property('email');\r",
+									"    pm.expect(jsonData).to.have.property('password_hash');\r",
+									"    pm.expect(jsonData).to.have.property('createdAt');\r",
+									"    pm.expect(jsonData).to.have.property('updatedAt');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "de395fbd-a089-47d5-b298-d1c924afce86",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -163,7 +378,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/users/findById?Id=1",
+							"raw": "http://localhost:8080/api/v1/users/findById?Id={{uid}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -178,7 +393,7 @@
 							"query": [
 								{
 									"key": "Id",
-									"value": "1"
+									"value": "{{uid}}"
 								}
 							]
 						}
@@ -186,13 +401,56 @@
 					"response": []
 				},
 				{
-					"name": "User login",
-					"id": "3ff141fe-4f06-4999-a5cb-e96fe4f4afdc",
+					"name": "Find user by id unfound",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0d9ee557-92fc-485a-862b-e977fef9f0d5",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(404); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('msg'); // Ensure there's a 'msg' field\r",
+									"    pm.expect(jsonData).to.have.property('data'); // Ensure there's a 'data' field\r",
+									"    pm.expect(jsonData).to.have.property('success'); // Ensure there's a 'success' field\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message indicates user not found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"User not found with ID: 999\"); // Check if the message matches\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data is null\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data).to.be.null; // Ensure data is null when user is not found\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Success is false\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false); // Ensure success is false\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "743f52e9-9650-4a3a-824a-d9468e418822",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [
 							{
 								"key": "apiKey",
@@ -200,17 +458,8 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"testuser@gmail.com\",\n    \"password\":\"testtest\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/users/login",
+							"raw": "http://localhost:8080/api/v1/users/findById?Id=999",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -220,7 +469,307 @@
 								"api",
 								"v1",
 								"users",
-								"login"
+								"findById"
+							],
+							"query": [
+								{
+									"key": "Id",
+									"value": "999"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find user by email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0d9ee557-92fc-485a-862b-e977fef9f0d5",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    var jsonData = pm.response.json(); // Parse the JSON response\r",
+									"    pm.expect(jsonData).to.be.an('array'); // Assert the response is an array\r",
+									"});\r",
+									"\r",
+									"pm.test(\"User details are valid\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length).to.be.greaterThan(0); // Ensure there is at least one user in the response\r",
+									"\r",
+									"    jsonData.forEach(function(user) {\r",
+									"        pm.expect(user).to.have.property('uid').that.is.a('number'); // Ensure user has a UID\r",
+									"        pm.expect(user).to.have.property('name').that.is.a('string'); // Ensure user has a name\r",
+									"        pm.expect(user.email).to.eql(\"newuser@columbia.edu\"); // Assert the name\r",
+									"        pm.expect(user).to.have.property('email').that.is.a('string');\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "ae8ef424-7596-498b-8ade-cf2b171feb93",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/findByEmail?email=newuser@columbia.edu",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"findByEmail"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "newuser@columbia.edu"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find user by email unfound",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0d9ee557-92fc-485a-862b-e977fef9f0d5",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    var jsonData = pm.response.json(); // Parse the JSON response\r",
+									"    pm.expect(jsonData).to.be.an('array'); // Assert the response is an array\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is empty when no users found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    \r",
+									"    // If the response is empty (i.e., no users exist), ensure the array is indeed empty\r",
+									"    if (jsonData.length === 0) {\r",
+									"        pm.expect(jsonData.length).to.eql(0); // Assert that the array length is 0\r",
+									"    } else {\r",
+									"        // If the array is not empty, run the tests for users\r",
+									"        pm.test(\"Response contains correct user data\", function () {\r",
+									"            jsonData.forEach(function(user) {\r",
+									"                pm.expect(user).to.have.property('uid').that.is.a('number'); // Check if uid is a number\r",
+									"                pm.expect(user).to.have.property('name').that.is.a('string'); // Check if name is a string\r",
+									"                pm.expect(user).to.have.property('email').that.is.a('string'); \r",
+									"            });\r",
+									"        });\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "c725a6f6-4140-4eca-a927-3f76a0f76c09",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/findByEmail?email=nonexistuser@columbia.edu",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"findByEmail"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "nonexistuser@columbia.edu"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete by id unfound",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f59b6b54-d5db-4bbb-bbbc-ba4c33f4f1a7",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(404); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('msg'); // Ensure there's a 'msg' field\r",
+									"    pm.expect(jsonData).to.have.property('data'); // Ensure there's a 'data' field\r",
+									"    pm.expect(jsonData).to.have.property('success'); // Ensure there's a 'success' field\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message indicates user not found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"User not found with ID: 1010\"); // Check if the message matches\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data is null\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data).to.be.null; // Ensure data is null when user is not found\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Success is false\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false); // Ensure success is false\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "3ff141fe-4f06-4999-a5cb-e96fe4f4afdc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/delete/1010",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"delete",
+								"1010"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f59b6b54-d5db-4bbb-bbbc-ba4c33f4f1a7",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(200); // Check if the response code is 200 OK\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object'); // Assert that the response is an object\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('msg'); // Ensure there's a 'msg' field\r",
+									"    pm.expect(jsonData).to.have.property('data'); // Ensure there's a 'data' field\r",
+									"    pm.expect(jsonData).to.have.property('success'); // Ensure there's a 'success' field\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message indication\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"User deleted successfully\"); // Check if the message matches\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Success\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true); \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "f5d6ae7f-a24d-44d2-af6d-e16f6c518116",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/delete/{{uid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"delete",
+								"{{uid}}"
 							]
 						}
 					},
