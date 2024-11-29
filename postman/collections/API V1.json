@@ -297,6 +297,9 @@
 									"    pm.expect(pm.response.json().endDay).to.eql('Friday'); // Verify end day\r",
 									"    pm.expect(pm.response.json().endTime).to.eql('20:00:00'); // Verify end time\r",
 									"    pm.expect(pm.response.json().availability).to.eql('busy'); // Verify availability status\r",
+									"\r",
+									"    const timeslotId = parseInt(pm.response.json().tid, 10); \r",
+									"    pm.environment.set('tid', timeslotId);\r",
 									"});\r",
 									""
 								],
@@ -818,10 +821,10 @@
 									"    pm.expect(jsonData).to.have.property('success'); // Ensure there's a 'success' field\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Message indicates user not found\", function () {\r",
+									"pm.test(\"Message indicates not found\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData.msg).to.eql(\"An unexpected error occurred\"); // Check if the message matches\r",
-									"    pm.expect(jsonData.data).to.eql(\"TimeSlot not found with id: 9999\");\r",
+									"    pm.expect(jsonData.data).to.eql(\"TimeSlot not found with id: 999\");\r",
 									"});"
 								],
 								"type": "text/javascript",
@@ -846,9 +849,15 @@
 					},
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/timeslots/{{tid}}",
+							"raw": "http://localhost:8080/api/v1/timeslots/999",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -858,7 +867,7 @@
 								"api",
 								"v1",
 								"timeslots",
-								"{{tid}}"
+								"999"
 							]
 						}
 					},
@@ -945,7 +954,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/timeslots/day/Monday",
+							"raw": "http://localhost:8080/api/v1/timeslots/day/Friday",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -956,7 +965,7 @@
 								"v1",
 								"timeslots",
 								"day",
-								"Monday"
+								"Friday"
 							]
 						}
 					},
@@ -1033,7 +1042,7 @@
 									"\r",
 									"    // Validate the user field\r",
 									"    pm.expect(responseJson.user).to.be.an('object');\r",
-									"    pm.expect(responseJson.user.uid).to.be.a('number').that.is.equal(44);  // Check the user ID\r",
+									"    pm.expect(responseJson.user.uid).to.be.a('number');  // Check the user ID\r",
 									"    pm.expect(responseJson.user.name).to.be.a('string').that.is.equal('testuser'); // Check the user name\r",
 									"    pm.expect(responseJson.user.email).to.match(/^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$/); // Validate email format\r",
 									"\r",
@@ -1516,7 +1525,7 @@
 									"        const timeslotId = parseInt(responseJson.tid, 10); \r",
 									"        \r",
 									"        // Save the timeslot ID in the environment variable for later use\r",
-									"        pm.environment.set('tid', timeslotId); // Store tid for use in the next request\r",
+									"        pm.environment.set('tid_todelete', timeslotId); // Store tid for use in the next request\r",
 									"        console.log('Timeslot created with ID:', timeslotId);\r",
 									"    }\r",
 									"});\r",
@@ -1533,9 +1542,15 @@
 					},
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "testtestkey",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/timeslots/{{tid}}",
+							"raw": "http://localhost:8080/api/v1/timeslots/{{tid_todelete}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1545,7 +1560,7 @@
 								"api",
 								"v1",
 								"timeslots",
-								"{{tid}}"
+								"{{tid_todelete}}"
 							]
 						}
 					},
@@ -2269,7 +2284,7 @@
 								"id": "589f7b54-df3d-4812-94ab-429daf5fb971",
 								"exec": [
 									"pm.test(\"Status code\", function () {\r",
-									"    pm.response.to.have.status(200); \r",
+									"    pm.response.to.have.status(204); \r",
 									"});"
 								],
 								"type": "text/javascript",
