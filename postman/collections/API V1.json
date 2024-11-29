@@ -795,95 +795,6 @@
 					"response": []
 				},
 				{
-					"name": "Delete a timeslot by tid",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "54253fc0-b4d2-4203-b433-3b9bcd66b072",
-								"exec": [
-									"pm.test(\"Status code\", function () {\r",
-									"    pm.response.to.have.status(204); \r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "6267da06-6324-49ac-81e5-71b795fad5fc",
-								"exec": [
-									"pm.sendRequest({\r",
-									"    url: 'http://localhost:8080/api/v1/timeslots', \r",
-									"    method: 'POST',\r",
-									"    header: {\r",
-									"        'Content-Type': 'application/json',\r",
-									"        'apiKey': 'testtestkey'\r",
-									"    },\r",
-									"    body: {\r",
-									"        mode: 'raw',\r",
-									"        raw: JSON.stringify({\r",
-									"            \"startTime\": \"13:00:00\",\r",
-									"            \"startDay\": \"Monday\",\r",
-									"            \"endDay\": \"Monday\",\r",
-									"            \"endTime\": \"20:00:00\",\r",
-									"            \"availability\": \"available\",\r",
-									"            \"user\": {\r",
-									"                \"uid\": pm.environment.get('userId'), \r",
-									"                \"name\": \"testuser\",\r",
-									"                \"email\": \"test1@gmail.com\"\r",
-									"            }\r",
-									"        })\r",
-									"    }\r",
-									"}, function (err, res) {\r",
-									"    if (err) {\r",
-									"        console.log('Error creating timeslot:', err);\r",
-									"    } else {\r",
-									"        // Assuming the response contains the timeslot ID (tid)\r",
-									"        const responseJson = res.json();\r",
-									"        console.log(responseJson);\r",
-									"        console.log(responseJson.tid);\r",
-									"        const timeslotId = parseInt(responseJson.tid, 10); \r",
-									"        \r",
-									"        // Save the timeslot ID in the environment variable for later use\r",
-									"        pm.environment.set('tid', timeslotId); // Store tid for use in the next request\r",
-									"        console.log('Timeslot created with ID:', timeslotId);\r",
-									"    }\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"id": "effabc76-0698-4a8c-a427-344508a2a11d",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/timeslots/{{tid}}",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"timeslots",
-								"{{tid}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Delete a timeslot by tid not found",
 					"event": [
 						{
@@ -1546,6 +1457,95 @@
 								"timeslots",
 								"availability",
 								"busy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a timeslot by tid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "54253fc0-b4d2-4203-b433-3b9bcd66b072",
+								"exec": [
+									"pm.test(\"Status code\", function () {\r",
+									"    pm.response.to.have.status(204); \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6267da06-6324-49ac-81e5-71b795fad5fc",
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: 'http://localhost:8080/api/v1/timeslots', \r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        'apiKey': 'testtestkey'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"            \"startTime\": \"13:00:00\",\r",
+									"            \"startDay\": \"Monday\",\r",
+									"            \"endDay\": \"Monday\",\r",
+									"            \"endTime\": \"20:00:00\",\r",
+									"            \"availability\": \"available\",\r",
+									"            \"user\": {\r",
+									"                \"uid\": pm.environment.get('userId'), \r",
+									"                \"name\": \"testuser\",\r",
+									"                \"email\": \"test1@gmail.com\"\r",
+									"            }\r",
+									"        })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    if (err) {\r",
+									"        console.log('Error creating timeslot:', err);\r",
+									"    } else {\r",
+									"        // Assuming the response contains the timeslot ID (tid)\r",
+									"        const responseJson = res.json();\r",
+									"        console.log(responseJson);\r",
+									"        console.log(responseJson.tid);\r",
+									"        const timeslotId = parseInt(responseJson.tid, 10); \r",
+									"        \r",
+									"        // Save the timeslot ID in the environment variable for later use\r",
+									"        pm.environment.set('tid', timeslotId); // Store tid for use in the next request\r",
+									"        console.log('Timeslot created with ID:', timeslotId);\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "effabc76-0698-4a8c-a427-344508a2a11d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/timeslots/{{tid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"timeslots",
+								"{{tid}}"
 							]
 						}
 					},
