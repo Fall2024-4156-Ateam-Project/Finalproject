@@ -29,12 +29,14 @@ class TimeSlotControllerTests {
 
   @Mock
   private TimeSlotService timeSlotService;
-
+  @Mock
   private TimeSlot timeSlot;
 
   @BeforeEach
   void setUp() {
     MockitoAnnotations.openMocks(this);
+
+    timeSlotController = new TimeSlotController(timeSlotService);
     user = new User();
     user.setEmail("abc@gmail.com");
 
@@ -121,7 +123,7 @@ class TimeSlotControllerTests {
     when(timeSlotService.getTimeSlotsByAvailability(availability)).thenReturn(timeSlots);
     ResponseEntity<List<TimeSlot>> response = timeSlotController
             .getTimeSlotsByAvailability(availability);
-    assertEquals(200, response.getStatusCodeValue());
+    assertEquals(HttpStatus.OK, response.getStatusCode());
     assertEquals(timeSlots, response.getBody());
   }
 
@@ -130,37 +132,27 @@ class TimeSlotControllerTests {
     int tid = 1;
     when(timeSlotService.updateTimeSlot(tid, timeSlot)).thenReturn(timeSlot);
     ResponseEntity<TimeSlot> response = timeSlotController.updateTimeSlot(tid, timeSlot);
-    assertEquals(200, response.getStatusCodeValue());
+    assertEquals(HttpStatus.OK, response.getStatusCode());
     assertEquals(timeSlot, response.getBody());
   }
 
-  // @Test
-  // void testUpdateTimeSlotNoOverlap() {
-  //   int tid = 1;
-  //   // Boolean valid = true;
-  //   // ResponseEntity<TimeSlot> status;
-  //   // Boolean valid = timeSlotService.isTimeSlotUpdateRequestValid(tid, timeSlot);
-  //   // when(timeSlotService.isTimeSlotUpdateRequestValid(tid, timeSlot)).thenReturn(valid);
-  //   // assertEquals(true, valid);
-   
-  //   when(timeSlotService.updateTimeSlotNoOverlap(tid, timeSlot)).thenReturn(timeSlot);
-  //   ResponseEntity<TimeSlot> response = timeSlotController.updateTimeSlotNoOverlap(tid, timeSlot);
-  //   // assertEquals(HttpStatus.OK, response.getStatusCode());
-  //   assertEquals(timeSlot, response.getBody());
+  @Test
+  void testUpdateTimeSlotNoOverlap() {
+    int tid = 1;
+    //Valid
+    when(timeSlotService.isTimeSlotUpdateRequestValid(tid, timeSlot)).thenReturn(true);
+    when(timeSlotService.updateTimeSlotNoOverlap(tid, timeSlot)).thenReturn(timeSlot);
+    
+    ResponseEntity<TimeSlot> responseNoOverlapValid = timeSlotController.updateTimeSlotNoOverlap(tid, timeSlot);
+    assertEquals(HttpStatus.OK, responseNoOverlapValid.getStatusCode());
+    assertEquals(timeSlot, responseNoOverlapValid.getBody());
 
-  //   // int tid = 2;
-  //   // // Boolean valid = true;
-  //   // // ResponseEntity<TimeSlot> status;
-  //   // // Boolean valid = timeSlotService.isTimeSlotUpdateRequestValid(tid, timeSlot);
-  //   // // when(timeSlotService.isTimeSlotUpdateRequestValid(tid, timeSlot)).thenReturn(valid);
-  //   // // assertEquals(true, valid);
-   
-  //   // when(timeSlotService.updateTimeSlotNoOverlap(tid, timeSlot)).thenReturn(timeSlot);
-  //   // ResponseEntity<TimeSlot> response = timeSlotController.updateTimeSlotNoOverlap(tid, timeSlot);
-  //   // // assertEquals(HttpStatus.OK, response.getStatusCode());
-  //   // assertEquals(timeSlot, response.getBody());
-  // }
-
+    //Invalid
+    ResponseEntity<TimeSlot> responseNoOverlapInvalid = timeSlotController.updateTimeSlotNoOverlap(300, timeSlot);
+    assertEquals(HttpStatus.BAD_REQUEST, responseNoOverlapInvalid.getStatusCode());
+    assertEquals(timeSlot, responseNoOverlapInvalid.getBody());
+  }
+  
   @Test
   void testDeleteTimeSlot() {
     int tid = 1;
