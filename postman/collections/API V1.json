@@ -2462,7 +2462,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"organizerId\": {{userId}},\n        \"type\": \"one_on_one\",\n        \"description\": \"Team meeting\",\n        \"startDay\": \"Monday\",\n        \"startTime\": \"2024-11-01T10:00:00.000\",\n        \"endDay\": \"Monday\",\n        \"endTime\": \"2024-11-01T11:00:00.000\",\n        \"recurrence\": \"monthly\",\n        \"createdAt\": null,\n        \"inviteParticipant\": null,\n        \"acceptParticipant\": null,\n        \"status\": \"Invalid\"\n    }",
+							"raw": "{\n        \"organizerId\": {{userId}},\n        \"participantEmail\":\"{{userEmail}}\",\n        \"type\": \"one_on_one\",\n        \"description\": \"Team meeting\",\n        \"startDay\": \"Monday\",\n        \"startTime\": \"2024-11-01T10:00:00.000\",\n        \"endDay\": \"Monday\",\n        \"endTime\": \"2024-11-01T11:00:00.000\",\n        \"recurrence\": \"monthly\",\n        \"createdAt\": null,\n        \"inviteParticipant\": null,\n        \"acceptParticipant\": null,\n        \"status\": \"Invalid\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
