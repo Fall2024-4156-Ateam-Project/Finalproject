@@ -1,5 +1,11 @@
 # Finalproject
 
+## Continuous Integration:
+Here are the reports of CI histories: https://github.com/Fall2024-4156-Ateam-Project/Finalproject/actions/workflows/maven.yml
+
+## Deployment:
+The service has been deployed on: http://34.138.31.157:8080/
+
 ## Setup and Running
 
 JDK 17: This project used JDK 17 for development: https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html  
