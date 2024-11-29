@@ -103,6 +103,9 @@ public class Meeting {
   }
 
   public void setType(CommonTypes.MeetingType type) {
+    if (type == null) {
+      throw new IllegalArgumentException("Meeting type is required");
+    }
     this.type = type;
   }
 
@@ -111,6 +114,9 @@ public class Meeting {
   }
 
   public void setDescription(String description) {
+    if (description != null && description.length() > 500) {
+      throw new IllegalArgumentException("Description should not exceed 500 characters");
+    }
     this.description = description;
   }
 
@@ -135,6 +141,9 @@ public class Meeting {
   }
 
   public void setStartDay(Day startDay) {
+    if (startDay == null) {
+      throw new IllegalArgumentException("Start day is required");
+    }
     this.startDay = startDay;
   }
 
@@ -143,6 +152,9 @@ public class Meeting {
   }
 
   public void setEndDay(Day endDay) {
+    if (endDay == null) {
+      throw new IllegalArgumentException("End day is required");
+    }
     this.endDay = endDay;
   }
 
@@ -151,6 +163,9 @@ public class Meeting {
   }
 
   public void setRecurrence(CommonTypes.Recurrence recurrence) {
+    if (recurrence == null) {
+      throw new IllegalArgumentException("Recurrence is required");
+    }
     this.recurrence = recurrence;
   }
 
@@ -167,6 +182,9 @@ public class Meeting {
   }
 
   public void setInviteParticipant(Integer inviteParticipant) {
+    if (inviteParticipant != null && inviteParticipant < 0) {
+      throw new IllegalArgumentException("Invite participant count cannot be negative");
+    }
     this.inviteParticipant = inviteParticipant;
   }
 
@@ -175,6 +193,9 @@ public class Meeting {
   }
 
   public void setAcceptParticipant(Integer acceptParticipant) {
+    if (acceptParticipant != null && acceptParticipant < 0) {
+      throw new IllegalArgumentException("Accept participant count cannot be negative");
+    }
     this.acceptParticipant = acceptParticipant;
   }
 
@@ -183,6 +204,9 @@ public class Meeting {
   }
 
   public void setStatus(CommonTypes.MeetingStatus status) {
+    if (status == null) {
+      throw new IllegalArgumentException("Meeting status is required");
+    }
     this.status = status;
   }
 

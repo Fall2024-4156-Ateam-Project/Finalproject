@@ -21,6 +21,7 @@ public class MeetingDTO {
   private LocalTime endTime;
   private CommonTypes.Day startDay;
   private CommonTypes.Day endDay;
+  private String participantEmail;
 
   // Getters and Setters
   public Integer getMeetingId() {
@@ -101,5 +102,13 @@ public class MeetingDTO {
 
   public void setRecurrence(String recurrence) {
     this.recurrence = recurrence;
+  }
+
+  public String getParticipantEmail() {
+    return participantEmail;
+  }
+
+  public void setParticipantEmail(String participantEmail) {
+    this.participantEmail = participantEmail;
   }
 }

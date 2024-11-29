@@ -2,6 +2,7 @@ package dev.teamproject.meeting;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.common.CommonTypes.Day;
@@ -93,5 +94,76 @@ public class MeetingUnitTests {
   @Test
   void testMidGetter() {
     assertEquals(0, meeting.getMid());
+  }
+
+  // Test invalid participant counts (negative values)
+  @Test
+  void testInviteParticipantNegative() {
+    assertThrows(IllegalArgumentException.class, () -> meeting.setInviteParticipant(-1));
+  }
+
+  @Test
+  void testAcceptParticipantNegative() {
+    assertThrows(IllegalArgumentException.class, () -> meeting.setAcceptParticipant(-1));
+  }
+
+  // Test invalid descriptions that exceed maximum length
+  @Test
+  void testDescriptionTooLong() {
+    String longDescription = "A".repeat(501); // 501 characters
+    assertThrows(IllegalArgumentException.class, () -> meeting.setDescription(longDescription));
+  }
+
+  // Test for invalid start time being later than end time
+  @Test
+  void testStartTimeAfterEndTime() {
+    meeting.setStartTime(LocalTime.of(12, 0)); // 12:00 PM
+    meeting.setEndTime(LocalTime.of(11, 0));   // 11:00 AM
+    assertThrows(IllegalArgumentException.class, () -> {
+      if (meeting.getStartTime().isAfter(meeting.getEndTime())) {
+        throw new IllegalArgumentException("Start time cannot be after end time.");
+      }
+    });
+  }
+
+  // Test invalid enum values
+  @Test
+  void testInvalidMeetingStatus() {
+    assertThrows(IllegalArgumentException.class, () -> meeting.setStatus(null));
+  }
+
+  @Test
+  void testInvalidMeetingType() {
+    assertThrows(IllegalArgumentException.class, () -> meeting.setType(null));
+  }
+
+  @Test
+  void testInvalidRecurrence() {
+    assertThrows(IllegalArgumentException.class, () -> meeting.setRecurrence(null));
+  }
+
+  @Test
+  void testInvalidDays() {
+    assertThrows(IllegalArgumentException.class, () -> meeting.setStartDay(null));
+    assertThrows(IllegalArgumentException.class, () -> meeting.setEndDay(null));
+  }
+
+  // Test constructor with valid parameters
+  @Test
+  void testConstructor() {
+    Meeting newMeeting = new Meeting(
+        organizer, Day.Monday, Day.Tuesday, LocalTime.of(9, 0), "Meeting description",
+        CommonTypes.Recurrence.daily, LocalTime.of(10, 0), CommonTypes.MeetingType.group, CommonTypes.MeetingStatus.Valid
+    );
+
+    assertEquals(organizer, newMeeting.getOrganizer());
+    assertEquals(Day.Monday, newMeeting.getStartDay());
+    assertEquals(Day.Tuesday, newMeeting.getEndDay());
+    assertEquals(LocalTime.of(9, 0), newMeeting.getStartTime());
+    assertEquals("Meeting description", newMeeting.getDescription());
+    assertEquals(CommonTypes.Recurrence.daily, newMeeting.getRecurrence());
+    assertEquals(LocalTime.of(10, 0), newMeeting.getEndTime());
+    assertEquals(CommonTypes.MeetingType.group, newMeeting.getType());
+    assertEquals(CommonTypes.MeetingStatus.Valid, newMeeting.getStatus());
   }
 }
