@@ -31,14 +31,24 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 
 ### /api/v1/meetings
 ------------------------------------------------------------------------------------------------------------------------
+#### GET /findByStatus
+• **Expected Input**: status(string but should match to valid, invalid, none)    
+• **Expected Output**: the meeting matched with the status 
+• **Upon Success**: HTTP 200 Status Code is returned along with the participant in the response body
+
+#### GET /findByEmail
+• **Expected Input**: email(string)    
+• **Expected Output**: the meeting whose organizer matched with the email 
+• **Upon Success**: HTTP 200 Status Code is returned along with the participant in the response body
+
 #### GET /findByRecurrence
 • **Expected Input**: recurrence(string but should match to daily, weekly, monthly, none)    
-• **Expected Output**: the meeting matched with the recurrence  
+• **Expected Output**: all the meetings matched with the recurrence  
 • **Upon Success**: HTTP 200 Status Code is returned along with the participant in the response body
 
 #### GET /findByType
 • **Expected Input**: type(string but should match to group, one_on_one)    
-• **Expected Output**:  the meeting matched with the type
+• **Expected Output**:  all the meetings matched with the type
 • **Upon Success**: HTTP 200 Status Code is returned along with the participant in the response body
 
 #### GET /findById
@@ -58,24 +68,24 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 
 #### DELETE /
 • **Expected Input**: meetingID(meeting in JSON type).    
-• **Expected Output**: A complete meeting object delete 
+• **Expected Output**: N/A.   
 • **Upon Success**: HTTP 200 Status Code is returned
 
 #### POST /saveMeeting
 • **Expected Input**: meeting(meeting in JSON type).    
-• **Expected Output**: A complete meeting object saved 
+• **Expected Output**: A message indicating complete meeting object saved 
 • **Upon Success**: HTTP 200 Status Code is returned
 
 ### /api/v1/participants
 ------------------------------------------------------------------------------------------------------------------------
 #### POST /register
 • **Expected Input**: a participant object in JSON.    
-• **Expected Output**: the complete participant object added    
+• **Expected Output**: N/A.    
 • **Upon Success**: HTTP 200 Status Code is returned 
 
 #### DELETE /
 • **Expected Input**: a participant id.    
-• **Expected Output**: a participant has been deleted    
+• **Expected Output**: N/A.      
 • **Upon Success**: HTTP 200 Status Code is returned 
 
 #### GET /findById
@@ -89,23 +99,23 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 • **Upon Success**: HTTP 200 Status Code is returned along with all participants in the response body
 
 #### GET /findByMeeting
-• **Expected Input**: meeting(meeting in JSON).    
-• **Expected Output**: All participant in JSON   
+• **Expected Input**: mid(int)  
+• **Expected Output**: All participant in JSON that is in this meeting if mid.  
 • **Upon Success**: HTTP 200 Status Code is returned along with all participants in the response body
 
 #### GET /findByUser
 • **Expected Input**: user(user in JSON).   
-• **Expected Output**: All participant in JSON   
+• **Expected Output**: All participant in JSON that is the given user.   
 • **Upon Success**: HTTP 200 Status Code is returned along with all participants in the response body
 
 #### GET /findByStatus
 • **Expected Input**: status(undecided, approved, rejected).    
-• **Expected Output**: All participant in JSON   
+• **Expected Output**: All participant in JSON that matches the status.  
 • **Upon Success**: HTTP 200 Status Code is returned along with all participants in the response body
 
 #### GET /findByRole
 • **Expected Input**: role(participant, organizer).    
-• **Expected Output**: All participant in JSON   
+• **Expected Output**: All participant in JSON that matches the role.  
 • **Upon Success**: HTTP 200 Status Code is returned along with all participants in the response body
 
 
@@ -116,6 +126,18 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 • **Expected Output**: the complete user object added    
 • **Upon Success**: HTTP 200 Status Code is returned 
 
+#### POST /merge
+• **Expected Input**: a timeslot object in JSON.    
+• **Expected Output**: This endpoint allows a user to add a new timeslot into their existing schedule. The provided timeslot will be added to the user’s schedule, ensuring that it doesn’t conflict with existing timeslots. If conflicts occur, the overlapping timeslots are revised to accommodate the new timeslot.  
+• **Upon Success**: HTTP 200 Status Code is returned
+
+
+#### PUT /{id}
+• **Expected Input**: a timeslot object in JSON.    
+• **Expected Output**: This endpoint allows a user to update an existing timeslot in their schedule by replacing the target timeslot (identified by its id) with a new or modified timeslot. If the updated timeslot causes conflicts with other timeslots in the schedule, appropriate revisions will be made to ensure consistency.    
+• **Upon Success**: HTTP 200 Status Code is returned
+
+
 #### GET /{id}
 • **Expected Input**: id(int).    
 • **Expected Output**: the time slot matched the ID    
@@ -124,6 +146,11 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 #### GET /
 • **Expected Input**: N/A.    
 • **Expected Output**: all time slots in the descending order    
+• **Upon Success**: HTTP 200 Status Code is returned 
+
+#### GET /user
+• **Expected Input**: Parameter, email(string).
+• **Expected Output**: all time slot matched the input user email    
 • **Upon Success**: HTTP 200 Status Code is returned 
 
 #### GET /user/{uid}
@@ -141,14 +168,9 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 • **Expected Output**: all time slot matched the input availability  
 • **Upon Success**: HTTP 200 Status Code is returned 
 
-#### PUT /{id}
-• **Expected Input**: id(int), timeslot (timeslot in JSON).       
-• **Expected Output**: update the time slot given the tid  
-• **Upon Success**: HTTP 200 Status Code is returned 
-
 #### DELETE /{id}
 • **Expected Input**: id(int)    
-• **Expected Output**: delete the time slot given the tid  
+• **Expected Output**: N/A.  
 • **Upon Success**: HTTP 200 Status Code is returned 
 
 
@@ -179,6 +201,11 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 • **Expected Input**: N/A  
 • **Expected Output**: All users in the descending order 
 • **Upon Success**: HTTP 200 Status Code is returned along with the users in the response body
+
+#### DELETE /{id}
+• **Expected Input**: id(int)    
+• **Expected Output**: delete the user given the uid
+• **Upon Success**: HTTP 200 Status Code is returned or 404 if the user is not found
 
 ### /api/v1/requests
 -------------------------------------------------------------------------------------------------------------------------
