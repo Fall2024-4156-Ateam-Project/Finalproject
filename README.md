@@ -126,6 +126,18 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 • **Expected Output**: the complete user object added    
 • **Upon Success**: HTTP 200 Status Code is returned 
 
+#### POST /merge
+• **Expected Input**: a timeslot object in JSON.    
+• **Expected Output**: This endpoint allows a user to add a new timeslot into their existing schedule. The provided timeslot will be added to the user’s schedule, ensuring that it doesn’t conflict with existing timeslots. If conflicts occur, the overlapping timeslots are revised to accommodate the new timeslot.  
+• **Upon Success**: HTTP 200 Status Code is returned
+
+
+#### PUT /{id}
+• **Expected Input**: a timeslot object in JSON.    
+• **Expected Output**: This endpoint allows a user to update an existing timeslot in their schedule by replacing the target timeslot (identified by its id) with a new or modified timeslot. If the updated timeslot causes conflicts with other timeslots in the schedule, appropriate revisions will be made to ensure consistency.    
+• **Upon Success**: HTTP 200 Status Code is returned
+
+
 #### GET /{id}
 • **Expected Input**: id(int).    
 • **Expected Output**: the time slot matched the ID    
@@ -159,7 +171,7 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 #### PUT /{id}
 • **Expected Input**: id(int), timeslot (timeslot in JSON).       
 • **Expected Output**: update the time slot given the tid  
-• **Upon Success**: HTTP 200 Status Code is returned 
+• **Upon Success**: HTTP 200 Status Code is returned
 
 #### DELETE /{id}
 • **Expected Input**: id(int)    
