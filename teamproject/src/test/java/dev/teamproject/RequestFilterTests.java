@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 import java.io.PrintWriter;
@@ -111,15 +113,147 @@ public class RequestFilterTests {
         verify(response, never()).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
     }
 
-    // @Test
-    // void testNonExcludedPathSimilarPrefix() throws Exception {
-    //     when(request.getRequestURI()).thenReturn("/swagger-ui-notexcluded");
+    @Test
+    void testNonExcludedPathSimilarPrefix() throws Exception {
+        when(request.getRequestURI()).thenReturn("/swagger-ui-notexcluded");
 
-    //     // requestFilter.doFilterInternal(request, response, chain);
+        requestFilter.setApiKey("valid-key");
+        requestFilter.doFilterInternal(request, response, chain);
 
-    //     verify(chain, never()).doFilter(request, response);
-    //     verify(response, times(1)).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-    // }
+        verify(chain, never()).doFilter(request, response);
+        verify(response, times(1)).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+
+        // boolean result = requestFilter.isExcludedPath("/swagger-ui-notexcluded");
+        // assertFalse(result, "Paths similar to excluded prefixes should not be
+        // excluded.");
+
+    }
+
+    @Test
+    void testExcludedCssPath() throws Exception {
+        when(request.getRequestURI()).thenReturn("/static/style.css");
+
+        // Excluded path should bypass the filter
+        requestFilter.doFilterInternal(request, response, chain);
+
+        verify(chain, times(1)).doFilter(request, response);
+        verify(response, never()).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    }
+
+    @Test
+    void testExcludedResourcesPath() throws Exception {
+        when(request.getRequestURI()).thenReturn("/resources/style.css");
+
+        // Excluded path should bypass the filter
+        requestFilter.doFilterInternal(request, response, chain);
+
+        verify(chain, times(1)).doFilter(request, response);
+        verify(response, never()).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    }
+
+    @Test
+    void testExcludedWebjarsPath() throws Exception {
+        when(request.getRequestURI()).thenReturn("/webjars/style.css");
+
+        // Excluded path should bypass the filter
+        requestFilter.doFilterInternal(request, response, chain);
+
+        verify(chain, times(1)).doFilter(request, response);
+        verify(response, never()).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    }
+
+    @Test
+    void testExcludedApidocsPath() throws Exception {
+        when(request.getRequestURI()).thenReturn("/v3/api-docs/style.css");
+
+        // Excluded path should bypass the filter
+        requestFilter.doFilterInternal(request, response, chain);
+
+        verify(chain, times(1)).doFilter(request, response);
+        verify(response, never()).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    }
+
+    @Test
+    void testExcludedOnlyCssPath() throws Exception {
+        when(request.getRequestURI()).thenReturn("style.css");
+
+        // Excluded path should bypass the filter
+        requestFilter.doFilterInternal(request, response, chain);
+
+        verify(chain, times(1)).doFilter(request, response);
+        verify(response, never()).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    }
+
+    @Test
+    void testExcludedOnlyJsPath() throws Exception {
+        // CHANGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEee
+        when(request.getRequestURI()).thenReturn("script.js");
+
+        // Excluded path should bypass the filter
+        requestFilter.doFilterInternal(request, response, chain);
+
+        verify(chain, times(1)).doFilter(request, response);
+        verify(response, never()).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    }
+
+    @Test
+    void testExcludedOnlyHtmlPath() throws Exception {
+        // CHANGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEee
+        when(request.getRequestURI()).thenReturn("index.html");
+
+        // Excluded path should bypass the filter
+        requestFilter.doFilterInternal(request, response, chain);
+
+        verify(chain, times(1)).doFilter(request, response);
+        verify(response, never()).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    }
+
+    @Test
+    void testExcludedOnlyPngPath() throws Exception {
+        // CHANGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEee
+        when(request.getRequestURI()).thenReturn("image.png");
+
+        // Excluded path should bypass the filter
+        requestFilter.doFilterInternal(request, response, chain);
+
+        verify(chain, times(1)).doFilter(request, response);
+        verify(response, never()).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    }
+
+    @Test
+    void testExcludedFaviconPath() throws Exception {
+        when(request.getRequestURI()).thenReturn("/favicon.ico");
+
+        // Excluded favicon path should bypass the filter
+        requestFilter.doFilterInternal(request, response, chain);
+
+        verify(chain, times(1)).doFilter(request, response);
+        verify(response, never()).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    }
+    
+    @Test
+    void testExcludedConfigPath() throws Exception {
+        when(request.getRequestURI()).thenReturn("/some-config");
+
+        // Excluded config path should bypass the filter
+        requestFilter.doFilterInternal(request, response, chain);
+
+        verify(chain, times(1)).doFilter(request, response);
+        verify(response, never()).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    }
+
+    @Test
+    void testValidNonExcludedPath() throws Exception {
+        when(request.getRequestURI()).thenReturn("/protected-path");
+        when(request.getHeader("apiKey")).thenReturn("valid-key");
+        requestFilter.setApiKey("valid-key");
+
+        // Valid API key and non-excluded path should allow the request
+        requestFilter.doFilterInternal(request, response, chain);
+
+        verify(chain, times(1)).doFilter(request, response);
+        verify(response, never()).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    }
 
     @Test
     void testConcurrentRequests() throws Exception {

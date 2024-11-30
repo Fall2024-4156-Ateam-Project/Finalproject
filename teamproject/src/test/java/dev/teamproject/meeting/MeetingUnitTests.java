@@ -2,6 +2,7 @@ package dev.teamproject.meeting;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import dev.teamproject.common.CommonTypes;
@@ -29,7 +30,7 @@ public class MeetingUnitTests {
     meeting.setType(CommonTypes.MeetingType.group);
     meeting.setDescription("Test Meeting");
     meeting.setStartTime(LocalTime.of(10, 0)); // 10:00 AM
-    meeting.setEndTime(LocalTime.of(11, 0));   // 11:00 AM
+    meeting.setEndTime(LocalTime.of(11, 0)); // 11:00 AM
     meeting.setStartDay(Day.Monday);
     meeting.setEndDay(Day.Monday);
     meeting.setRecurrence(CommonTypes.Recurrence.weekly);
@@ -62,11 +63,11 @@ public class MeetingUnitTests {
     meeting.setType(CommonTypes.MeetingType.one_on_one);
     meeting.setDescription("Updated Meeting");
     meeting.setStartTime(LocalTime.of(14, 0)); // 2:00 PM
-    meeting.setEndTime(LocalTime.of(15, 0));   // 3:00 PM
+    meeting.setEndTime(LocalTime.of(15, 0)); // 3:00 PM
     meeting.setStartDay(Day.Tuesday);
     meeting.setEndDay(Day.Wednesday);
     meeting.setRecurrence(CommonTypes.Recurrence.daily);
-    meeting.setCreatedAt(LocalTime.of(8, 0));  // 8:00 AM
+    meeting.setCreatedAt(LocalTime.of(8, 0)); // 8:00 AM
     meeting.setInviteParticipant(10);
     meeting.setAcceptParticipant(7);
     meeting.setStatus(CommonTypes.MeetingStatus.Invalid);
@@ -83,6 +84,73 @@ public class MeetingUnitTests {
     assertEquals(10, meeting.getInviteParticipant());
     assertEquals(7, meeting.getAcceptParticipant());
     assertEquals(CommonTypes.MeetingStatus.Invalid, meeting.getStatus());
+
+    meeting.setDescription(null); // Description can be null
+    assertNull(meeting.getDescription());
+
+  }
+
+  // Test for invalid invite participant count (negative value)
+  @Test
+  void testInviteParticipantNegative() {
+    assertThrows(IllegalArgumentException.class, () -> meeting.setInviteParticipant(-1));
+  }
+
+  // Test for valid invite participant count
+  @Test
+  void testInviteParticipantValid() {
+    meeting.setInviteParticipant(10);
+    assertEquals(10, meeting.getInviteParticipant());
+  }
+
+  // Test for valid accept participant count
+  @Test
+  void testAcceptParticipantValid() {
+    meeting.setAcceptParticipant(8);
+    assertEquals(8, meeting.getAcceptParticipant());
+  }
+
+  // Test for setting the description to exactly 500 characters (boundary case)
+  @Test
+  void testDescriptionExactly500Chars() {
+    String description = "A".repeat(500); // 500 characters
+    meeting.setDescription(description);
+    assertEquals(description, meeting.getDescription());
+  }
+
+  // Test for setting description to 501 characters (boundary case, invalid)
+  @Test
+  void testDescriptionTooLong() {
+    String longDescription = "A".repeat(501); // 501 characters
+    assertThrows(IllegalArgumentException.class, () -> meeting.setDescription(longDescription));
+  }
+
+  // Test for null invite participant value (should be valid)
+  @Test
+  void testInviteParticipantNull() {
+    meeting.setInviteParticipant(null); // Should be valid as null is allowed
+    assertNull(meeting.getInviteParticipant());
+  }
+
+  // Test for null accept participant value (should be valid)
+  @Test
+  void testAcceptParticipantNull() {
+    meeting.setAcceptParticipant(null); // Should be valid as null is allowed
+    assertNull(meeting.getAcceptParticipant());
+  }
+
+  // Test setting the invite participant count to zero
+  @Test
+  void testInviteParticipantZero() {
+    meeting.setInviteParticipant(0);
+    assertEquals(0, meeting.getInviteParticipant());
+  }
+
+  // Test setting the accept participant count to zero
+  @Test
+  void testAcceptParticipantZero() {
+    meeting.setAcceptParticipant(0);
+    assertEquals(0, meeting.getAcceptParticipant());
   }
 
   @Test
@@ -96,29 +164,16 @@ public class MeetingUnitTests {
     assertEquals(0, meeting.getMid());
   }
 
-  // Test invalid participant counts (negative values)
-  @Test
-  void testInviteParticipantNegative() {
-    assertThrows(IllegalArgumentException.class, () -> meeting.setInviteParticipant(-1));
-  }
-
   @Test
   void testAcceptParticipantNegative() {
     assertThrows(IllegalArgumentException.class, () -> meeting.setAcceptParticipant(-1));
-  }
-
-  // Test invalid descriptions that exceed maximum length
-  @Test
-  void testDescriptionTooLong() {
-    String longDescription = "A".repeat(501); // 501 characters
-    assertThrows(IllegalArgumentException.class, () -> meeting.setDescription(longDescription));
   }
 
   // Test for invalid start time being later than end time
   @Test
   void testStartTimeAfterEndTime() {
     meeting.setStartTime(LocalTime.of(12, 0)); // 12:00 PM
-    meeting.setEndTime(LocalTime.of(11, 0));   // 11:00 AM
+    meeting.setEndTime(LocalTime.of(11, 0)); // 11:00 AM
     assertThrows(IllegalArgumentException.class, () -> {
       if (meeting.getStartTime().isAfter(meeting.getEndTime())) {
         throw new IllegalArgumentException("Start time cannot be after end time.");
@@ -153,8 +208,8 @@ public class MeetingUnitTests {
   void testConstructor() {
     Meeting newMeeting = new Meeting(
         organizer, Day.Monday, Day.Tuesday, LocalTime.of(9, 0), "Meeting description",
-        CommonTypes.Recurrence.daily, LocalTime.of(10, 0), CommonTypes.MeetingType.group, CommonTypes.MeetingStatus.Valid
-    );
+        CommonTypes.Recurrence.daily, LocalTime.of(10, 0), CommonTypes.MeetingType.group,
+        CommonTypes.MeetingStatus.Valid);
 
     assertEquals(organizer, newMeeting.getOrganizer());
     assertEquals(Day.Monday, newMeeting.getStartDay());

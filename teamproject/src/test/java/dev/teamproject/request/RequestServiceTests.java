@@ -82,7 +82,7 @@ class RequestServiceTests {
     when(requestRepo.findById(requestId)).thenReturn(Optional.empty());
 
     assertThrows(RuntimeException.class, () -> requestService
-            .deleteRequest(timeSlot.getTid(), user.getUid()));
+        .deleteRequest(timeSlot.getTid(), user.getUid()));
   }
 
   @Test
@@ -93,8 +93,55 @@ class RequestServiceTests {
     when(requestRepo.save(request)).thenReturn(request);
 
     Request updatedRequest = requestService
-            .updateRequestDescription(timeSlot.getTid(), user.getUid(), "New Description");
+        .updateRequestDescription(timeSlot.getTid(), user.getUid(), "New Description");
     assertEquals("New Description", updatedRequest.getDescription());
+  }
+
+  @Test
+  void testUpdateRequestDescriptionEmptyDescription() {
+    when(timeSlotService.getTimeSlotById(timeSlot.getTid())).thenReturn(timeSlot);
+    when(userService.findById(user.getUid())).thenReturn(user);
+    when(requestRepo.findById(requestId)).thenReturn(Optional.of(request));
+
+    // Simulate the repository saving the request and returning it
+    when(requestRepo.save(request)).thenAnswer(invocation -> {
+      Request savedRequest = invocation.getArgument(0);
+      return savedRequest;
+    });
+
+    Request updatedRequest = requestService
+        .updateRequestDescription(timeSlot.getTid(), user.getUid(), "");
+    assertEquals(null, updatedRequest.getDescription()); // Assuming description doesn't change.
+  }
+
+  @Test
+  void testUpdateRequestDescriptionWithNullDescription() {
+    // Mocking dependencies
+    when(timeSlotService.getTimeSlotById(timeSlot.getTid())).thenReturn(timeSlot);
+    when(userService.findById(user.getUid())).thenReturn(user);
+    when(requestRepo.findById(requestId)).thenReturn(Optional.of(request));
+
+    // Simulate the repository saving the request and returning it
+    when(requestRepo.save(request)).thenAnswer(invocation -> {
+      Request savedRequest = invocation.getArgument(0);
+      return savedRequest;
+    });
+
+    // Call the method with null as newDescription
+    Request updatedRequest = requestService.updateRequestDescription(timeSlot.getTid(), user.getUid(), null);
+
+    // Assert that the description remains unchanged
+    assertEquals(null, updatedRequest.getDescription()); // Assuming initial description was null.
+  }
+
+  @Test
+  void testUpdateRequestDescriptionRequestNotFound() {
+    when(timeSlotService.getTimeSlotById(timeSlot.getTid())).thenReturn(timeSlot);
+    when(userService.findById(user.getUid())).thenReturn(user);
+    when(requestRepo.findById(requestId)).thenReturn(Optional.empty());
+
+    assertThrows(RuntimeException.class, () -> requestService
+        .updateRequestDescription(timeSlot.getTid(), user.getUid(), "New Description"));
   }
 
   @Test
@@ -105,8 +152,35 @@ class RequestServiceTests {
     when(requestRepo.save(request)).thenReturn(request);
 
     Request updatedRequest = requestService.updateRequestStatus(timeSlot.getTid(),
-            user.getUid(), CommonTypes.RequestStatus.approved);
+        user.getUid(), CommonTypes.RequestStatus.approved);
     assertEquals(CommonTypes.RequestStatus.approved, updatedRequest.getStatus());
+  }
+
+  @Test
+  void testUpdateRequestStatusNullStatus() {
+    when(timeSlotService.getTimeSlotById(timeSlot.getTid())).thenReturn(timeSlot);
+    when(userService.findById(user.getUid())).thenReturn(user);
+    when(requestRepo.findById(requestId)).thenReturn(Optional.of(request));
+
+    // Simulate the repository saving the request and returning it
+    when(requestRepo.save(request)).thenAnswer(invocation -> {
+      Request savedRequest = invocation.getArgument(0);
+      return savedRequest;
+    });
+
+    Request updatedRequest = requestService
+        .updateRequestStatus(timeSlot.getTid(), user.getUid(), null);
+    assertEquals(null, updatedRequest.getStatus()); // Assuming status doesn't change.
+  }
+
+  @Test
+  void testUpdateRequestStatusRequestNotFound() {
+    when(timeSlotService.getTimeSlotById(timeSlot.getTid())).thenReturn(timeSlot);
+    when(userService.findById(user.getUid())).thenReturn(user);
+    when(requestRepo.findById(requestId)).thenReturn(Optional.empty());
+
+    assertThrows(RuntimeException.class, () -> requestService
+        .updateRequestStatus(timeSlot.getTid(), user.getUid(), CommonTypes.RequestStatus.approved));
   }
 
   @Test
@@ -117,6 +191,16 @@ class RequestServiceTests {
 
     Request foundRequest = requestService.getRequestById(user.getUid(), timeSlot.getTid());
     assertEquals(request, foundRequest);
+  }
+
+  @Test
+  void testGetRequestByIdNotFound() {
+    when(timeSlotService.getTimeSlotById(timeSlot.getTid())).thenReturn(timeSlot);
+    when(userService.findById(user.getUid())).thenReturn(user);
+    when(requestRepo.findById(requestId)).thenReturn(Optional.empty());
+
+    assertThrows(RuntimeException.class, () -> requestService
+        .getRequestById(user.getUid(), timeSlot.getTid()));
   }
 
   @Test

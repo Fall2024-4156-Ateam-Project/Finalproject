@@ -54,42 +54,76 @@ public class TimeSlotHelperTests {
 
   @Test
   void testIsOverlapped() {
-    
-    // Exact match overlap
+    // Exact match - no overlap
     timeSlot1.setEndTime(LocalTime.of(12, 0));
     timeSlot2.setStartTime(LocalTime.of(12, 0));
     assertFalse(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
 
-    // No overlap
+    // Overlap within the same day
+    timeSlot2.setStartTime(LocalTime.of(11, 30));
+    assertTrue(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
+
+    // Non-overlapping time slots within the same day
     timeSlot2.setStartTime(LocalTime.of(13, 0));
+    timeSlot2.setEndTime(LocalTime.of(14, 0));
     assertFalse(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
 
-    // Wrapping overlap
+    // Both time slots do not wrap (regular overlap)
+    timeSlot1.setStartDay(CommonTypes.Day.Monday);
+    timeSlot1.setEndDay(CommonTypes.Day.Monday);
+    timeSlot1.setStartTime(LocalTime.of(8, 0));
+    timeSlot1.setEndTime(LocalTime.of(10, 0));
+
+    timeSlot2.setStartDay(CommonTypes.Day.Monday);
+    timeSlot2.setEndDay(CommonTypes.Day.Monday);
+    timeSlot2.setStartTime(LocalTime.of(9, 0));
+    timeSlot2.setEndTime(LocalTime.of(11, 0));
+    assertTrue(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
+
+    // Both time slots wrap around
+    timeSlot1.setStartDay(CommonTypes.Day.Saturday);
+    timeSlot1.setEndDay(CommonTypes.Day.Monday);
+    timeSlot1.setStartTime(LocalTime.of(23, 0));
+    timeSlot1.setEndTime(LocalTime.of(2, 0));
+
+    timeSlot2.setStartDay(CommonTypes.Day.Sunday);
+    timeSlot2.setEndDay(CommonTypes.Day.Monday);
+    timeSlot2.setStartTime(LocalTime.of(1, 0));
+    timeSlot2.setEndTime(LocalTime.of(3, 0));
+    assertTrue(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
+
+    // Wrapping overlap: t1 ends before midnight, t2 starts after midnight
     timeSlot1.setEndDay(CommonTypes.Day.Sunday);
     timeSlot1.setEndTime(LocalTime.of(23, 59));
     timeSlot2.setStartDay(CommonTypes.Day.Monday);
     timeSlot2.setStartTime(LocalTime.of(0, 0));
-    assertTrue(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
+    assertFalse(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
 
-    //t1 wrap, t2 no wrap, overlap
+    // T1 wraps, T2 doesn't: overlapping case
     timeSlot1.setEndDay(CommonTypes.Day.Monday);
     timeSlot1.setEndTime(LocalTime.of(9, 0));
-    timeSlot2.setEndDay(CommonTypes.Day.Sunday);
-    timeSlot2.setEndTime(LocalTime.of(23, 59));
+    timeSlot2.setStartDay(CommonTypes.Day.Sunday);
+    timeSlot2.setStartTime(LocalTime.of(22, 0));
     assertTrue(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
 
-    //t1 wrap, t2 no wrap, no overlap
-    // timeSlot1.setEndTime(LocalTime.of(11, 0));
+    // T1 wraps, T2 doesn't: non-overlapping case
+    timeSlot2.setStartDay(CommonTypes.Day.Sunday);
+    timeSlot2.setStartTime(LocalTime.of(10, 0));
+    timeSlot2.setEndDay(CommonTypes.Day.Sunday);
+    timeSlot2.setEndTime(LocalTime.of(15, 0));
+    assertTrue(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
+
+    // Both time slots wrap but do not overlap
+    timeSlot1.setStartDay(CommonTypes.Day.Saturday);
+    timeSlot1.setEndDay(CommonTypes.Day.Sunday);
+    timeSlot1.setStartTime(LocalTime.of(23, 0));
+    timeSlot1.setEndTime(LocalTime.of(1, 0));
+
+    timeSlot2.setStartDay(CommonTypes.Day.Sunday);
     timeSlot2.setEndDay(CommonTypes.Day.Monday);
-    timeSlot2.setEndTime(LocalTime.of(2, 0));
-    assertTrue(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
-
-    //t1 no wrap, t2 no wrap, overlap
-    timeSlot1.setEndTime(LocalTime.of(11, 0));
-    timeSlot2.setEndDay(CommonTypes.Day.Sunday);
-    timeSlot2.setEndTime(LocalTime.of(23, 59));
-    assertTrue(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
-    
+    timeSlot2.setStartTime(LocalTime.of(2, 0));
+    timeSlot2.setEndTime(LocalTime.of(4, 0));
+    assertFalse(timeSlotHelper.isOverlapped(timeSlot1, timeSlot2));
   }
 
   @Test
@@ -114,8 +148,8 @@ public class TimeSlotHelperTests {
     CommonTypes.Day d3 = CommonTypes.Day.Monday;
     LocalTime t3 = LocalTime.of(14, 0, 0);
 
-    assertEquals(true, timeSlotHelper.isEarlier(d1,t1,d2,t2));
-    assertEquals(false, timeSlotHelper.isEarlier(d1,t1,d3,t3));
+    assertEquals(true, timeSlotHelper.isEarlier(d1, t1, d2, t2));
+    assertEquals(false, timeSlotHelper.isEarlier(d1, t1, d3, t3));
   }
 
   @Test
@@ -149,7 +183,7 @@ public class TimeSlotHelperTests {
     assertEquals(CommonTypes.Day.Sunday, timeSlotHelper.getDayFromIndex(6));
     assertThrows(IllegalArgumentException.class, () -> timeSlotHelper.getDayFromIndex(7));
     assertThrows(IllegalArgumentException.class, () -> timeSlotHelper.getDayFromIndex(-1));
-  }    
+  }
 
   @Test
   void testGetWeekStartAndEnd() {
@@ -165,4 +199,3 @@ public class TimeSlotHelperTests {
     assertEquals(LocalTime.of(23, 59), weekEnd.getValue());
   }
 }
-

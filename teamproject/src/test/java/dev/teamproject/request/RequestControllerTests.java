@@ -69,10 +69,17 @@ class RequestControllerTests {
   }
 
   @Test
+  void testGetRequestsInvalidRequest() {
+    ResponseEntity<?> response = requestController.getRequests(null, null);
+    assertEquals(400, response.getStatusCodeValue());
+    assertEquals("Invalid request: Please provide either 'userid' or 'tid'", response.getBody());
+  }
+
+  @Test
   void testUpdateRequestDescription() {
     when(requestService.updateRequestDescription(1, 1, "New Description")).thenReturn(request);
     ResponseEntity<Request> response = requestController
-            .updateRequestDescription(1, 1, "New Description");
+        .updateRequestDescription(1, 1, "New Description");
     assertEquals(200, response.getStatusCodeValue());
     assertEquals(request, response.getBody());
   }
@@ -80,9 +87,9 @@ class RequestControllerTests {
   @Test
   void testUpdateRequestStatus() {
     when(requestService.updateRequestStatus(1, 1, CommonTypes.RequestStatus.approved))
-            .thenReturn(request);
+        .thenReturn(request);
     ResponseEntity<Request> response = requestController
-            .updateRequestStatus(1, 1, CommonTypes.RequestStatus.approved);
+        .updateRequestStatus(1, 1, CommonTypes.RequestStatus.approved);
     assertEquals(200, response.getStatusCodeValue());
     assertEquals(request, response.getBody());
   }
