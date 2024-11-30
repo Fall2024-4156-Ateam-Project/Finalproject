@@ -3,6 +3,8 @@ package dev.teamproject.meeting;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -11,12 +13,14 @@ import dev.teamproject.common.CommonTypes;
 import dev.teamproject.meeting.Meeting;
 import dev.teamproject.meeting.MeetingRepo;
 import dev.teamproject.meeting.MeetingService;
+import dev.teamproject.participant.Participant;
 import dev.teamproject.participant.ParticipantService;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserRepo;
 import dev.teamproject.user.UserService;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -97,6 +101,15 @@ public class MeetingServiceUnitTests {
   }
 
   @Test
+  public void testFindByEmailWithNoUsers() {
+    String email = "nonexistent@columbia.edu";
+    when(userService.findByEmail(email)).thenReturn(new ArrayList<>()); // Mock empty user list
+
+    List<Meeting> meetings = meetingService.findByEmail(email);
+    assertEquals(0, meetings.size()); // Expect no meetings
+  }
+
+  @Test
   public void testFindByOrganizerSingle() {
     List<Meeting> meetingsByOrganizer = Arrays.asList(meeting1);
     when(meetingRepo.findByOrganizer(user1)).thenReturn(meetingsByOrganizer);
@@ -167,11 +180,39 @@ public class MeetingServiceUnitTests {
 
     // Verify that the custom exception is thrown with the expected message
     dev.teamproject.exceptionHandler.IllegalArgumentException exception = assertThrows(
-            dev.teamproject.exceptionHandler.IllegalArgumentException.class,
-            () -> meetingService.save(meetingDTO)
-    );
+        dev.teamproject.exceptionHandler.IllegalArgumentException.class,
+        () -> meetingService.save(meetingDTO));
 
     // Assert that the exception message is as expected
     assertEquals("Organizer does not exist.", exception.getMessage());
   }
+
+  @Test
+  public void testSaveMeetingMissingFields() {
+    MeetingDTO meetingDTO = new MeetingDTO(); // Missing required fields
+    assertThrows(
+        dev.teamproject.exceptionHandler.IllegalArgumentException.class,
+        () -> meetingService.save(meetingDTO));
+  }
+
+  @Test
+  public void testDeleteMeetingWithParticipants() {
+    int mid = 1;
+    Participant participant1 = new Participant();
+    participant1.setPid(1);
+    participant1.setMeeting(meeting1);
+    Participant participant2 = new Participant();
+    participant2.setPid(2);
+    participant2.setMeeting(meeting1);
+
+    when(meetingRepo.existsById(mid)).thenReturn(true);
+    when(meetingRepo.findByMid(mid)).thenReturn(meeting1);
+    when(participantService.findByMeeting(meeting1)).thenReturn(List.of(participant1, participant2));
+
+    meetingService.deleteMeeting(mid);
+
+    verify(participantService, times(2)).deleteParticipant(anyInt());
+    verify(meetingRepo, times(1)).deleteById(mid);
+  }
+
 }
