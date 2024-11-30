@@ -119,7 +119,7 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 • **Upon Success**: HTTP 200 Status Code is returned along with all participants in the response body
 
 
-### /api/v1/timeslots (TODO: put, merge new apis)
+### /api/v1/timeslots
 ------------------------------------------------------------------------------------------------------------------------
 #### POST
 • **Expected Input**: a timeslot object in JSON.    
@@ -167,11 +167,6 @@ Running the style checker inside teamproject folder: ```mvn checkstyle:check```
 • **Expected Input**: availability(available, busy).    
 • **Expected Output**: all time slot matched the input availability  
 • **Upon Success**: HTTP 200 Status Code is returned 
-
-#### PUT /{id}
-• **Expected Input**: id(int), timeslot (timeslot in JSON).       
-• **Expected Output**: update the time slot given the tid  
-• **Upon Success**: HTTP 200 Status Code is returned
 
 #### DELETE /{id}
 • **Expected Input**: id(int)    
