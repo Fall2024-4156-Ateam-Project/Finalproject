@@ -63,7 +63,10 @@ public class ParticipantController {
 
 
   @GetMapping("/findByUser")
-  public List<Participant> findByUser(@RequestBody User user) {
+  public List<Participant> findByUser(@RequestParam("uid") int uid) {
+
+    User user = new User();
+    user.setUid(uid);
     return participantService.findByUser(user);
   }
   

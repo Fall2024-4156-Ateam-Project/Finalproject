@@ -90,7 +90,7 @@ public class ParticipantControllerTests {
         List<Participant> participants = Arrays.asList(new Participant(), new Participant());
         when(participantService.findByUser(user)).thenReturn(participants);
 
-        List<Participant> result = participantController.findByUser(user);
+        List<Participant> result = participantController.findByUser(user.getUid());
 
         verify(participantService, times(1)).findByUser(user);
         assertEquals(participants, result);
