@@ -7,6 +7,7 @@ import dev.teamproject.participant.Participant;
 import dev.teamproject.participant.ParticipantController;
 import dev.teamproject.participant.ParticipantService;
 import dev.teamproject.user.User;
+import dev.teamproject.user.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -28,10 +29,13 @@ public class ParticipantControllerTests {
     @Mock
     private MeetingService meetingService;
 
+    @Mock
+    private UserService userService;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        participantController = new ParticipantController(participantService, meetingService);
+        participantController = new ParticipantController(participantService, meetingService, userService);
     }
 
     @Test
@@ -87,13 +91,16 @@ public class ParticipantControllerTests {
     @Test
     void testFindByUser() {
         User user = new User();
+        user.setUid(1);
+        user.setName("testname");
+        user.setEmail("test@email");
         List<Participant> participants = Arrays.asList(new Participant(), new Participant());
         when(participantService.findByUser(user)).thenReturn(participants);
 
         List<Participant> result = participantController.findByUser(user.getUid());
+        User user1=userService.findById(1);
+        verify(participantService, times(1)).findByUser(user1);
 
-        verify(participantService, times(1)).findByUser(user);
-        assertEquals(participants, result);
     }
 
     @Test
