@@ -4332,7 +4332,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/participants/findByUser?uid={{uid}}",
+							"raw": "http://localhost:8080/api/v1/participants/findByUser?uid=30",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4348,8 +4348,8 @@
 						"query": [
 								{
 									"key": "uid",
-									"value": "{{uid}}",
-									"type": "text"
+									"value": "30"
+									
 								}
 							]
 					},
