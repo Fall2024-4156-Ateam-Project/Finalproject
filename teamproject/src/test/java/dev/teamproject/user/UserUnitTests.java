@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import dev.teamproject.user.User;
 import java.sql.Timestamp;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -83,7 +82,8 @@ public class UserUnitTests {
   @Test
   void testToString() {
     // testuser.set(0);
-    String expectedString = "User{uid=0, name='test name', email='test@email.com', createdAt=null, updatedAt=null}";
+    String expectedString =
+            "User{uid=0, name='test name', email='test@email.com', createdAt=null, updatedAt=null}";
     assertEquals(expectedString, testuser.toString());
 
     Timestamp now = new Timestamp(System.currentTimeMillis());

@@ -4331,17 +4331,8 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"uid\": {{userId}}\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/participants/findByUser",
+							"raw": "http://localhost:8080/api/v1/participants/findByUser?uid={{userId}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4352,6 +4343,13 @@
 								"v1",
 								"participants",
 								"findByUser"
+							],
+							"query": [
+								{
+									"key": "uid",
+									"value": "{{userId}}"
+									
+								}
 							]
 						}
 					},

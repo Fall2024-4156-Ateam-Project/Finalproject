@@ -3,6 +3,7 @@ package dev.teamproject.meeting;
 import dev.teamproject.apiResponse.GenericApiResponse;
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.exceptionHandler.UserNotFoundException;
+import dev.teamproject.participant.Participant;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserService;
 import java.util.List;
@@ -100,7 +101,6 @@ public class MeetingController {
   public List<Meeting> findByOrganizer(@RequestBody User organizer) {
     return meetingService.findByOrganizer(organizer);
   }
-
 
   @DeleteMapping()
   public ResponseEntity<Void> deleteMeeting(@RequestParam("mid") int mid) {
