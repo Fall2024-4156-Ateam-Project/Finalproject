@@ -4343,15 +4343,15 @@
 								"v1",
 								"participants",
 								"findByUser"
-							]
-						},
-						"query": [
+							],
+							"query": [
 								{
 									"key": "uid",
 									"value": "{{userId}}"
 									
 								}
 							]
+						}
 					},
 					"response": []
 				},
