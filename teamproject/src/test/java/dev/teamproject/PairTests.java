@@ -1,11 +1,10 @@
 package dev.teamproject;
 
+import dev.teamproject.common.Pair;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.Test;
-
-import dev.teamproject.common.Pair;
 
 public class PairTests {
 

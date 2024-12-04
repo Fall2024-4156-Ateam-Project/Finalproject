@@ -1,5 +1,8 @@
 package dev.teamproject.meeting;
 
+import dev.teamproject.apiResponse.GenericApiResponse;
+import dev.teamproject.common.CommonTypes;
+import dev.teamproject.user.User;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,10 +18,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
-
-import dev.teamproject.apiResponse.GenericApiResponse;
-import dev.teamproject.common.CommonTypes;
-import dev.teamproject.user.User;
 
 public class MeetingControllerTests {
   @Mock

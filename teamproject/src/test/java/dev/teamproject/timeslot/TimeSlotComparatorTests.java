@@ -1,12 +1,10 @@
 package dev.teamproject.timeslot;
 
+import dev.teamproject.common.CommonTypes;
 import java.time.LocalTime;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import dev.teamproject.common.CommonTypes;
 
 public class TimeSlotComparatorTests {
   private TimeSlotComparator timeSlotComparator;

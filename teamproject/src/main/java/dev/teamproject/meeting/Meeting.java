@@ -3,8 +3,8 @@ package dev.teamproject.meeting;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import dev.teamproject.common.CommonTypes.Day;
 import dev.teamproject.common.CommonTypes;
+import dev.teamproject.common.CommonTypes.Day;
 import dev.teamproject.user.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

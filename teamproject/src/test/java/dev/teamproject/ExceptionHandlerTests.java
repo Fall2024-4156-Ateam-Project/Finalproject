@@ -1,5 +1,9 @@
 package dev.teamproject;
 
+import dev.teamproject.exceptionHandler.GenericExceptionHandler;
+import dev.teamproject.exceptionHandler.UserException;
+import dev.teamproject.exceptionHandler.UserNotFoundException;
+import dev.teamproject.user.DTOs.UserErrorResponseDTO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,11 +19,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-
-import dev.teamproject.exceptionHandler.GenericExceptionHandler;
-import dev.teamproject.exceptionHandler.UserException;
-import dev.teamproject.exceptionHandler.UserNotFoundException;
-import dev.teamproject.user.DTOs.UserErrorResponseDTO;
 
 public class ExceptionHandlerTests {
 

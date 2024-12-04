@@ -1,9 +1,12 @@
 package dev.teamproject.user;
 
+import dev.teamproject.exceptionHandler.UserException;
+import dev.teamproject.exceptionHandler.UserNotFoundException;
+import dev.teamproject.user.DTOs.UserCreationRequestDTO;
+import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,11 +20,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
-
-import dev.teamproject.exceptionHandler.UserException;
-import dev.teamproject.exceptionHandler.UserNotFoundException;
-import dev.teamproject.user.DTOs.UserCreationRequestDTO;
-import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
 
 // import static org.mockito.Mockito.*;
 

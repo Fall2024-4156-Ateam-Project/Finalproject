@@ -1,8 +1,12 @@
 package dev.teamproject.participant;
 
+import dev.teamproject.common.CommonTypes;
+import dev.teamproject.meeting.Meeting;
+import dev.teamproject.meeting.MeetingService;
+import dev.teamproject.user.User;
+import dev.teamproject.user.UserService;
 import java.util.Arrays;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,12 +16,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
-
-import dev.teamproject.common.CommonTypes;
-import dev.teamproject.meeting.Meeting;
-import dev.teamproject.meeting.MeetingService;
-import dev.teamproject.user.User;
-import dev.teamproject.user.UserService;
 
 public class ParticipantControllerTests {
   private ParticipantController participantController;

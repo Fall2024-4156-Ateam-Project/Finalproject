@@ -1,17 +1,16 @@
 package dev.teamproject.meeting;
 
-import java.time.LocalTime;
-import java.util.Set;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 
 import dev.teamproject.common.CommonTypes;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import java.time.LocalTime;
+import java.util.Set;
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 public class MeetingDTOTests {
   private static Validator validator;

@@ -1,8 +1,10 @@
 package dev.teamproject.user;
 
+import dev.teamproject.apiResponse.GenericApiResponse;
+import dev.teamproject.user.DTOs.UserCreationRequestDTO;
+import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
 import java.util.Arrays;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,10 +16,6 @@ import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import dev.teamproject.apiResponse.GenericApiResponse;
-import dev.teamproject.user.DTOs.UserCreationRequestDTO;
-import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
 
 class UserControllerUnitTests {
 

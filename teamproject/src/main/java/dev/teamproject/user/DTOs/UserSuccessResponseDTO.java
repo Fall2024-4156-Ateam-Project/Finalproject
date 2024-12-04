@@ -1,8 +1,7 @@
 package dev.teamproject.user.DTOs;
 
-import java.sql.Timestamp;
-
 import dev.teamproject.user.User;
+import java.sql.Timestamp;
 
 public class UserSuccessResponseDTO {
 
