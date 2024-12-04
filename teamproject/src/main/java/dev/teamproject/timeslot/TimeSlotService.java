@@ -1,21 +1,19 @@
 package dev.teamproject.timeslot;
 
-import dev.teamproject.common.CommonTypes;
-import dev.teamproject.common.CommonTypes.Availability;
-import dev.teamproject.common.CommonTypes.Day;
-import dev.teamproject.common.Pair;
-import dev.teamproject.user.User;
-import dev.teamproject.user.UserService;
-import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import dev.teamproject.timeslot.TimeSlotHelper.*;
+
+import dev.teamproject.common.CommonTypes;
+import dev.teamproject.common.Pair;
+import dev.teamproject.user.User;
+import dev.teamproject.user.UserService;
 
 /**
  * Service class for managing TimeSlot entities. This class provides functionality for creating,
@@ -311,7 +309,6 @@ public class TimeSlotService {
     synchronized (lock) {
       TimeSlot existingTimeSlot = getTimeSlotById(tid);
       existingTimeSlot.setUser(updatedTimeSlot.getUser());
-//    existingTimeSlot.setDay(updatedTimeSlot.getDay());
       existingTimeSlot.setStartDay(updatedTimeSlot.getStartDay());
       existingTimeSlot.setEndDay(updatedTimeSlot.getEndDay());
       existingTimeSlot.setStartTime(updatedTimeSlot.getStartTime());

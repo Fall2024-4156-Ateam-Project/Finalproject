@@ -1,30 +1,27 @@
 package dev.teamproject.user;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import dev.teamproject.exceptionHandler.UserException;
-import dev.teamproject.exceptionHandler.UserNotFoundException;
-import dev.teamproject.user.User;
-import dev.teamproject.user.UserRepo;
-import dev.teamproject.user.UserService;
-import dev.teamproject.user.DTOs.UserCreationRequestDTO;
-import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
+
+import dev.teamproject.exceptionHandler.UserException;
+import dev.teamproject.exceptionHandler.UserNotFoundException;
+import dev.teamproject.user.DTOs.UserCreationRequestDTO;
+import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
 
 // import static org.mockito.Mockito.*;
 
@@ -154,10 +151,4 @@ class UserServiceUnitTests {
     verify(userRepo, times(1)).existsByUid(99);
     verify(userRepo, times(0)).deleteById(anyInt());
   }
-
-//  @Test
-//  void testSaveUser() {
-//    userService.save(user1);
-//    verify(userRepo, times(1)).save(user1);
-//  }
 }

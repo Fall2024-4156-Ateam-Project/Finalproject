@@ -2,7 +2,7 @@ package dev.teamproject.timeslot;
 
 public class TimeSlotComparator implements java.util.Comparator<TimeSlot> {
 
-    @Override
+  @Override
   public int compare(TimeSlot t1, TimeSlot t2) {
     int dayCompare = t1.getStartDay().compareTo(t2.getStartDay());
     if (dayCompare != 0) {

@@ -1,7 +1,8 @@
 package dev.teamproject.user.DTOs;
 
-import dev.teamproject.user.User;
 import java.sql.Timestamp;
+
+import dev.teamproject.user.User;
 
 public class UserSuccessResponseDTO {
 
@@ -58,6 +59,6 @@ public class UserSuccessResponseDTO {
     setName(user.getName());
     setEmail(user.getEmail());
     setCreatedAt(user.getCreatedAt());
-//    response.setUpdatedAt(user.getUpdatedAt());
+    // response.setUpdatedAt(user.getUpdatedAt());
   }
 }
