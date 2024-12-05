@@ -1,8 +1,8 @@
 package dev.teamproject.meeting;
 
 import dev.teamproject.common.CommonTypes;
-import dev.teamproject.user.User;
 import dev.teamproject.participant.Participant;
+import dev.teamproject.user.User;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -58,6 +58,6 @@ public class UserSuccessResponseDTO {
     setName(user.getName());
     setEmail(user.getEmail());
     setCreatedAt(user.getCreatedAt());
-//    response.setUpdatedAt(user.getUpdatedAt());
+    // response.setUpdatedAt(user.getUpdatedAt());
   }
 }

@@ -55,6 +55,11 @@ public class ParticipantService {
     return this.participantRepo.findByRole(role);
   }
 
+  /**
+  * Saves a {@link Participant} entity to the repository in a transactional context.
+  * This method ensures thread-safety by synchronizing on a shared lock object,
+  * protecting the critical section during the save operation.
+  */
   @Transactional
   public void save(Participant participant) {
     synchronized (lock) { // Protect critical section

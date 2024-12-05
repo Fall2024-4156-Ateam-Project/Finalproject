@@ -1,9 +1,9 @@
 package dev.teamproject.meeting;
 
-import java.time.LocalTime;
-import jakarta.validation.constraints.NotNull;
-import dev.teamproject.common.CommonTypes.Day;
 import dev.teamproject.common.CommonTypes;
+import dev.teamproject.common.CommonTypes.Day;
+import jakarta.validation.constraints.NotNull;
+import java.time.LocalTime;
 public class MeetingDTO {
 
   // Only required for delete operation

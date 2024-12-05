@@ -3,8 +3,8 @@ package dev.teamproject.meeting;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import dev.teamproject.common.CommonTypes.Day;
 import dev.teamproject.common.CommonTypes;
+import dev.teamproject.common.CommonTypes.Day;
 import dev.teamproject.user.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -102,6 +102,11 @@ public class Meeting {
     return type;
   }
 
+  /**
+   * Sets the type of the meeting.
+   * 
+   * @param type type of meeting.
+   */
   public void setType(CommonTypes.MeetingType type) {
     if (type == null) {
       throw new IllegalArgumentException("Meeting type is required");
@@ -113,6 +118,11 @@ public class Meeting {
     return description;
   }
 
+  /**
+   * Sets the description of the meeting.
+   * 
+   * @param description the description of the meeting.
+   */
   public void setDescription(String description) {
     if (description != null && description.length() > 500) {
       throw new IllegalArgumentException("Description should not exceed 500 characters");
@@ -140,6 +150,11 @@ public class Meeting {
     return startDay;
   }
 
+  /**
+   * Sets the start day of the meeting.
+   * 
+   * @param startDay the start day of the meeting.
+   */
   public void setStartDay(Day startDay) {
     if (startDay == null) {
       throw new IllegalArgumentException("Start day is required");
@@ -151,6 +166,11 @@ public class Meeting {
     return endDay;
   }
 
+  /**
+   * Sets the end day of the meeting.
+   * 
+   * @param endDay the end day of the meeting.
+   */
   public void setEndDay(Day endDay) {
     if (endDay == null) {
       throw new IllegalArgumentException("End day is required");
@@ -162,6 +182,11 @@ public class Meeting {
     return recurrence;
   }
 
+  /**
+   * Sets the recurrence pattern of the meeting.
+   * 
+   * @param recurrence the recurrence pattern of the meeting.
+   */
   public void setRecurrence(CommonTypes.Recurrence recurrence) {
     if (recurrence == null) {
       throw new IllegalArgumentException("Recurrence is required");
@@ -181,6 +206,11 @@ public class Meeting {
     return inviteParticipant;
   }
 
+  /**
+   * Sets the number of participants invited to the meeting.
+   * 
+   * @param inviteParticipant the number of participants.
+   */
   public void setInviteParticipant(Integer inviteParticipant) {
     if (inviteParticipant != null && inviteParticipant < 0) {
       throw new IllegalArgumentException("Invite participant count cannot be negative");
@@ -192,6 +222,11 @@ public class Meeting {
     return acceptParticipant;
   }
 
+  /**
+   * Sets the number of participants who accepted the meeting.
+   * 
+   * @param acceptParticipant participants who accepted the meeting.
+   */
   public void setAcceptParticipant(Integer acceptParticipant) {
     if (acceptParticipant != null && acceptParticipant < 0) {
       throw new IllegalArgumentException("Accept participant count cannot be negative");
@@ -203,6 +238,11 @@ public class Meeting {
     return status;
   }
 
+  /**
+   * Sets the status of meeting.
+   * 
+   * @param status the status of the meeting.
+   */
   public void setStatus(CommonTypes.MeetingStatus status) {
     if (status == null) {
       throw new IllegalArgumentException("Meeting status is required");
@@ -220,7 +260,8 @@ public class Meeting {
 
   public Meeting(User organizer, CommonTypes.Day startDay, CommonTypes.Day endDay,
                   LocalTime startTime, String description, CommonTypes.Recurrence recurrence,
-                  LocalTime endTime, CommonTypes.MeetingType type, CommonTypes.MeetingStatus status) {
+                  LocalTime endTime, CommonTypes.MeetingType type, 
+                  CommonTypes.MeetingStatus status) {
     this.organizer = organizer;
     this.type = type;
     this.description = description;

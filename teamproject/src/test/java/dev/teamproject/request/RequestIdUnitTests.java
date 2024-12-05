@@ -1,15 +1,14 @@
 package dev.teamproject.request;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.lang.reflect.Field;
 
 import dev.teamproject.request.RequestId;
 import dev.teamproject.timeslot.TimeSlot;
 import dev.teamproject.user.User;
+import java.lang.reflect.Field;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 class RequestIdUnitTests {

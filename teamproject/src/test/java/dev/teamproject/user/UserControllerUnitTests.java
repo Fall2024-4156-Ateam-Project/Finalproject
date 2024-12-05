@@ -1,23 +1,18 @@
 package dev.teamproject.user;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import dev.teamproject.apiResponse.GenericApiResponse;
-import dev.teamproject.user.User;
-import dev.teamproject.user.UserController;
-import dev.teamproject.user.UserService;
 import dev.teamproject.user.DTOs.UserCreationRequestDTO;
 import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
-
 import java.util.Arrays;
 import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,16 +42,8 @@ class UserControllerUnitTests {
     userSuccessResponseDTO.setUid(1);
     userSuccessResponseDTO.setName("test1");
     userSuccessResponseDTO.setEmail("test1@email.com");
-    // userSuccessResponseDTO.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 
   }
-
-//  @Test
-//  void testSaveUser() {
-//    userController.saveUser(user1);
-//
-//    verify(userService, times(1)).save(user1);
-//  }
 
   @Test
   void testRegister() {
@@ -68,20 +55,15 @@ class UserControllerUnitTests {
 
     ResponseEntity<GenericApiResponse<UserSuccessResponseDTO>> response = userController.register(userCreationRequestDTO);
 
-    assertEquals(HttpStatus.OK, response.getStatusCode()); // Verify HTTP status code
-    // assertEquals("User created successfully", response.getBody().getMessage()); // Verify response message
-    assertEquals(userSuccessResponseDTO, response.getBody().getData()); // Verify returned user details
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals(userSuccessResponseDTO, response.getBody().getData());
     verify(userService, times(1)).registerUser(userCreationRequestDTO);
   }
 
   @Test
   void testDeleteUser() {
-    // UserSuccessResponseDTO responseDTO = new UserSuccessResponseDTO(1, "test1", "test1@email.com");
     when(userService.deleteUser(1)).thenReturn(userSuccessResponseDTO);
-
     ResponseEntity<GenericApiResponse<UserSuccessResponseDTO>> response = userController.deleteUser(1);
-
-    // assertEquals("User deleted successfully", response.getBody().getMessage());
     assertEquals(1, response.getBody().getData().getUid());
     verify(userService, times(1)).deleteUser(1);
   }
@@ -93,8 +75,8 @@ class UserControllerUnitTests {
 
     List<User> result = userController.findByName("test1");
 
-    assertEquals(1, result.size()); // Verify the size
-    assertEquals("test1", result.get(0).getName()); // Verify the name
+    assertEquals(1, result.size());
+    assertEquals("test1", result.get(0).getName());
     verify(userService, times(1)).findByName("test1");
   }
 
@@ -104,7 +86,7 @@ class UserControllerUnitTests {
 
     User result = userController.findById(0);
 
-    assertEquals("test1", result.getName()); // Verify the name
+    assertEquals("test1", result.getName());
     verify(userService, times(1)).findById(0);
   }
 
@@ -115,8 +97,8 @@ class UserControllerUnitTests {
 
     List<User> result = userController.findByEmail("test2@email.com");
 
-    assertEquals(1, result.size()); // Verify the size
-    assertEquals("test2", result.get(0).getName()); // Verify the name
+    assertEquals(1, result.size());
+    assertEquals("test2", result.get(0).getName());
     verify(userService, times(1)).findByEmail("test2@email.com");
   }
 
@@ -127,7 +109,7 @@ class UserControllerUnitTests {
 
     List<User> result = userController.getAllUsers();
 
-    assertEquals(2, result.size()); // Verify the size
+    assertEquals(2, result.size());
     verify(userService, times(1)).getAllUsers();
   }
 }

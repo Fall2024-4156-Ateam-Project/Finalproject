@@ -1,17 +1,17 @@
 package dev.teamproject.user;
 
 import dev.teamproject.common.JwtUtil;
-import dev.teamproject.user.DTOs.UserErrorResponseDTO;
-import dev.teamproject.user.DTOs.UserLoginResponseDTO;
-import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
 import dev.teamproject.exceptionHandler.UserException;
 import dev.teamproject.exceptionHandler.UserNotFoundException;
 import dev.teamproject.user.DTOs.UserCreationRequestDTO;
-import org.springframework.transaction.annotation.Transactional;
+import dev.teamproject.user.DTOs.UserErrorResponseDTO;
+import dev.teamproject.user.DTOs.UserLoginResponseDTO;
+import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Service class for managing User entities. This class provides methods for retrieving users by
