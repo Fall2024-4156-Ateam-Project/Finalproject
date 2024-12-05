@@ -18,7 +18,6 @@ import dev.teamproject.participant.ParticipantService;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserRepo;
 import dev.teamproject.user.UserService;
-
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -30,8 +30,14 @@ public class ParticipantController {
   private final MeetingService meetingService;
   private final UserService userService;
   
+  /**
+  * Constructs a {@link ParticipantController} instance with the required services.
+  * This constructor is used to inject dependencies for handling participant-related
+  * operations, including participants, meetings, and users.
+  */
   @Autowired
-  public ParticipantController(ParticipantService participantService, MeetingService meetingService, UserService userService) {
+  public ParticipantController(ParticipantService participantService, 
+      MeetingService meetingService, UserService userService) {
     this.participantService = participantService;
     this.meetingService = meetingService;
     this.userService = userService;

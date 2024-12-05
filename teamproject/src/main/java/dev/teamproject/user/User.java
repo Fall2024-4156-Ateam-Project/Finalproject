@@ -67,12 +67,13 @@ public class User {
     this.email = email;
   }
 
-
   public int getUid() {
     return uid;
   }
-
-  public void setUid(int uid) {this.uid = uid;}
+  
+  public void setUid(int uid) {
+    this.uid = uid;
+  }
 
   public String getName() {
     return name;
@@ -120,13 +121,13 @@ public class User {
   }
 
   @Override
-  public String toString() {
-    return "User{" +
-        "uid=" + uid +
-        ", name='" + name + '\'' +
-        ", email='" + email + '\'' +
-        ", createdAt=" + createdAt +
-        ", updatedAt=" + updatedAt +
-        '}';
+  public String toString() {    
+    return "User{" 
+        + "uid=" + uid 
+        + ", name='" + name + '\'' 
+        + ", email='" + email + '\'' 
+        + ", createdAt=" + createdAt 
+        + ", updatedAt=" + updatedAt 
+        + '}';
   }
 }

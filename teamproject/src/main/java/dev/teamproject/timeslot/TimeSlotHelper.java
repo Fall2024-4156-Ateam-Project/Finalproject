@@ -6,6 +6,9 @@ import dev.teamproject.common.Pair;
 import java.time.LocalTime;
 import org.springframework.stereotype.Component;
 
+/**
+ * TimeSlot Helper class specifies helper methods for TimeSlot class.
+ */
 @Component
 public class TimeSlotHelper {
 
@@ -28,16 +31,16 @@ public class TimeSlotHelper {
 
 
   /**
-   * Is two timeslots overlapped
+   * Is two timeslots overlapped.
    *
-   * @param t1
-   * @param t2
-   * @return
+   * @param t1 timeSlot instance 1 for comparison.
+   * @param t2 timeSlot instance 2 for comparison.
+   * @return returns the result of isOverlapped.
    */
   public boolean isOverlapped(TimeSlot t1, TimeSlot t2) {
+    
     // if the t1 end time before t2 start
     // exclusive
-
     int absStartTimeT1 = absTime(t1.getStartDay(), t1.getStartTime());
     int absEndTimeT1 = absTime(t1.getEndDay(), t1.getEndTime());
     int absStartTimeT2 = absTime(t2.getStartDay(), t2.getStartTime());
@@ -56,8 +59,6 @@ public class TimeSlotHelper {
         && absEndTimeT2 > 24 * 60 * 7)) {
       return !(absEndTimeT1 <= absStartTimeT2 || absEndTimeT2 <= absStartTimeT1);
     }
-    // if wrap and one not
-    // check if the wrap
 
     // T1 wrap, T2 not
     if (absEndTimeT1 > 24 * 60 * 7) {
@@ -82,11 +83,11 @@ public class TimeSlotHelper {
   }
 
   /**
-   * This return the abs time in a week, minimum unit is minute
+   * This return the abs time in a week, minimum unit is minute.
    *
-   * @param day
-   * @param time
-   * @return
+   * @param day the day for which abs time is to be returned.
+   * @param time the time for which abs time is to be returned.
+   * @return returns absolute Time.
    */
 
   public int absTime(CommonTypes.Day day, LocalTime time) {
@@ -95,7 +96,7 @@ public class TimeSlotHelper {
     return minInDay + minInWeek;
   }
 
-
+  /** Is the timeSlot wrapped. */
   public Boolean isWrapped(TimeSlot t) {
     int absEndTimeT = absTime(t.getEndDay(), t.getEndTime());
     int absStartTimeT = absTime(t.getStartDay(), t.getStartTime());
@@ -110,12 +111,14 @@ public class TimeSlotHelper {
     return absTime(d1, t1) > absTime(d2, t2);
   }
 
+  /** retrieved the day and time from abs. */
   public Pair<Day, LocalTime> getDayAndTimeFromAbs(int absTime) {
     int dayIndex = (absTime / (24 * 60)) % 7;
     int minutes = absTime % (24 * 60);
     return new Pair<>(getDayFromIndex(dayIndex), LocalTime.of(minutes / 60, minutes % 60));
   }
 
+  /** Get day from the weekday index. */
   public CommonTypes.Day getDayFromIndex(int index) {
     switch (index) {
       case 0:

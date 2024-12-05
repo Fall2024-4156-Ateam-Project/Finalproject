@@ -6,7 +6,6 @@ import dev.teamproject.participant.Participant;
 import dev.teamproject.participant.ParticipantService;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserService;
-
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -26,8 +25,10 @@ public class MeetingService {
   private final ParticipantService participantService;
   private final Object lock = new Object();
 
+  /** Constructor for MeetingService class. */
   @Autowired
-  public MeetingService(MeetingRepo meetingRepo, UserService userService, ParticipantService participantService) {
+  public MeetingService(MeetingRepo meetingRepo, UserService userService, 
+      ParticipantService participantService) {
     this.meetingRepo = meetingRepo;
     this.userService = userService;
     this.participantService = participantService;
@@ -64,6 +65,7 @@ public class MeetingService {
     return meetingRepo.findByType(type);
   }
 
+  /** Find meeting with the given user email. */
   @Transactional(readOnly = true)
   public List<Meeting> findByEmail(String email) {
 
@@ -92,6 +94,7 @@ public class MeetingService {
 
   }
 
+  /** Save the meeting.  */
   @Transactional
   @Validated
   public void save(MeetingDTO meetingDTO) {
@@ -113,7 +116,6 @@ public class MeetingService {
       if (participants.isEmpty()) {
         throw new IllegalArgumentException("Participant does not exist.");
       }
-      User participant = participants.get(0);
 
       // Set the meeting
       Meeting meeting = new Meeting();
@@ -131,7 +133,8 @@ public class MeetingService {
       try {
         meeting.setRecurrence(CommonTypes.Recurrence.valueOf(meetingDTO.getRecurrence()));
       } catch (IllegalArgumentException e) {
-        throw new IllegalArgumentException("Invalid meeting recurrence: " + meetingDTO.getRecurrence());
+        throw new IllegalArgumentException("Invalid meeting recurrence: " 
+        + meetingDTO.getRecurrence());
       }
 
       meeting.setDescription(meetingDTO.getDescription());
@@ -143,8 +146,12 @@ public class MeetingService {
 
       meetingRepo.save(meeting);
 
-      participantService.save(new Participant(meeting, organizer, CommonTypes.Role.organizer, CommonTypes.ParticipantStatus.accept));
-      participantService.save(new Participant(meeting, participant, CommonTypes.Role.participant, CommonTypes.ParticipantStatus.accept));
+      User participant = participants.get(0);
+
+      participantService.save(new Participant(meeting, organizer, CommonTypes.Role.organizer, 
+          CommonTypes.ParticipantStatus.accept));
+      participantService.save(new Participant(meeting, participant, CommonTypes.Role.participant, 
+          CommonTypes.ParticipantStatus.accept));
 
     }
   }

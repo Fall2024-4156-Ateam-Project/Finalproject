@@ -9,7 +9,6 @@ import dev.teamproject.common.CommonTypes;
 import dev.teamproject.common.Pair;
 import dev.teamproject.timeslot.TimeSlot;
 import dev.teamproject.timeslot.TimeSlotHelper;
-
 import java.time.LocalTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

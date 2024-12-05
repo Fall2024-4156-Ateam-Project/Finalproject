@@ -20,7 +20,6 @@ import dev.teamproject.timeslot.TimeSlotComparator;
 import dev.teamproject.timeslot.TimeSlotHelper;
 import dev.teamproject.timeslot.TimeSlotRepo;
 import dev.teamproject.timeslot.TimeSlotService;
-// import dev.teamproject.timeslot.;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserService;
 import java.time.LocalTime;
@@ -30,7 +29,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-
 import org.hibernate.mapping.Component;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

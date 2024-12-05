@@ -8,7 +8,6 @@ import dev.teamproject.timeslot.TimeSlot;
 import dev.teamproject.timeslot.TimeSlotController;
 import dev.teamproject.timeslot.TimeSlotService;
 import dev.teamproject.user.User;
-
 import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;

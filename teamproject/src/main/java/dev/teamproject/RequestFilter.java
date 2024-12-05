@@ -14,6 +14,11 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+/**
+ * Custom request filter to validate incoming requests based on API key 
+ * and handle exclusion paths for static resources or API documentation.
+ * Extends {@link OncePerRequestFilter} to ensure it runs only once per request.
+ */
 @Component
 public class RequestFilter extends OncePerRequestFilter {
 
@@ -27,6 +32,7 @@ public class RequestFilter extends OncePerRequestFilter {
   // Constructor-based injection
   // Default constructor for testing purposes
   public RequestFilter() {}
+  
   public RequestFilter(JwtUtil jwtUtil) {
     this.jwtUtil = jwtUtil;
   }
