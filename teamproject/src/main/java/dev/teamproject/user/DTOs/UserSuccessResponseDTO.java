@@ -3,6 +3,12 @@ package dev.teamproject.user.DTOs;
 import dev.teamproject.user.User;
 import java.sql.Timestamp;
 
+/**
+ * Data Transfer Object (DTO) for the successful user response.
+ * This class contains the user's UID, name, email, and timestamps
+ * for account creation and update, which are used to return user information
+ * in a successful response.
+ */
 public class UserSuccessResponseDTO {
 
   private Integer uid;
@@ -52,12 +58,16 @@ public class UserSuccessResponseDTO {
     this.updatedAt = updatedAt;
   }
 
-
+  /**
+   * Sets the response fields using the provided User object.
+   * This method maps the fields of the given User object to the corresponding
+   * response fields such as UID, name, email, and creation date.
+   */
   public void setUserResponseFromUser(User user) {
     setUid(user.getUid());
     setName(user.getName());
     setEmail(user.getEmail());
     setCreatedAt(user.getCreatedAt());
-    // response.setUpdatedAt(user.getUpdatedAt());
+    //  response.setUpdatedAt(user.getUpdatedAt());
   }
 }

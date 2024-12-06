@@ -11,9 +11,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
- * Configuration class for setting up web security.
- * It defines the security filter chain and authentication manager
- * to manage HTTP security and authentication logic.
+ * Configures the web security settings for the application.
+ * Enables web security and defines custom security configurations.
  */
 @Configuration
 @EnableWebSecurity
@@ -23,13 +22,12 @@ public class WebSecurityConfig {
   private RequestFilter requestFilter;
 
   /**
-   * Configures the HTTP security settings for the application.
-   * 
-   * @param http the {@link HttpSecurity} object to customize the security configuration
-   * 
-   * @return the configured {@link SecurityFilterChain} object
-   * 
-   * @throws Exception if there is an error during configuration
+   * Defines a security filter chain that disables CSRF protection
+   * and adds a custom request filter before the UsernamePasswordAuthenticationFilter.
+   *
+   * @param http the HttpSecurity object used to configure the security settings
+   * @return the SecurityFilterChain object with the configured security rules
+   * @throws Exception if an error occurs during the configuration
    */
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

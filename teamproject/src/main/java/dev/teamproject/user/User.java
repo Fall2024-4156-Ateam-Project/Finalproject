@@ -36,7 +36,7 @@ public class User {
   private String email;
 
   @Column(name = "password_hash", length = 255)
-  private String password_hash;
+  private String passwordhash;
 
   @Column(name = "createdAt")
   private Timestamp createdAt;
@@ -70,7 +70,7 @@ public class User {
   public int getUid() {
     return uid;
   }
-  
+
   public void setUid(int uid) {
     this.uid = uid;
   }
@@ -91,12 +91,12 @@ public class User {
     this.email = email;
   }
 
-  public void setPassword_hash(String password_hash) {
-    this.password_hash = password_hash;
+  public void setPassword_hash(String password) {
+    this.passwordhash = password;
   }
 
   public String getPassword_hash() {
-    return password_hash;
+    return passwordhash;
   }
 
   public Timestamp getCreatedAt() {
@@ -121,13 +121,10 @@ public class User {
   }
 
   @Override
-  public String toString() {    
-    return "User{" 
-        + "uid=" + uid 
-        + ", name='" + name + '\'' 
-        + ", email='" + email + '\'' 
-        + ", createdAt=" + createdAt 
-        + ", updatedAt=" + updatedAt 
-        + '}';
+  public String toString() {
+    return "User{"
+            + "uid=" + uid + ", name='" + name
+            + '\'' + ", email='" + email + '\'' + ", createdAt="
+            + createdAt + ", updatedAt=" + updatedAt + '}';
   }
 }

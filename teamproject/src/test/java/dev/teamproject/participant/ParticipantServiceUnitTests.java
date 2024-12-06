@@ -120,9 +120,11 @@ public class ParticipantServiceUnitTests {
   @Test
   void testFindByStatus() {
     List<Participant> participants = Arrays.asList(participant);
-    when(participantRepo.findByStatus(CommonTypes.ParticipantStatus.waiting)).thenReturn(participants);
+    when(participantRepo
+            .findByStatus(CommonTypes.ParticipantStatus.waiting)).thenReturn(participants);
 
-    List<Participant> result = participantService.findByStatus(CommonTypes.ParticipantStatus.waiting);
+    List<Participant> result =
+            participantService.findByStatus(CommonTypes.ParticipantStatus.waiting);
 
     assertEquals(1, result.size());
     assertEquals("test1", result.get(0).getUser().getName());

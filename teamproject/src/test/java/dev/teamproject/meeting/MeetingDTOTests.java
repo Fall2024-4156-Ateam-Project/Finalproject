@@ -1,17 +1,24 @@
 package dev.teamproject.meeting;
 
+import static org.assertj.core.api.Assertions.assertThat;
 
 import dev.teamproject.common.CommonTypes;
+import dev.teamproject.meeting.MeetingDTO;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 import java.time.LocalTime;
 import java.util.Set;
-import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Unit tests for the MeetingDTO class, which is a Data Transfer
+ * Object (DTO) representing a meeting. These tests ensure that the getters
+ * and setters of the MeetingDTO class work correctly,
+ * and that the validation annotations are applied properly.
+ */
 public class MeetingDTOTests {
   private static Validator validator;
 
@@ -22,9 +29,9 @@ public class MeetingDTOTests {
   }
 
   @Test
-  void testMeetingDTOGettersAndSetters() {
+  void testMeetingDtoGettersAndSetters() {
     // Arrange
-    MeetingDTO meetingDTO = new MeetingDTO();
+    MeetingDTO meetingDto = new MeetingDTO();
     Integer meetingId = 101;
     Integer organizerId = 202;
     String type = "group";
@@ -37,72 +44,74 @@ public class MeetingDTOTests {
     CommonTypes.Day endDay = CommonTypes.Day.Friday;
 
     // Act
-    meetingDTO.setMeetingId(meetingId);
-    meetingDTO.setOrganizerId(organizerId);
-    meetingDTO.setType(type);
-    meetingDTO.setDescription(description);
-    meetingDTO.setStatus(status);
-    meetingDTO.setRecurrence(recurrence);
-    meetingDTO.setStartTime(startTime);
-    meetingDTO.setEndTime(endTime);
-    meetingDTO.setStartDay(startDay);
-    meetingDTO.setEndDay(endDay);
+    meetingDto.setMeetingId(meetingId);
+    meetingDto.setOrganizerId(organizerId);
+    meetingDto.setType(type);
+    meetingDto.setDescription(description);
+    meetingDto.setStatus(status);
+    meetingDto.setRecurrence(recurrence);
+    meetingDto.setStartTime(startTime);
+    meetingDto.setEndTime(endTime);
+    meetingDto.setStartDay(startDay);
+    meetingDto.setEndDay(endDay);
 
     // Assert
-    assertThat(meetingDTO.getMeetingId()).isEqualTo(meetingId);
-    assertThat(meetingDTO.getOrganizerId()).isEqualTo(organizerId);
-    assertThat(meetingDTO.getType()).isEqualTo(type);
-    assertThat(meetingDTO.getDescription()).isEqualTo(description);
-    assertThat(meetingDTO.getStatus()).isEqualTo(status);
-    assertThat(meetingDTO.getRecurrence()).isEqualTo(recurrence);
-    assertThat(meetingDTO.getStartTime()).isEqualTo(startTime);
-    assertThat(meetingDTO.getEndTime()).isEqualTo(endTime);
-    assertThat(meetingDTO.getStartDay()).isEqualTo(startDay);
-    assertThat(meetingDTO.getEndDay()).isEqualTo(endDay);
+    assertThat(meetingDto.getMeetingId()).isEqualTo(meetingId);
+    assertThat(meetingDto.getOrganizerId()).isEqualTo(organizerId);
+    assertThat(meetingDto.getType()).isEqualTo(type);
+    assertThat(meetingDto.getDescription()).isEqualTo(description);
+    assertThat(meetingDto.getStatus()).isEqualTo(status);
+    assertThat(meetingDto.getRecurrence()).isEqualTo(recurrence);
+    assertThat(meetingDto.getStartTime()).isEqualTo(startTime);
+    assertThat(meetingDto.getEndTime()).isEqualTo(endTime);
+    assertThat(meetingDto.getStartDay()).isEqualTo(startDay);
+    assertThat(meetingDto.getEndDay()).isEqualTo(endDay);
   }
 
   @Test
   void testOrganizerIdIsNotNull() {
     // Arrange
-    MeetingDTO meetingDTO = new MeetingDTO();
-    meetingDTO.setMeetingId(101);
-    meetingDTO.setType("group");
-    meetingDTO.setDescription("Weekly team meeting");
-    meetingDTO.setStatus("valid");
-    meetingDTO.setRecurrence("weekly");
-    meetingDTO.setStartTime(LocalTime.of(9, 0));
-    meetingDTO.setEndTime(LocalTime.of(10, 0));
-    meetingDTO.setStartDay(CommonTypes.Day.Monday);
-    meetingDTO.setEndDay(CommonTypes.Day.Friday);
+    MeetingDTO meetingDto = new MeetingDTO();
+    meetingDto.setMeetingId(101);
+    meetingDto.setType("group");
+    meetingDto.setDescription("Weekly team meeting");
+    meetingDto.setStatus("valid");
+    meetingDto.setRecurrence("weekly");
+    meetingDto.setStartTime(LocalTime.of(9, 0));
+    meetingDto.setEndTime(LocalTime.of(10, 0));
+    meetingDto.setStartDay(CommonTypes.Day.Monday);
+    meetingDto.setEndDay(CommonTypes.Day.Friday);
 
     // Act
-    Set<ConstraintViolation<MeetingDTO>> violations = validator.validate(meetingDTO);
+    Set<ConstraintViolation<MeetingDTO>> violations = validator.validate(meetingDto);
 
     // Assert
     assertThat(violations).isNotEmpty();
     assertThat(violations).anyMatch(
-        violation -> violation.getPropertyPath().toString().equals("organizerId") &&
-        violation.getMessage().equals("Organizer ID is required for saving the meeting")
+            violation -> violation.getPropertyPath().toString().equals("organizerId")
+                    && violation.getMessage()
+                            .equals("Organizer ID is required for saving the meeting")
     );
   }
 
   @Test
-  void testValidMeetingDTO() {
+  void testValidMeetingDto() {
     // Arrange
-    MeetingDTO meetingDTO = new MeetingDTO();
-    meetingDTO.setMeetingId(101);
-    meetingDTO.setOrganizerId(202);
-    meetingDTO.setType("group");
-    meetingDTO.setDescription("Weekly team meeting");
-    meetingDTO.setStatus("valid");
-    meetingDTO.setRecurrence("weekly");
-    meetingDTO.setStartTime(LocalTime.of(9, 0));
-    meetingDTO.setEndTime(LocalTime.of(10, 0));
-    meetingDTO.setStartDay(CommonTypes.Day.Monday);
-    meetingDTO.setEndDay(CommonTypes.Day.Friday);
+    MeetingDTO meetingDto = new MeetingDTO();
+    meetingDto.setMeetingId(101);
+    meetingDto.setOrganizerId(202);
+    meetingDto.setType("group");
+    meetingDto.setDescription("Weekly team meeting");
+    meetingDto.setStatus("valid");
+    meetingDto.setRecurrence("weekly");
+    meetingDto.setStartTime(LocalTime.of(9, 0));
+    meetingDto.setEndTime(LocalTime.of(10, 0));
+    meetingDto.setStartDay(CommonTypes.Day.Monday);
+    meetingDto.setEndDay(CommonTypes.Day.Friday);
 
     // Act
-    Set<ConstraintViolation<MeetingDTO>> violations = validator.validate(meetingDTO);
+    Set<ConstraintViolation<MeetingDTO>> violations = validator.validate(meetingDto);
+
     // Assert
     assertThat(violations).isEmpty();
   }

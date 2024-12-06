@@ -1,22 +1,21 @@
 package dev.teamproject.request;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.request.Request;
 import dev.teamproject.timeslot.TimeSlot;
 import dev.teamproject.user.User;
 import java.lang.reflect.Field;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for the class. These tests verify the correct
  * behavior of constructors, getters, setters, and equality methods.
  */
-
 public class RequestUnitTests {
   @Test
   void testRequestConstructorAndGetters() {
@@ -83,8 +82,8 @@ public class RequestUnitTests {
 
     Request request4 = new Request();
     Request request5 = new Request();
-    Request request6 = null;
-    Request request7 = null;
+    final Request request6 = null;
+    final Request request7 = null;
 
     // Both are null, so equals and hashCode should work
     assertEquals(request4, request5);
@@ -98,7 +97,7 @@ public class RequestUnitTests {
   }
 
   @Test
-  void testNotEqualsUserId() throws NoSuchFieldException, IllegalAccessException{
+  void testNotEqualsUserId() throws NoSuchFieldException, IllegalAccessException {
 
     User user1 = new User();
     User user2 = new User();
@@ -143,9 +142,11 @@ public class RequestUnitTests {
     User user1 = new User();
     TimeSlot timeSlot1 = new TimeSlot();
     timeSlot1.setTid(2);
-    Request request1 = new Request(user1, timeSlot1, "Test description", CommonTypes.RequestStatus.approved);
+    Request request1 = new Request(user1, timeSlot1,
+            "Test description", CommonTypes.RequestStatus.approved);
 
-    Request request2 = new Request(user1, null, "Another Description", CommonTypes.RequestStatus.rejected);
+    Request request2 = new Request(user1, null,
+            "Another Description", CommonTypes.RequestStatus.rejected);
 
     // assertFalse(request1.equals(request2));
     assertNotEquals(request2, request1);

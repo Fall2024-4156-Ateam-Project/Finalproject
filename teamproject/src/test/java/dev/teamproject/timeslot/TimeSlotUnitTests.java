@@ -22,7 +22,8 @@ public class TimeSlotUnitTests {
   @BeforeEach
   void setUp() {
     user = new User("Test User", "test@example.com");
-    timeSlot = new TimeSlot(user, CommonTypes.Day.Monday, CommonTypes.Day.Monday, LocalTime.of(9, 0),
+    timeSlot = new TimeSlot(user, CommonTypes.Day.Monday,
+            CommonTypes.Day.Monday, LocalTime.of(9, 0),
             LocalTime.of(10, 0), CommonTypes.Availability.available);
   }
 
@@ -57,15 +58,18 @@ public class TimeSlotUnitTests {
   @Test
   void testToString() {
     String expectedString = "TimeSlot{tid=0, user=" + user.getUid()
-            + ", startDay=Monday, endDay=Monday, startTime=09:00, endTime=10:00, availability=available}";
+            + ", startDay=Monday, endDay=Monday, startTime=09:00, "
+            + "endTime=10:00, availability=available}";
     assertEquals(expectedString, timeSlot.toString());
   }
 
   @Test
   void testEqualsAndHashCode() {
-    TimeSlot timeSlot1 = new TimeSlot(user, CommonTypes.Day.Monday, CommonTypes.Day.Monday, LocalTime.of(9, 0),
+    TimeSlot timeSlot1 = new TimeSlot(user, CommonTypes.Day.Monday,
+            CommonTypes.Day.Monday, LocalTime.of(9, 0),
             LocalTime.of(10, 0), CommonTypes.Availability.available);
-    TimeSlot timeSlot2 = new TimeSlot(user, CommonTypes.Day.Monday, CommonTypes.Day.Monday, LocalTime.of(9, 0),
+    TimeSlot timeSlot2 = new TimeSlot(user, CommonTypes.Day.Monday,
+            CommonTypes.Day.Monday, LocalTime.of(9, 0),
             LocalTime.of(10, 0), CommonTypes.Availability.available);
 
     assertEquals(timeSlot1, timeSlot2);
@@ -80,7 +84,8 @@ public class TimeSlotUnitTests {
   @Test
   void testDifferentObjectsAreNotEqual() {
     TimeSlot differentTimeSlot = new TimeSlot(new User("Different User", "diff@example.com"),
-            CommonTypes.Day.Wednesday,CommonTypes.Day.Monday, LocalTime.of(11, 0), LocalTime.of(12, 0),
+            CommonTypes.Day.Wednesday, CommonTypes.Day.Monday,
+            LocalTime.of(11, 0), LocalTime.of(12, 0),
             CommonTypes.Availability.busy);
     differentTimeSlot.setTid(2);
     assertNotEquals(timeSlot, differentTimeSlot);

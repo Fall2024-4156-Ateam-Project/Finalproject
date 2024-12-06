@@ -78,22 +78,22 @@ public class UserService {
    * Register a new user.
    */
   @Transactional
-  public UserSuccessResponseDTO registerUser(UserCreationRequestDTO userCreationRequestDTO) {
+  public UserSuccessResponseDTO registerUser(UserCreationRequestDTO userCreationRequestDto) {
     synchronized (lock) {
-      if (existsByEmail(userCreationRequestDTO.getEmail())) {
-        UserErrorResponseDTO userErrorResponseDTO = new UserErrorResponseDTO();
-        userErrorResponseDTO.setUserResponseFromUserCreationDTO(userCreationRequestDTO);
-        throw new UserException("User already exists", userErrorResponseDTO);
+      if (existsByEmail(userCreationRequestDto.getEmail())) {
+        UserErrorResponseDTO userErrorResponseDto = new UserErrorResponseDTO();
+        userErrorResponseDto.setUserResponseFromUserCreationDTO(userCreationRequestDto);
+        throw new UserException("User already exists", userErrorResponseDto);
       }
       User user = new User();
-      user.setName(userCreationRequestDTO.getName());
-      user.setEmail(userCreationRequestDTO.getEmail());
+      user.setName(userCreationRequestDto.getName());
+      user.setEmail(userCreationRequestDto.getEmail());
 
       this.userRepo.save(user);
 
-      UserSuccessResponseDTO userSuccessResponseDTO = new UserSuccessResponseDTO();
-      userSuccessResponseDTO.setUserResponseFromUser(user);
-      return userSuccessResponseDTO;
+      UserSuccessResponseDTO userSuccessResponseDto = new UserSuccessResponseDTO();
+      userSuccessResponseDto.setUserResponseFromUser(user);
+      return userSuccessResponseDto;
     }
   }
 
@@ -107,9 +107,9 @@ public class UserService {
     }
     User user = userRepo.findByUid(uid).get(0);
 
-    UserSuccessResponseDTO userSuccessResponseDTO = new UserSuccessResponseDTO();
-    userSuccessResponseDTO.setUserResponseFromUser(user);
+    UserSuccessResponseDTO userSuccessResponseDto = new UserSuccessResponseDTO();
+    userSuccessResponseDto.setUserResponseFromUser(user);
     this.userRepo.deleteById(uid);
-    return userSuccessResponseDTO;
+    return userSuccessResponseDto;
   }
 }

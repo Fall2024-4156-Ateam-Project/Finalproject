@@ -1,5 +1,10 @@
 package dev.teamproject.user.DTOs;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import dev.teamproject.user.DTOs.UserCreationRequestDTO;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -7,12 +12,13 @@ import jakarta.validation.ValidatorFactory;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Test class for verifying the functionality of the UserCreationRequestDTO.
+ * This class contains tests for getter and setter methods of the UserCreationRequestDTO class.
+ */
 public class UserCreationRequestDTOTests {
   private Validator validator;
 
@@ -23,7 +29,7 @@ public class UserCreationRequestDTOTests {
   }
 
   @Test
-  void testValidUserCreationRequestDTO() {
+  void testValidUserCreationRequestDto() {
     UserCreationRequestDTO user = new UserCreationRequestDTO();
     user.setUid(1);
     user.setName("John Doe");
@@ -31,8 +37,10 @@ public class UserCreationRequestDTOTests {
     user.setCreatedAt(new Timestamp(System.currentTimeMillis()));
     user.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
 
-    Set<ConstraintViolation<UserCreationRequestDTO>> violations = validator.validate(user);
-    assertTrue(violations.isEmpty(), "Expected no validation errors.");
+    Set<ConstraintViolation<UserCreationRequestDTO>> violations
+            = validator.validate(user);
+    assertTrue(violations.isEmpty(),
+            "Expected no validation errors.");
   }
 
   @Test
@@ -43,12 +51,13 @@ public class UserCreationRequestDTOTests {
 
     Set<ConstraintViolation<UserCreationRequestDTO>> violations = validator.validate(user);
     assertFalse(violations.isEmpty());
-    // assertEquals("Name must be between 2 and 100 characters.", violations.iterator().next().getMessage());
+    // assertEquals("Name must be between 2 and 100 characters.",
+    // violations.iterator().next().getMessage());
     String actualMessage = violations.iterator().next().getMessage();
     assertTrue(
-        actualMessage.equals("Name must be between 2 and 100 characters.") || 
-        actualMessage.equals("Name is required.")
-    );  
+        actualMessage.equals("Name must be between 2 and 100 characters.")
+                || actualMessage.equals("Name is required.")
+    );
   }
 
   @Test
@@ -59,7 +68,8 @@ public class UserCreationRequestDTOTests {
 
     Set<ConstraintViolation<UserCreationRequestDTO>> violations = validator.validate(user);
     assertFalse(violations.isEmpty());
-    assertEquals("Name must be between 2 and 100 characters.", violations.iterator().next().getMessage());
+    assertEquals("Name must be between 2 and 100 characters.",
+            violations.iterator().next().getMessage());
   }
 
   @Test
@@ -70,7 +80,8 @@ public class UserCreationRequestDTOTests {
 
     Set<ConstraintViolation<UserCreationRequestDTO>> violations = validator.validate(user);
     assertFalse(violations.isEmpty());
-    assertEquals("Name must be between 2 and 100 characters.", violations.iterator().next().getMessage());
+    assertEquals("Name must be between 2 and 100 characters.",
+            violations.iterator().next().getMessage());
   }
 
   @Test
@@ -92,7 +103,8 @@ public class UserCreationRequestDTOTests {
 
     Set<ConstraintViolation<UserCreationRequestDTO>> violations = validator.validate(user);
     assertFalse(violations.isEmpty());
-    assertEquals("Email should be valid.", violations.iterator().next().getMessage());
+    assertEquals("Email should be valid.",
+            violations.iterator().next().getMessage());
   }
 
   @Test
@@ -103,11 +115,13 @@ public class UserCreationRequestDTOTests {
 
     Set<ConstraintViolation<UserCreationRequestDTO>> violations = validator.validate(user);
     assertFalse(violations.isEmpty());
+    // assertEquals("Email must not exceed 100 characters.",
+    //    violations.iterator().next().getMessage());
     String actualMessage = violations.iterator().next().getMessage();
     assertTrue(
-        actualMessage.equals("Email must not exceed 100 characters.") || 
-        actualMessage.equals("Email should be valid.")
-    );      
+        actualMessage.equals("Email must not exceed 100 characters.")
+                || actualMessage.equals("Email should be valid.")
+    );
   }
 
   @Test
@@ -121,7 +135,8 @@ public class UserCreationRequestDTOTests {
     user.setMeetings(null);
 
     Set<ConstraintViolation<UserCreationRequestDTO>> violations = validator.validate(user);
-    assertTrue(violations.isEmpty(), "Expected no validation errors for optional fields.");
+    assertTrue(violations.isEmpty(),
+            "Expected no validation errors for optional fields.");
   }
 
   @Test
@@ -134,6 +149,7 @@ public class UserCreationRequestDTOTests {
     user.setCreatedAt(now);
     user.setUpdatedAt(now);
     user.setMeetings(List.of());
+
     assertEquals(1, user.getUid());
     assertEquals("Jane Doe", user.getName());
     assertEquals("jane.doe@example.com", user.getEmail());

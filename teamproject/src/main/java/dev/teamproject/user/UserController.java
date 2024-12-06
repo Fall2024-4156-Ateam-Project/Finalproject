@@ -35,33 +35,28 @@ public class UserController {
 
 
   /**
-   * To register a user
-   *
-   * @param userCreationRequestDTO
+   * To register a user given a user Creation Request.
    */
   @PostMapping("/register")
   public ResponseEntity<GenericApiResponse<UserSuccessResponseDTO>> register(
-      @Valid @RequestBody UserCreationRequestDTO userCreationRequestDTO) {
-    UserSuccessResponseDTO userSuccessResponseDTO = userService.registerUser(
-        userCreationRequestDTO);
+      @Valid @RequestBody UserCreationRequestDTO userCreationRequestDto) {
+    UserSuccessResponseDTO userSuccessResponseDto = userService.registerUser(
+        userCreationRequestDto);
     GenericApiResponse<UserSuccessResponseDTO> response = new GenericApiResponse<>(
-        "User created successfully", userSuccessResponseDTO, true);
+        "User created successfully", userSuccessResponseDto, true);
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
 
   /**
-   * To delete a user
-   *
-   * @param uid
-   * @return
+   * To delete a user given a uid.
    */
   @DeleteMapping("/delete/{uid}")
   public ResponseEntity<GenericApiResponse<UserSuccessResponseDTO>> deleteUser(
       @PathVariable Integer uid) {
-    UserSuccessResponseDTO userSuccessResponseDTO = userService.deleteUser(uid);
+    UserSuccessResponseDTO userSuccessResponseDto = userService.deleteUser(uid);
     GenericApiResponse<UserSuccessResponseDTO> response = new GenericApiResponse<>(
         "User deleted successfully",
-        userSuccessResponseDTO, true);
+        userSuccessResponseDto, true);
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
 

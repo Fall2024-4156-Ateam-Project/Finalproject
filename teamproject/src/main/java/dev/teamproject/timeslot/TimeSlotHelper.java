@@ -7,7 +7,9 @@ import java.time.LocalTime;
 import org.springframework.stereotype.Component;
 
 /**
- * TimeSlot Helper class specifies helper methods for TimeSlot class.
+ * Utility class for working with time slots. This class provides methods to determine
+ * whether two time slots overlap, convert time to absolute time in the week, and other
+ * helper functions related to managing time slots.
  */
 @Component
 public class TimeSlotHelper {
@@ -31,16 +33,17 @@ public class TimeSlotHelper {
 
 
   /**
-   * Is two timeslots overlapped.
+   * Determines whether two time slots overlap. The method compares the start and end times of
+   * two time slots and checks if there is any overlap.
    *
-   * @param t1 timeSlot instance 1 for comparison.
-   * @param t2 timeSlot instance 2 for comparison.
-   * @return returns the result of isOverlapped.
+   * @param t1 the first time slot
+   * @param t2 the second time slot
+   * @return {@code true} if the time slots overlap, {@code false} otherwise
    */
   public boolean isOverlapped(TimeSlot t1, TimeSlot t2) {
-    
     // if the t1 end time before t2 start
     // exclusive
+
     int absStartTimeT1 = absTime(t1.getStartDay(), t1.getStartTime());
     int absEndTimeT1 = absTime(t1.getEndDay(), t1.getEndTime());
     int absStartTimeT2 = absTime(t2.getStartDay(), t2.getStartTime());
@@ -59,6 +62,8 @@ public class TimeSlotHelper {
         && absEndTimeT2 > 24 * 60 * 7)) {
       return !(absEndTimeT1 <= absStartTimeT2 || absEndTimeT2 <= absStartTimeT1);
     }
+    // if wrap and one not
+    // check if the wrap
 
     // T1 wrap, T2 not
     if (absEndTimeT1 > 24 * 60 * 7) {
@@ -83,20 +88,25 @@ public class TimeSlotHelper {
   }
 
   /**
-   * This return the abs time in a week, minimum unit is minute.
+   * Converts a given day and time to absolute time in the week (in minutes). The absolute time
+   * represents the number of minutes elapsed since the start of the week.
    *
-   * @param day the day for which abs time is to be returned.
-   * @param time the time for which abs time is to be returned.
-   * @return returns absolute Time.
+   * @param day the day of the week
+   * @param time the time of the day
+   * @return the absolute time in minutes since the start of the week
    */
-
   public int absTime(CommonTypes.Day day, LocalTime time) {
     int minInDay = time.getHour() * 60 + time.getMinute();
     int minInWeek = day.ordinal() * 24 * 60;
     return minInDay + minInWeek;
   }
 
-  /** Is the timeSlot wrapped. */
+  /**
+   * Checks if the given time slot wraps around the week boundary (i.e., starts before it ends).
+   *
+   * @param t the time slot to check
+   * @return {@code true} if the time slot wraps, {@code false} otherwise
+   */
   public Boolean isWrapped(TimeSlot t) {
     int absEndTimeT = absTime(t.getEndDay(), t.getEndTime());
     int absStartTimeT = absTime(t.getStartDay(), t.getStartTime());
@@ -111,14 +121,26 @@ public class TimeSlotHelper {
     return absTime(d1, t1) > absTime(d2, t2);
   }
 
-  /** retrieved the day and time from abs. */
+  /**
+   * Converts an absolute time (in minutes since the start of the week) into a {@link Pair}
+   * of {@link Day} and {@link LocalTime}.
+   *
+   * @param absTime the absolute time in minutes
+   * @return a pair representing the day and time corresponding to the given absolute time
+   */
   public Pair<Day, LocalTime> getDayAndTimeFromAbs(int absTime) {
     int dayIndex = (absTime / (24 * 60)) % 7;
     int minutes = absTime % (24 * 60);
     return new Pair<>(getDayFromIndex(dayIndex), LocalTime.of(minutes / 60, minutes % 60));
   }
 
-  /** Get day from the weekday index. */
+  /**
+   * Converts an index into a corresponding {@link Day}.
+   *
+   * @param index the index representing a day (0-6)
+   * @return the corresponding {@link Day}
+   * @throws IllegalArgumentException if the index is invalid
+   */
   public CommonTypes.Day getDayFromIndex(int index) {
     switch (index) {
       case 0:
