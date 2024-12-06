@@ -55,7 +55,7 @@ public class CommonTypes {
    * Represents the days of the Week.
    */
   public enum Day {
-    // The order matter here !!!
+        // The order matter here !!!
         Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday;
   }
 

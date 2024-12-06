@@ -12,7 +12,7 @@ JDK 17: This project used JDK 17 for development: https://www.oracle.com/java/te
 Installing maven: https://maven.apache.org/download.cgi  
 Build with maven: ```mvn -B package --file teamproject/pom.xml```  
 Running the application: ```mvn spring-boot:run -D"spring-boot.run.arguments=setup"```  
-Running the test: ```mvn clean test```
+Running the test: ```mvn clean test```  
 Check the test coverage report inside teamproject folder: ```mvn jacoco:report```. The report path will be ./target/site/jacoco/index.html  
 Running the style checker inside teamproject folder: ```mvn checkstyle:check```  
 
