@@ -1,5 +1,9 @@
 package dev.teamproject.timeslot;
 
+/**
+ * This is a comparator which compares two {@link TimeSlot} objects 
+ * based on their start day and start time.
+ * */
 public class TimeSlotComparator implements java.util.Comparator<TimeSlot> {
 
   @Override

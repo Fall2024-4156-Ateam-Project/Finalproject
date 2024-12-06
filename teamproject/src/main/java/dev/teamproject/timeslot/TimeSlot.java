@@ -1,10 +1,8 @@
 package dev.teamproject.timeslot;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.common.CommonTypes.Day;
-import dev.teamproject.common.Pair;
 import dev.teamproject.request.Request;
 import dev.teamproject.user.User;
 import jakarta.persistence.CascadeType;
@@ -22,9 +20,6 @@ import jakarta.persistence.Table;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 /**
  * Represents a time slot for a user, including availability and scheduling information.

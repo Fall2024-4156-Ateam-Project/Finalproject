@@ -10,7 +10,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
@@ -115,6 +114,18 @@ public class User {
     this.updatedAt = updatedAt;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    User user = (User) o;
+    return uid == user.uid;
+  }
+  
   @Override
   public int hashCode() {
     return Objects.hash(uid); // Use uid as a unique identifier

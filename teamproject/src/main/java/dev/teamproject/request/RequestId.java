@@ -60,7 +60,8 @@ public class RequestId implements Serializable {
     boolean timeSlotEqual = Objects.equals(timeSlot, that.timeSlot);
 
     // Check if user is null for both objects or if user UID is the same
-    boolean userEqual = (user == null && that.user == null) || (user != null && that.user != null && user.getUid() == that.user.getUid());
+    boolean userEqual = (user == null && that.user == null) 
+        || (user != null && that.user != null && user.getUid() == that.user.getUid());
 
     return timeSlotEqual && userEqual;
   }

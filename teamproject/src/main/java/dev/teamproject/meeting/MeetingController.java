@@ -2,19 +2,14 @@ package dev.teamproject.meeting;
 
 import dev.teamproject.apiResponse.GenericApiResponse;
 import dev.teamproject.common.CommonTypes;
-import dev.teamproject.exceptionHandler.UserNotFoundException;
-import dev.teamproject.participant.Participant;
 import dev.teamproject.user.User;
-import dev.teamproject.user.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -100,6 +95,9 @@ public class MeetingController {
     return meetingService.findByOrganizer(organizer);
   }
 
+  /**
+   * Deletes a meeting based on the provided meeting ID.
+   */
   @DeleteMapping()
   public ResponseEntity<Void> deleteMeeting(@RequestParam("mid") int mid) {
     meetingService.deleteMeeting(mid);
@@ -107,6 +105,9 @@ public class MeetingController {
 
   }
 
+  /**
+   * Saves a new meeting using the provided {@link MeetingDTO}.
+   */
   @PostMapping("/saveMeeting")
   public ResponseEntity<GenericApiResponse<String>> saveMeeting(
       @RequestBody MeetingDTO meetingDTO) {

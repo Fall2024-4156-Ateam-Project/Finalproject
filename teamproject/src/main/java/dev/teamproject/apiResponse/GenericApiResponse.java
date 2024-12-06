@@ -1,5 +1,8 @@
 package dev.teamproject.apiResponse;
 
+/**
+ * A generic API response wrapper that encapsulates a message, data, and success status.
+ */
 public class GenericApiResponse<T> {
   private String msg;
   private T data;
@@ -29,6 +32,10 @@ public class GenericApiResponse<T> {
     isSuccess = success;
   }
 
+  /**
+   * Constructs a new {@code GenericApiResponse} with the specified 
+   * message, data, and success status.
+   */
   public GenericApiResponse(String msg, T data, boolean isSuccess) {
     this.msg = msg;
     this.data = data;
