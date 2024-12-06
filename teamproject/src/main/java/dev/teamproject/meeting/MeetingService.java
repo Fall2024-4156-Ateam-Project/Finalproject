@@ -97,22 +97,22 @@ public class MeetingService {
   /** Save the meeting.  */
   @Transactional
   @Validated
-  public void save(MeetingDTO meetingDTO) {
-    if (meetingDTO.getOrganizerId() == null
-            || meetingDTO.getStartTime() == null
-            || meetingDTO.getEndTime() == null
-            || meetingDTO.getStartDay() == null
-            || meetingDTO.getEndDay() == null
-            || meetingDTO.getType() == null) {
+  public void save(MeetingDTO meetingDto) {
+    if (meetingDto.getOrganizerId() == null
+            || meetingDto.getStartTime() == null
+            || meetingDto.getEndTime() == null
+            || meetingDto.getStartDay() == null
+            || meetingDto.getEndDay() == null
+            || meetingDto.getType() == null) {
       throw new IllegalArgumentException("Missing required fields for saving the meeting");
     }
 
     synchronized (lock) { // Protect validation and save
-      User organizer = userService.findById(meetingDTO.getOrganizerId());
+      User organizer = userService.findById(meetingDto.getOrganizerId());
       if (organizer == null) {
         throw new IllegalArgumentException("Organizer does not exist.");
       }
-      List<User> participants = userService.findByEmail(meetingDTO.getParticipantEmail());
+      List<User> participants = userService.findByEmail(meetingDto.getParticipantEmail());
       if (participants.isEmpty()) {
         throw new IllegalArgumentException("Participant does not exist.");
       }
@@ -121,27 +121,27 @@ public class MeetingService {
       Meeting meeting = new Meeting();
       meeting.setOrganizer(organizer);
       try {
-        meeting.setType(CommonTypes.MeetingType.valueOf(meetingDTO.getType()));
+        meeting.setType(CommonTypes.MeetingType.valueOf(meetingDto.getType()));
       } catch (IllegalArgumentException e) {
-        throw new IllegalArgumentException("Invalid meeting type: " + meetingDTO.getType());
+        throw new IllegalArgumentException("Invalid meeting type: " + meetingDto.getType());
       }
       try {
-        meeting.setStatus(CommonTypes.MeetingStatus.valueOf(meetingDTO.getStatus()));
+        meeting.setStatus(CommonTypes.MeetingStatus.valueOf(meetingDto.getStatus()));
       } catch (IllegalArgumentException e) {
-        throw new IllegalArgumentException("Invalid meeting status: " + meetingDTO.getStatus());
+        throw new IllegalArgumentException("Invalid meeting status: " + meetingDto.getStatus());
       }
       try {
-        meeting.setRecurrence(CommonTypes.Recurrence.valueOf(meetingDTO.getRecurrence()));
+        meeting.setRecurrence(CommonTypes.Recurrence.valueOf(meetingDto.getRecurrence()));
       } catch (IllegalArgumentException e) {
         throw new IllegalArgumentException("Invalid meeting recurrence: " 
-        + meetingDTO.getRecurrence());
+        + meetingDto.getRecurrence());
       }
 
-      meeting.setDescription(meetingDTO.getDescription());
-      meeting.setStartTime(meetingDTO.getStartTime());
-      meeting.setEndTime(meetingDTO.getEndTime());
-      meeting.setStartDay(meetingDTO.getStartDay());
-      meeting.setEndDay(meetingDTO.getEndDay());
+      meeting.setDescription(meetingDto.getDescription());
+      meeting.setStartTime(meetingDto.getStartTime());
+      meeting.setEndTime(meetingDto.getEndTime());
+      meeting.setStartDay(meetingDto.getStartDay());
+      meeting.setEndDay(meetingDto.getEndDay());
       meeting.setCreatedAt(LocalTime.now());
 
       meetingRepo.save(meeting);

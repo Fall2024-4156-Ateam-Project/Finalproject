@@ -100,6 +100,12 @@ public class MeetingController {
     return meetingService.findByOrganizer(organizer);
   }
 
+  /**
+   * Deletes a meeting by its unique identifier.
+   *
+   * @param mid the unique identifier of the meeting to delete.
+   * @return a {@link ResponseEntity} with no content (HTTP 204) upon successful deletion.
+   */
   @DeleteMapping()
   public ResponseEntity<Void> deleteMeeting(@RequestParam("mid") int mid) {
     meetingService.deleteMeeting(mid);
@@ -107,11 +113,18 @@ public class MeetingController {
 
   }
 
+  /**
+   * Saves a new meeting or updates an existing meeting.
+   *
+   * @param meetingDto the {MeetingDTO object containing meeting details.
+   * @return a {@link ResponseEntity} containing a GenericApiResponse with a success message,
+   *         HTTP status 201 (Created) if the meeting is saved successfully.
+   */
   @PostMapping("/saveMeeting")
   public ResponseEntity<GenericApiResponse<String>> saveMeeting(
-      @RequestBody MeetingDTO meetingDTO) {
+      @RequestBody MeetingDTO meetingDto) {
     GenericApiResponse<String> response;
-    meetingService.save(meetingDTO);
+    meetingService.save(meetingDto);
     response = new GenericApiResponse<>("Meeting saved successfully", null, true);
     return new ResponseEntity<>(response, HttpStatus.CREATED);
   }

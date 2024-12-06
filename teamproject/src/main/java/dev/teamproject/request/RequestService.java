@@ -21,6 +21,13 @@ public class RequestService {
   private final TimeSlotService tsService;
   private final Object lock = new Object();
 
+  /**
+   * Constructs a RequestService with the specified dependencies.
+   *
+   * @param requestRepo  the repository for managing Request entities.
+   * @param userService  the service for managing User-related operations.
+   * @param tsService    the service for managing TimeSlot-related operations.
+   */
   @Autowired
   public RequestService(RequestRepo requestRepo,
                         UserService userService, TimeSlotService tsService) {

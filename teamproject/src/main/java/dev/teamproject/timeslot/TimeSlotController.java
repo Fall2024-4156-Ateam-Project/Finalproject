@@ -67,7 +67,13 @@ public class TimeSlotController {
     return ResponseEntity.ok(timeSlots);
   }
 
-  // Get TimeSlots by User ID
+  /**
+   * Retrieves all TimeSlots associated with a user, identified by their email address,
+   * sorted by date.
+   *
+   * @param email  the email address of the user whose TimeSlots are being retrieved.
+   * @return       a ResponseEntity containing a list of TimeSlots for the specified user.
+   */
   @GetMapping("/user")
   public ResponseEntity<List<TimeSlot>> getTimeSlotsByUserEmail(
       @RequestParam("email") String email) {
@@ -102,7 +108,14 @@ public class TimeSlotController {
     return ResponseEntity.ok(updatedTimeSlot);
   }
 
-  // update a TimeSlot new
+  /**
+   * Updates a TimeSlot with the given ID without causing overlaps with existing TimeSlots.
+   *
+   * @param tid       the ID of the TimeSlot to be updated.
+   * @param timeSlot  the updated TimeSlot details.
+   * @return          a ResponseEntity containing the updated TimeSlot or a bad request status
+   *                  if the update request is invalid.
+   */
   @PutMapping("/update/{id}")
   public ResponseEntity<TimeSlot> updateTimeSlotNoOverlap(
       @PathVariable("id") int tid, @RequestBody TimeSlot timeSlot

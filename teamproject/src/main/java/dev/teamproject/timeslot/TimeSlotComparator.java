@@ -1,5 +1,9 @@
 package dev.teamproject.timeslot;
 
+/**
+ * Comparator class for comparing TimeSlot objects.
+ * Used to sort TimeSlot instances based on specific criteria.
+ */
 public class TimeSlotComparator implements java.util.Comparator<TimeSlot> {
 
   @Override

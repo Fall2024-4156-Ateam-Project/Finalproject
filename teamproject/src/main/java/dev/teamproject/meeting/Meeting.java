@@ -240,7 +240,7 @@ public class Meeting {
 
   /**
    * Sets the status of meeting.
-   * 
+   *
    * @param status the status of the meeting.
    */
   public void setStatus(CommonTypes.MeetingStatus status) {
