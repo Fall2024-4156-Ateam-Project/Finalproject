@@ -27,9 +27,10 @@ public interface TimeSlotRepo extends JpaRepository<TimeSlot, Integer> {
   List<TimeSlot> findByUserAndStartDay(User user, CommonTypes.Day day);
 
 
-  @Query("SELECT ts FROM TimeSlot ts WHERE ts.user.uid = :userId AND " +
-      "((ts.startDay < :endDay) OR (ts.startDay = :endDay AND ts.startTime <= :endTime)) AND " +
-      "((ts.endDay > :startDay) OR (ts.endDay = :startDay AND ts.endTime >= :startTime))")
+  @Query("SELECT ts FROM TimeSlot ts WHERE ts.user.uid = :userId AND "
+          + "((ts.startDay < :endDay) "
+          + "OR (ts.startDay = :endDay AND ts.startTime <= :endTime)) AND "
+          + "((ts.endDay > :startDay) OR (ts.endDay = :startDay AND ts.endTime >= :startTime))")
   List<TimeSlot> findOverlappingTimeSlots(
       @Param("startDay") Day startDay,
       @Param("endDay") Day endDay,

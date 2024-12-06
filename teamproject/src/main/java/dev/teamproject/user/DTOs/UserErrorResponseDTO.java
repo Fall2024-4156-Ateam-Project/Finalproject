@@ -1,5 +1,10 @@
 package dev.teamproject.user.DTOs;
 
+/**
+ * DTO (Data Transfer Object) for representing error responses related to user creation.
+ * This class is used to capture and return error information such as invalid name or email
+ * during user creation.
+ */
 public class UserErrorResponseDTO {
 
   private String name;
@@ -21,8 +26,8 @@ public class UserErrorResponseDTO {
     this.email = email;
   }
 
-  public void setUserResponseFromUserCreationDTO(UserCreationRequestDTO userCreationRequestDTO) {
-    setName(userCreationRequestDTO.getName());
-    setEmail(userCreationRequestDTO.getEmail());
+  public void setUserResponseFromUserCreationDTO(UserCreationRequestDTO userCreationRequestDto) {
+    setName(userCreationRequestDto.getName());
+    setEmail(userCreationRequestDto.getEmail());
   }
 }

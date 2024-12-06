@@ -15,7 +15,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import dev.teamproject.timeslot.TimeSlotHelper.*;
 
 /**
  * Service class for managing TimeSlot entities. This class provides functionality for creating,
@@ -32,6 +31,12 @@ public class TimeSlotService {
 
   private final TimeSlotHelper timeSlotHelper;
 
+  /**
+   * Constructs a new instance of the TimeSlotService.
+   * This constructor initializes the service with the necessary dependencies,
+   * including the TimeSlot repository, the User service, and the TimeSlot helper.
+   * These dependencies are injected using the Spring Framework's dependency injection mechanism.
+   */
   @Autowired
   public TimeSlotService(TimeSlotRepo timeSlotRepo, UserService userService,
       TimeSlotHelper timeSlotHelper) {
@@ -58,11 +63,7 @@ public class TimeSlotService {
    * existing single timeslot: into 2 or 3 3. cover multiple timeslots: do override and create new 2
    * or 3 timeslots 4. trivial: create new single timeslots Assumptions : 1. The timeslot cannot
    * wrap 2. The existing timeslots are not overlapping.
-   * <p>
-   * Assumption: exclusive time interval, this method should be used under transaction lock
-   *
-   * @param proposedTimeslot
-   * @return
+   * Assumption: exclusive time interval, this method should be used under transaction lock.
    */
 
 
@@ -193,10 +194,10 @@ public class TimeSlotService {
   }
 
   /**
-   * Handle create time slot
+   * Handle create time slot.
    *
-   * @param newTimeSlot
-   * @return
+   * @param newTimeSlot a created time slot
+   * @return a created time slot
    */
   @Transactional
   public TimeSlot handleTimeSlotCreation(TimeSlot newTimeSlot) {
@@ -268,6 +269,9 @@ public class TimeSlotService {
     return timeSlotRepo.findByUser(user);
   }
 
+  /**
+   * Return a list of time slots given user's email.
+   */
   public List<TimeSlot> getTimeSlotsByUserEmail(String email) {
     List<User> users = userService.findByEmail(email);
     List<TimeSlot> timeslots = new ArrayList<>();
@@ -277,6 +281,9 @@ public class TimeSlotService {
     return timeslots;
   }
 
+  /**
+   * Retrieves all time slots given user's email.
+   */
   public List<TimeSlot> getTimeSlotsByUserEmailSortedByDate(String email) {
     List<User> users = userService.findByEmail(email);
     List<TimeSlot> timeslots = new ArrayList<>();
@@ -311,7 +318,7 @@ public class TimeSlotService {
     synchronized (lock) {
       TimeSlot existingTimeSlot = getTimeSlotById(tid);
       existingTimeSlot.setUser(updatedTimeSlot.getUser());
-//    existingTimeSlot.setDay(updatedTimeSlot.getDay());
+      //  existingTimeSlot.setDay(updatedTimeSlot.getDay());
       existingTimeSlot.setStartDay(updatedTimeSlot.getStartDay());
       existingTimeSlot.setEndDay(updatedTimeSlot.getEndDay());
       existingTimeSlot.setStartTime(updatedTimeSlot.getStartTime());
@@ -334,13 +341,12 @@ public class TimeSlotService {
     return updatedTimeSlot;
   }
 
-
   /**
-   * Check if the time slot Update request valid
+   * Check if the time slot Update request valid.
    *
    * @param tid      the updated target
    * @param timeSlot the proposed slot
-   * @return
+   * @return boolean
    */
 
   @Transactional(readOnly = true)

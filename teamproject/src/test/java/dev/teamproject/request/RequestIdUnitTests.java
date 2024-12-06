@@ -5,11 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.lang.reflect.Field;
-
 import dev.teamproject.request.RequestId;
 import dev.teamproject.timeslot.TimeSlot;
 import dev.teamproject.user.User;
+import java.lang.reflect.Field;
 import org.junit.jupiter.api.Test;
 
 class RequestIdUnitTests {
@@ -110,7 +109,7 @@ class RequestIdUnitTests {
     assertNotEquals(requestId1, requestId2);
 
     User user3 = new User();
-    RequestId requestId3 = new RequestId(timeSlot, user3);
+    final RequestId requestId3 = new RequestId(timeSlot, user3);
 
     // Using reflection to set the UID field
     Field uidField = User.class.getDeclaredField("uid");

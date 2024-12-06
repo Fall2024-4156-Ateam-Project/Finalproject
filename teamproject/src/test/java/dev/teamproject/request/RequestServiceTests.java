@@ -128,7 +128,8 @@ class RequestServiceTests {
     });
 
     // Call the method with null as newDescription
-    Request updatedRequest = requestService.updateRequestDescription(timeSlot.getTid(), user.getUid(), null);
+    Request updatedRequest = requestService.updateRequestDescription(timeSlot.getTid(),
+            user.getUid(), null);
 
     // Assert that the description remains unchanged
     assertEquals(null, updatedRequest.getDescription()); // Assuming initial description was null.

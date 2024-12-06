@@ -8,7 +8,6 @@ import dev.teamproject.timeslot.TimeSlot;
 import dev.teamproject.timeslot.TimeSlotController;
 import dev.teamproject.timeslot.TimeSlotService;
 import dev.teamproject.user.User;
-
 import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
@@ -95,12 +94,12 @@ class TimeSlotControllerTests {
 
   @Test
   void testGetTimeSlotsByUserEmail() {
-    String uEmail = "abc@gmail.com";
+    String userEmail = "abc@gmail.com";
     // int uid = 1;
     List<TimeSlot> timeSlots = Collections.singletonList(timeSlot);
-    when(timeSlotService.getTimeSlotsByUserEmailSortedByDate(uEmail)).thenReturn(timeSlots);
+    when(timeSlotService.getTimeSlotsByUserEmailSortedByDate(userEmail)).thenReturn(timeSlots);
     // when(timeSlotService.getTimeSlotsByUser(uid)).thenReturn(timeSlots);
-    ResponseEntity<List<TimeSlot>> response = timeSlotController.getTimeSlotsByUserEmail(uEmail);
+    ResponseEntity<List<TimeSlot>> response = timeSlotController.getTimeSlotsByUserEmail(userEmail);
     // assertEquals(200, response.getStatusCodeValue());
     assertEquals(HttpStatus.OK, response.getStatusCode());
     assertEquals(timeSlots, response.getBody());
@@ -143,12 +142,14 @@ class TimeSlotControllerTests {
     when(timeSlotService.isTimeSlotUpdateRequestValid(tid, timeSlot)).thenReturn(true);
     when(timeSlotService.updateTimeSlotNoOverlap(tid, timeSlot)).thenReturn(timeSlot);
     
-    ResponseEntity<TimeSlot> responseNoOverlapValid = timeSlotController.updateTimeSlotNoOverlap(tid, timeSlot);
+    ResponseEntity<TimeSlot> responseNoOverlapValid
+            = timeSlotController.updateTimeSlotNoOverlap(tid, timeSlot);
     assertEquals(HttpStatus.OK, responseNoOverlapValid.getStatusCode());
     assertEquals(timeSlot, responseNoOverlapValid.getBody());
 
     //Invalid
-    ResponseEntity<TimeSlot> responseNoOverlapInvalid = timeSlotController.updateTimeSlotNoOverlap(300, timeSlot);
+    ResponseEntity<TimeSlot> responseNoOverlapInvalid
+            = timeSlotController.updateTimeSlotNoOverlap(300, timeSlot);
     assertEquals(HttpStatus.BAD_REQUEST, responseNoOverlapInvalid.getStatusCode());
     assertEquals(timeSlot, responseNoOverlapInvalid.getBody());
   }

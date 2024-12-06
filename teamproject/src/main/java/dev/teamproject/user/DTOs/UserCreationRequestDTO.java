@@ -7,10 +7,17 @@ import jakarta.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.util.List;
 
+
+/**
+ * DTO (Data Transfer Object) for creating a new user.
+ * This class is used to capture the required and optional information
+ * for creating a user, including name, email, and optional meetings.
+ * It includes validation annotations for the required fields.
+ */
 public class UserCreationRequestDTO {
 
   /**
-   * Optional
+   * Optional.
    */
   private Integer uid;
 
@@ -29,7 +36,7 @@ public class UserCreationRequestDTO {
   private Timestamp updatedAt;
 
   /**
-   * Optional
+   * Optional.
    */
   private List<MeetingDTO> meetings;
 

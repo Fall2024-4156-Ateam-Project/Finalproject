@@ -18,7 +18,6 @@ import dev.teamproject.participant.ParticipantService;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserRepo;
 import dev.teamproject.user.UserService;
-
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -121,7 +120,7 @@ public class MeetingServiceUnitTests {
   @Test
   public void testFindByRecurrence() {
     CommonTypes.Recurrence recurrence = CommonTypes.Recurrence.daily;
-    List<Meeting> meetingsByRecurrence = Arrays.asList(allMeetingsDesc.get(0)); // return meeting2, daily
+    List<Meeting> meetingsByRecurrence = Arrays.asList(allMeetingsDesc.get(0));
     when(meetingRepo.findByRecurrence(recurrence)).thenReturn(meetingsByRecurrence);
     List<Meeting> result = meetingService.findByRecurrence(recurrence);
     assertEquals(1, result.size());
@@ -164,16 +163,16 @@ public class MeetingServiceUnitTests {
   public void testSaveMeeting() {
 
     // Create a MeetingDTO with the required values
-    MeetingDTO meetingDTO = new MeetingDTO();
-    meetingDTO.setOrganizerId(user1.getUid());
-    meetingDTO.setStartTime(LocalTime.now());
-    meetingDTO.setEndTime(LocalTime.now().plusHours(1));
-    meetingDTO.setStartDay(CommonTypes.Day.Monday);
-    meetingDTO.setEndDay(CommonTypes.Day.Friday);
-    meetingDTO.setType("group");
-    meetingDTO.setStatus("Valid");
-    meetingDTO.setRecurrence("daily");
-    meetingDTO.setDescription("Test Meeting");
+    MeetingDTO meetingDto = new MeetingDTO();
+    meetingDto.setOrganizerId(user1.getUid());
+    meetingDto.setStartTime(LocalTime.now());
+    meetingDto.setEndTime(LocalTime.now().plusHours(1));
+    meetingDto.setStartDay(CommonTypes.Day.Monday);
+    meetingDto.setEndDay(CommonTypes.Day.Friday);
+    meetingDto.setType("group");
+    meetingDto.setStatus("Valid");
+    meetingDto.setRecurrence("daily");
+    meetingDto.setDescription("Test Meeting");
 
     // Mock the behavior of userRepo to simulate that the organizer does not exist
     when(userRepo.findById(user1.getUid())).thenReturn(Optional.empty());
@@ -181,7 +180,7 @@ public class MeetingServiceUnitTests {
     // Verify that the custom exception is thrown with the expected message
     dev.teamproject.exceptionHandler.IllegalArgumentException exception = assertThrows(
         dev.teamproject.exceptionHandler.IllegalArgumentException.class,
-        () -> meetingService.save(meetingDTO));
+        () -> meetingService.save(meetingDto));
 
     // Assert that the exception message is as expected
     assertEquals("Organizer does not exist.", exception.getMessage());
@@ -189,15 +188,15 @@ public class MeetingServiceUnitTests {
 
   @Test
   public void testSaveMeetingMissingFields() {
-    MeetingDTO meetingDTO = new MeetingDTO(); // Missing required fields
+    MeetingDTO meetingDto = new MeetingDTO(); // Missing required fields
     assertThrows(
         dev.teamproject.exceptionHandler.IllegalArgumentException.class,
-        () -> meetingService.save(meetingDTO));
+        () -> meetingService.save(meetingDto));
   }
 
   @Test
   public void testDeleteMeetingWithParticipants() {
-    int mid = 1;
+    final int mid = 1;
     Participant participant1 = new Participant();
     participant1.setPid(1);
     participant1.setMeeting(meeting1);
@@ -207,7 +206,8 @@ public class MeetingServiceUnitTests {
 
     when(meetingRepo.existsById(mid)).thenReturn(true);
     when(meetingRepo.findByMid(mid)).thenReturn(meeting1);
-    when(participantService.findByMeeting(meeting1)).thenReturn(List.of(participant1, participant2));
+    when(participantService.findByMeeting(meeting1))
+            .thenReturn(List.of(participant1, participant2));
 
     meetingService.deleteMeeting(mid);
 

@@ -11,12 +11,11 @@ import static org.mockito.Mockito.when;
 
 import dev.teamproject.exceptionHandler.UserException;
 import dev.teamproject.exceptionHandler.UserNotFoundException;
+import dev.teamproject.user.DTOs.UserCreationRequestDTO;
+import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserRepo;
 import dev.teamproject.user.UserService;
-import dev.teamproject.user.DTOs.UserCreationRequestDTO;
-import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -155,9 +154,9 @@ class UserServiceUnitTests {
     verify(userRepo, times(0)).deleteById(anyInt());
   }
 
-//  @Test
-//  void testSaveUser() {
-//    userService.save(user1);
-//    verify(userRepo, times(1)).save(user1);
-//  }
+  //  @Test
+  //  void testSaveUser() {
+  //    userService.save(user1);
+  //    verify(userRepo, times(1)).save(user1);
+  //  }
 }

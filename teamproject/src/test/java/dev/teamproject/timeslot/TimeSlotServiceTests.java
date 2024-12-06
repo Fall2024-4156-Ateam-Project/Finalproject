@@ -30,7 +30,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-
 import org.hibernate.mapping.Component;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -101,7 +100,8 @@ class TimeSlotServiceTests {
   @Test
   public void testMergeOrUpdateTimeSlot_nonOverlapping() {
     // Arrange
-    TimeSlot newTimeSlot = new TimeSlot(user, Day.Monday, Day.Monday, LocalTime.of(9, 0), LocalTime.of(10, 0),
+    TimeSlot newTimeSlot = new TimeSlot(user, Day.Monday, Day.Monday,
+            LocalTime.of(9, 0), LocalTime.of(10, 0),
         Availability.busy);
     when(timeSlotRepo.findAll()).thenReturn(Collections.emptyList());
 
@@ -176,8 +176,8 @@ class TimeSlotServiceTests {
 
     // Validate the left, middle, and right segments
     TimeSlot left = savedSlots.get(0);
-    TimeSlot middle = savedSlots.get(1);
-    TimeSlot right = savedSlots.get(2);
+    final TimeSlot middle = savedSlots.get(1);
+    final TimeSlot right = savedSlots.get(2);
 
     // Left segment (from existing timeslot)
     assertEquals(Day.Monday, left.getStartDay());

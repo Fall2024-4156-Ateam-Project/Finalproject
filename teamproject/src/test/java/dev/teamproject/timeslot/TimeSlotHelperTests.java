@@ -9,7 +9,6 @@ import dev.teamproject.common.CommonTypes;
 import dev.teamproject.common.Pair;
 import dev.teamproject.timeslot.TimeSlot;
 import dev.teamproject.timeslot.TimeSlotHelper;
-
 import java.time.LocalTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,11 +16,17 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.cglib.core.Local;
 
+/**
+ * Unit tests for the TimeSlotHelper class.
+ * This class contains test methods for the functionality provided by the TimeSlotHelper class,
+ * which manages time slot operations such as checking overlaps, wrapping, and comparisons.
+ */
 public class TimeSlotHelperTests {
   @InjectMocks
   private TimeSlotHelper timeSlotHelper;
 
-  private TimeSlot timeSlot1, timeSlot2;
+  private TimeSlot timeSlot1;
+  private TimeSlot timeSlot2;
 
   @BeforeEach
   void setUp() {
@@ -166,7 +171,8 @@ public class TimeSlotHelperTests {
   @Test
   void testGetDayAndTimeFromAbs() {
     int absTime = 24 * 60 + 150; // Tuesday, 02:30 AM
-    Pair<CommonTypes.Day, LocalTime> expResult = new Pair<>(CommonTypes.Day.Tuesday, LocalTime.of(2, 30));
+    Pair<CommonTypes.Day, LocalTime> expResult
+            = new Pair<>(CommonTypes.Day.Tuesday, LocalTime.of(2, 30));
     Pair<CommonTypes.Day, LocalTime> result = timeSlotHelper.getDayAndTimeFromAbs(absTime);
 
     assertEquals(expResult, result);
