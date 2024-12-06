@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * A global exception handler for managing exceptions across the service.
+ * This class provides specific methods to handle different types of exceptions and return
+ * standardized API responses.
+ */
 @ControllerAdvice
 public class GenericExceptionHandler {
-
-  /**
-   * User related exceptions
-   */
 
   /**
    * Handle user not found exception response entity.
@@ -31,7 +32,6 @@ public class GenericExceptionHandler {
     return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
   }
 
-
   /**
    * Handle general user exception response entity.
    *
@@ -39,7 +39,8 @@ public class GenericExceptionHandler {
    * @return the response entity
    */
   @ExceptionHandler(UserException.class)
-  public ResponseEntity<GenericApiResponse<UserErrorResponseDTO>> handleUserException(UserException ex) {
+  public ResponseEntity<GenericApiResponse<UserErrorResponseDTO>> handleUserException(
+        UserException ex) {
     GenericApiResponse<UserErrorResponseDTO> response = new GenericApiResponse<>(ex.getMessage(),
         ex.getData(), false);
     return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
@@ -60,12 +61,11 @@ public class GenericExceptionHandler {
     return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
   }
 
-
   /**
-   * Handle invalid argument from the builtin validation
+   * Handle invalid argument from the builtin validation.
    *
-   * @param ex
-   * @return
+   * @param ex method argument not vaid excpetion.
+   * @return returns a response.
    */
   @ExceptionHandler(MethodArgumentNotValidException.class)
   @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -75,7 +75,8 @@ public class GenericExceptionHandler {
     ex.getBindingResult().getFieldErrors().forEach(error -> {
       errors.put(error.getField(), error.getDefaultMessage());
     });
-    GenericApiResponse<Map<String, String>> response = new GenericApiResponse<>("ValidationException",
+    GenericApiResponse<Map<String, String>> response = 
+        new GenericApiResponse<>("ValidationException",
         errors, false);
     return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
   }

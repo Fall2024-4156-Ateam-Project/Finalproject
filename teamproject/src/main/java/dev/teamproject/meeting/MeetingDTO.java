@@ -1,9 +1,12 @@
 package dev.teamproject.meeting;
 
 import dev.teamproject.common.CommonTypes;
-import dev.teamproject.common.CommonTypes.Day;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalTime;
+
+/**
+ * Data Transfer Object (DTO) for representing meeting details in the application.
+ * */
 public class MeetingDTO {
 
   // Only required for delete operation

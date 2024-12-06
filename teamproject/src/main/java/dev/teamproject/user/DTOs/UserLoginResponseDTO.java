@@ -1,10 +1,14 @@
 package dev.teamproject.user.DTOs;
 
+/**
+ * A Data Transfer Object (DTO) representing the response for a user login operation.
+ * It contains the authentication token, user email, and status message.
+ */
 public class UserLoginResponseDTO {
 
   private String token;
   private String email;
-  private String Status;
+  private String responseStatus;
 
   public String getToken() {
     return token;
@@ -23,10 +27,10 @@ public class UserLoginResponseDTO {
   }
 
   public String getStatus() {
-    return Status;
+    return responseStatus;
   }
 
   public void setStatus(String status) {
-    Status = status;
+    responseStatus = status;
   }
 }

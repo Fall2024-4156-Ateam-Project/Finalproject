@@ -1,8 +1,5 @@
 package dev.teamproject.meeting;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.common.CommonTypes.Day;
 import dev.teamproject.user.User;
@@ -104,8 +101,6 @@ public class Meeting {
 
   /**
    * Sets the type of the meeting.
-   * 
-   * @param type type of meeting.
    */
   public void setType(CommonTypes.MeetingType type) {
     if (type == null) {
@@ -120,8 +115,6 @@ public class Meeting {
 
   /**
    * Sets the description of the meeting.
-   * 
-   * @param description the description of the meeting.
    */
   public void setDescription(String description) {
     if (description != null && description.length() > 500) {
@@ -152,8 +145,6 @@ public class Meeting {
 
   /**
    * Sets the start day of the meeting.
-   * 
-   * @param startDay the start day of the meeting.
    */
   public void setStartDay(Day startDay) {
     if (startDay == null) {
@@ -168,8 +159,6 @@ public class Meeting {
 
   /**
    * Sets the end day of the meeting.
-   * 
-   * @param endDay the end day of the meeting.
    */
   public void setEndDay(Day endDay) {
     if (endDay == null) {
@@ -184,8 +173,6 @@ public class Meeting {
 
   /**
    * Sets the recurrence pattern of the meeting.
-   * 
-   * @param recurrence the recurrence pattern of the meeting.
    */
   public void setRecurrence(CommonTypes.Recurrence recurrence) {
     if (recurrence == null) {
@@ -208,8 +195,6 @@ public class Meeting {
 
   /**
    * Sets the number of participants invited to the meeting.
-   * 
-   * @param inviteParticipant the number of participants.
    */
   public void setInviteParticipant(Integer inviteParticipant) {
     if (inviteParticipant != null && inviteParticipant < 0) {
@@ -224,8 +209,6 @@ public class Meeting {
 
   /**
    * Sets the number of participants who accepted the meeting.
-   * 
-   * @param acceptParticipant participants who accepted the meeting.
    */
   public void setAcceptParticipant(Integer acceptParticipant) {
     if (acceptParticipant != null && acceptParticipant < 0) {
@@ -240,8 +223,6 @@ public class Meeting {
 
   /**
    * Sets the status of meeting.
-   * 
-   * @param status the status of the meeting.
    */
   public void setStatus(CommonTypes.MeetingStatus status) {
     if (status == null) {

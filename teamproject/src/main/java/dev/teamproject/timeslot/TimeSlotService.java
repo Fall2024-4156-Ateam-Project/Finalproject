@@ -1,12 +1,9 @@
 package dev.teamproject.timeslot;
 
 import dev.teamproject.common.CommonTypes;
-import dev.teamproject.common.CommonTypes.Availability;
-import dev.teamproject.common.CommonTypes.Day;
 import dev.teamproject.common.Pair;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserService;
-import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -97,13 +94,9 @@ public class TimeSlotService {
     for (TimeSlot ts : timeSlotList) {
       System.out.println(ts);
       // if the timeslot are overlapped
-      if (timeSlotHelper.isOverlapped(ts, timeSlot)) {
-        //  System.out.println(
-        //  "overlap found" + ts.getStartDay().toString() + timeSlot.getStartDay().toString());
-        if (ts.getTid() != timeSlot.getTid()) {
-          affectedSlots.add(ts);
-          System.out.println("Affeceted" + ts + "////" + timeSlot);
-        }
+      if (timeSlotHelper.isOverlapped(ts, timeSlot) && ts.getTid() != timeSlot.getTid()) {
+        affectedSlots.add(ts);
+        System.out.println("Affeceted" + ts + "////" + timeSlot);
       }
     }
 
@@ -123,9 +116,7 @@ public class TimeSlotService {
 
     int absStartTimeFirst = timeSlotHelper.absTime(firstSlot.getStartDay(),
         firstSlot.getStartTime());
-    int absEndTimeFirst = timeSlotHelper.absTime(firstSlot.getEndDay(), firstSlot.getEndTime());
 
-    int absStartTimeLast = timeSlotHelper.absTime(lastSlot.getStartDay(), lastSlot.getStartTime());
     int absEndTimeLast = timeSlotHelper.absTime(lastSlot.getEndDay(), lastSlot.getEndTime());
 
     if (absStartTimeFirst < absStartTimeNew && absEndTimeLast > absEndTimeNew) {

@@ -5,7 +5,6 @@ import dev.teamproject.exceptionHandler.UserException;
 import dev.teamproject.exceptionHandler.UserNotFoundException;
 import dev.teamproject.user.DTOs.UserCreationRequestDTO;
 import dev.teamproject.user.DTOs.UserErrorResponseDTO;
-import dev.teamproject.user.DTOs.UserLoginResponseDTO;
 import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

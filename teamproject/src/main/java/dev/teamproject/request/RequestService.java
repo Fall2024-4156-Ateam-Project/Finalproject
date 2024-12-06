@@ -21,6 +21,9 @@ public class RequestService {
   private final TimeSlotService tsService;
   private final Object lock = new Object();
 
+  /**
+   * Service for request which creates, deletes, updates and retrieves requests.
+   */
   @Autowired
   public RequestService(RequestRepo requestRepo,
                         UserService userService, TimeSlotService tsService) {

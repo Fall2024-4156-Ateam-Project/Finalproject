@@ -129,7 +129,7 @@ public class TimeSlotHelper {
    * @return a pair representing the day and time corresponding to the given absolute time
    */
   public Pair<Day, LocalTime> getDayAndTimeFromAbs(int absTime) {
-    int dayIndex = (absTime / (24 * 60)) % 7;
+    int dayIndex = absTime / (24 * 60) % 7;
     int minutes = absTime % (24 * 60);
     return new Pair<>(getDayFromIndex(dayIndex), LocalTime.of(minutes / 60, minutes % 60));
   }

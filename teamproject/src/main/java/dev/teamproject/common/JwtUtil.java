@@ -6,12 +6,19 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
 import org.springframework.stereotype.Component;
 
+/**
+ * Utility class for generating, parsing, and validating JWT tokens.
+ * This class provides methods to create tokens, extract information from tokens, 
+ * and check token expiration.
+ */
 @Component
 public class JwtUtil {
 
   private final String SECRET_KEY = "testtesttest";
 
-  // Generate a token with an expiration time
+  /**
+   * Generate a token with an expiration time.
+   * */
   public String generateToken(String email) {
     return Jwts.builder()
         .setSubject(email)

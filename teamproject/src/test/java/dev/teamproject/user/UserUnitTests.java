@@ -2,10 +2,8 @@ package dev.teamproject.user;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import dev.teamproject.user.User;
 import java.sql.Timestamp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,6 +43,25 @@ public class UserUnitTests {
   }
 
   @Test
+  void testEquals() {
+
+    assertEquals(testuser, testuser, "A user should be equal to itself.");
+    assertNotEquals(testuser, null, "A user should not be equal to null.");
+    assertNotEquals(testuser, "A string object", 
+        "A user should not be equal to an object of a different class.");
+
+    User anotherUserSameUid = new User("another name", "another@email.com");
+    anotherUserSameUid.setUid(testuser.getUid()); // Ensure they have the same UID
+    assertEquals(testuser, anotherUserSameUid, "Users with the same UID should be equal.");
+
+    // Different UID comparison
+    User anotherUserDifferentUid = new User("different name", "different@email.com");
+    anotherUserDifferentUid.setUid(testuser.getUid() + 1); // Ensure they have different UIDs
+    assertNotEquals(testuser, anotherUserDifferentUid, 
+        "Users with different UIDs should not be equal.");
+  }
+
+  @Test
   void testHashCode() {
     testuser = new User("test name", "test@email");
     int initialHashCode = testuser.hashCode();
@@ -65,20 +82,6 @@ public class UserUnitTests {
     assertEquals(now, testuser.getUpdatedAt());
   }
 
-  // @Test
-  // void testPrePersist() {
-  // testuser.onCreate();
-  // assertNotNull(testuser.getCreatedAt());
-  // assertNull(testuser.getUpdatedAt()); // UpdatedAt should not be set on
-  // creation
-  // }
-
-  // @Test
-  // void testPreUpdate() {
-  // testuser.onUpdate();
-  // assertNotNull(testuser.getUpdatedAt());
-  // }
-
   @Test
   void testToString() {
     // testuser.set(0);
@@ -93,5 +96,4 @@ public class UserUnitTests {
         + now + ", updatedAt=" + now + "}";
     assertEquals(updatedString, testuser.toString());
   }
-
 }

@@ -67,7 +67,9 @@ public class TimeSlotController {
     return ResponseEntity.ok(timeSlots);
   }
 
-  // Get TimeSlots by User ID
+  /**
+   * Get TimeSlots by User ID.
+   * */ 
   @GetMapping("/user")
   public ResponseEntity<List<TimeSlot>> getTimeSlotsByUserEmail(
       @RequestParam("email") String email) {
@@ -93,7 +95,6 @@ public class TimeSlotController {
   }
 
   // Update a TimeSlot
-
   @Deprecated
   @PutMapping("/{id}")
   public ResponseEntity<TimeSlot> updateTimeSlot(
@@ -102,7 +103,9 @@ public class TimeSlotController {
     return ResponseEntity.ok(updatedTimeSlot);
   }
 
-  // update a TimeSlot new
+  /** 
+   * update a new TimeSlot.
+   * */
   @PutMapping("/update/{id}")
   public ResponseEntity<TimeSlot> updateTimeSlotNoOverlap(
       @PathVariable("id") int tid, @RequestBody TimeSlot timeSlot
