@@ -1,11 +1,11 @@
 package dev.teamproject.user;
 
 import dev.teamproject.common.JwtUtil;
-import dev.teamproject.exceptionHandler.UserException;
-import dev.teamproject.exceptionHandler.UserNotFoundException;
-import dev.teamproject.user.DTOs.UserCreationRequestDTO;
-import dev.teamproject.user.DTOs.UserErrorResponseDTO;
-import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
+import dev.teamproject.exceptionhandler.UserException;
+import dev.teamproject.exceptionhandler.UserNotFoundException;
+import dev.teamproject.user.dto.UserCreationRequestDto;
+import dev.teamproject.user.dto.UserErrorResponseDto;
+import dev.teamproject.user.dto.UserSuccessResponseDto;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -77,11 +77,11 @@ public class UserService {
    * Register a new user.
    */
   @Transactional
-  public UserSuccessResponseDTO registerUser(UserCreationRequestDTO userCreationRequestDto) {
+  public UserSuccessResponseDto registerUser(UserCreationRequestDto userCreationRequestDto) {
     synchronized (lock) {
       if (existsByEmail(userCreationRequestDto.getEmail())) {
-        UserErrorResponseDTO userErrorResponseDto = new UserErrorResponseDTO();
-        userErrorResponseDto.setUserResponseFromUserCreationDTO(userCreationRequestDto);
+        UserErrorResponseDto userErrorResponseDto = new UserErrorResponseDto();
+        userErrorResponseDto.setUserResponseFromUserCreationDto(userCreationRequestDto);
         throw new UserException("User already exists", userErrorResponseDto);
       }
       User user = new User();
@@ -90,7 +90,7 @@ public class UserService {
 
       this.userRepo.save(user);
 
-      UserSuccessResponseDTO userSuccessResponseDto = new UserSuccessResponseDTO();
+      UserSuccessResponseDto userSuccessResponseDto = new UserSuccessResponseDto();
       userSuccessResponseDto.setUserResponseFromUser(user);
       return userSuccessResponseDto;
     }
@@ -100,13 +100,13 @@ public class UserService {
    * Delete a user by UID.
    */
   @Transactional
-  public UserSuccessResponseDTO deleteUser(Integer uid) {
+  public UserSuccessResponseDto deleteUser(Integer uid) {
     if (!userRepo.existsByUid(uid)) {
       throw new UserNotFoundException("User not found with ID: " + uid);
     }
     User user = userRepo.findByUid(uid).get(0);
 
-    UserSuccessResponseDTO userSuccessResponseDto = new UserSuccessResponseDTO();
+    UserSuccessResponseDto userSuccessResponseDto = new UserSuccessResponseDto();
     userSuccessResponseDto.setUserResponseFromUser(user);
     this.userRepo.deleteById(uid);
     return userSuccessResponseDto;

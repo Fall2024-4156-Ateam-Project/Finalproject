@@ -29,12 +29,12 @@ public class MeetingUnitTests {
     meeting.setOrganizer(organizer);
     meeting.setType(CommonTypes.MeetingType.group);
     meeting.setDescription("Test Meeting");
-    meeting.setStartTime(LocalTime.of(10, 0)); // 10:00 AM
-    meeting.setEndTime(LocalTime.of(11, 0)); // 11:00 AM
+    meeting.setStartTime(LocalTime.of(10, 0));
+    meeting.setEndTime(LocalTime.of(11, 0));
     meeting.setStartDay(Day.Monday);
     meeting.setEndDay(Day.Monday);
     meeting.setRecurrence(CommonTypes.Recurrence.weekly);
-    meeting.setCreatedAt(LocalTime.of(9, 0)); // 9:00 AM
+    meeting.setCreatedAt(LocalTime.of(9, 0));
     meeting.setInviteParticipant(5);
     meeting.setAcceptParticipant(3);
     meeting.setStatus(CommonTypes.MeetingStatus.Valid);
@@ -63,11 +63,11 @@ public class MeetingUnitTests {
     meeting.setType(CommonTypes.MeetingType.one_on_one);
     meeting.setDescription("Updated Meeting");
     meeting.setStartTime(LocalTime.of(14, 0)); // 2:00 PM
-    meeting.setEndTime(LocalTime.of(15, 0)); // 3:00 PM
+    meeting.setEndTime(LocalTime.of(15, 0));
     meeting.setStartDay(Day.Tuesday);
     meeting.setEndDay(Day.Wednesday);
     meeting.setRecurrence(CommonTypes.Recurrence.daily);
-    meeting.setCreatedAt(LocalTime.of(8, 0)); // 8:00 AM
+    meeting.setCreatedAt(LocalTime.of(8, 0));
     meeting.setInviteParticipant(10);
     meeting.setAcceptParticipant(7);
     meeting.setStatus(CommonTypes.MeetingStatus.Invalid);
@@ -85,7 +85,7 @@ public class MeetingUnitTests {
     assertEquals(7, meeting.getAcceptParticipant());
     assertEquals(CommonTypes.MeetingStatus.Invalid, meeting.getStatus());
 
-    meeting.setDescription(null); // Description can be null
+    meeting.setDescription(null);
     assertNull(meeting.getDescription());
 
   }
@@ -113,7 +113,7 @@ public class MeetingUnitTests {
   // Test for setting the description to exactly 500 characters (boundary case)
   @Test
   void testDescriptionExactly500Chars() {
-    String description = "A".repeat(500); // 500 characters
+    String description = "A".repeat(500);
     meeting.setDescription(description);
     assertEquals(description, meeting.getDescription());
   }
@@ -121,21 +121,21 @@ public class MeetingUnitTests {
   // Test for setting description to 501 characters (boundary case, invalid)
   @Test
   void testDescriptionTooLong() {
-    String longDescription = "A".repeat(501); // 501 characters
+    String longDescription = "A".repeat(501);
     assertThrows(IllegalArgumentException.class, () -> meeting.setDescription(longDescription));
   }
 
   // Test for null invite participant value (should be valid)
   @Test
   void testInviteParticipantNull() {
-    meeting.setInviteParticipant(null); // Should be valid as null is allowed
+    meeting.setInviteParticipant(null);
     assertNull(meeting.getInviteParticipant());
   }
 
   // Test for null accept participant value (should be valid)
   @Test
   void testAcceptParticipantNull() {
-    meeting.setAcceptParticipant(null); // Should be valid as null is allowed
+    meeting.setAcceptParticipant(null);
     assertNull(meeting.getAcceptParticipant());
   }
 
@@ -172,8 +172,8 @@ public class MeetingUnitTests {
   // Test for invalid start time being later than end time
   @Test
   void testStartTimeAfterEndTime() {
-    meeting.setStartTime(LocalTime.of(12, 0)); // 12:00 PM
-    meeting.setEndTime(LocalTime.of(11, 0)); // 11:00 AM
+    meeting.setStartTime(LocalTime.of(12, 0));
+    meeting.setEndTime(LocalTime.of(11, 0));
     assertThrows(IllegalArgumentException.class, () -> {
       if (meeting.getStartTime().isAfter(meeting.getEndTime())) {
         throw new IllegalArgumentException("Start time cannot be after end time.");

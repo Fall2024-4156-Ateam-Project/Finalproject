@@ -68,15 +68,15 @@ public class MeetingServiceUnitTests {
     meeting2 = new Meeting();
     meeting3 = new Meeting();
 
-    // setup meeting1
+    // meeting1
     meeting1.setOrganizer(user1);
     meeting1.setMid(0);
     meeting1.setRecurrence(CommonTypes.Recurrence.weekly);
-    // setup meeting2
+    // meeting2
     meeting2.setOrganizer(user2);
     meeting2.setMid(1);
     meeting2.setRecurrence(CommonTypes.Recurrence.daily);
-    // setup meeting3
+    // meeting3
     meeting3.setOrganizer(user2);
     meeting3.setMid(2);
     meeting3.setRecurrence(CommonTypes.Recurrence.daily);
@@ -102,10 +102,10 @@ public class MeetingServiceUnitTests {
   @Test
   public void testFindByEmailWithNoUsers() {
     String email = "nonexistent@columbia.edu";
-    when(userService.findByEmail(email)).thenReturn(new ArrayList<>()); // Mock empty user list
+    when(userService.findByEmail(email)).thenReturn(new ArrayList<>());
 
     List<Meeting> meetings = meetingService.findByEmail(email);
-    assertEquals(0, meetings.size()); // Expect no meetings
+    assertEquals(0, meetings.size());
   }
 
   @Test
@@ -163,7 +163,7 @@ public class MeetingServiceUnitTests {
   public void testSaveMeeting() {
 
     // Create a MeetingDTO with the required values
-    MeetingDTO meetingDto = new MeetingDTO();
+    MeetingDto meetingDto = new MeetingDto();
     meetingDto.setOrganizerId(user1.getUid());
     meetingDto.setStartTime(LocalTime.now());
     meetingDto.setEndTime(LocalTime.now().plusHours(1));
@@ -174,12 +174,11 @@ public class MeetingServiceUnitTests {
     meetingDto.setRecurrence("daily");
     meetingDto.setDescription("Test Meeting");
 
-    // Mock the behavior of userRepo to simulate that the organizer does not exist
     when(userRepo.findById(user1.getUid())).thenReturn(Optional.empty());
 
     // Verify that the custom exception is thrown with the expected message
-    dev.teamproject.exceptionHandler.IllegalArgumentException exception = assertThrows(
-        dev.teamproject.exceptionHandler.IllegalArgumentException.class,
+    dev.teamproject.exceptionhandler.IllegalArgumentException exception = assertThrows(
+        dev.teamproject.exceptionhandler.IllegalArgumentException.class,
         () -> meetingService.save(meetingDto));
 
     // Assert that the exception message is as expected
@@ -188,9 +187,9 @@ public class MeetingServiceUnitTests {
 
   @Test
   public void testSaveMeetingMissingFields() {
-    MeetingDTO meetingDto = new MeetingDTO(); // Missing required fields
+    MeetingDto meetingDto = new MeetingDto();
     assertThrows(
-        dev.teamproject.exceptionHandler.IllegalArgumentException.class,
+        dev.teamproject.exceptionhandler.IllegalArgumentException.class,
         () -> meetingService.save(meetingDto));
   }
 

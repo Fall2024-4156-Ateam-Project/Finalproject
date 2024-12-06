@@ -1,4 +1,4 @@
-package dev.teamproject.apiResponse;
+package dev.teamproject.apiresponse;
 
 /**
  * A generic API response wrapper that encapsulates a message, data, and success status.

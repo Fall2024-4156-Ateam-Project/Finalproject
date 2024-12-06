@@ -103,9 +103,8 @@ public class RequestUnitTests {
     User user2 = new User();
     // Using reflection to set the UID field
     Field uidField = User.class.getDeclaredField("uid");
-    uidField.setAccessible(true); // To access private fields
+    uidField.setAccessible(true);
 
-    // Set different UID values for user1 and user2
     uidField.set(user1, 1);
     uidField.set(user2, 2);
 
@@ -122,7 +121,6 @@ public class RequestUnitTests {
 
   }
 
-  // Additional tests for edge cases
   @Test
   void testEqualsWhenUserIsNull() {
     User user1 = new User();

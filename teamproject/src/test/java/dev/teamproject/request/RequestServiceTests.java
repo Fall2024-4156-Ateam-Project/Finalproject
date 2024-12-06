@@ -116,22 +116,18 @@ class RequestServiceTests {
 
   @Test
   void testUpdateRequestDescriptionWithNullDescription() {
-    // Mocking dependencies
     when(timeSlotService.getTimeSlotById(timeSlot.getTid())).thenReturn(timeSlot);
     when(userService.findById(user.getUid())).thenReturn(user);
     when(requestRepo.findById(requestId)).thenReturn(Optional.of(request));
 
-    // Simulate the repository saving the request and returning it
     when(requestRepo.save(request)).thenAnswer(invocation -> {
       Request savedRequest = invocation.getArgument(0);
       return savedRequest;
     });
 
-    // Call the method with null as newDescription
     Request updatedRequest = requestService.updateRequestDescription(timeSlot.getTid(),
             user.getUid(), null);
 
-    // Assert that the description remains unchanged
     assertEquals(null, updatedRequest.getDescription()); // Assuming initial description was null.
   }
 
@@ -163,7 +159,6 @@ class RequestServiceTests {
     when(userService.findById(user.getUid())).thenReturn(user);
     when(requestRepo.findById(requestId)).thenReturn(Optional.of(request));
 
-    // Simulate the repository saving the request and returning it
     when(requestRepo.save(request)).thenAnswer(invocation -> {
       Request savedRequest = invocation.getArgument(0);
       return savedRequest;

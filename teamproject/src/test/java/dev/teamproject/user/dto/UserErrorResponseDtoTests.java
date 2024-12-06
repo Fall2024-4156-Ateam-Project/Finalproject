@@ -1,20 +1,20 @@
-package dev.teamproject.user.DTOs;
+package dev.teamproject.user.dto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import dev.teamproject.user.DTOs.UserCreationRequestDTO;
-import dev.teamproject.user.DTOs.UserErrorResponseDTO;
+import dev.teamproject.user.dto.UserCreationRequestDto;
+import dev.teamproject.user.dto.UserErrorResponseDto;
 import org.junit.jupiter.api.Test;
 
 /**
  * Test class for verifying the functionality of the UserErrorResponseDTO.
  * This class contains tests for getter and setter methods of the UserErrorResponseDTO class.
  */
-public class UserErrorResponseDTOTests {
+public class UserErrorResponseDtoTests {
   @Test
   void testGetterAndSetter() {
-    UserErrorResponseDTO errorResponse = new UserErrorResponseDTO();
+    UserErrorResponseDto errorResponse = new UserErrorResponseDto();
 
     errorResponse.setName("John Doe");
     errorResponse.setEmail("john.doe@example.com");
@@ -27,12 +27,12 @@ public class UserErrorResponseDTOTests {
 
   @Test
   void testSetUserResponseFromUserCreationDto_ValidData() {
-    UserCreationRequestDTO userCreationRequestDto = new UserCreationRequestDTO();
+    UserCreationRequestDto userCreationRequestDto = new UserCreationRequestDto();
     userCreationRequestDto.setName("Jane Doe");
     userCreationRequestDto.setEmail("jane.doe@example.com");
 
-    UserErrorResponseDTO errorResponse = new UserErrorResponseDTO();
-    errorResponse.setUserResponseFromUserCreationDTO(userCreationRequestDto);
+    UserErrorResponseDto errorResponse = new UserErrorResponseDto();
+    errorResponse.setUserResponseFromUserCreationDto(userCreationRequestDto);
 
     assertEquals("Jane Doe", errorResponse.getName(),
             "Name should match the value from UserCreationRequestDTO.");
@@ -42,12 +42,12 @@ public class UserErrorResponseDTOTests {
 
   @Test
   void testSetUserResponseFromUserCreationDto_NullData() {
-    UserCreationRequestDTO userCreationRequestDto = new UserCreationRequestDTO();
+    UserCreationRequestDto userCreationRequestDto = new UserCreationRequestDto();
     userCreationRequestDto.setName(null);
     userCreationRequestDto.setEmail(null);
 
-    UserErrorResponseDTO errorResponse = new UserErrorResponseDTO();
-    errorResponse.setUserResponseFromUserCreationDTO(userCreationRequestDto);
+    UserErrorResponseDto errorResponse = new UserErrorResponseDto();
+    errorResponse.setUserResponseFromUserCreationDto(userCreationRequestDto);
 
     assertNull(errorResponse.getName(),
             "Name should be null when UserCreationRequestDTO name is null.");
@@ -57,12 +57,12 @@ public class UserErrorResponseDTOTests {
 
   @Test
   void testSetUserResponseFromUserCreationDto_EmptyData() {
-    UserCreationRequestDTO userCreationRequestDto = new UserCreationRequestDTO();
+    UserCreationRequestDto userCreationRequestDto = new UserCreationRequestDto();
     userCreationRequestDto.setName("");
     userCreationRequestDto.setEmail("");
 
-    UserErrorResponseDTO errorResponse = new UserErrorResponseDTO();
-    errorResponse.setUserResponseFromUserCreationDTO(userCreationRequestDto);
+    UserErrorResponseDto errorResponse = new UserErrorResponseDto();
+    errorResponse.setUserResponseFromUserCreationDto(userCreationRequestDto);
 
     assertEquals("", errorResponse.getName(),
             "Name should match the empty value from UserCreationRequestDTO.");
@@ -72,7 +72,7 @@ public class UserErrorResponseDTOTests {
 
   @Test
   void testDefaultConstructor() {
-    UserErrorResponseDTO errorResponse = new UserErrorResponseDTO();
+    UserErrorResponseDto errorResponse = new UserErrorResponseDto();
 
     assertNull(errorResponse.getName(), "Name should be null by default.");
     assertNull(errorResponse.getEmail(), "Email should be null by default.");

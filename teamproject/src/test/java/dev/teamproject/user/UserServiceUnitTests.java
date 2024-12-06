@@ -9,13 +9,13 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import dev.teamproject.exceptionHandler.UserException;
-import dev.teamproject.exceptionHandler.UserNotFoundException;
-import dev.teamproject.user.DTOs.UserCreationRequestDTO;
-import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
+import dev.teamproject.exceptionhandler.UserException;
+import dev.teamproject.exceptionhandler.UserNotFoundException;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserRepo;
 import dev.teamproject.user.UserService;
+import dev.teamproject.user.dto.UserCreationRequestDto;
+import dev.teamproject.user.dto.UserSuccessResponseDto;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -24,8 +24,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-// import static org.mockito.Mockito.*;
 
 class UserServiceUnitTests {
 
@@ -102,18 +100,17 @@ class UserServiceUnitTests {
 
   @Test
   void testRegisterUser_Success() {
-    UserCreationRequestDTO request = new UserCreationRequestDTO();
+    UserCreationRequestDto request = new UserCreationRequestDto();
     request.setName("test3");
     request.setEmail("test3@email.com");
 
     when(userRepo.existsByEmail("test3@email.com")).thenReturn(false);
     when(userRepo.save(any(User.class))).thenAnswer(invocation -> {
       User savedUser = invocation.getArgument(0);
-      // savedUser.setUid(3); // Simulate saving
       return savedUser;
     });
 
-    UserSuccessResponseDTO response = userService.registerUser(request);
+    UserSuccessResponseDto response = userService.registerUser(request);
 
     assertEquals("test3", response.getName());
     verify(userRepo, times(1)).existsByEmail("test3@email.com");
@@ -122,7 +119,7 @@ class UserServiceUnitTests {
 
   @Test
   void testRegisterUser_UserAlreadyExists() {
-    UserCreationRequestDTO request = new UserCreationRequestDTO();
+    UserCreationRequestDto request = new UserCreationRequestDto();
     request.setName("test3");
     request.setEmail("test3@email.com");
 
@@ -138,7 +135,7 @@ class UserServiceUnitTests {
     when(userRepo.existsByUid(1)).thenReturn(true);
     when(userRepo.findByUid(1)).thenReturn(Arrays.asList(user1));
 
-    UserSuccessResponseDTO response = userService.deleteUser(1);
+    UserSuccessResponseDto response = userService.deleteUser(1);
 
     assertEquals("test1", response.getName());
     verify(userRepo, times(1)).existsByUid(1);
@@ -153,10 +150,4 @@ class UserServiceUnitTests {
     verify(userRepo, times(1)).existsByUid(99);
     verify(userRepo, times(0)).deleteById(anyInt());
   }
-
-  //  @Test
-  //  void testSaveUser() {
-  //    userService.save(user1);
-  //    verify(userRepo, times(1)).save(user1);
-  //  }
 }

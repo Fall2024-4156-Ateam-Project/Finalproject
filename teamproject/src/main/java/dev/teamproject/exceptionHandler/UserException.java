@@ -1,20 +1,20 @@
-package dev.teamproject.exceptionHandler;
+package dev.teamproject.exceptionhandler;
 
-import dev.teamproject.user.DTOs.UserErrorResponseDTO;
+import dev.teamproject.user.dto.UserErrorResponseDto;
 
 /**
  * An exception handler class which manages user exceptions.
  */
 public class UserException extends RuntimeException {
 
-  private UserErrorResponseDTO data;
+  private UserErrorResponseDto data;
 
-  public UserException(String message, UserErrorResponseDTO data) {
+  public UserException(String message, UserErrorResponseDto data) {
     super(message);
     this.data = data;
   }
 
-  public UserErrorResponseDTO getData() {
+  public UserErrorResponseDto getData() {
     return this.data;
   }
 

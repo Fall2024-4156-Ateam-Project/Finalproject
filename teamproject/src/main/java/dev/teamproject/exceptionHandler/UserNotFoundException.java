@@ -1,4 +1,4 @@
-package dev.teamproject.exceptionHandler;
+package dev.teamproject.exceptionhandler;
 
 /**
  * A user not found excpetion class that handles
