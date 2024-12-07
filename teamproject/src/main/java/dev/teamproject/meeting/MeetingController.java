@@ -1,6 +1,6 @@
 package dev.teamproject.meeting;
 
-import dev.teamproject.apiResponse.GenericApiResponse;
+import dev.teamproject.apiresponse.GenericApiResponse;
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.user.User;
 import java.util.List;
@@ -106,13 +106,13 @@ public class MeetingController {
   }
 
   /**
-   * Saves a new meeting using the provided {@link MeetingDTO}.
+   * Saves a new meeting using the provided {@link MeetingDto}.
    */
   @PostMapping("/saveMeeting")
   public ResponseEntity<GenericApiResponse<String>> saveMeeting(
-      @RequestBody MeetingDTO meetingDTO) {
+      @RequestBody MeetingDto meetingDto) {
     GenericApiResponse<String> response;
-    meetingService.save(meetingDTO);
+    meetingService.save(meetingDto);
     response = new GenericApiResponse<>("Meeting saved successfully", null, true);
     return new ResponseEntity<>(response, HttpStatus.CREATED);
   }

@@ -51,12 +51,12 @@ public class UserUnitTests {
         "A user should not be equal to an object of a different class.");
 
     User anotherUserSameUid = new User("another name", "another@email.com");
-    anotherUserSameUid.setUid(testuser.getUid()); // Ensure they have the same UID
+    anotherUserSameUid.setUid(testuser.getUid());
     assertEquals(testuser, anotherUserSameUid, "Users with the same UID should be equal.");
 
     // Different UID comparison
     User anotherUserDifferentUid = new User("different name", "different@email.com");
-    anotherUserDifferentUid.setUid(testuser.getUid() + 1); // Ensure they have different UIDs
+    anotherUserDifferentUid.setUid(testuser.getUid() + 1);
     assertNotEquals(testuser, anotherUserDifferentUid, 
         "Users with different UIDs should not be equal.");
   }
@@ -84,7 +84,6 @@ public class UserUnitTests {
 
   @Test
   void testToString() {
-    // testuser.set(0);
     String expectedString =
             "User{uid=0, name='test name', email='test@email.com', createdAt=null, updatedAt=null}";
     assertEquals(expectedString, testuser.toString());

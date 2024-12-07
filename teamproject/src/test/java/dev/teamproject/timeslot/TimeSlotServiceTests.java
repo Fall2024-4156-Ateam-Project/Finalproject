@@ -135,7 +135,6 @@ class TimeSlotServiceTests {
     newTimeSlot.setTid(2);
     newTimeSlot.setUser(user);
 
-    // Mock the repository and helper methods
     when(userService.findById(user.getUid())).thenReturn(user);
     when(timeSlotRepo.findById(newTimeSlot.getTid())).thenReturn(Optional.empty());
     when(timeSlotRepo.findAll()).thenReturn(Collections.singletonList(existing));
@@ -154,23 +153,19 @@ class TimeSlotServiceTests {
           return new Pair<>(day, time);
         });
 
-    // Act: Call the method under test
     timeSlotService.mergeOrUpdateTimeSlot(newTimeSlot);
 
-    // Assert: Verify that deleteAll was called with the overlapping timeslot
     ArgumentCaptor<List<TimeSlot>> deleteCaptor = ArgumentCaptor.forClass(List.class);
     verify(timeSlotRepo).deleteAll(deleteCaptor.capture());
     List<TimeSlot> deletedSlots = deleteCaptor.getValue();
     assertEquals(1, deletedSlots.size());
     assertEquals(existing, deletedSlots.get(0));
 
-    // Assert: Capture and verify the saved timeslots
     ArgumentCaptor<List<TimeSlot>> saveCaptor = ArgumentCaptor.forClass(List.class);
     verify(timeSlotRepo).saveAll(saveCaptor.capture());
     List<TimeSlot> savedSlots = saveCaptor.getValue();
     assertEquals(3, savedSlots.size());
 
-    // Sort saved slots by start time for consistent assertions
     savedSlots.sort(Comparator.comparing(ts -> ts.getStartTime()));
 
     // Validate the left, middle, and right segments

@@ -1,19 +1,19 @@
-package dev.teamproject.user.DTOs;
+package dev.teamproject.user.dto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import dev.teamproject.user.DTOs.UserLoginResponseDTO;
+import dev.teamproject.user.dto.UserLoginResponseDto;
 import org.junit.jupiter.api.Test;
 
 /**
  * Test class for verifying the functionality of the UserLoginResponseDTO.
  * This class contains tests for getter and setter methods of the UserLoginResponseDTO class.
  */
-public class UserLoginResponseDTOTests {
+public class UserLoginResponseDtoTests {
   @Test
   void testGetterAndSetterForToken() {
-    UserLoginResponseDTO loginResponse = new UserLoginResponseDTO();
+    UserLoginResponseDto loginResponse = new UserLoginResponseDto();
 
     loginResponse.setToken("sampleToken123");
     assertEquals("sampleToken123", loginResponse.getToken(),
@@ -22,7 +22,7 @@ public class UserLoginResponseDTOTests {
 
   @Test
   void testGetterAndSetterForEmail() {
-    UserLoginResponseDTO loginResponse = new UserLoginResponseDTO();
+    UserLoginResponseDto loginResponse = new UserLoginResponseDto();
 
     loginResponse.setEmail("user@example.com");
     assertEquals("user@example.com", loginResponse.getEmail(),
@@ -31,7 +31,7 @@ public class UserLoginResponseDTOTests {
 
   @Test
   void testGetterAndSetterForStatus() {
-    UserLoginResponseDTO loginResponse = new UserLoginResponseDTO();
+    UserLoginResponseDto loginResponse = new UserLoginResponseDto();
 
     loginResponse.setStatus("ACTIVE");
     assertEquals("ACTIVE", loginResponse.getStatus(),
@@ -40,7 +40,7 @@ public class UserLoginResponseDTOTests {
 
   @Test
   void testDefaultValues() {
-    UserLoginResponseDTO loginResponse = new UserLoginResponseDTO();
+    UserLoginResponseDto loginResponse = new UserLoginResponseDto();
 
     assertNull(loginResponse.getToken(), "Token should be null by default.");
     assertNull(loginResponse.getEmail(), "Email should be null by default.");
@@ -49,7 +49,7 @@ public class UserLoginResponseDTOTests {
 
   @Test
   void testSettingEmptyValues() {
-    UserLoginResponseDTO loginResponse = new UserLoginResponseDTO();
+    UserLoginResponseDto loginResponse = new UserLoginResponseDto();
 
     loginResponse.setToken("");
     loginResponse.setEmail("");
@@ -62,7 +62,7 @@ public class UserLoginResponseDTOTests {
 
   @Test
   void testSettingNullValues() {
-    UserLoginResponseDTO loginResponse = new UserLoginResponseDTO();
+    UserLoginResponseDto loginResponse = new UserLoginResponseDto();
 
     loginResponse.setToken(null);
     loginResponse.setEmail(null);

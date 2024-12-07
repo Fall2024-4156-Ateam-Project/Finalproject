@@ -1,4 +1,4 @@
-package dev.teamproject.exceptionHandler;
+package dev.teamproject.exceptionhandler;
 
 /**
  * An exception handler class for illegal argument type exceptions.

@@ -1,4 +1,4 @@
-package dev.teamproject.user.DTOs;
+package dev.teamproject.user.dto;
 
 import dev.teamproject.user.User;
 import java.sql.Timestamp;
@@ -9,7 +9,7 @@ import java.sql.Timestamp;
  * for account creation and update, which are used to return user information
  * in a successful response.
  */
-public class UserSuccessResponseDTO {
+public class UserSuccessResponseDto {
 
   private Integer uid;
   private String name;

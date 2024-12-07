@@ -7,11 +7,11 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import dev.teamproject.apiResponse.GenericApiResponse;
+import dev.teamproject.apiresponse.GenericApiResponse;
 import dev.teamproject.common.CommonTypes;
 import dev.teamproject.meeting.Meeting;
 import dev.teamproject.meeting.MeetingController;
-import dev.teamproject.meeting.MeetingDTO;
+import dev.teamproject.meeting.MeetingDto;
 import dev.teamproject.meeting.MeetingService;
 import dev.teamproject.user.User;
 import java.util.Arrays;
@@ -154,14 +154,13 @@ public class MeetingControllerTests {
 
   @Test
   void testSaveMeeting() {
-    MeetingDTO meetingDto = new MeetingDTO();
+    MeetingDto meetingDto = new MeetingDto();
 
     doNothing().when(meetingService).save(meetingDto);
 
     ResponseEntity<GenericApiResponse<String>> response = meetingController.saveMeeting(meetingDto);
 
     assertEquals(201, response.getStatusCodeValue());
-    // assertEquals("Meeting saved successfully", response.getBody().getMessage());
     verify(meetingService, times(1)).save(meetingDto);
   }
 }

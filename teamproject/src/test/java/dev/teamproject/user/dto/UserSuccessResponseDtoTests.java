@@ -1,20 +1,20 @@
-package dev.teamproject.user.DTOs;
+package dev.teamproject.user.dto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
 import dev.teamproject.user.User;
+import dev.teamproject.user.dto.UserSuccessResponseDto;
 import java.sql.Timestamp;
 import org.junit.jupiter.api.Test;
 
 /**
  * Test class for verifying the functionality of the UserSuccessResponseDTO.
  */
-public class UserSuccessResponseDTOTests {
+public class UserSuccessResponseDtoTests {
   @Test
   void testGetterAndSetterForUid() {
-    UserSuccessResponseDTO response = new UserSuccessResponseDTO();
+    UserSuccessResponseDto response = new UserSuccessResponseDto();
 
     response.setUid(101);
     assertEquals(101, response.getUid(), "Uid should be set and retrieved correctly.");
@@ -22,7 +22,7 @@ public class UserSuccessResponseDTOTests {
 
   @Test
   void testGetterAndSetterForName() {
-    UserSuccessResponseDTO response = new UserSuccessResponseDTO();
+    UserSuccessResponseDto response = new UserSuccessResponseDto();
 
     response.setName("John Doe");
     assertEquals("John Doe", response.getName(), "Name should be set and retrieved correctly.");
@@ -30,7 +30,7 @@ public class UserSuccessResponseDTOTests {
 
   @Test
   void testGetterAndSetterForEmail() {
-    UserSuccessResponseDTO response = new UserSuccessResponseDTO();
+    UserSuccessResponseDto response = new UserSuccessResponseDto();
 
     response.setEmail("john.doe@example.com");
     assertEquals("john.doe@example.com", response.getEmail(),
@@ -39,7 +39,7 @@ public class UserSuccessResponseDTOTests {
 
   @Test
   void testGetterAndSetterForCreatedAt() {
-    UserSuccessResponseDTO response = new UserSuccessResponseDTO();
+    UserSuccessResponseDto response = new UserSuccessResponseDto();
     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
     response.setCreatedAt(timestamp);
@@ -49,7 +49,7 @@ public class UserSuccessResponseDTOTests {
 
   @Test
   void testGetterAndSetterForUpdatedAt() {
-    UserSuccessResponseDTO response = new UserSuccessResponseDTO();
+    UserSuccessResponseDto response = new UserSuccessResponseDto();
     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
     response.setUpdatedAt(timestamp);
@@ -59,7 +59,7 @@ public class UserSuccessResponseDTOTests {
 
   @Test
   void testDefaultValues() {
-    UserSuccessResponseDTO response = new UserSuccessResponseDTO();
+    UserSuccessResponseDto response = new UserSuccessResponseDto();
 
     assertNull(response.getUid(), "Uid should be null by default.");
     assertNull(response.getName(), "Name should be null by default.");
@@ -70,32 +70,19 @@ public class UserSuccessResponseDTOTests {
 
   @Test
   void testSetUserResponseFromUser() {
-    // Mock User object
     User mockUser = new User();
-    // mockUser.setUid(202);
     mockUser.setName("Jane Doe");
     mockUser.setEmail("jane.doe@example.com");
     Timestamp createdAt = new Timestamp(System.currentTimeMillis());
     mockUser.setCreatedAt(createdAt);
 
-    // Initialize DTO and map from User
-    UserSuccessResponseDTO response = new UserSuccessResponseDTO();
+    UserSuccessResponseDto response = new UserSuccessResponseDto();
     response.setUserResponseFromUser(mockUser);
 
-    // Assert values are correctly mapped
-    // assertEquals(202, response.getUid(), "Uid should match the value from User.");
     assertEquals("Jane Doe", response.getName(), "Name should match the value from User.");
     assertEquals("jane.doe@example.com",
             response.getEmail(), "Email should match the value from User.");
     assertEquals(createdAt, response.getCreatedAt(), "CreatedAt should match the value from User.");
     assertNull(response.getUpdatedAt(), "UpdatedAt should remain null as it's not mapped.");
   }
-
-  // @Test
-  // void testSetUserResponseWithNullUser() {
-  //     UserSuccessResponseDTO response = new UserSuccessResponseDTO();
-  //     // No exception should be thrown when passing a null user
-  //     assertDoesNotThrow(() -> response.setUserResponseFromUser(null),
-  //         "Setting response from a null user should not throw an exception.");
-  // }
 }

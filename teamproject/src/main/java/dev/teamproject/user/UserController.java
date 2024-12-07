@@ -1,8 +1,8 @@
 package dev.teamproject.user;
 
-import dev.teamproject.apiResponse.GenericApiResponse;
-import dev.teamproject.user.DTOs.UserCreationRequestDTO;
-import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
+import dev.teamproject.apiresponse.GenericApiResponse;
+import dev.teamproject.user.dto.UserCreationRequestDto;
+import dev.teamproject.user.dto.UserSuccessResponseDto;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,11 +38,11 @@ public class UserController {
    * To register a user given a user Creation Request.
    */
   @PostMapping("/register")
-  public ResponseEntity<GenericApiResponse<UserSuccessResponseDTO>> register(
-      @Valid @RequestBody UserCreationRequestDTO userCreationRequestDto) {
-    UserSuccessResponseDTO userSuccessResponseDto = userService.registerUser(
+  public ResponseEntity<GenericApiResponse<UserSuccessResponseDto>> register(
+      @Valid @RequestBody UserCreationRequestDto userCreationRequestDto) {
+    UserSuccessResponseDto userSuccessResponseDto = userService.registerUser(
         userCreationRequestDto);
-    GenericApiResponse<UserSuccessResponseDTO> response = new GenericApiResponse<>(
+    GenericApiResponse<UserSuccessResponseDto> response = new GenericApiResponse<>(
         "User created successfully", userSuccessResponseDto, true);
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
@@ -51,10 +51,10 @@ public class UserController {
    * To delete a user given a uid.
    */
   @DeleteMapping("/delete/{uid}")
-  public ResponseEntity<GenericApiResponse<UserSuccessResponseDTO>> deleteUser(
+  public ResponseEntity<GenericApiResponse<UserSuccessResponseDto>> deleteUser(
       @PathVariable Integer uid) {
-    UserSuccessResponseDTO userSuccessResponseDto = userService.deleteUser(uid);
-    GenericApiResponse<UserSuccessResponseDTO> response = new GenericApiResponse<>(
+    UserSuccessResponseDto userSuccessResponseDto = userService.deleteUser(uid);
+    GenericApiResponse<UserSuccessResponseDto> response = new GenericApiResponse<>(
         "User deleted successfully",
         userSuccessResponseDto, true);
     return new ResponseEntity<>(response, HttpStatus.OK);

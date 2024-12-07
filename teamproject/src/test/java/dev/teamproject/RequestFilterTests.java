@@ -74,10 +74,7 @@ public class RequestFilterTests {
 
     verify(chain, never()).doFilter(request, response);
     verify(response, times(1)).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-    // verify(response.getWriter(), times(1)).write("Unauthorized access: Invalid
-    // API key.");
 
-    // Assert the content written to response
     assertEquals("Unauthorized access: Invalid API key.", stringWriter.toString().trim());
 
   }
@@ -92,9 +89,7 @@ public class RequestFilterTests {
 
     verify(chain, never()).doFilter(request, response);
     verify(response, times(1)).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-    // verify(response.getWriter(), times(1)).write("Unauthorized access: Invalid
-    // API key.");
-    // Assert the content written to response
+
     assertEquals("Unauthorized access: Invalid API key.", stringWriter.toString().trim());
   }
 
@@ -129,11 +124,6 @@ public class RequestFilterTests {
 
     verify(chain, never()).doFilter(request, response);
     verify(response, times(1)).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-
-    // boolean result = requestFilter.isExcludedPath("/swagger-ui-notexcluded");
-    // assertFalse(result, "Paths similar to excluded prefixes should not be
-    // excluded.");
-
   }
 
   @Test
@@ -193,7 +183,6 @@ public class RequestFilterTests {
 
   @Test
   void testExcludedOnlyJsPath() throws Exception {
-    // CHANGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEee
     when(request.getRequestURI()).thenReturn("script.js");
 
     // Excluded path should bypass the filter
@@ -205,7 +194,7 @@ public class RequestFilterTests {
 
   @Test
   void testExcludedOnlyHtmlPath() throws Exception {
-    // CHANGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEee
+
     when(request.getRequestURI()).thenReturn("index.html");
 
     // Excluded path should bypass the filter
@@ -217,7 +206,6 @@ public class RequestFilterTests {
 
   @Test
   void testExcludedOnlyPngPath() throws Exception {
-    // CHANGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEee
     when(request.getRequestURI()).thenReturn("image.png");
 
     // Excluded path should bypass the filter
@@ -255,7 +243,6 @@ public class RequestFilterTests {
     when(request.getHeader("apiKey")).thenReturn("valid-key");
     requestFilter.setApiKey("valid-key");
 
-    // Valid API key and non-excluded path should allow the request
     requestFilter.doFilterInternal(request, response, chain);
 
     verify(chain, times(1)).doFilter(request, response);
@@ -264,7 +251,6 @@ public class RequestFilterTests {
 
   @Test
   void testConcurrentRequests() throws Exception {
-    // Simulating two requests with different API keys
     HttpServletRequest request1 = mock(HttpServletRequest.class);
     HttpServletRequest request2 = mock(HttpServletRequest.class);
 

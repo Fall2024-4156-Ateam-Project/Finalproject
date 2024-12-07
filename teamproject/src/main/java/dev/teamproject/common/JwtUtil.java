@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtUtil {
 
-  private final String SECRET_KEY = "testtesttest";
+  private final String secretKey = "testtesttest";
 
   /**
    * Generate a token with an expiration time.
@@ -24,7 +24,7 @@ public class JwtUtil {
         .setSubject(email)
         .setIssuedAt(new Date(System.currentTimeMillis()))
         .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 hours exp
-        .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
+        .signWith(SignatureAlgorithm.HS256, secretKey)
         .compact();
   }
 
@@ -40,7 +40,7 @@ public class JwtUtil {
 
   private Claims extractClaims(String token) {
     return Jwts.parser()
-        .setSigningKey(SECRET_KEY)
+        .setSigningKey(secretKey)
         .parseClaimsJws(token)
         .getBody();
   }

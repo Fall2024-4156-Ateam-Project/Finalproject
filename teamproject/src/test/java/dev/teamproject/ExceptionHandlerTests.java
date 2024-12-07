@@ -6,11 +6,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import dev.teamproject.apiResponse.GenericApiResponse;
-import dev.teamproject.exceptionHandler.GenericExceptionHandler;
-import dev.teamproject.exceptionHandler.UserException;
-import dev.teamproject.exceptionHandler.UserNotFoundException;
-import dev.teamproject.user.DTOs.UserErrorResponseDTO;
+import dev.teamproject.apiresponse.GenericApiResponse;
+import dev.teamproject.exceptionhandler.GenericExceptionHandler;
+import dev.teamproject.exceptionhandler.UserException;
+import dev.teamproject.exceptionhandler.UserNotFoundException;
+import dev.teamproject.user.dto.UserErrorResponseDto;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,31 +48,21 @@ public class ExceptionHandlerTests {
 
   @Test
   void testHandleUserNotFoundException() throws Exception {
-    // Arrange
     String errorMessage = "User not found";
     UserNotFoundException exception = new UserNotFoundException(errorMessage);
-
-    // GenericApiResponse<String> response
-    // = new GenericApiResponse<>(exception.getMessage(), null, false);
-    // new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 
     assertEquals(HttpStatus.NOT_FOUND,
             exceptionHandler.handleUserNotFoundException(exception).getStatusCode());
 
-    // Act & Assert
-    mockMvc.perform(get("/user/1")) // Simulate the request
-        // .andExpect(status().isNotFound())
-        // .andExpect(jsonPath("$.message").value(errorMessage))
+    mockMvc.perform(get("/user/1"))
         .andExpect(jsonPath("$.success").value(false));
   }
 
   @Test
   void testHandleUserException() throws Exception {
-    // Arrange
     String errorMessage = "User exception occurred";
 
-    // Creating and setting values for UserErrorResponseDTO
-    UserErrorResponseDTO errorDto = new UserErrorResponseDTO();
+    UserErrorResponseDto errorDto = new UserErrorResponseDto();
     errorDto.setName("John Doe");
     errorDto.setEmail("john.doe@example.com");
 
@@ -80,12 +70,7 @@ public class ExceptionHandlerTests {
 
     assertEquals(HttpStatus.BAD_REQUEST,
             exceptionHandler.handleUserException(exception).getStatusCode());
-    // Act & Assert
-    mockMvc.perform(get("/user/exception")) // Simulate the request
-        // .andExpect(status().isBadRequest())
-        // .andExpect(jsonPath("$.message").value(errorMessage))
-        // .andExpect(jsonPath("$.data.name").value("John Doe"))
-        // .andExpect(jsonPath("$.data.email").value("john.doe@example.com"))
+    mockMvc.perform(get("/user/exception")) 
         .andExpect(jsonPath("$.success").value(false));
   }
 
@@ -94,84 +79,33 @@ public class ExceptionHandlerTests {
     // Arrange
     String errorMessage = "Illegal argument exception occurred";
     IllegalArgumentException exception = new IllegalArgumentException();
-    // IllegalArgumentException exception = new IllegalArgumentException(errorMessage);
 
-    // assertEquals(HttpStatus.BAD_REQUEST,
-    // exceptionHandler.handleIllegalArgumentException(exception).getStatusCode());
-    // Act & Assert
-    mockMvc.perform(get("/illegal-argument")) // Simulate the request
-        // .andExpect(status().isBadRequest())
-        // .andExpect(jsonPath("$.message").value(errorMessage))
+    mockMvc.perform(get("/illegal-argument"))
         .andExpect(jsonPath("$.success").value(false));
   }
 
   @Test
   void testHandleMethodArgumentNotValidException() throws Exception {
-    // Arrange
     MethodArgumentNotValidException exception =
         Mockito.mock(MethodArgumentNotValidException.class);
     BindingResult bindingResult = Mockito.mock(BindingResult.class);
 
-    // Create a mock FieldError
     FieldError fieldError = new FieldError("objectName", "field", "Field cannot be empty");
 
-    // Return the FieldError in a list
     when(exception.getBindingResult()).thenReturn(bindingResult);
     when(bindingResult.getFieldErrors())
             .thenReturn(java.util.Collections.singletonList(fieldError));
 
     assertEquals(HttpStatus.BAD_REQUEST,
             exceptionHandler.handleValidationExceptions(exception).getStatusCode());
-    // Act & Assert
-    mockMvc.perform(get("/validation")) // Simulate the request
-        // .andExpect(status().isBadRequest())
-        // .andExpect(jsonPath("$.message").value("ValidationException"))
-        // .andExpect(jsonPath("$.data.field").value("Field cannot be empty"))
+    mockMvc.perform(get("/validation"))
         .andExpect(jsonPath("$.success").value(false));
   }
 
   @Test
   void testHandleGeneralException() throws Exception {
-    // Act & Assert
-    mockMvc.perform(get("/error")) // Simulating a request
+    mockMvc.perform(get("/error"))
             .andExpect(status().isInternalServerError())
             .andExpect(jsonPath("$.success").value(false));
   }
 }
-
-// private MockMvc mockMvc;
-// private GenericExceptionHandler exceptionHandler;
-
-// @BeforeEach
-// void setUp() {
-// exceptionHandler = new GenericExceptionHandler();
-// mockMvc = MockMvcBuilders.standaloneSetup(exceptionHandler).build();
-// }
-
-// @Test
-// void testHandleGeneralException() throws Exception {
-// // // Arrange
-// // String errorMessage = "An unexpected error occurred";
-// // Exception exception = new Exception(errorMessage);
-
-// // // Act & Assert
-// // mockMvc.perform(get("/unexpected-error")) // Simulate the request
-// // .andExpect(status().isInternalServerError())
-// // .andExpect(jsonPath("$.message").value("An unexpected error occurred"))
-// // .andExpect(jsonPath("$.success").value(false));
-
-// // Arrange
-// Exception exception = new Exception("Unexpected error");
-
-// // System.out.println("general exception messga
-// !!!!!!!!"+jsonPath("$.message"));
-
-// // Act & Assert
-// mockMvc.perform(get("/error")) // Simulating a request
-// .andExpect(status().isInternalServerError()) // Expect 500 status
-// // .andExpect(jsonPath("$.message").value("An unexpected error occurred")) //
-// Expect the error message
-// .andExpect(jsonPath("$.success").value(false));
-// }
-
-// }

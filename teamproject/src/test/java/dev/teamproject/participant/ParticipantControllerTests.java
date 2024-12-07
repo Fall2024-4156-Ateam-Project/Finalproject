@@ -92,7 +92,6 @@ public class ParticipantControllerTests {
     List<Participant> result = participantController.findByMeeting(meeting.getMid());
 
     verify(participantService, times(1)).findByMeeting(null);
-    //  assertEquals(participants, result);
   }
 
   @Test

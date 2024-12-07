@@ -7,7 +7,7 @@ import java.time.LocalTime;
 /**
  * Data Transfer Object (DTO) for representing meeting details in the application.
  * */
-public class MeetingDTO {
+public class MeetingDto {
 
   // Only required for delete operation
   private Integer meetingId;

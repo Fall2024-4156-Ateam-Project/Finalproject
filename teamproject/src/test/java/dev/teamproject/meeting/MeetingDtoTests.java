@@ -3,7 +3,7 @@ package dev.teamproject.meeting;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import dev.teamproject.common.CommonTypes;
-import dev.teamproject.meeting.MeetingDTO;
+import dev.teamproject.meeting.MeetingDto;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
  * and setters of the MeetingDTO class work correctly,
  * and that the validation annotations are applied properly.
  */
-public class MeetingDTOTests {
+public class MeetingDtoTests {
   private static Validator validator;
 
   @BeforeAll
@@ -31,7 +31,7 @@ public class MeetingDTOTests {
   @Test
   void testMeetingDtoGettersAndSetters() {
     // Arrange
-    MeetingDTO meetingDto = new MeetingDTO();
+    MeetingDto meetingDto = new MeetingDto();
     Integer meetingId = 101;
     Integer organizerId = 202;
     String type = "group";
@@ -71,7 +71,7 @@ public class MeetingDTOTests {
   @Test
   void testOrganizerIdIsNotNull() {
     // Arrange
-    MeetingDTO meetingDto = new MeetingDTO();
+    MeetingDto meetingDto = new MeetingDto();
     meetingDto.setMeetingId(101);
     meetingDto.setType("group");
     meetingDto.setDescription("Weekly team meeting");
@@ -83,7 +83,7 @@ public class MeetingDTOTests {
     meetingDto.setEndDay(CommonTypes.Day.Friday);
 
     // Act
-    Set<ConstraintViolation<MeetingDTO>> violations = validator.validate(meetingDto);
+    Set<ConstraintViolation<MeetingDto>> violations = validator.validate(meetingDto);
 
     // Assert
     assertThat(violations).isNotEmpty();
@@ -97,7 +97,7 @@ public class MeetingDTOTests {
   @Test
   void testValidMeetingDto() {
     // Arrange
-    MeetingDTO meetingDto = new MeetingDTO();
+    MeetingDto meetingDto = new MeetingDto();
     meetingDto.setMeetingId(101);
     meetingDto.setOrganizerId(202);
     meetingDto.setType("group");
@@ -110,7 +110,7 @@ public class MeetingDTOTests {
     meetingDto.setEndDay(CommonTypes.Day.Friday);
 
     // Act
-    Set<ConstraintViolation<MeetingDTO>> violations = validator.validate(meetingDto);
+    Set<ConstraintViolation<MeetingDto>> violations = validator.validate(meetingDto);
 
     // Assert
     assertThat(violations).isEmpty();

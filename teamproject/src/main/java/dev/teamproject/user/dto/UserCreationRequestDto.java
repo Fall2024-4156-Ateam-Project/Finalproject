@@ -1,6 +1,6 @@
-package dev.teamproject.user.DTOs;
+package dev.teamproject.user.dto;
 
-import dev.teamproject.meeting.MeetingDTO;
+import dev.teamproject.meeting.MeetingDto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -14,7 +14,7 @@ import java.util.List;
  * for creating a user, including name, email, and optional meetings.
  * It includes validation annotations for the required fields.
  */
-public class UserCreationRequestDTO {
+public class UserCreationRequestDto {
 
   /**
    * Optional.
@@ -38,7 +38,7 @@ public class UserCreationRequestDTO {
   /**
    * Optional.
    */
-  private List<MeetingDTO> meetings;
+  private List<MeetingDto> meetings;
 
   public Integer getUid() {
     return uid;
@@ -81,11 +81,11 @@ public class UserCreationRequestDTO {
     this.updatedAt = updatedAt;
   }
 
-  public List<MeetingDTO> getMeetings() {
+  public List<MeetingDto> getMeetings() {
     return meetings;
   }
 
-  public void setMeetings(List<MeetingDTO> meetings) {
+  public void setMeetings(List<MeetingDto> meetings) {
     this.meetings = meetings;
   }
 }

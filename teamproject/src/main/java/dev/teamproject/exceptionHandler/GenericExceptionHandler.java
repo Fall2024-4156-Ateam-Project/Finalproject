@@ -1,7 +1,7 @@
-package dev.teamproject.exceptionHandler;
+package dev.teamproject.exceptionhandler;
 
-import dev.teamproject.apiResponse.GenericApiResponse;
-import dev.teamproject.user.DTOs.UserErrorResponseDTO;
+import dev.teamproject.apiresponse.GenericApiResponse;
+import dev.teamproject.user.dto.UserErrorResponseDto;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.http.HttpStatus;
@@ -39,9 +39,9 @@ public class GenericExceptionHandler {
    * @return the response entity
    */
   @ExceptionHandler(UserException.class)
-  public ResponseEntity<GenericApiResponse<UserErrorResponseDTO>> handleUserException(
+  public ResponseEntity<GenericApiResponse<UserErrorResponseDto>> handleUserException(
         UserException ex) {
-    GenericApiResponse<UserErrorResponseDTO> response = new GenericApiResponse<>(ex.getMessage(),
+    GenericApiResponse<UserErrorResponseDto> response = new GenericApiResponse<>(ex.getMessage(),
         ex.getData(), false);
     return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
   }

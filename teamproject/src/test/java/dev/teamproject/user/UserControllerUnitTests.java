@@ -5,12 +5,12 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import dev.teamproject.apiResponse.GenericApiResponse;
-import dev.teamproject.user.DTOs.UserCreationRequestDTO;
-import dev.teamproject.user.DTOs.UserSuccessResponseDTO;
+import dev.teamproject.apiresponse.GenericApiResponse;
 import dev.teamproject.user.User;
 import dev.teamproject.user.UserController;
 import dev.teamproject.user.UserService;
+import dev.teamproject.user.dto.UserCreationRequestDto;
+import dev.teamproject.user.dto.UserSuccessResponseDto;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,8 +28,8 @@ class UserControllerUnitTests {
 
   @InjectMocks
   private UserController userController;
-  UserCreationRequestDTO userCreationRequestDto;
-  UserSuccessResponseDTO userSuccessResponseDto;
+  UserCreationRequestDto userCreationRequestDto;
+  UserSuccessResponseDto userSuccessResponseDto;
 
   private User user1;
   private User user2;
@@ -39,55 +39,39 @@ class UserControllerUnitTests {
     MockitoAnnotations.openMocks(this);
     user1 = new User("test1", "test1@email.com");
     user2 = new User("test2", "test2@email.com");
-    userCreationRequestDto = new UserCreationRequestDTO();
+    userCreationRequestDto = new UserCreationRequestDto();
     userCreationRequestDto.setName("test1");
     userCreationRequestDto.setEmail("test1@email.com");
-    userSuccessResponseDto = new UserSuccessResponseDTO();
+    userSuccessResponseDto = new UserSuccessResponseDto();
     userSuccessResponseDto.setUid(1);
     userSuccessResponseDto.setName("test1");
     userSuccessResponseDto.setEmail("test1@email.com");
-    // userSuccessResponseDTO.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-
   }
-
-  //  @Test
-  //  void testSaveUser() {
-  //    userController.saveUser(user1);
-  //
-  //    verify(userService, times(1)).save(user1);
-  //  }
 
   @Test
   void testRegister() {
-    UserSuccessResponseDTO userSuccessResponseDto = new UserSuccessResponseDTO();
+    UserSuccessResponseDto userSuccessResponseDto = new UserSuccessResponseDto();
     userSuccessResponseDto.setName("test1");
     userSuccessResponseDto.setEmail("test1@email.com");
 
     when(userService.registerUser(userCreationRequestDto)).thenReturn(userSuccessResponseDto);
 
-    ResponseEntity<GenericApiResponse<UserSuccessResponseDTO>> response
+    ResponseEntity<GenericApiResponse<UserSuccessResponseDto>> response
             = userController.register(userCreationRequestDto);
 
     assertEquals(HttpStatus.OK, response.getStatusCode());
-    // Verify HTTP status code
-    // assertEquals("User created successfully", response.getBody().getMessage());
-    // Verify response message
     assertEquals(userSuccessResponseDto, response.getBody().getData());
-    // Verify returned user details
     verify(userService,
             times(1)).registerUser(userCreationRequestDto);
   }
 
   @Test
   void testDeleteUser() {
-    // UserSuccessResponseDTO responseDTO
-    // = new UserSuccessResponseDTO(1, "test1", "test1@email.com");
     when(userService.deleteUser(1)).thenReturn(userSuccessResponseDto);
 
-    ResponseEntity<GenericApiResponse<UserSuccessResponseDTO>> response
+    ResponseEntity<GenericApiResponse<UserSuccessResponseDto>> response
             = userController.deleteUser(1);
 
-    // assertEquals("User deleted successfully", response.getBody().getMessage());
     assertEquals(1, response.getBody().getData().getUid());
     verify(userService, times(1)).deleteUser(1);
   }
